@@ -14,9 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/product/{slug}', function ($slug) {
+    return view('product-details');
+});
+
+Route::get('/products', function () {
+    return view('products');
+});
+
+Route::get('/abouse-us', function () {
+    return view('abouse-us');
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
