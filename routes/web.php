@@ -29,6 +29,9 @@ Route::get('/about-us', function () {
     return view('about-us');
 });
 
+Route::get('/mandi', function () {
+    return view('about-us');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
