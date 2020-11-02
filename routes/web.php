@@ -29,6 +29,21 @@ Route::get('/about-us', function () {
     return view('about-us');
 });
 
+Route::get('/contact-us', function () {
+    return view('contact-us');
+});
+
+Route::get('/our-farms', function () {
+    return view('our-farms');
+});
+
+Route::get('/shariah-compliant', function () {
+    return view('sharih-compliance');
+});
+
+Route::get('/mandi', function () {
+    return view('mandi');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
