@@ -14,7 +14,7 @@
                         <div class="categories">
                             <h6 class="pb-3">Categories</h6>
                             <ul>
-                                <li><a class="active" href="#"><i class="icon-qkp-bull"></i>Bull</a></li>
+                                <li><a class="active" href="#"><i class="fas fa-horse"></i>Bull</a></li>
                                 <li><a href="#"><i class="fas fa-horse"></i>Camel</a></li>
                                 <li><a href="#"><i class="fas fa-horse"></i>Goat</a></li>
                                 <li><a href="#"><i class="fas fa-horse"></i>Sheep</a></li>
