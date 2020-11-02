@@ -140,18 +140,28 @@
    <!-- Register Model end -->
       
       <!-- Main Header -->
-      <header>
-         <div class="header" id="topheader">
+      
+   <header>
+      <div class="header" id="topheader">
          <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                <a class="navbar-brand" href="/"><img src="/images/logo.png" alt=""></a>
+               <div class="SearchToggle ml-auto">
+
+                  @if (Request::is('/'))
+                     <button class="navbar-toggler" type="button">
+                        <a href="#" type="button" class="toggleSearch"><i class="fas fa-search"></i></a>
+                     </button>
+                  @endif
+               </div>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="toggler-icon"><i class="fas fa-bars"></i></span>
+                  <span class="toggler-icon"><i class="fas fa-bars"></i></span>
                </button>
+               
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mx-auto">
-                     <li class="nav-item active">
+                     <li class="nav-item">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                      </li>
                      <li class="nav-item">
@@ -171,13 +181,15 @@
                      </li>
                   </ul>
                   <form class="form-inline my-2 my-lg-0">
-                     <button class="btn btn-outline-success my-2 px-4 my-sm-0 mr-3 login" type="submit">Login</button>
-                     <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="submit">Register</button>
+                     <button class="btn btn-outline-success my-2 px-4 my-sm-0 mr-3 login" type="button"
+                        data-toggle="modal" data-target="#login-modal">Login</button>
+                     <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
+                        data-toggle="modal" data-target="#register-modal">Register</button>
                   </form>
                </div>
             </div>
          </nav>
-      </header>
+   </header>
       
       <!-- Banner section -->
       @yield('content')
