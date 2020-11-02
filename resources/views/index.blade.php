@@ -88,35 +88,35 @@
       <h2>Featured Animals</h2>
       <div class="animals-slider">
          <div class="item">
-            <a href="#"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
+            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
             <div class="title">
                <span class="name">Kharani Animal</span>
                <span class="prize">3,500/- Per Month</span>
             </div>
          </div>
          <div class="item">
-            <a href="#"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
+            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
             <div class="title">
                <span class="name">Kharani Animal</span>
                <span class="prize">3,500/- Per Month</span>
             </div>
          </div>
          <div class="item">
-            <a href="#"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
+            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
             <div class="title">
                <span class="name">Kharani Animal</span>
                <span class="prize">3,500/- Per Month</span>
             </div>
          </div>
          <div class="item">
-            <a href="#"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
+            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
             <div class="title">
                <span class="name">Kharani Animal</span>
                <span class="prize">3,500/- Per Month</span>
             </div>
          </div>
          <div class="item">
-            <a href="#"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
+            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
             <div class="title">
                <span class="name">Kharani Animal</span>
                <span class="prize">3,500/- Per Month</span>
