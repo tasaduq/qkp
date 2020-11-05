@@ -45,8 +45,18 @@ Route::get('/mandi', function () {
     return view('mandi');
 });
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
+    return view('profile');
+})->name('profile');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+});
 

@@ -7,13 +7,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 profile-left-section">
-                    <p>Welcome <span class="name">Ali John!</span></p>
+                    <p>Welcome <span class="name">{{Auth::user()->name}}</span></p>
                     <div class="profile-categories">
                         <h6>Categories</h6>
                         <ul>
                             <li><a href="#">My Profile Settings</a></li>
                             <li class="active"><a  href="#">Installment Schedule</a></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="/logout">Logout</a></li>
                         </ul>
                         <h6>Announcement</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqerra maecenas accumsan lacus vel facilisis. </p>
@@ -27,7 +27,7 @@
                          <div class="row schedule pb-3">
                         <div class="col-sm-4">
                             <div class="animal-picture text-center">
-                                <img class="img-fluid" src="Assets/images/Layer 8.png">
+                                <img class="img-fluid" src="/images/Layer 8.png">
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -97,7 +97,7 @@
                          <div class="row schedule pb-3">
                         <div class="col-sm-4">
                             <div class="animal-picture text-center">
-                                <img class="img-fluid" src="Assets/images/bull2.png">
+                                <img class="img-fluid" src="/images/bull2.png">
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -167,7 +167,7 @@
                          <div class="row schedule pb-3">
                         <div class="col-sm-4">
                             <div class="animal-picture text-center">
-                                <img class="img-fluid" src="Assets/images/sheep2.png">
+                                <img class="img-fluid" src="/images/sheep2.png">
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -237,7 +237,7 @@
                          <div class="row schedule pb-3">
                         <div class="col-sm-4">
                             <div class="animal-picture text-center">
-                                <img class="img-fluid" src="Assets/images/goat2.png">
+                                <img class="img-fluid" src="/images/goat2.png">
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -318,7 +318,7 @@
              <div class="container">
                 <div class="row justify-content-around text-center">
                    <div class="col-sm-2 text-left">
-                      <img src="Assets/images/footerlogo.png" alt="">
+                      <img src="/images/footerlogo.png" alt="">
                    </div>
                    <div class="col-sm-6 copyright">
                       <span>© Copyrights 2020 QurbaniKistoonPay. All Rights Reserved</span>
@@ -347,10 +347,10 @@
              </div>
           </section>
           <!-- footer end -->
-          <script src="Assets/js/jquery-3.5.1.min.js"></script>
-          <script src="Assets/js/popper.min.js"></script>
-          <script src="Assets/js/bootstrap.min.js"></script>
-          <script src="Assets/js/slick.js"></script>
+          <script src="/js/jquery-3.5.1.min.js"></script>
+          <script src="/js/popper.min.js"></script>
+          <script src="/js/bootstrap.min.js"></script>
+          <script src="/js/slick.js"></script>
           <script>
              $('.navbar-nav .nav-link').click(function(){
                       $('.navbar-nav .nav-link').removeClass('active');

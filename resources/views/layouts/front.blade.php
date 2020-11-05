@@ -4,6 +4,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/slick-theme.css">
@@ -47,26 +48,36 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
             <div class="modal-body">
-                <form action="/examples/actions/confirmation.php" method="post">
+
+               @if (session('status'))
+                  <div class="mb-4 font-medium text-sm text-green-600">
+                     {{ session('status') }}
+                  </div>
+               @endif
+
+            
+               <form method="POST" action="{{ route('login') }}">
+                {{-- <form action="/examples/actions/confirmation.php" method="post"> --}}
+                  @csrf 
                     <div class="form-group">
                     <i class="fa fa-user"></i>
-                    <input type="text" class="form-control" placeholder="Username or email" required="required">
+                    <input class="form-control" placeholder="Username or email"  type="email" name="email" :value="old('email')" required autofocus >
                     </div>
                     <div class="form-group">
                     <i class="fa fa-lock"></i>
-                    <input type="password" class="form-control" placeholder="Password" required="required">
+                    <input class="form-control" placeholder="Password" type="password" name="password" required autocomplete="current-password" >
                     </div>
                     <div class="form-group">
-                    <input id="ckb1" type="checkbox" name="remember-me">
+                    <input id="ckb1" type="checkbox" name="remember">
                     <label class="form-check-label" for="exampleCheck1">Keep me Signed in</label>
                     </div>
                     <div class="form-group">
                     <input type="submit" class="default-btn btn-block btn-lg" value="Login">
                     </div>
-
+                  </form>
                     <div class="form-group row">
                     <div class="col-sm-6"> <a href="#">Not a member? Sign up</a></div>
-                    <div class="col-sm-6"><a href="#">I can't remember my password</a></div>
+                    <div class="col-sm-6"><a href="{{ route('password.request') }}">I can't remember my password</a></div>
 
 
                     </div>
@@ -79,7 +90,7 @@
                     <div class="col-sm-4 px-1"><button class="btn twitter" type="submit"><i
                                 class="fab fa-twitter"></i>Twitter</button></div>
                     </div>
-                </form>
+               
             </div>
         </div>
         </div>
@@ -99,19 +110,26 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
    
           <div class="modal-body">
-             <form action="/examples/actions/confirmation.php" method="post">
+            <form method="POST" action="{{ route('register') }}">
+               @csrf
+   
+             {{-- <form action="/examples/actions/confirmation.php" method="post"> --}}
                 <div class="form-group">
                    <i class="fa fa-user"></i>
-                   <input type="text" class="form-control" placeholder="Username" required="required">
+                   <input class="form-control" placeholder="Name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" >
                 </div>
                 <div class="form-group">
                    <i class="fa msg fa-envelope"></i>
-                   <input type="email" class="form-control" placeholder="Email" required="required">
+                   <input class="form-control" placeholder="Email" type="email" name="email" :value="old('email')" required >
                 </div>
                 <div class="form-group">
                    <i class="fa fa-lock"></i>
-                   <input type="password" class="form-control" placeholder="Password" required="required">
+                   <input class="form-control" placeholder="Password" type="password" name="password" required autocomplete="new-password" >
                 </div>
+                <div class="form-group">
+                  <i class="fa fa-lock"></i>
+                  <input class="form-control" placeholder="Confirm Password" type="password" name="password_confirmation" required autocomplete="new-password" >
+               </div>
                 <div class="text-center">
                    <div class="modal-text">Your passwork must be at least 8 Characters long and must contain letters, numbers and special charecters. cant not contain whitespace.</span>
                 </div>
@@ -119,7 +137,7 @@
                 <div class="form-group">
                    <input type="submit" class="default-btn btn-block btn-lg" value="Sign Up">
                 </div>
-   
+               </form>
                 <div class="form-group row text-center">
                    <div class="col-sm-12"> <a href="#" >Already register? Login</a></div>
                 </div>
@@ -132,7 +150,7 @@
                    <div class="col-sm-4 px-1"><button class="btn twitter" type="submit"><i
                             class="fab fa-twitter"></i>Twitter</button></div>
                 </div>
-             </form>
+        
           </div>
        </div>
     </div>
@@ -177,15 +195,26 @@
                         <a class="nav-link" href="/contact-us">Contact Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="our-farms">Our Farms</a>
+                        <a class="nav-link" href="/our-farms">Our Farms</a>
                      </li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <button class="btn btn-outline-success my-2 px-4 my-sm-0 mr-3 login" type="button"
-                        data-toggle="modal" data-target="#login-modal">Login</button>
-                     <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
-                        data-toggle="modal" data-target="#register-modal">Register</button>
-                  </form>
+
+                  @if(Auth::user())
+                     
+
+                     <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                           <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
+                        </li>
+                     </ul>
+                  @else 
+                     <form class="form-inline my-2 my-lg-0">
+                        <button class="btn btn-outline-success my-2 px-4 my-sm-0 mr-3 login" type="button"
+                           data-toggle="modal" data-target="#login-modal">Login</button>
+                        <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
+                           data-toggle="modal" data-target="#register-modal">Register</button>
+                     </form>
+                  @endif
                </div>
             </div>
          </nav>
