@@ -46,6 +46,7 @@ Route::get('/mandi', function () {
 });
 
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -58,5 +59,37 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
 Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
+});
+
+
+// Admin
+
+Route::get('/admin/register', function () {
+    return view('admin.register');
+});
+
+Route::get('/admin/login', function () {
+    return view('admin.login');
+});
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/admin/products', function () {
+    return view('admin.products');
+});
+
+Route::get('/admin/add_product', function () {
+    return view('admin.add_product');
+});
+
+
+Route::get('/admin/category', function () {
+    return view('admin.category');
+});
+
+Route::get('/admin/add_category', function () {
+    return view('admin.add_category');
 });
 
