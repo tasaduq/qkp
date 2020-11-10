@@ -37,6 +37,15 @@
       </div> -->
 
 
+      {{-- {{dd(Session::all())}} --}}
+
+      @if($errors->any())
+         @foreach ($errors->all() as $error)
+            <h1>{{ $error }}</h1>
+         @endforeach
+      @endif
+
+
     <!-- Login Modal -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle">
         <div class="modal-dialog modal-dialog-centered modal-login" role="document">
