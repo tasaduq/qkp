@@ -92,12 +92,8 @@
                     </div>
                     <p><span class="or">Or</span></p>
                     <div class="row social">
-                    <div class="col-sm-4 px-1"><button class="btn google" type="submit"><i
-                                class="fab fa-google"></i>Google</button></div>
-                    <div class="col-sm-4 px-1"><button class="btn facebook" type="submit"><i
-                                class="fab fa-facebook-f"></i>Facebook</button></div>
-                    <div class="col-sm-4 px-1"><button class="btn twitter" type="submit"><i
-                                class="fab fa-twitter"></i>Twitter</button></div>
+                        <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
+                        <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
                     </div>
                
             </div>
@@ -236,6 +232,52 @@
       <script src="/js/popper.min.js"></script>
       <script src="/js/bootstrap.min.js"></script>
       <script src="/js/slick.js"></script> --}}
+
+
+      
+      <script>
+         window.fbAsyncInit = function() {
+         FB.init({
+            appId      : '399602708073529',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v8.0'
+         });
+            
+         FB.AppEvents.logPageView();   
+        
+        
+         };
+       
+       
+         (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+
+
+         $("#fb-login-btn").on("click",function(){
+            FB.getLoginStatus(function(response) {
+               console.log(response)
+                  if(response.status == "connected")
+                  {
+                     alert("fb + app logged in")
+                  }
+                  else if (response.status == "not_authorized"){
+                     alert("fb logged in")
+                  }
+                  else {
+                     FB.login();
+                  }
+            });
+         
+         })
+
+      </script>
 
     </body>
 </html>
