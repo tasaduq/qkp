@@ -52,7 +52,7 @@
         <div class="modal-content">
             <div class="modal_head text-center">
                 <h4 class="modal-title">Login</h4>
-                <span>With your username or email</span>
+                <span>with your email</span>
             </div>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
@@ -65,29 +65,32 @@
                @endif
 
             
-               <form method="POST" action="{{ route('login') }}">
+               <form method="POST" action="{{ route('login') }}" id="login-form">
                 {{-- <form action="/examples/actions/confirmation.php" method="post"> --}}
                   @csrf 
                     <div class="form-group">
                     <i class="fa fa-user"></i>
-                    <input class="form-control" placeholder="Username or email"  type="email" name="email" :value="old('email')" required autofocus >
+                    <input class="form-control" placeholder="email"  type="email" name="email" id="email" required >
                     </div>
                     <div class="form-group">
                     <i class="fa fa-lock"></i>
-                    <input class="form-control" placeholder="Password" type="password" name="password" required autocomplete="current-password" >
+                    <input class="form-control" placeholder="Password" type="password" name="password" id="password" required  >
                     </div>
                     <div class="form-group">
                     <input id="ckb1" type="checkbox" name="remember">
                     <label class="form-check-label" for="exampleCheck1">Keep me Signed in</label>
                     </div>
                     <div class="form-group">
-                    <input type="submit" class="default-btn btn-block btn-lg" value="Login">
+                       <span id="login-error" style="display:none;"></span>
+                     </div>
+                    
+                    <div class="form-group">
+                    <input type="button" class="default-btn btn-block btn-lg" id="login-form-btn" value="Login">
                     </div>
                   </form>
                     <div class="form-group row">
                     <div class="col-sm-6"> <a href="#">Not a member? Sign up</a></div>
                     <div class="col-sm-6"><a href="{{ route('password.request') }}">I can't remember my password</a></div>
-
 
                     </div>
                     <p><span class="or">Or</span></p>
@@ -115,32 +118,36 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
    
           <div class="modal-body">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" id="register-form">
                @csrf
    
              {{-- <form action="/examples/actions/confirmation.php" method="post"> --}}
                 <div class="form-group">
                    <i class="fa fa-user"></i>
-                   <input class="form-control" placeholder="Name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" >
+                   <input class="form-control" placeholder="Name" type="text" name="name" id="name" required>
                 </div>
                 <div class="form-group">
                    <i class="fa msg fa-envelope"></i>
-                   <input class="form-control" placeholder="Email" type="email" name="email" :value="old('email')" required >
+                   <input class="form-control" placeholder="Email" type="email" name="email" id="email" required >
                 </div>
                 <div class="form-group">
                    <i class="fa fa-lock"></i>
-                   <input class="form-control" placeholder="Password" type="password" name="password" required autocomplete="new-password" >
+                   <input class="form-control" placeholder="Password" type="password" name="password" id="cpassword" required >
                 </div>
                 <div class="form-group">
                   <i class="fa fa-lock"></i>
-                  <input class="form-control" placeholder="Confirm Password" type="password" name="password_confirmation" required autocomplete="new-password" >
+                  <input class="form-control" placeholder="Confirm Password" type="password" name="password_confirmation" id="password_confirmation" required>
                </div>
                 <div class="text-center">
-                   <div class="modal-text">Your passwork must be at least 8 Characters long and must contain letters, numbers and special charecters. cant not contain whitespace.</span>
+                   <div class="modal-text">Your passwork must be at least 8 Characters long and must contain letters, numbers and special charecters.</span>
                 </div>
                 </div>
                 <div class="form-group">
-                   <input type="submit" class="default-btn btn-block btn-lg" value="Sign Up">
+                  <span id="register-error" style="display:none;"></span>
+                </div>
+               
+                <div class="form-group">
+                   <input type="button" class="default-btn btn-block btn-lg" id="register-form-btn" value="Sign Up">
                 </div>
                </form>
                 <div class="form-group row text-center">
@@ -215,9 +222,9 @@
                   @else 
                      <form class="form-inline my-2 my-lg-0">
                         <button class="btn btn-outline-success my-2 px-4 my-sm-0 mr-3 login" type="button"
-                           data-toggle="modal" data-target="#login-modal">Login</button>
+                           data-toggle="modal" data-target="#login-modal" id="login-btn">Login</button>
                         <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
-                           data-toggle="modal" data-target="#register-modal">Register</button>
+                           data-toggle="modal" data-target="#register-modal" id="register-btn">Register</button>
                      </form>
                   @endif
                </div>
@@ -233,8 +240,8 @@
       <script src="/js/bootstrap.min.js"></script>
       <script src="/js/slick.js"></script> --}}
 
-
-      
+      <script src="/js/jquery-validator.js"></script> 
+      <script src="/js/app.js"></script> 
       <script>
          window.fbAsyncInit = function() {
          FB.init({

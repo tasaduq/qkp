@@ -93,3 +93,12 @@ Route::get('/admin/add_category', function () {
     return view('admin.add_category');
 });
 
+
+
+
+/* Functionality Routes */
+
+
+
+Route::post("ajax-login", "CustomLoginController@login");
+Route::post("ajax-register", "CustomLoginController@register");

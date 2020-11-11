@@ -1,0 +1,113 @@
+$(document).ready(function(){
+    var customer_login_form = $("#login-form").validate({
+        rules: {
+            password: "required",
+            email: {
+                required: true,
+                email: true,
+            }
+        }
+    });
+
+    var customer_register_form = $("#register-form").validate({
+        rules: {
+            name: {
+                required: true,
+                minlength:3,
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password:{
+                minlength:8
+            },
+            password_confirmation: {
+                minlength: 8,
+                equalTo: "#cpassword"
+            }
+        }
+    });
+
+    $("#login-form-btn").on("click",function(){
+        
+        if(!customer_login_form.form()){
+            return false;
+        }
+        submitRequest( $("#login-form").serialize() );
+        
+    })
+
+    $("#register-form-btn").on("click",function(){
+        
+        if(!customer_register_form.form()){
+            return false;
+        }
+
+        $.ajax({
+            url:"ajax-register",
+            data: $("#register-form").serialize(),
+            type: "POST",
+            success: function(result){
+                login.loader.show();
+                if(result.result == "true"){
+                    $("#login-error").hide();
+                    window.location = "/profile"
+                }
+                else {
+                  
+                }
+                
+            },
+            error: function (request, status, error) {
+                console.log(request, status, error)
+                if(request.status == 422){
+                    messages = []
+                    $.each(request.responseJSON.errors, function(field, errors){
+                        messages.push(errors.join("\n"))
+                    })
+                    
+                    login.loader.hide();
+                    $("#register-error").show();
+                    $("#register-error").html(messages.join(", \n"));
+                }
+                
+            }
+        })
+        
+    })
+
+
+    function submitRequest(payload){
+        $.ajax({
+            url:"ajax-login",
+            data: payload,
+            type: "POST",
+            success: function(result){
+                login.loader.show();
+                if(result.result == "true"){
+                    $("#login-error").hide();
+                    window.location = result.url;
+                }
+                else {
+                    login.loader.hide();
+                    $("#login-error").show();
+                    $("#login-error").html(result.error);
+                }
+                
+            }
+        })
+    }
+
+    var login = {
+        loader:{
+            show:function(){
+
+            },
+            hide:function(){
+
+            }
+        }
+    }
+
+})
