@@ -45,14 +45,15 @@ $(document).ready(function(){
         }
 
         $.ajax({
-            url:"ajax-register",
+            url:"/ajax-register",
             data: $("#register-form").serialize(),
             type: "POST",
             success: function(result){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#login-error").hide();
-                    window.location = "/profile"
+                    alert("Your account has been created, please login");
+                    // window.location = "/profile"
                 }
                 else {
                   
@@ -80,7 +81,7 @@ $(document).ready(function(){
 
     function submitRequest(payload){
         $.ajax({
-            url:"ajax-login",
+            url:"/ajax-login",
             data: payload,
             type: "POST",
             success: function(result){

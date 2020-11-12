@@ -102,3 +102,6 @@ Route::get('/admin/add_category', function () {
 
 Route::post("ajax-login", "CustomLoginController@login");
 Route::post("ajax-register", "CustomLoginController@register");
+
+Route::post("add-product", "ProductsController@add_product");
+
