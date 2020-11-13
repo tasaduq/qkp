@@ -76,9 +76,6 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/admin/products', function () {
-    return view('admin.products');
-});
 
 Route::get('/admin/add_product', function () {
     return view('admin.add_product');
@@ -105,3 +102,5 @@ Route::post("ajax-register", "CustomLoginController@register");
 
 Route::post("add-product", "ProductsController@add_product");
 
+
+Route::get('/admin/products', "ProductsController@get_products");

@@ -24,4 +24,12 @@ class ProductsController extends Controller
         return Response::json($result);
         
     } 
+    public function get_products(Request $request){
+        $products = Products::all();
+
+        // dd($products);
+        // where("deleted",0)->
+        return view('admin.products')->with('products',$products);
+        
+    }
 }

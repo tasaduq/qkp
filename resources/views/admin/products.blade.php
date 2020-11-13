@@ -7,7 +7,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Procuts</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Products</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -50,7 +50,11 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
+
                 <tbody class="list">
+
+                  @foreach($products as $product)
+
                   <tr>
                     <td class="">
                       <div class="custom-control custom-checkbox">
@@ -64,15 +68,15 @@
                           <img alt="Image placeholder" src="../admin/img/theme/bootstrap.jpg">
                         </a> -->
                         <div class="media-body">
-                          <span class="name mb-0 text-sm">Brahman Bull</span>
+                          <span class="name mb-0 text-sm">{{$product->name}}</span>
                         </div>
                       </div>
                     </th>
                     <td class="budget">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                      {{$product->description}}
                     </td>
                     <td>
-                      Brahman
+                      {{$product->category}}
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
@@ -82,9 +86,9 @@
                     </td>
                     <td>
                       <div class="avatar-group">
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
+                        {{-- <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
                           <img alt="Image placeholder" src="../admin/img/theme/team-1.jpg">
-                        </a>
+                        </a> --}}
                       </div>
                     </td>
                     <td class="text-right">
@@ -100,104 +104,9 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2"></label>
-                      </div>
-                    </td>
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        <!-- <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="../admin/img/theme/bootstrap.jpg">
-                        </a> -->
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm">Brahman Bull</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td class="budget">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </td>
-                    <td>
-                      Brahman
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>
-                        <span class="status">pending</span>
-                      </span>
-                    </td>
-                    <td>
-                      <div class="avatar-group">
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                          <img alt="Image placeholder" src="../admin/img/theme/team-1.jpg">
-                        </a>
-                      </div>
-                    </td>
-                    <td class="text-right">
-                      <div class="dropdown">
-                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Clone</a>
-                          <a class="dropdown-item" href="#">Delete</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2"></label>
-                      </div>
-                    </td>
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        <!-- <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="../admin/img/theme/bootstrap.jpg">
-                        </a> -->
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm">Brahman Bull</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td class="budget">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </td>
-                    <td>
-                      Brahman
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-success"></i>
-                        <span class="status">Active</span>
-                      </span>
-                    </td>
-                    <td>
-                      <div class="avatar-group">
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                          <img alt="Image placeholder" src="../admin/img/theme/team-1.jpg">
-                        </a>
-                      </div>
-                    </td>
-                    <td class="text-right">
-                      <div class="dropdown">
-                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Clone</a>
-                          <a class="dropdown-item" href="#">Delete</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+
+                  @endforeach
+                 
                 </tbody>
               </table>
             </div>
@@ -247,15 +156,5 @@
         </div>
       </div>
       
-      <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
-            <div class="copyright text-center  text-lg-left  text-muted">
-              &copy; 2020 <a href="#" class="font-weight-bold ml-1" target="_blank">QKP TECH PVT LTD</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    
   @endsection

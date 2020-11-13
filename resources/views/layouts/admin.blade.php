@@ -50,7 +50,7 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="/admin/dashboard">
                 <i class="ni ni-shop text-primary"></i>
                 <span class="nav-link-text">Dashboards</span>
               </a>
@@ -63,19 +63,19 @@
               <div class="collapse" id="navbar-dashboards">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/admin/products" class="nav-link">
                       <span class="sidenav-normal"> Products </span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/admin/categories" class="nav-link">
                       <span class="sidenav-normal"> Product Categories </span>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="../../pages/widgets.html">
                 <i class="ni ni-archive-2 text-green"></i>
                 <span class="nav-link-text">Widgets</span>
@@ -86,19 +86,19 @@
                 <i class="ni ni-chart-pie-35 text-info"></i>
                 <span class="nav-link-text">Charts</span>
               </a>
-            </li>
+            </li> --}}
           </ul>
           <!-- Divider -->
           <hr class="my-3">
           <!-- Heading -->
-          <h6 class="navbar-heading p-0 text-muted">
+          {{-- <h6 class="navbar-heading p-0 text-muted">
             <span class="docs-normal">Documentation</span>
             <span class="docs-mini">D</span>
-          </h6>
+          </h6> --}}
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="#" target="_blank">
+              <a class="nav-link" href="/admin/settings" target="_blank">
                 <i class="ni ni-settings-gear-65"></i>
                 <span class="nav-link-text">Settings</span>
               </a>
@@ -348,7 +348,17 @@
 
     @yield('content')
 
-
+  <!-- Footer -->
+  <footer class="footer pt-0">
+    <div class="row align-items-center justify-content-lg-between">
+      <div class="col-lg-12">
+        <div class="copyright text-center  text-muted">
+          &copy; 2020 <a href="#" class="font-weight-bold ml-1" target="_blank">QKP TECH PVT LTD</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
 
 </div>
 <!-- Argon Scripts -->

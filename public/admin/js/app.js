@@ -25,7 +25,7 @@ $(document).ready(function(){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#login-error").hide();
-                    window.location = result.url;
+                    window.location = "/admin/products";
                 }
                 else {
                     login.loader.hide();
