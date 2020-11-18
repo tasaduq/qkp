@@ -91,6 +91,14 @@ Route::get('/admin/add_category', function () {
 });
 
 
+Route::get('/admin/oredrs', function () {
+    return view('admin.orders');
+});
+Route::get('/admin/oredr_details', function () {
+    return view('admin.order_details');
+});
+
+
 
 
 /* Functionality Routes */

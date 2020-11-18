@@ -7,17 +7,6 @@
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
               <h6 class="h2 text-white d-inline-block mb-0">Products</h6>
-              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Tables</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral">Add New Product</a>
-              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
             </div>
           </div>
         </div>
@@ -167,6 +156,17 @@
                       <textarea class="form-control" name="description" placeholder="Enter Product Discription" rows="4"></textarea>
                     </div>
                   </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Product Status</label>
+                    <div class="col-md-9">
+                    <div id="toggles-component" class="tab-pane tab-example-result" role="tabpanel" aria-labelledby="toggles-component-tab">
+                      <label class="custom-toggle">
+                        <input type="checkbox">
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                      </label>
+                    </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -183,7 +183,7 @@
                 {{-- <button type="button" class="btn btn-danger">Danger</button> --}}
                 {{-- <button type="button" class="btn btn-warning">Warning</button> --}}
               </div>
-            </form>r
+            </form>
             </div>
           </div>
         </div>
