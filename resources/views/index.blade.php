@@ -87,42 +87,93 @@
    <div class="container text-center slick">
       <h2>Featured Animals</h2>
       <div class="animals-slider">
-         <div class="item">
-            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
-            <div class="title">
-               <span class="name">Kharani Animal</span>
-               <span class="prize">3,500/- Per Month</span>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image">
+                     <img class="img-fluid" src="/images/Layer 8.png" alt="">
+                  </div>
+                  <div class="title">
+                     <span class="name">Kharani Animal</span>
+                     <span class="prize">3,500/- Per Month</span>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image">
+                     <img class="img-fluid" src="images/Layer 8.png" alt="">
+                  </div>
+                  <div class="title">
+                     <span class="name">Kharani Animal</span>
+                     <span class="prize">3,500/- Per Month</span>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image">
+                     <img class="img-fluid" src="images/about-us.png" alt="">
+                  </div>
+                  <div class="title">
+                     <span class="name">Kharani Animal</span>
+                     <span class="prize">3,500/- Per Month</span>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image">
+                     <img class="img-fluid" src="images/Layer 8.png" alt="">
+                  </div>
+                  <div class="title">
+                     <span class="name">Kharani Animal</span>
+                     <span class="prize">3,500/- Per Month</span>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image">
+                     <img class="img-fluid" src="images/Layer 8.png" alt="">
+                  </div>
+                  <div class="title">
+                     <span class="name">Kharani Animal</span>
+                     <span class="prize">3,500/- Per Month</span>
+                  </div>
+               </div>
+            </a>
+
+
+
+            <!-- <div class="item">
+               <a href="#"><img class="img-fluid" src="Assets/images/Layer 8.png" alt=""></a>
+               <div class="title">
+                  <span class="name">Kharani Animal</span>
+                  <span class="prize">3,500/- Per Month</span>
+               </div>
             </div>
-         </div>
-         <div class="item">
-            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
-            <div class="title">
-               <span class="name">Kharani Animal</span>
-               <span class="prize">3,500/- Per Month</span>
+            <div class="item">
+               <a href="#"><img class="img-fluid" src="Assets/images/Layer 8.png" alt=""></a>
+               <div class="title">
+                  <span class="name">Kharani Animal</span>
+                  <span class="prize">3,500/- Per Month</span>
+               </div>
             </div>
-         </div>
-         <div class="item">
-            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
-            <div class="title">
-               <span class="name">Kharani Animal</span>
-               <span class="prize">3,500/- Per Month</span>
+            <div class="item">
+               <a href="#"><img class="img-fluid" src="Assets/images/Layer 8.png" alt=""></a>
+               <div class="title">
+                  <span class="name">Kharani Animal</span>
+                  <span class="prize">3,500/- Per Month</span>
+               </div>
             </div>
+            <div class="item">
+               <a href="#"><img class="img-fluid" src="Assets/images/Layer 8.png" alt=""></a>
+               <div class="title">
+                  <span class="name">Kharani Animal</span>
+                  <span class="prize">3,500/- Per Month</span>
+               </div>
+            </div> -->
          </div>
-         <div class="item">
-            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
-            <div class="title">
-               <span class="name">Kharani Animal</span>
-               <span class="prize">3,500/- Per Month</span>
-            </div>
-         </div>
-         <div class="item">
-            <a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a>
-            <div class="title">
-               <span class="name">Kharani Animal</span>
-               <span class="prize">3,500/- Per Month</span>
-            </div>
-         </div>
-      </div>
       <div class="arrow_prev">
          <span><i class="icon-qkp-caret-left"></i></span>
       </div>
@@ -222,7 +273,9 @@
    <div class="container">
       <div class="row justify-content-around text-center">
          <div class="col-sm-2 text-left">
-            <img src="/images/footerlogo.png" alt="">
+            <div class="footerlogo">
+                  <img src="/images/footerlogo.svg" alt="">
+            </div>
          </div>
          <div class="col-sm-6 copyright">
             <span>© Copyrights 2020 QurbaniKistoonPay. All Rights Reserved</span>
