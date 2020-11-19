@@ -251,10 +251,10 @@
    </div>
 </section>
 <!-- footer end -->
-<script src="/js/jquery-3.5.1.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/slick.js"></script>
+<script src="{{asset('/js/jquery-3.5.1.min.js')}}"></script>
+<script src="{{asset('/js/popper.min.js')}}"></script>
+<script src="{{asset('/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/js/slick.js')}}"></script>
 <script>
 
    //      $(document).ready(function(){

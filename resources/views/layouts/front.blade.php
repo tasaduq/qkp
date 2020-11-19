@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/slick-theme.css">
-        <link rel="stylesheet" href="/css/slick.css">
-        <link rel="stylesheet" href="/css/qkp-icons.css">
+        <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" >
+        <link rel="stylesheet" href="{{asset('/css/slick-theme.css')}}">
+        <link rel="stylesheet" href="{{asset('/css/slick.css')}}">
+        <link rel="stylesheet" href="{{asset('/css/qkp-icons.css')}}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/style.css">
         <title>Qurbani</title>
@@ -235,13 +235,13 @@
       <!-- Banner section -->
       @yield('content')
 
-      {{-- <script src="/js/jquery-3.5.1.min.js"></script>
-      <script src="/js/popper.min.js"></script>
-      <script src="/js/bootstrap.min.js"></script>
-      <script src="/js/slick.js"></script> --}}
+      {{-- <script src="{{asset('/js/jquery-3.5.1.min.js')}}"></script>
+      <script src="{{asset('/js/popper.min.js')}}"></script>
+      <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+      <script src="{{asset('/js/slick.js')}}"></script> --}}
 
-      <script src="/js/jquery-validator.js"></script> 
-      <script src="/js/app.js"></script> 
+      <script src="{{asset('/js/jquery-validator.js')}}"></script> 
+      <script src="{{asset('/js/app.js')}}"></script> 
       <script>
          window.fbAsyncInit = function() {
          FB.init({
