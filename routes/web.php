@@ -112,3 +112,8 @@ Route::post("add-product", "ProductsController@add_product");
 
 
 Route::get('/admin/products', "ProductsController@get_products");
+
+
+Route::post('/admin/upload', "MediaController@upload");
+
+Route::get("/admin/media", "MediaController@index");
