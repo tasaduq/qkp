@@ -50,7 +50,7 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="/admin/dashboard">
+              <a class="nav-link" href="/admin/dashboard">
                 <i class="ni ni-shop text-primary"></i>
                 <span class="nav-link-text">Dashboards</span>
               </a>
@@ -75,6 +75,13 @@
                 </ul>
               </div>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/media">
+                <i class="ni ni-shop text-primary"></i>
+                <span class="nav-link-text">Media</span>
+              </a>
+            </li>
+            
             {{-- <li class="nav-item">
               <a class="nav-link" href="../../pages/widgets.html">
                 <i class="ni ni-archive-2 text-green"></i>

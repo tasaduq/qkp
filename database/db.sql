@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 08:30 PM
+-- Generation Time: Nov 19, 2020 at 06:42 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -37,6 +37,18 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media`
+--
+
+CREATE TABLE `media` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `path` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -76,6 +88,31 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL,
+  `name` varchar(225) NOT NULL,
+  `color` varchar(100) DEFAULT NULL,
+  `category` int(11) NOT NULL,
+  `weight` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `name`, `color`, `category`, `weight`, `price`, `description`) VALUES
+(1, 'asdasdasd', NULL, 2, 123123, 123123123, 'asdasdasd asdas d'),
+(2, 'product two', '123123', 2, 11233, 123123123, 'dsad asd asda sdas da ds'),
+(3, 'dasd asa', '12312', 2, 213, 123123, 'asdasdasd sada sda das d');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -93,10 +130,10 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('cnjFBkoIFn04LYIHWCbUhXBhec7FqrTk9D6W03fO', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoidE1RTjBLWDROeDE3dWRYUUtGZUpjYW9GVjR0bkZxYUpodUhzU2hTOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly9sb2NhbGhvc3QvbGFyYXZlbC9wdWJsaWMvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJG9KMUtLdzVpWFpjeUdWMGNGUmpXYWV6RTlTekZTVE5mY0ZLOEQ4T2NZaEdaaGd4ZGdZQWNHIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRvSjFLS3c1aVhaY3lHVjBjRlJqV2FlekU5U3pGU1ROZmNGSzhEOE9jWWhHWmhneGRnWUFjRyI7fQ==', 1599677420),
-('kVH4vp8Dikm8UP5XYVJfNLaa9x6NjElI0xauU8Xm', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoicTBVMTFLNndBUjlqaVZqWVJneERFTTlYOWNGcGNlR0w4S3RERlFvZCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjA6Imh0dHA6Ly9xdXJiYW5pLmxvY2FsIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJG9KMUtLdzVpWFpjeUdWMGNGUmpXYWV6RTlTekZTVE5mY0ZLOEQ4T2NZaEdaaGd4ZGdZQWNHIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRvSjFLS3c1aVhaY3lHVjBjRlJqV2FlekU5U3pGU1ROZmNGSzhEOE9jWWhHWmhneGRnWUFjRyI7fQ==', 1599678061),
-('NzM5ru6E1BPGTcfTortvpC2WVspIxuLOiol8aPq9', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoia2prSkRDd3dMclZZYW43bEJoUXhZblFHNjk5SUc1N2c1UmRRQ2tzOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly9sb2NhbGhvc3QvbGFyYXZlbC9wdWJsaWMvcHJvZHVjdC90ZXN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1603647352),
-('oGpzD3AoWD2VuqCikCUhTz1VmkbY9MsxE8EdF0Zz', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMFJVWExPMko2ZHFxOG1KTlNLRzZoRG1sdnIxTHBMTVhBVjc5bUtuciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly9xdXJiYW5pLmxvY2FsL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1599677576);
+('19Hi99DodFSceiXU08WK422bngjAXRCbeOiIE2sc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVE5WUnRHV3lRTTN2NlF2Y2NiRFZPdnZNcXFmZ09kRWFzV1NzTzhqSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9xdXJiYW5pLmxvY2FsL2FkbWluL29yZWRycyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1605726427),
+('BJzOneNbOWtJPYSNJnM8XgoMUcOe4YbiSecGe4pR', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ2NDSXR0RHNWdHplUFlVeVQxeHA4M1JIRTJzS2RGWUExWXhkcHp5byI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9xdXJiYW5pLmxvY2FsL2FkbWluL3Byb2R1Y3RzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGszRnNBLzYwc3E3ZVRpRkhkRTF5eWVlS2h4Mm5ubDdNYnpzbWVnVTl1WnFGekZFZHBEdThhIjt9', 1605294720),
+('csUIg3abpGHmAyEGqrqGx6HSoPMWSzPS7ZRxTPje', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQmhLejc1SVdHY21QUHRqdWZKUzQzR3J6c3ZFRUQ1M0RHVFZzVk1NYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly9xdXJiYW5pLmxvY2FsL2FkbWluL21lZGlhIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGszRnNBLzYwc3E3ZVRpRkhkRTF5eWVlS2h4Mm5ubDdNYnpzbWVnVTl1WnFGekZFZHBEdThhIjt9', 1605805175),
+('McwphFrzTsDW7G821abVSX2FnTDPOJRF0BMlikpn', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36', 'YTo2OntzOjM6InVybCI7YToxOntzOjg6ImludGVuZGVkIjtzOjI4OiJodHRwOi8vcXVyYmFuaS5sb2NhbC9wcm9maWxlIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly9xdXJiYW5pLmxvY2FsL2FkbWluL2FkZF9wcm9kdWN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo2OiJfdG9rZW4iO3M6NDA6ImVtYTB4R3p4SlRrWEY5d002WFJRR3F0NGVTYTR4ZFlNcE12NExHejAiO3M6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRrM0ZzQS82MHNxN2VUaUZIZEUxeXllZUtoeDJubmw3TWJ6c21lZ1U5dVpxRnpGRWRwRHU4YSI7fQ==', 1605210305);
 
 -- --------------------------------------------------------
 
@@ -108,6 +145,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -123,8 +161,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'tasaduq', 'tasaduq@gmail.com', NULL, '$2y$10$oJ1KKw5iXZcyGV0cFRjWaezE9SzFSTNfcFK8D8OcYhGZhgxdgYAcG', NULL, NULL, NULL, NULL, NULL, '2020-09-09 12:46:42', '2020-09-09 12:46:42');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
+(1, 'tasaduq', 'tasaduq@gmail.com', NULL, NULL, '$2y$10$oJ1KKw5iXZcyGV0cFRjWaezE9SzFSTNfcFK8D8OcYhGZhgxdgYAcG', NULL, NULL, NULL, NULL, NULL, '2020-09-09 12:46:42', '2020-09-09 12:46:42'),
+(2, 'Tasaduq H', 'taxaduq@live.com', 'admin', NULL, '$2y$10$k3FsA/60sq7eTiFHdE1yyeeKhx2nnl7MbzsmegU9uZqFzFEdpDu8a', NULL, NULL, NULL, NULL, NULL, '2020-11-05 12:33:00', '2020-11-05 12:33:00'),
+(3, 'tasaduq', 'tasaduq@yopmail.com', NULL, NULL, '$2y$10$ddrGGFWrh1deAoSw4IL9zeDuIX1rPIEgd/FEqX3pGpDymL4qm5JZO', NULL, NULL, NULL, NULL, NULL, '2020-11-11 13:29:50', '2020-11-11 13:29:50'),
+(4, 'test', 'test@test.test', NULL, NULL, '$2y$10$V1Yrv4oTyFHmHLO95hyiy.SAeqYVEqd0v5TYMXDmve6EmhZjwTFyu', NULL, NULL, NULL, NULL, NULL, '2020-11-11 13:39:39', '2020-11-11 13:39:39'),
+(5, 'taasduq', 'tasaduq1@yopmail.com', NULL, NULL, '$2y$10$2p3ljj7L3TscqWm0pARKLOjkOp7s44jyAVyZOLoKST7QId48KiUza', NULL, NULL, NULL, NULL, NULL, '2020-11-12 12:12:07', '2020-11-12 12:12:07');
 
 --
 -- Indexes for dumped tables
@@ -138,6 +180,13 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD UNIQUE KEY `id_2` (`id`),
+  ADD KEY `id` (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -148,6 +197,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
 
 --
 -- Indexes for table `sessions`
@@ -175,16 +230,28 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
