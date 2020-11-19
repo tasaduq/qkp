@@ -45,7 +45,13 @@ Route::get('/mandi', function () {
     return view('mandi');
 });
 
+Route::get('/cart', function () {
+    return view('cart');
+});
 
+Route::get('/checkout', function () {
+    return view('checkout');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -91,10 +97,10 @@ Route::get('/admin/add_category', function () {
 });
 
 
-Route::get('/admin/oredrs', function () {
+Route::get('/admin/orders', function () {
     return view('admin.orders');
 });
-Route::get('/admin/oredr_details', function () {
+Route::get('/admin/order_details', function () {
     return view('admin.order_details');
 });
 

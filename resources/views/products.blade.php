@@ -141,7 +141,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart active"><i class="icon-qkp-shopping-cart"></i></span>
+                                        <!-- <span class="cart active"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -172,7 +172,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -203,7 +203,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -233,7 +233,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -248,7 +248,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@
                                     <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
                                         <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <span class="cart"><i class="icon-qkp-shopping-cart"></i></span>
+                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                                     </div>
                                     </div>
                                 </div>

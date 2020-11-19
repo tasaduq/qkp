@@ -175,7 +175,7 @@
       <div class="header" id="topheader">
          <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-               <a class="navbar-brand" href="/"><img src="/images/logo.png" alt=""></a>
+               <a class="navbar-brand" href="/"><img src="/images/logo.svg" alt=""></a>
                <div class="SearchToggle ml-auto">
 
                   @if (Request::is('/'))
