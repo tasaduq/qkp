@@ -123,3 +123,4 @@ Route::get('/admin/products', "ProductsController@get_products");
 Route::post('/admin/upload', "MediaController@upload");
 
 Route::get("/admin/media", "MediaController@index");
+Route::post("/admin/fetch-images", "MediaController@fetch_images");

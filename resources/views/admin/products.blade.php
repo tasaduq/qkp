@@ -46,7 +46,6 @@
                     <th scope="col" class="sort" data-sort="budget">Product Description</th>
                     <th scope="col" class="sort" data-sort="status">Category</th>
                     <th scope="col" class="sort" data-sort="status">Status</th>
-                    <th scope="col">Users</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -80,17 +79,22 @@
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>
-                        <span class="status">pending</span>
+                        @if($product->active)
+                        <i class="bg-success"></i>
+                        <span class="status">Active</span>
+                        @else
+                        <i class="bg-gray"></i>
+                        <span class="status">Unactive</span>
+                        @endif
                       </span>
                     </td>
-                    <td>
+                    {{--<td>
                       <div class="avatar-group">
-                        {{-- <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
+                         <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
                           <img alt="Image placeholder" src="../admin/img/theme/team-1.jpg">
-                        </a> --}}
+                        </a> 
                       </div>
-                    </td>
+                    </td> --}}
                     <td class="text-right">
                       <div class="dropdown">
                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
