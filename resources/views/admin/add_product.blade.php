@@ -188,6 +188,143 @@
           </div>
         </div>
       </div>
-      
-    
+
+      <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xxl">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="">Upload Media Files</h2>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+      <div class="row mt-5 justify-content-left">
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm1.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm3.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm2.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm3.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm2.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm1.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm2.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm3.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm2.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm1.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm2.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm3.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm2.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+         <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm1.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ <style>
+    .animal-image {
+        height: 175px;
+        overflow: hidden;
+    }
+    .modal-xxl{max-width:90% !important;}
+    .animal-image {
+    height: 175px;
+    overflow: hidden;position:relative;
+}
+.custom-checkbox{position:absolute; width:100%; height:100%; top:0; left:0;appearance:none;}
+input[type=checkbox]:checked{ border:5px solid #721c86;}
+input[type=checkbox]:checked::before {
+    content: "\2713";
+    color: #73ae2c;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    display: inline-block;
+    margin: 8px 0px 0px 10px;
+    box-shadow: 0 0 10px 0 #000000bf;
+}
+</style>
+
     @endsection
