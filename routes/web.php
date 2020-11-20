@@ -114,10 +114,17 @@ Route::get('/admin/order_details', function () {
 Route::post("ajax-login", "CustomLoginController@login");
 Route::post("ajax-register", "CustomLoginController@register");
 
+
+/* Products Routes Section Starts */
 Route::post("add-product", "ProductsController@add_product");
-
-
 Route::get('/admin/products', "ProductsController@get_products");
+/* Products Routes Section Ends */
+
+
+/* Category Routes Section Starts */
+Route::get('/admin/categories', "CategoriesController@get_category");
+//Route::post("add-category", "CategoriesController@add_category");
+/* Category Routes Section Starts */
 
 
 Route::post('/admin/upload', "MediaController@upload");
