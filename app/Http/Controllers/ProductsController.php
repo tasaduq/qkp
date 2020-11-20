@@ -15,7 +15,19 @@ class ProductsController extends Controller
 {
     public function add_product(Request $request){
 
-        $data = $request->except("_token");
+        $data = $request->except(["_token", "images"]);
+
+        if($request->has("images")){
+            $data["images"] = implode(",",$request->get("images"));
+        }
+        
+        if($request->has("active")){
+            if($request->get("active") == "on");
+            {
+                $data["active"] = 1;
+            }
+        }
+        
 
         Products::insert($data);
 

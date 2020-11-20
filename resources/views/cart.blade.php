@@ -24,61 +24,26 @@
                         <div class="col-sm-8">
                            <h2>Achai Bull</h2>
                            <div class="row animals_attribute">
-                              <div class="col-sm-5">
-                                 <div class="label"><strong>Weight</strong><span class="spacer">:</span>200KG</div>
-                                 <div class="label"><strong>Height</strong><span class="spacer">:</span>6.2Ft</div>
-                              </div>
-                              <div class="col-sm-5">
-                                 <div class="label"><strong>Color</strong><span class="spacer">:</span> Black & White</div>
-                                 <div class="label"><strong>Plan<span class="spacer">:</span></strong>06 Months</div>
-                              </div>
+                              <div class="col-sm-6 label">Estimated Weight : <strong>200KG</strong></div>
+                              <div class="col-sm-6 label">Color : <strong>Black & White</strong></div>
+                              <div class="col-sm-6 label">Actual Price : <strong>175,000/-</strong></div>
+                              <div class="col-sm-6 label">Plan : <strong>6 Months</strong></div>
+                              <div class="col-sm-6 label">Advance(30%) : <strong>52,500/-</strong></div>
+                              <div class="col-sm-6 label">Monthly Installment : <strong>14,583/-</strong></div>
                            </div>
                            <div class="delete_item">
                            <button class="btn default-btn"><span class="fas fa-trash-alt"></span></button>
                            </div>
-                           <div class="row grand-total">
-                              <div class="col-sm-5">
-                                 <div>Actual Price <strong>175,000/-</strong></div>
+                           <!-- <div class="row grand-total">
+                              <div class="col-sm-6">
+                                 <div>Advance(30%)<strong> : 52,500/-</strong></div>
                               </div>
                               <div class="col-sm-6">
-                                 <div>Monthly Installment <strong>14,583/-</strong></div>
+                                 <div>Monthly Installment<strong> : 14,583/-</strong></div>
                               </div>
-                           </div>
+                           </div> -->
                         </div>
                      </div><!--schdule row-->
-                  </div>
-                  <div class="cart">
-                  <div class="row pb-3">
-                     <div class="col-sm-4">
-                        <div class="animal-picture text-center">
-                           <img class="img-fluid" src="/images/bull2.png">
-                        </div>
-                     </div>
-                     <div class="col-sm-8">
-                        <h2>Bhagnari Bull</h2>
-                        <div class="row animals_attribute">
-                           <div class="col-sm-5">
-                              <div class="label"><strong>Weight</strong><span class="spacer">:</span>200KG</div>
-                              <div class="label"><strong>Height</strong><span class="spacer">:</span>6.2Ft</div>
-                           </div>
-                           <div class="col-sm-5">
-                              <div class="label"><strong>Color</strong><span class="spacer">:</span> Black & White</div>
-                              <div class="label"><strong>Plan<span class="spacer">:</span></strong>06 Months</div>
-                           </div>
-                        </div>
-                        <div class="delete_item">
-                        <button class="btn default-btn"><span class="fas fa-trash-alt"></span></button>
-                        </div>
-                        <div class="row grand-total">
-                           <div class="col-sm-5">
-                              <div>Actual Price <strong>175,000/-</strong></div>
-                           </div>
-                           <div class="col-sm-6">
-                              <div>Monthly Installment <strong>14,583/-</strong></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div><!--schdule row-->
                   </div>
             </div>
 

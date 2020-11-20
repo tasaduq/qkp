@@ -130,3 +130,4 @@ Route::get('/admin/categories', "CategoriesController@get_category");
 Route::post('/admin/upload', "MediaController@upload");
 
 Route::get("/admin/media", "MediaController@index");
+Route::post("/admin/fetch-images", "MediaController@fetch_images");

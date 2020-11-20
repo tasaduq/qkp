@@ -1,4 +1,113 @@
 $(document).ready(function(){
+
+
+    
+
+
+    $('#media-modal').on('shown.bs.modal', function () {
+        media.loadPopupImages();
+    });
+
+    $('.add-product-images').on('click', function () {
+
+        $('#media-modal').modal("toggle");
+        media.addNewgProductImages();
+    });
+
+    
+
+    var media = {
+        addNewgProductImages:function(){
+            var addedImages = $(".image-checkbox:checkbox:checked").map(function(){
+                return {
+                    "id":$(this).val(),
+                    "thumb":$(this).attr("thumb"),
+                };
+            }).get();
+            var html = "";
+            addedImages.forEach(image => {
+                console.log(image)
+
+                html = html + `<div class="col-sm-2 my-3">
+                   <div class="animal-image">
+                       <img class="img-fluid" src="${image.thumb}" image-id="${image.id}">
+                       <input class="custom-checkbox image-checkbox" name="images[]" type="hidden" value="${image.id}" thumb="${image.thumb}">
+                   </div>
+               </div>`;
+           });
+           $(".added-product-images").append(html);
+
+        },
+        addExistingProductImages:function(){
+            var imageIds = $(".image-checkbox:checkbox:checked").map(function(){
+                return $(this).val();
+            }).get();
+            var payload = {
+                _token:$("meta[name='csrf-token']").attr("content"),
+                "images":imageIds.toString(), 
+
+            }
+            $.ajax({
+                url:"/admin/fetch-images",
+                data: payload,
+                dataType: 'json',
+                type: "POST",
+                success: function(result){
+
+                }
+            })
+            
+        },
+        loadPopupImages:function(){
+            this.loadImages(0, function(images){
+                media.listIamges(".modal-content .images-container", images)
+            })
+        },
+        listIamges:function(selector, images){
+            var html = "";
+            images.forEach(image => {
+                 console.log(image)
+
+                 html = html + `<div class="col-sm-2 my-3">
+                    <div class="animal-image">
+                        <img class="img-fluid" src="${image.path}" image-id="${image.id}">
+                        <input class="custom-checkbox image-checkbox" type="checkbox" value="${image.id}" thumb="${image.thumb}">
+                    </div>
+                </div>`;
+            });
+
+            $(selector).append(html);
+        },
+        loadImages:function(page = 0, callback){
+            var payload = {
+                _token:$("meta[name='csrf-token']").attr("content"),
+                page:page
+            }
+            $.ajax({
+                url:"/admin/fetch-images",
+                data: payload,
+                dataType: 'json',
+                type: "POST",
+                success: function(result){
+                    login.loader.show();
+                    if(result.result == "true"){
+                        
+                        if(callback !== undefined){
+                            callback(result.data);
+                        }
+                    }
+                    else {
+                        login.loader.hide();
+                        $("#login-error").show();
+                        $("#login-error").html(result.error);
+                    }
+                    
+                }
+            })
+        },
+
+    }
+
     var add_product_form = $("#add-product-form").validate({
         rules: {
             name: "required",
