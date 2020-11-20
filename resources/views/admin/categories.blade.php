@@ -78,7 +78,7 @@
                         @if($category->is_active ==1)
                             <i class="bg-success"></i><span class="status">Active</span>
                             @else
-                            <i class="bg-warning"></i><span class="status">Un Active</span>
+                            <i class="bg-gray"></i><span class="status">Un Active</span>
                             @endif
                         </span>
                     </td>
