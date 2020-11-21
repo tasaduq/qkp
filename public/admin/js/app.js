@@ -171,7 +171,7 @@ $(document).ready(function(){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#login-error").hide();
-                    window.location = "/admin/category";
+                    window.location = "/admin/categories";
                 }
                 else {
                     login.loader.hide();

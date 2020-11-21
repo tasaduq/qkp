@@ -16,21 +16,23 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
+        <a href="{{ route('category') }}" class="btn btn-primary" style="margin-bottom: 25px;" title="Cancel"><i class="fa fa-reply"></i></a>
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Category Details</h3>
+              <h3 class="mb-0">Edit Details</h3>
             </div>
-            <!-- Category Form -->
-            <form action="" id="add-category-form">
-              @csrf
+            
+            <!-- Category Edit Form -->
+            <form action="{{ route('updateCategory') }}" method="post">
+            @csrf
             <div class="card-body border-0">
               <div class="row">
                 <div class="col-lg-7">
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Category Name</label>
                     <div class="col-md-9">
-                      <input class="form-control" type="text" placeholder="Enter Product Name" id="category_name" name="category_name">
+                      <input class="form-control" type="text" placeholder="Enter Category Name" id="category_name" name="category_name" value="{{ $aCategory->category_name }}">
                     </div>
                   </div>
                   
@@ -38,7 +40,7 @@
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Category Description</label>
                     <div class="col-md-9">
-                      <textarea class="form-control" name="description" id="description" placeholder="Enter Product Discription" rows="4"></textarea>
+                      <textarea class="form-control" name="description" id="description" placeholder="Enter Product Discription" rows="4">{{ $aCategory->description }}</textarea>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -46,7 +48,7 @@
                     <div class="col-md-9">
                     <div id="toggles-component" class="tab-pane tab-example-result" role="tabpanel" aria-labelledby="toggles-component-tab">
                       <label class="custom-toggle">
-                        <input type="checkbox" name="is_active" id="is_active" checked>
+                        <input type="checkbox" name="is_active" id="is_active" checked="{{ $aCategory->is_active  == '1' ? 'checked' : '' }}" >
                         <span class="custom-toggle-slider rounded-circle"></span>
                       </label>
                     </div>
@@ -64,7 +66,8 @@
                 {{-- <button type="button" class="btn btn-primary">Primary</button> --}}
                 {{-- <button type="button" class="btn btn-secondary">Secondary</button> --}}
                 {{-- <button type="button" class="btn btn-info">Info</button> --}}
-                <button type="button" class="btn btn-success" id="add-category-btn">Submit</button>
+                <input type='hidden' name="id" value="{{ $aCategory->category_id }}">
+                <input type="submit" class="btn btn-success" id="up-category-btn" value="Update Category">
                 {{-- <button type="button" class="btn btn-danger">Danger</button> --}}
                 {{-- <button type="button" class="btn btn-warning">Warning</button> --}}
               </div>
