@@ -129,146 +129,50 @@
                 </div>
                 <div class="col-sm-9 right-section">
                     <h2>Bulls</h2>
+                    
                     <p><strong>179,835 </strong>Animals Stocks are available</p>
                     <div class="row justify-content-center">
+
+                            
+
+                                
+
+                        @foreach ($products as $product)
                         <div class="col-sm-4 col-md-6 col-lg-4">
                             <div class="animal-product">
-                                <div class="item">
-                                    <div class="featured">Featured</div>
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
+                        <div class="item">
+                            @if($product->featured)
+                                <div class="featured">Featured</div>
+                            @endif
+
+                            <?php
+
+                                if ( strpos($product->images, ",") > -1){
+                                    $imageid = explode(",",$product->images)[0];
+                                }
+                                else {
+                                    $imageid = $product->images;
+                                }
+                                
+                                $image = \App\Models\Media::find($imageid);
+                                
+                            ?>
+                            <div class="product-img"><a href="/product/{{$product->id}}"><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></a></div>
+                            <div class="title">
+                            <span class="name">{{$product->name}}</span>
+                            <div class="prize">
+                                <span>Actual Price <strong>{{$product->price}}/-</strong></span>
+                                <span>Monthly Installment <strong>14,583/-</strong></span>
+                                 <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                            </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="featured">Featured</div>
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <!-- <span class="cart active"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="sold-out">Sold Out</div>
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-6 col-lg-4">
-                            <div class="animal-product">
-                                <div class="item">
-                                    <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-                                    <div class="title">
-                                    <span class="name">Achai Bull</span>
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                        <span>Monthly Installment <strong>14,583/-</strong></span>
-                                         <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                    @endforeach
+
+
+
                     </div>
                 </div>
             </div>

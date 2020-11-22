@@ -87,61 +87,36 @@
    <div class="container text-center slick">
       <h2>Featured Animals</h2>
       <div class="animals-slider">
-            <a href="/product/test">
+
+
+         @foreach ($featured_products as $product)
+            <a href="/product/{{$product->id}}">
                <div class="item">
                   <div class="animal-image">
-                     <img class="img-fluid" src="/images/Layer 8.png" alt="">
+                     <?php
+
+                        if ( strpos($product->images, ",") > -1){
+                           $imageid = explode(",",$product->images)[0];
+                        }
+                        else {
+                           $imageid = $product->images;
+                        }
+                        
+                        $image = \App\Models\Media::find($imageid);
+                        
+                     ?>
+                     <img class="img-fluid" src="{{$image->thumb}}" alt="">
                   </div>
                   <div class="title">
-                     <span class="name">Kharani Animal</span>
+                     <span class="name">{{$product->name}}</span>
                      <span class="prize">3,500/- Per Month</span>
                   </div>
                </div>
             </a>
-            <a href="/product/test">
-               <div class="item">
-                  <div class="animal-image">
-                     <img class="img-fluid" src="images/Layer 8.png" alt="">
-                  </div>
-                  <div class="title">
-                     <span class="name">Kharani Animal</span>
-                     <span class="prize">3,500/- Per Month</span>
-                  </div>
-               </div>
-            </a>
-            <a href="/product/test">
-               <div class="item">
-                  <div class="animal-image">
-                     <img class="img-fluid" src="images/about-us.png" alt="">
-                  </div>
-                  <div class="title">
-                     <span class="name">Kharani Animal</span>
-                     <span class="prize">3,500/- Per Month</span>
-                  </div>
-               </div>
-            </a>
-            <a href="/product/test">
-               <div class="item">
-                  <div class="animal-image">
-                     <img class="img-fluid" src="images/Layer 8.png" alt="">
-                  </div>
-                  <div class="title">
-                     <span class="name">Kharani Animal</span>
-                     <span class="prize">3,500/- Per Month</span>
-                  </div>
-               </div>
-            </a>
-            <a href="/product/test">
-               <div class="item">
-                  <div class="animal-image">
-                     <img class="img-fluid" src="images/Layer 8.png" alt="">
-                  </div>
-                  <div class="title">
-                     <span class="name">Kharani Animal</span>
-                     <span class="prize">3,500/- Per Month</span>
-                  </div>
-               </div>
-            </a>
+         @endforeach
+         
+
+          
 
 
 

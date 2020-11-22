@@ -9,6 +9,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Response;
 use Validator;
+use Mail;
+
+use App\Mail\RegisterVerification;
 
 class CustomLoginController extends Controller
 {
@@ -21,17 +24,26 @@ class CustomLoginController extends Controller
 
             $user = Auth::user();
 
-            if( $user->role == "admin" ){
-                $url = "/admin/dashboard";
-            }
-            else {
-                $url = "/profile";
-            }
+            if($user->verified){
 
-            $result = array(
-                "result"=>"true", 
-                "url"=> $url 
-            );
+                if( $user->role == "admin" ){
+                    $url = "/admin/dashboard";
+                }
+                else {
+                    $url = "/profile";
+                }
+
+                $result = array(
+                    "result"=>"true", 
+                    "url"=> $url 
+                );
+            }
+            else{
+                $result = array(
+                    "result"=>"false", 
+                    "error"=>"User and password did not match"
+                );    
+            }
         }
         else {
             $result = array(
@@ -51,14 +63,26 @@ class CustomLoginController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', new Password, 'confirmed'],
         ]);
-   
+        
+        $verification_hash = Hash::make($request->get('name')."+".$request->get('email'));
+        $result = 1;
         $result = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
+            'verification_hash' => $verification_hash
         ]);
 
         if ($result){
+
+            $maildata = [
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'url' => config('app.url').'verifyuser/'.$verification_hash
+            ];  
+
+            Mail::to($request->get('email'))->send(new RegisterVerification($maildata));
+
             $result = array(
                 "result"=>"true",  
             );
