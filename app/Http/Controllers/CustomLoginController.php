@@ -96,4 +96,26 @@ class CustomLoginController extends Controller
 
         return Response::json($result);
     }
+    public function verifyuser($verifyhash, Request $request){
+        
+        $user = User::where([
+            'verification_hash' => $verifyhash
+        ])->first();
+        
+        if($user){
+            User::where([
+                'id' => $user->id
+            ])->update([
+                'verified' => 1,
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ]);
+
+            $status = 1;
+        }
+        else {
+            $status = 0;
+        }
+
+        return view('verifyuser')->with('status',$status);
+    }
 }

@@ -109,7 +109,7 @@ Route::get('/admin/order_details', function () {
 
 Route::post("ajax-login", "CustomLoginController@login");
 Route::post("ajax-register", "CustomLoginController@register");
-Route::post("verifyuser/{hash}", "CustomLoginController@verifyuser");
+Route::get("verifyuser/{hash}", "CustomLoginController@verifyuser");
 
 
 
