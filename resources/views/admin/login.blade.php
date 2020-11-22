@@ -226,7 +226,7 @@
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="../admin/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="/js/jquery-validator.js"></script> 
+  <script src="{{asset('/js/jquery-validator.js')}}"></script> 
   
   <script src="../admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../admin/vendor/js-cookie/js.cookie.js"></script>

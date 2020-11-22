@@ -146,6 +146,45 @@ $(document).ready(function(){
         })
         
     })
+
+
+    var add_category_form = $("#add-category-form").validate({
+        rules: {
+            name: "required",
+            description : "required",
+        }
+    });
+
+
+    $("#add-category-btn").on("click",function(){
+        if(!add_category_form.form()){
+            return false;
+        }
+        
+        var payload = $("#add-category-form").serialize()
+        console.log(payload);
+        $.ajax({
+            url:"/add-category",
+            data: payload,
+            type: "POST",
+            success: function(result){
+                login.loader.show();
+                if(result.result == "true"){
+                    $("#login-error").hide();
+                    window.location = "/admin/categories";
+                }
+                else {
+                    login.loader.hide();
+                    $("#login-error").show();
+                    $("#login-error").html(result.error);
+                }
+                
+            }
+        })
+        
+    })
+
+    
     
     var customer_login_form = $("#login-form").validate({
         rules: {

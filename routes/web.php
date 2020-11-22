@@ -112,10 +112,20 @@ Route::post("ajax-register", "CustomLoginController@register");
 Route::post("verifyuser/{hash}", "CustomLoginController@verifyuser");
 
 
+
+/* Products Routes Section Starts */
 Route::post("add-product", "ProductsController@add_product");
-
-
 Route::get('/admin/products', "ProductsController@get_products");
+/* Products Routes Section Ends */
+
+
+/* Category Routes Section Starts */
+Route::get('/admin/categories', "CategoriesController@get_category")->name('category');
+Route::post("add-category", "CategoriesController@add_category")->name('addcategory');
+Route::get('/edit_category/{id}','CategoriesController@edit')->name('editCategory');
+Route::post('/update_category','CategoriesController@update')->name('updateCategory');
+Route::get('/delete_category/{id}','CategoriesController@destroy')->name('deleteCategory');
+/* Category Routes Section Starts */
 
 
 Route::post('/admin/upload', "MediaController@upload");
