@@ -39,7 +39,7 @@ class CategoriesController extends Controller
         // $categories = Categories::all();
         // return view('admin.categories')->with('categories',$categories);
         
-        $categories = DB::table('categories')->where('is_active','=','1')->get();
+        $categories = DB::table('categories')->get();
         return view('admin.categories',compact('categories'));
     
     }
