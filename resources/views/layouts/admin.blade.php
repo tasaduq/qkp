@@ -67,7 +67,12 @@
                 <span class="nav-link-text">Media</span>
               </a>
             </li>
-            
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/orders">
+                <i class="ni ni-shop text-primary"></i>
+                <span class="nav-link-text">Orders</span>
+              </a>
+            </li>
             {{-- <li class="nav-item">
               <a class="nav-link" href="../../pages/widgets.html">
                 <i class="ni ni-archive-2 text-green"></i>
