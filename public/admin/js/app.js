@@ -112,7 +112,7 @@ $(document).ready(function(){
                  html = html + `<div class="col-sm-2 my-3">
                     <div class="animal-image">
                         <img class="img-fluid" src="${image.path}" image-id="${image.id}">
-                        <input class="custom-checkbox image-checkbox" type="file" value="" thumb="${image.thumb}">
+                        <input class="custom-checkbox image-checkbox" type="checkbox" value="${image.id}" thumb="${image.thumb}">
                     </div>
                 </div>`;
             });
