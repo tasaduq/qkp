@@ -8,13 +8,24 @@ $(document).ready(function(){
         media.loadPopupImages();
     });
 
+    $('#media-modal_category').on('shown.bs.modal', function () {
+        media.loadPopupImagesCategory();
+    });
+
     $('.add-product-images').on('click', function () {
 
         $('#media-modal').modal("toggle");
         media.addNewgProductImages();
     });
 
-    
+
+    $('.add-category-images').on('click', function () {
+
+        //$('#media-modal').modal("toggle");
+        media.addNewgcategoryImage();
+    });
+
+
 
     var media = {
         addNewgProductImages:function(){
@@ -36,6 +47,30 @@ $(document).ready(function(){
                </div>`;
            });
            $(".added-product-images").append(html);
+
+        },
+
+        addNewgcategoryImage:function(){
+
+            var addedImages1 = $(".image-checkbox:checkbox:checked").map(function(){
+                return {
+                    "id":$(this).val(),
+                    "thumb":$(this).attr("thumb"),
+                };
+            }).get();
+            var html = "";
+            addedImages1.forEach(image => {
+                console.log(image)
+                console.log('ss');
+
+                html = html + `<div class="col-sm-2 my-3">
+                   <div class="animal-image">
+                       
+                       <input class="custom-checkbox image-checkbox" name="images" type="hidden" value="" thumb="">
+                   </div>
+               </div>`;
+           });
+           $(".add-category-images").append(html);
 
         },
         addExistingProductImages:function(){
@@ -63,6 +98,12 @@ $(document).ready(function(){
                 media.listIamges(".modal-content .images-container", images)
             })
         },
+
+        loadPopupImagesCategory:function(){
+            this.loadImagescategory(0, function(images){
+                media.listIamgescategory(".modal-content .images-container", images)
+            })
+        },
         listIamges:function(selector, images){
             var html = "";
             images.forEach(image => {
@@ -71,12 +112,22 @@ $(document).ready(function(){
                  html = html + `<div class="col-sm-2 my-3">
                     <div class="animal-image">
                         <img class="img-fluid" src="${image.path}" image-id="${image.id}">
-                        <input class="custom-checkbox image-checkbox" type="checkbox" value="${image.id}" thumb="${image.thumb}">
+                        <input class="custom-checkbox image-checkbox" type="file" value="" thumb="${image.thumb}">
                     </div>
                 </div>`;
             });
 
             $(selector).append(html);
+        },
+        listIamgescategory:function(selector){
+            var html = "";
+
+                 html = html + `<div class="col-sm-2 my-3">
+                    <div class="animal-image">
+                    <input class="custom-checkbox image-checkbox" type="file" value="" thumb="">
+                    </div>
+                </div>`;
+           $(selector).append(html);
         },
         loadImages:function(page = 0, callback){
             var payload = {
@@ -105,6 +156,36 @@ $(document).ready(function(){
                 }
             })
         },
+
+        loadImagescategory:function(page = 0, callback){
+            var payload = {
+                _token:$("meta[name='csrf-token']").attr("content"),
+                page:page
+            }
+            $.ajax({
+                url:"/admin/fetch-images",
+                data: payload,
+                dataType: 'json',
+                type: "POST",
+                success: function(result){
+                    login.loader.show();
+                    if(result.result == "true"){
+                        
+                        if(callback !== undefined){
+                            callback(result.data);
+                        }
+                    }
+                    else {
+                        login.loader.hide();
+                        $("#login-error").show();
+                        $("#login-error").html(result.error);
+                    }
+                    
+                }
+            })
+        },
+
+
 
     }
 
@@ -164,7 +245,7 @@ $(document).ready(function(){
         var payload = $("#add-category-form").serialize()
         console.log(payload);
         $.ajax({
-            url:"/add-category",
+            url:"/admin/add-category",
             data: payload,
             type: "POST",
             success: function(result){
