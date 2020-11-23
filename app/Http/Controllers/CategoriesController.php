@@ -36,8 +36,6 @@ class CategoriesController extends Controller
     }
 
     public function get_category(Request $request){
-        // $categories = Categories::all();
-        // return view('admin.categories')->with('categories',$categories);
         
         $categories = DB::table('categories')->get();
         return view('admin.categories',compact('categories'));
@@ -47,8 +45,8 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         
-        $aCategory = DB::table('categories AS C')
-        ->where('C.category_id','=',$id)
+       $aCategory =DB::table('categories')
+        ->where('category_id','=',$id)
         ->first();
         return view('admin.edit_category', compact('aCategory'));
     }
@@ -76,7 +74,8 @@ class CategoriesController extends Controller
     public function destroy($id)
     {  
         /* Actually it does not deletes only changes InActive from 1 to 0 */
-        DB::table('categories')->where('category_id','=',$id)->update(['is_active' => '0']);
+        //DB::table('categories')->where('category_id','=',$id)->update(['is_active' => '0']);
+        DB::table('categories')->where( ['category_id'=> $id])->delete();
         return redirect()->route('category')->with('success','Category Deleted Successfully...');
     }
 }

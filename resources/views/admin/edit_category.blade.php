@@ -40,7 +40,7 @@
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Category Description</label>
                     <div class="col-md-9">
-                      <textarea class="form-control" name="description" id="description" placeholder="Enter Product Discription" rows="4">{{ $aCategory->description }}</textarea>
+                      <textarea class="form-control" name="description" id="description" placeholder="Enter Category Discription" rows="4">{{ $aCategory->description }}</textarea>
                     </div>
                   </div>
                   <div class="form-group row">
