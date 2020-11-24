@@ -24,26 +24,27 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `categories`
---
+/*Table structure for table `categories` */
+
+DROP TABLE IF EXISTS `categories`;
 
 CREATE TABLE `categories` (
-  `category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT 1,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `category_image` varchar(200) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
---
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `category_name`, `description`, `is_active`, `created_date`) VALUES
-(9, 'Cows1', 'asd asd asd', 0, '2020-11-22 17:18:49'),
-(10, 'test', 'asd as d', 0, '2020-11-22 17:19:45');
+/*Data for the table `categories` */
 
+insert  into `categories`(`category_id`,`category_name`,`description`,`is_active`,`created_date`,`category_image`,`path`) values (1,'goat','goatDesc',1,'2020-11-25 01:53:01','product-thumbnail.png','/category/category_gallery/1606251181_product-thumbnail.png');
 -- --------------------------------------------------------
 
 --
