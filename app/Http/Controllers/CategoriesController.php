@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Rules\Password;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Hash;
-use DB;
+// use DB;
+use DB,File;
 use Response;
 use Validator;
 
@@ -18,15 +19,27 @@ class CategoriesController extends Controller
         public function add_category(Request $request){
 
         $data = $request->except(["_token"]);
-         
+
+        if ( $request->hasFile("category_image") ){
+        $sImgName = request()->category_image->getClientOriginalName();
+        $sPath = public_path('/category/category_gallery');
+        request()->category_image->move($sPath, $sImgName);
+        
+        $filename = strtolower(time()."_".$sImgName);
+        $data["path"] = '/category/category_gallery/'.$filename;
+        $data["category_image"] = $sImgName;
+        
+        }
+
+
         if($request->has("is_active")){
             $data["is_active"] = 1;
         }
         else{
             $data["is_active"] = 0;
         }
-        
 
+        
         Categories::insert($data);
 
         $result = array("result"=>"true");

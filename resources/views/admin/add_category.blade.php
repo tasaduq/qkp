@@ -22,7 +22,8 @@
               <h3 class="mb-0">Category Details</h3>
             </div>
             <!-- Category Form -->
-            <form action="" id="add-category-form" enctype="multipart/form-data">
+            <form id="add-category-form"  enctype="multipart/form-data" >
+            
               @csrf
             <div class="card-body border-0">
               <div class="row">
@@ -46,12 +47,14 @@
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Add Images</label>
                     <div class="col-md-9">
                       
-                      <button type="button" class="btn btn-info btn-lg media-modal-btn" data-toggle="modal" data-target="#media-modal_category" >Select Images</button>    </div></div>               
-                      <div class="added-category-images">  
-                    
-                  
+                      <!-- <button type="button" class="btn btn-info btn-lg media-modal-btn" data-toggle="modal" data-target="#media-modal_category" >Select Images</button>     -->
+                      <input type="file" name="category_image" id="category_image" />
+                      </div>
+                      
+                      
+                      </div>
 
-
+                      
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Category Status</label>
                     <div class="col-md-9">
@@ -75,7 +78,7 @@
                 {{-- <button type="button" class="btn btn-primary">Primary</button> --}}
                 {{-- <button type="button" class="btn btn-secondary">Secondary</button> --}}
                 {{-- <button type="button" class="btn btn-info">Info</button> --}}
-                <button type="button" class="btn btn-success" id="add-category-btn">Submit</button>
+                <button type="submit" class="btn btn-success" id="add-category-btn">Submit</button>
                 {{-- <button type="button" class="btn btn-danger">Danger</button> --}}
                 {{-- <button type="button" class="btn btn-warning">Warning</button> --}}
               </div>
