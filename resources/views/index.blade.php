@@ -189,7 +189,7 @@
    <div class="container text-center">
       <h2>What our Premium users say about us</h2>
       <div class="client-slider">
-         <div class="row d-inline-flex text-center client-content">
+         <div class="row d-inline-flex text-center client-content align-items-center">
             <div class="col-sm-3">
                <div class="client-image">
                   <img src="/images/client.png" alt="img">
@@ -198,48 +198,33 @@
             </div>
             <div class="col-sm-9 text-left">
                <div class="desc">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod
-                     tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                     Risus adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor
-                     incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum
-                     suspendisse ultrices gravida. commodo viverra maecenas accumsan lacus vel facilisis. </p>
+                  <p>Qurbani Kistoon Pay turned out to be the most reliable online qurbani partner. By providing monthly installment facility on the animal of my choice. I visited their farms, and they are taking exceptionally good care of the animals.</p>
                </div>
             </div>
          </div>
-         <div class="row d-inline-flex text-center client-content">
+         <div class="row d-inline-flex text-center client-content align-items-center">
             <div class="col-sm-3">
                <div class="client-image">
                   <img src="/images/client.png" alt="img">
                </div>
-               <h6>Abdul Khaliq</h6>
+               <h6>Nazia Batool</h6>
             </div>
             <div class="col-sm-9 text-left">
                <div class="desc">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod
-                     tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                     Risus adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor
-                     incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum
-                     suspendisse ultrices gravida. commodo viverra maecenas accumsan lacus vel facilisis. </p>
+                  <p>My husband was worried about qurbani last year, but Qurbani Kistoon Pay resolved our financial woes. We not only selected the animal of our choice but the ability to pay in easy monthly installments made our choice just so much better! And on top of that the animal will be delivered right at the doorstep. </p>
                </div>
             </div>
          </div>
-         <div class="row d-inline-flex text-center client-content">
+         <div class="row d-inline-flex text-center client-content align-items-center">
             <div class="col-sm-3">
                <div class="client-image">
                   <img src="/images/client.png" alt="img">
                </div>
-               <h6>Abdul Khaliq</h6>
+               <h6>Khalid Sultan</h6>
             </div>
             <div class="col-sm-9 text-left">
                <div class="desc">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod
-                     tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                     Risus adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor
-                     incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum
-                     suspendisse ultrices gravida. commodo viverra maecenas accumsan lacus vel facilisis. </p>
+                  <p>One of my friends told me about Qurbani Kiston Pay so I decided to visit their website. They turned out to be highly competitive and groundbreaking. No other platform offers such a diverse selection of sacrificial animals or monthly shariah compliant installment facility. My Eid ul Azha will be hassle free. </p>
                </div>
             </div>
          </div>
@@ -271,7 +256,7 @@
 <!-- footer -->
 <section class="footer-section">
    <div class="container">
-      <div class="row justify-content-around text-center">
+      <div class="row justify-content-around text-center align-items-center">
          <div class="col-sm-2 text-left">
             <div class="footerlogo">
                   <img src="/images/footerlogo.svg" alt="">
@@ -279,7 +264,7 @@
          </div>
          <div class="col-sm-6 copyright">
             <span>© Copyrights 2020 QurbaniKistoonPay. All Rights Reserved</span>
-            <span>Careers - Privacy Policy - Terms & Conditions</span>
+            <span><a href="#"><strong>Privacy Policy</strong></a> - <a href="#"><strong>Terms & Conditions</strong></a></span>
          </div>
          <div class="col-sm-3 social-icon">
             <div class="text-right">

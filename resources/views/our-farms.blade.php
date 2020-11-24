@@ -13,22 +13,12 @@
     <div class="container">
        <h1>Our Farms</h1>
         <div class="desc pb-4">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
+            <p>Our farm is in the lush green plains of Sajawal. Our top of the line livestock infrastructure is sprea across acres with access to clean water and organic feed for your qurbani animals.<p>
+<p>Our staff is specially trained and monitors all aspects of quality assurance. The animals are checked regularly by our medical teams and highest standards of cleanliness are maintained to ensure your finest qurbani animal reaches your doorstep safe and healthy.</p>
+<p>So, do not hesitate to schedule a visit to our farm and see for yourself!</p>
             </p>
         </div>
-        <div class="desc">
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae consequatur in veniam ex sequi dignissimos minus quia deleniti hic doloribus excepturi adipisci, accusamus ullam itaque a voluptate ratione dolor nisi.
-         </p>
-     </div>
 
-    
       <h1>Farm Gallery</h1>
       <div class="row justify-content-center">
          <div class="col-sm-4">

@@ -15,19 +15,19 @@
                <h2>My Shoping Cart</h2>
                <p><strong>03 </strong>Animal in Your List</p>
                   <div class="cart">
-                     <div class="row pb-3">
-                        <div class="col-sm-4">
+                     <div class="row pb-3 align-items-center">
+                        <div class="col-sm-3">
                            <div class="animal-picture text-center">
                               <img class="img-fluid" src="/images/Layer 8.png">
                            </div>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-9">
                            <h2>Achai Bull</h2>
                            <div class="row animals_attribute">
-                              <div class="col-sm-6 label">Estimated Weight : <strong>200KG</strong></div>
+                              <div class="col-sm-6 label">Estimated Live Weight : <strong>200KG</strong></div>
                               <div class="col-sm-6 label">Color : <strong>Black & White</strong></div>
                               <div class="col-sm-6 label">Actual Price : <strong>175,000/-</strong></div>
-                              <div class="col-sm-6 label">Plan : <strong>6 Months</strong></div>
+                              <div class="col-sm-6 label">Installment Plan : <strong>6 Months</strong></div>
                               <div class="col-sm-6 label">Advance(30%) : <strong>52,500/-</strong></div>
                               <div class="col-sm-6 label">Monthly Installment : <strong>14,583/-</strong></div>
                            </div>

@@ -12,7 +12,10 @@
                   <h2 class="mb-4">Qurbani Kistoon Pay is the
                      perfect choice for your Next
                      Year Qurbani.</h2>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. commodo viverra maecenas accumsan lacus vel facilisis. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                     <p>Qurbani Kiston Pay is Pakistan`s first and only platform for booking of the finest qurbani animals on easy Shariah compliant monthly installments!</p>
+<p>We offer a variety of sacrificial animals which include cows, goats, sheep, camels, and specialty animals under multiple price ranges delivered right to your doorstep!</p>
+<p>Our animals are cared for at our very own QKP Farms with utmost care under the supervision of thorough professionals. Our animals are given pure organic feed and have 24/7 medical care onsite.</p>
+<p>You are just a few clicks away from Behtereen Qurbani..Asaan Kiston py!</p>
               </div>
               <div class="col-sm-6 order-1 order-sm-6 order-1">
                   <div class="image mb-4"> 
