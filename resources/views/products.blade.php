@@ -14,10 +14,10 @@
                         <div class="categories">
                             <h6 class="pb-3">Categories</h6>
                             <ul>
-                                <li><a class="active" href="#"><i class="fas fa-horse"></i>Bull</a></li>
-                                <li><a href="#"><i class="fas fa-horse"></i>Camel</a></li>
-                                <li><a href="#"><i class="fas fa-horse"></i>Goat</a></li>
-                                <li><a href="#"><i class="fas fa-horse"></i>Sheep</a></li>
+                                <li><a class="active" href="#"><i class="icon-qkp-bull align-middle"></i>Bull</a></li>
+                                <li><a href="#"><i class="icon-qkp-camel align-middle"></i>Camel</a></li>
+                                <li><a href="#"><i class="icon-qkp-goat align-middle"></i>Goat</a></li>
+                                <li><a href="#"><i class="icon-qkp-sheep align-middle"></i>Sheep</a></li>
                             </ul>
                         </div>
     
@@ -31,40 +31,7 @@
                             <input class="w-100" type="range" min="1" max="100" value="50" class="slider" id="myRange">
                         </div>
     
-                        <div class="by-color">
-                        <h6 class="pb-3 title">By Color</h6>
-                        <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label pl-2" for="defaultCheck1">
-                              Black and white
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                            <label class="form-check-label pl-2" for="defaultCheck2">
-                              Brown and white
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                            <label class="form-check-label pl-2" for="defaultCheck3">
-                              Black only
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                            <label class="form-check-label pl-2" for="defaultCheck4">
-                              White only
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                            <label class="form-check-label pl-2" for="defaultCheck5">
-                              Brown only
-                            </label>
-                          </div>
-                          
-                    </div>
+                        
                     </div>
     
                     <h2 class="mobile"><a class="filter-by" href="#filter-section" data-toggle="collapse"><i class="fas fa-sliders-h"></i>Filter by</a></h2>
@@ -72,10 +39,10 @@
                         <div class="categories active">
                             <h6 class="pb-3 title">Categories</h6>
                             <ul>
-                                <li><a href="#" class="active"><i class="fas fa-horse"></i>Bull</a></li>
-                                <li><a href="#"><i class="fas fa-horse"></i>Camel</a></li>
-                                <li><a href="#"><i class="fas fa-horse"></i>Goat</a></li>
-                                <li><a href="#"><i class="fas fa-horse"></i>Sheep</a></li>
+                                <li><a class="active" href="#"><i class="icon-qkp-bull align-middle"></i>Bull</a></li>
+                                <li><a href="#"><i class="icon-qkp-camel align-middle"></i>Camel</a></li>
+                                <li><a href="#"><i class="icon-qkp-goat align-middle"></i>Goat</a></li>
+                                <li><a href="#"><i class="icon-qkp-sheep align-middle"></i>Sheep</a></li>
                             </ul>
                         </div>
     
@@ -89,40 +56,7 @@
                             <input class="w-100" type="range" min="1" max="100" value="50" class="slider" id="myRange">
                         </div>
     
-                        <div class="by-color">
-                        <h6 class="pb-3 title">By Color</h6>
-                        <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label pl-2" for="defaultCheck1">
-                              Black and white
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                            <label class="form-check-label pl-2" for="defaultCheck2">
-                              Brown and white
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                            <label class="form-check-label pl-2" for="defaultCheck3">
-                              Black only
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                            <label class="form-check-label pl-2" for="defaultCheck4">
-                              White only
-                            </label>
-                          </div>
-                          <div class="form-check pb-2">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                            <label class="form-check-label pl-2" for="defaultCheck5">
-                              Brown only
-                            </label>
-                          </div>
-                          
-                    </div>
+                        
                     </div>
     
     

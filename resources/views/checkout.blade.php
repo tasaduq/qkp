@@ -14,11 +14,11 @@
                <h2>Checkout</h2>
                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
                   
-               <div class="row payment-method-section">
+               <div class="row payment-method-section mt-4">
                   <div class="col-sm-6">
-                     <div class="payment-method mb-2 p-4">
-                        <a  href="#">
-                           <div class="cash pr-2 d-inline-block">
+                     <div class="payment-method mb-2">
+                        <a class="d-block p-4" href="#">
+                           <div class="cash pr-3 d-inline-block">
                               <svg  id="cash" enable-background="new 0 0 511.854 511.854" height="80" viewBox="0 0 511.854 511.854" width="80">
                                  <g>
                                     <g>
@@ -75,9 +75,9 @@
                      </div>
                   </div>
                   <div class="col-sm-6">
-                     <div class="payment-method mb-2 p-4">
-                        <a  href="#">
-                           <div class="bank pr-2 d-inline-block">
+                     <div class="payment-method mb-2">
+                        <a class="d-block p-4" href="#">
+                           <div class="bank pr-3 d-inline-block">
                               <svg id="bank" enable-background="new 0 0 511.854 511.854" height="80" viewBox="0 0 511.854 511.854" width="80"><g><g><path d="m480.927 190.854c16.542 0 30-13.458 30-30v-38.844c0-12.317-7.377-23.234-18.8-27.831l-224.952-91.98c-7.325-2.951-15.252-2.899-22.391-.042-.166.067 3.765-1.54-225.058 92.023-11.423 4.596-18.8 15.514-18.8 27.831v38.845c0 16.542 13.458 30 30 30h18v226h-18c-16.542 0-30 13.458-30 30v35c0 16.542 13.458 30 30 30h450c16.542 0 30-13.458 30-30v-35c0-16.542-13.458-30-30-30h-18v-226h18.001zm0 256c.019 35.801.1 35 0 35h-450v-35zm-402-30v-226h34v226zm64 0v-226h66v226zm96 0v-226h34v226zm64 0v-226h66v226zm96 0v-226h34v226zm-368-256c0-41.843-.045-38.826.105-38.887l224.895-91.957 224.895 91.957c.155.062.105-2.857.105 38.887-4.986 0-444.075 0-450 0z"/></g><g><path d="m255.927 64.854c-8.284 0-15 6.716-15 15v32c0 8.284 6.716 15 15 15s15-6.716 15-15v-32c0-8.284-6.716-15-15-15z"/></g></g></svg>
                            </div>
                            <div class="d-inline-block pt-3 align-middle">  
@@ -124,11 +124,11 @@
                            </div>
                         </div>
                         <div class="form-row mb-3 justify-content-between">
-                           <div class="form-group col-md-6">
+                           <div class="form-group col-md-6 pr-3">
                               <label for="phone">Phone:</label>
                               <input type="text" class="form-control" id="phone">
                            </div>
-                           <div class="form-group mb-3 col-md-6 pr-3">
+                           <div class="form-group mb-3 col-md-6">
                               <label for="email">Email:</label>
                               <input type="email" class="form-control" id="email">
                            </div>
@@ -142,22 +142,24 @@
 
 
 
-         <div class="col-sm-12 col-md-12 col-lg-3 checkout-left-section">
+            <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section">
                <h2>Cart Total Amount</h2>
                <p>Calculation of Total Amount</p>
                 <div class="check-out">
                    <div class="total">
-                      <div class="pb-3"><strong>Product Total</strong><span class="spacer">:</span>350,000/-</div>
-                      <div><strong>Shipping</strong><span class="spacer">:</span>5,000/-</div>
+                     <h6>Achai Bull</h6>
+                      <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">52,500/-</strong></div>
+                      <div class="pb-2 text-left">Shipping :<strong class="float-right">5,000/-</strong></div>
                    </div>
                    <hr>
-                   <div><strong>Total Amount</strong><span class="spacer">:</span>355,000/-</div>
+                   <div class="text-left">Sub Total :<strong class="float-right">57,500/-</strong></div>
                    <hr>
+                   <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">7,475/-</strong></div>
                    <div class="grand-total text-center">
-                      <p class="mb-0 pb-1">Expected shipping Delivery</p>
-                      <strong>Thu.,12.3.-Mon.,16.03</strong>
+                      <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
+                      <strong>64,975/-</strong>
                    </div>
-                   <button class="btn default-btn w-100">Go to Checkout</button>
+                   <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a>
                 </div>
          </div>
             
@@ -176,7 +178,7 @@
          <div class="container">
             <div class="row justify-content-around text-center">
                <div class="col-sm-2 text-left">
-                  <img src="images/footerlogo.png" alt="">
+                  <img src="images/footerlogo.svg" alt="Footer">
                </div>
                <div class="col-sm-6 copyright">
                   <span>© Copyrights 2020 QurbaniKistoonPay. All Rights Reserved</span>

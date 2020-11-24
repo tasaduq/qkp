@@ -47,22 +47,22 @@
                   </div>
             </div>
 
-
-
          <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section">
                <h2>Cart Total Amount</h2>
                <p>Calculation of Total Amount</p>
                 <div class="check-out">
                    <div class="total">
-                      <div class="pb-3"><strong>Product Total</strong><span class="spacer">:</span>350,000/-</div>
-                      <div><strong>Shipping</strong><span class="spacer">:</span>5,000/-</div>
+                     <h6>Achai Bull</h6>
+                      <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">52,500/-</strong></div>
+                      <div class="pb-2 text-left">Shipping :<strong class="float-right">5,000/-</strong></div>
                    </div>
                    <hr>
-                   <div><strong>Total Amount</strong><span class="spacer">:</span>355,000/-</div>
+                   <div class="text-left">Sub Total :<strong class="float-right">57,500/-</strong></div>
                    <hr>
+                   <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">7,475/-</strong></div>
                    <div class="grand-total text-center">
-                      <p class="mb-0 pb-1">Expected shipping Delivery</p>
-                      <strong>Thu.,12.3.-Mon.,16.03</strong>
+                      <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
+                      <strong>64,975/-</strong>
                    </div>
                    <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a>
                 </div>

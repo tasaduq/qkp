@@ -7,6 +7,7 @@
 body {
 	font-family: 'Poppins-Regular';
 	font-size: 16px;
+	background-color: #f4eff5;
 }
 
 img {
@@ -886,6 +887,8 @@ section.footer-section {
 	display: block;
 }
 
+.categories ul li a i {font-size:25px}
+
 .categories ul li a.active {
 	color: #270037!important;
 }
@@ -909,7 +912,6 @@ section.footer-section {
 	-webkit-box-shadow: 0px 0px 5px 1px rgba(130, 128, 130, 1);
 	-moz-box-shadow: 0px 0px 5px 1px rgba(130, 128, 130, 1);
 	box-shadow: 0px 0px 5px 1px rgb(130 128 130 / 17%);
-	padding: 0px 15px 12px 12px;
 	margin: 12px 0;
 	position: relative;
 	overflow: hidden;
@@ -1015,7 +1017,7 @@ section.footer-section {
 .animal-product .title {
 	font-size: 12px;
 	text-align: left;
-	padding-top: 30px;
+	padding: 20px;
 }
 
 .products-details-section {
@@ -1105,6 +1107,9 @@ section.footer-section {
 	border-radius: 5px;
 	padding: 8px;
 }
+.slick-slide.slick-current.slick-active .thumbnail {
+    border: 2px solid #270037;
+}
 
 .product-preview .item {
 	position: relative;
@@ -1146,7 +1151,7 @@ button.slick-next.slick-arrow, button.slick-prev.slick-arrow {
 /*********About-us**********************************************************  */
 
 .about-us-section {
-	background: #f4eff5;
+	/* background: #f4eff5; */
 	padding: 80px 0;
 }
 
@@ -1163,6 +1168,7 @@ button.slick-next.slick-arrow, button.slick-prev.slick-arrow {
 .our-mission-section {
 	padding: 80px 0;
 	color: #270037!important;
+	background-color:#ffffff;
 }
 
 .box-icon i {
@@ -1441,9 +1447,9 @@ table.table button.btn.default-btn.paid {
 }
 .check-out {
 	background: #fff;
-	padding: 30px;
+	padding: 25px;
 	position: relative;
-	margin: 25px 0 0 0;
+	margin: 42px 0 0 0;
 	box-shadow: 1px 2px 6px rgb(0 0 0 / 10%);
 	font-size: 14px;
 }
@@ -1451,9 +1457,13 @@ table.table button.btn.default-btn.paid {
     padding: 0 10px;
 }
 .check-out .total,.grand-total {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
 }
 
+.check-out hr{
+margin-top: 0.5rem;
+margin-bottom: 0.5rem;
+}
 /* cart */
 
 /* User prifile */
@@ -1499,7 +1509,7 @@ input[type="file"] {
 .payment-method{
 	background: #fff;
 	box-shadow: 1px 2px 6px rgb(0 0 0 / 10%);
-	border-radius: 5px;
+	/* border-radius: 5px; */
 }
 .payment-method:hover{
 	background-color:#290038;

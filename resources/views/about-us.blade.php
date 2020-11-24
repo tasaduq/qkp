@@ -65,7 +65,7 @@
       <div class="container">
          <div class="row justify-content-around text-center">
             <div class="col-sm-2 text-left">
-               <img src="Assets/images/footerlogo.png" alt="">
+               <img src="/images/footerlogo.svg" alt="">
             </div>
             <div cla
             ss="col-sm-6 copyright">
