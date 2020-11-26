@@ -21,13 +21,16 @@ class CategoriesController extends Controller
         $data = $request->except(["_token"]);
 
         if ( $request->hasFile("category_image") ){
-        $sImgName = request()->category_image->getClientOriginalName();
-        $sPath = public_path('/category/category_gallery');
-        request()->category_image->move($sPath, $sImgName);
-        
-        $filename = strtolower(time()."_".$sImgName);
-        $data["path"] = '/category/category_gallery/'.$filename;
-        $data["category_image"] = $sImgName;
+
+            $sImgName = request()->category_image->getClientOriginalName();
+            $sImgName =  strtolower(time()."_".$sImgName);
+            $sPath = public_path('/category/category_gallery');
+            request()->category_image->move($sPath, $sImgName);
+            
+            $filename = $sImgName;
+           
+            $data["path"] = '/category/category_gallery/'.$filename;
+            $data["category_image"] = $sImgName;
         
         }
 
