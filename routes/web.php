@@ -19,6 +19,11 @@ Route::get('/product/{id}', "HomeController@product_detail");
 
 Route::get('/products', "HomeController@products");
 
+
+Route::get('/mandi', "HomeController@mandi");
+    
+
+
 Route::get('/about-us', function () {
     return view('about-us');
 });
@@ -35,9 +40,6 @@ Route::get('/shariah-compliant', function () {
     return view('sharih-compliance');
 });
 
-Route::get('/mandi', function () {
-    return view('mandi');
-});
 
 Route::get('/cart', function () {
     return view('cart');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Categories;
 
 class HomeController extends Controller
 {
@@ -30,6 +31,12 @@ class HomeController extends Controller
             "active" => 1,
         ])->first();
         return view('product-details')->with("product", $product);
+    }
+    public function mandi(Request $request){
+        $categories = Categories::where([
+            "is_active" => 1,
+        ])->get();
+        return view('mandi')->with('categories', $categories);
     }
     
 }
