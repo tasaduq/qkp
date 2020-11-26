@@ -14,16 +14,17 @@ class HomeController extends Controller
             "active" => 1
         ])->take(10)->get();
 
-        // dd($products);
         return view('index')->with("featured_products", $featured_products);
     }
     public function products(Request $request){
+        $cat = $request->get("c");
+        $category = Categories::where("category_id", $cat)->first();
         $products = Products::where([
+            "category" => $cat,
             "active" => 1
         ])->take(9)->get();
 
-        // dd($products);
-        return view('products')->with("products", $products);
+        return view('products')->with("products", $products)->with("category", $category);
     }
     public function product_detail($id, Request $request){
         $product = Products::where([

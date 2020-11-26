@@ -9,83 +9,48 @@
           <div class="col-sm-12 text-center">
              <h1 class="heading">Our Mandi</h1>
           </div>
-          <div class="row w-100">
-             <div class="col-md-6 pr-md-0 bg-white" id="cow">
-                <img class="img-fluid" src="/images/mandi-cow.png">
-             </div><!--img-->
-             <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
-                <div class="m-auto py-3">
-                   <h1 class="text-white">Cows</h1>
-                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                   <a href="/products"><button class="btn btn-outline-success">Explore</button></a>
-                </div>
-             </div><!--text-->
-          </div><!--row-->
 
-          <div class="row for-desktop w-100">
-             <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
-                <div class="m-auto py-3">
-                   <h1 class="text-white">Camel</h1>
-                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                   <a href="/products"><button class="btn btn-outline-success">Explore</button></a>
-                </div>
-             </div><!--text-->
-             <div class="col-md-6 pl-md-0 bg-white" id="camel">
-                <img class="img-fluid" src="/images/mandi-camel.png">
-             </div><!--img-->
-          </div><!--row desktop-->
-
-          <div class="row for-mobile w-100">
-             <div class="col-md-6 pl-md-0 bg-white" id="camel">
-                <img class="img-fluid" src="/images/mandi-camel.png">
-             </div><!--img-->
-             <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
-                <div class="m-auto py-3">
-                   <h1 class="text-white">Camel</h1>
-                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                   <a href="/products"><button class="btn btn-outline-success">Explore</button></a>
-                </div>
-             </div><!--text-->
-          </div><!--row mobile-->
-
-          <div class="row w-100">
-             <div class="col-md-6 pr-md-0 bg-white" id="goat">
-                <img class="img-fluid" src="/images/mandi-goat.png">
-             </div><!--img-->
-             <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
-                <div class="m-auto py-3">
-                   <h1 class="text-white">Goat</h1>
-                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                   <a href="/products"><button class="btn btn-outline-success">Explore</button></a>
-                </div>
-             </div><!--text-->
-          </div><!--row-->
-
-          <div class="row for-desktop w-100">
-             <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
-                <div class="m-auto py-3">
-                   <h1 class="text-white">Sheep</h1>
-                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                   <a href="/products"><button class="btn btn-outline-success">Explore</button></a>
-                </div>
-             </div> <!--text-->
-             <div class="col-md-6 pl-md-0 bg-white" id="sheep">
-                <img class="img-fluid" src="/images/mandi-sheep.png">
-             </div> <!--img-->
-          </div><!--row desktop-->
          
-          <div class="row for-mobile w-100">
-             <div class="col-md-6 pl-md-0 bg-white" id="sheep">
-                <img class="img-fluid" src="/images/mandi-sheep.png">
-             </div> <!--img-->
-             <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
-                <div class="m-auto py-3">
-                   <h1 class="text-white">Sheep</h1>
-                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                   <a href="/products"><button class="btn btn-outline-success">Explore</button></a>
-                </div>
-             </div> <!--text-->
-          </div><!--row mobile-->
+          
+         <?php
+            foreach ($categories as $key => $category) {
+               
+               if($key%2 == 0 ){
+                  ?>
+                  <div class="row for-desktop w-100">
+                     <div class="col-md-6 pr-md-0 bg-white" id="cow">
+                        <img class="img-fluid" src="{{$category->path}}">
+                     </div><!--img-->
+                     <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
+                        <div class="m-auto py-3">
+                           <h1 class="text-white">{{$category->category_name}}</h1>
+                           <p>{{$category->description}}</p>
+                           <a href="/products?c={{$category->category_id}}"><button class="btn btn-outline-success">Explore</button></a>
+                        </div>
+                     </div><!--text-->
+                  </div><!--row-->
+                  <?php
+               }
+               else{
+                  ?>
+                   <div class="row for-desktop w-100">
+                     <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
+                        <div class="m-auto py-3">
+                           <h1 class="text-white">{{$category->category_name}}</h1>
+                           <p>{{$category->description}}</p>
+                           <a href="/category"{{$category->category_id}}><button class="btn btn-outline-success">Explore</button></a>
+                        </div>
+                     </div><!--text-->
+                     <div class="col-md-6 pl-md-0 bg-white" id="camel">
+                        <img class="img-fluid" src="{{$category->path}}">
+                     </div><!--img-->
+                  </div><!--row desktop-->
+                  <?php
+               }
+            }
+         ?>
+          
+
 
        </div>
     </div>
