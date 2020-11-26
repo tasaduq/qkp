@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Products;
+
+class HomeController extends Controller
+{
+    public function index(Request $request){
+        $featured_products = Products::where([
+            "featured" => 1,
+            "active" => 1
+        ])->take(10)->get();
+
+        // dd($products);
+        return view('index')->with("featured_products", $featured_products);
+    }
+    public function products(Request $request){
+        $products = Products::where([
+            "active" => 1
+        ])->take(9)->get();
+
+        // dd($products);
+        return view('products')->with("products", $products);
+    }
+    public function product_detail($id, Request $request){
+        $product = Products::where([
+            "product_id" => $id,
+            "active" => 1,
+        ])->first();
+        return view('product-details')->with("product", $product);
+    }
+    
+}

@@ -13,17 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', "HomeController@index");
 
-Route::get('/product/{slug}', function ($slug) {
-    return view('product-details');
-});
+Route::get('/product/{id}', "HomeController@product_detail");
 
-Route::get('/products', function () {
-    return view('products');
-});
+Route::get('/products', "HomeController@products");
 
 Route::get('/about-us', function () {
     return view('about-us');
@@ -117,6 +111,8 @@ Route::get('/admin/order_details', function () {
 
 Route::post("ajax-login", "CustomLoginController@login");
 Route::post("ajax-register", "CustomLoginController@register");
+Route::get("verifyuser/{hash}", "CustomLoginController@verifyuser");
+
 
 
 /* Products Routes Section Starts */
@@ -127,10 +123,10 @@ Route::get('/admin/products', "ProductsController@get_products");
 
 /* Category Routes Section Starts */
 Route::get('/admin/categories', "CategoriesController@get_category")->name('category');
-Route::post("add-category", "CategoriesController@add_category")->name('addcategory');
-Route::get('/edit_category/{id}','CategoriesController@edit')->name('editCategory');
-Route::post('/update_category','CategoriesController@update')->name('updateCategory');
-Route::get('/delete_category/{id}','CategoriesController@destroy')->name('deleteCategory');
+Route::post("/admin/add-category", "CategoriesController@add_category")->name('addcategory');
+Route::get('/admin/edit_category/{id}','CategoriesController@edit')->name('editCategory');
+Route::post('/admin/update_category','CategoriesController@update')->name('updateCategory');
+Route::get('/admin/delete_category/{id}','CategoriesController@destroy')->name('deleteCategory');
 /* Category Routes Section Starts */
 
 

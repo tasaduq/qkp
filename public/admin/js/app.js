@@ -8,13 +8,24 @@ $(document).ready(function(){
         media.loadPopupImages();
     });
 
+    $('#media-modal_category').on('shown.bs.modal', function () {
+        media.loadPopupImagesCategory();
+    });
+
     $('.add-product-images').on('click', function () {
 
         $('#media-modal').modal("toggle");
         media.addNewgProductImages();
     });
 
-    
+
+    $('.add-category-images').on('click', function () {
+
+        //$('#media-modal').modal("toggle");
+        media.addNewgcategoryImage();
+    });
+
+
 
     var media = {
         addNewgProductImages:function(){
@@ -36,6 +47,30 @@ $(document).ready(function(){
                </div>`;
            });
            $(".added-product-images").append(html);
+
+        },
+
+        addNewgcategoryImage:function(){
+
+            var addedImages1 = $(".image-checkbox:checkbox:checked").map(function(){
+                return {
+                    "id":$(this).val(),
+                    "thumb":$(this).attr("thumb"),
+                };
+            }).get();
+            var html = "";
+            addedImages1.forEach(image => {
+                console.log(image)
+                console.log('ss');
+
+                html = html + `<div class="col-sm-2 my-3">
+                   <div class="animal-image">
+                       
+                       <input class="custom-checkbox image-checkbox" name="images" type="hidden" value="" thumb="">
+                   </div>
+               </div>`;
+           });
+           $(".add-category-images").append(html);
 
         },
         addExistingProductImages:function(){
@@ -63,6 +98,12 @@ $(document).ready(function(){
                 media.listIamges(".modal-content .images-container", images)
             })
         },
+
+        loadPopupImagesCategory:function(){
+            this.loadImagescategory(0, function(images){
+                media.listIamgescategory(".modal-content .images-container", images)
+            })
+        },
         listIamges:function(selector, images){
             var html = "";
             images.forEach(image => {
@@ -77,6 +118,16 @@ $(document).ready(function(){
             });
 
             $(selector).append(html);
+        },
+        listIamgescategory:function(selector){
+            var html = "";
+
+                 html = html + `<div class="col-sm-2 my-3">
+                    <div class="animal-image">
+                    <input class="custom-checkbox image-checkbox" type="file" value="" thumb="">
+                    </div>
+                </div>`;
+           $(selector).append(html);
         },
         loadImages:function(page = 0, callback){
             var payload = {
@@ -105,6 +156,36 @@ $(document).ready(function(){
                 }
             })
         },
+
+        loadImagescategory:function(page = 0, callback){
+            var payload = {
+                _token:$("meta[name='csrf-token']").attr("content"),
+                page:page
+            }
+            $.ajax({
+                url:"/admin/fetch-images",
+                data: payload,
+                dataType: 'json',
+                type: "POST",
+                success: function(result){
+                    login.loader.show();
+                    if(result.result == "true"){
+                        
+                        if(callback !== undefined){
+                            callback(result.data);
+                        }
+                    }
+                    else {
+                        login.loader.hide();
+                        $("#login-error").show();
+                        $("#login-error").html(result.error);
+                    }
+                    
+                }
+            })
+        },
+
+
 
     }
 
@@ -156,17 +237,31 @@ $(document).ready(function(){
     });
 
 
-    $("#add-category-btn").on("click",function(){
+    //$("#add-category-form").on("click",function(){
+    $("#add-category-form").submit(function(e) {    
+        e.preventDefault();
         if(!add_category_form.form()){
             return false;
         }
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         
-        var payload = $("#add-category-form").serialize()
-        console.log(payload);
+        // var payload = $("#add-category-form").serialize()
+        // console.log(payload);
+        var formData = new FormData(this);
+        
         $.ajax({
-            url:"/add-category",
-            data: payload,
             type: "POST",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            url:"/admin/add-category",
+            dataType: "json",
             success: function(result){
                 login.loader.show();
                 if(result.result == "true"){
