@@ -15,7 +15,7 @@
          <div class="row">
             <div class="col-md-12">
                <h2 class="text-white">Search</h2>
-               <p>Search the Finest Animal for Qurbani on Installment</p>
+               <p>Search for the finest animals on Shariah compliant installments</p>
                <div class="button-group row">
                   <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary active"><span>
@@ -85,7 +85,7 @@
 
 <section class="section-slider">
    <div class="container text-center slick">
-      <h2>Featured Animals</h2>
+      <h2>New Arrivals at our farms </h2>
       <div class="animals-slider">
 
 
@@ -162,7 +162,7 @@
 
 <section class="client-slider-section">
    <div class="container text-center">
-      <h2>What our Premium users say about us</h2>
+      <h2>What our customers Say</h2>
       <div class="client-slider">
          <div class="row d-inline-flex text-center client-content align-items-center">
             <div class="col-sm-3">

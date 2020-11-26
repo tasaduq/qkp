@@ -49,6 +49,10 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
+Route::get('/terms-condition', function () {
+    return view('terms-condition');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
