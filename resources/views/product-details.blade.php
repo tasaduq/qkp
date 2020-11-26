@@ -9,29 +9,26 @@
             <ol class="breadcrumb">
                <li class="breadcrumb-item"><a href="#">Home</a></li>
                <li class="breadcrumb-item"><a href="#">Animals</a></li>
-               <li class="breadcrumb-item active">Brahman Bull</li>
+               <li class="breadcrumb-item active">{{$product->name}}</li>
            </ol>
             <div class="row">
                <div class="col-sm-6 text-center left-section">
                   <div class="product-preview">
-                     <div class="item">
-                        <img class="img-fluid" src="/images/product-details.png" alt="">
-                     </div>
-                     <div class="item">
-                        <img class="img-fluid" src="/images/product-details.png" alt="">
-                     </div>
-                     <div class="item">
-                        <img class="img-fluid" src="/images/product-details.png" alt="">
-                     </div>
-                     <div class="item">
-                        <img class="img-fluid" src="/images/product-details.png" alt="">
-                     </div>
-                     <div class="item">
-                        <img class="img-fluid" src="/images/product-details.png" alt="">
-                     </div>
-                     <div class="item">
-                        <img class="img-fluid" src="/images/product-details.png" alt="">
-                     </div>
+                     <?php
+                     $imageid = array();
+                     if ( strpos($product->images, ",") > -1){
+                           $imageid = explode(",",$product->images)[0];      
+                     }
+                     else {
+                        $imageid[0] = $product->images;
+                     }
+                     $images = \App\Models\Media::whereIn("id", $imageid)->get();
+                     ?>
+                     @foreach ($images as $image)
+                        <div class="item">
+                           <img class="img-fluid" src="{{$image->path}}" alt="">
+                        </div>
+                     @endforeach
                   </div>
                   <div class="product_arrow_prev">
                      <span><i class="icon-qkp-caret-left"></i></span>
@@ -40,42 +37,32 @@
                      <span><i class="icon-qkp-caret-right"></i></span>
                   </div>
                   <div class="slider slider-nav">
-                     <div class="slide-img">
-                        <img class="img-fluid thumbnail" src="/images/product-thumbnail.png" alt="">
-                     </div>
-                     <div class="slide-img">
-                        <img class="img-fluid thumbnail" src="/images/product-thumbnail.png" alt="">
-                     </div>
-                     <div class="slide-img">
-                        <img class="img-fluid thumbnail" src="/images/product-thumbnail.png" alt="">
-                     </div>
-                     <div class="slide-img">
-                        <img class="img-fluid thumbnail" src="/images/product-thumbnail.png" alt="">
-                     </div>
-                     <div class="slide-img">
-                        <img class="img-fluid thumbnail" src="/images/product-thumbnail.png" alt="">
-                     </div>
-                     <div class="slide-img">
-                        <img class="img-fluid thumbnail" src="/images/product-thumbnail.png" alt="">
-                     </div>
+                     @foreach ($images as $image)
+                        <div class="item">
+                           <img class="img-fluid" src="{{$image->path}}" alt="">
+                        </div>
+                     @endforeach
                   </div>
                </div>
                <div class="col-sm-6 right-section">
-                  <h2>Brahman Bull</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod tempor indolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod tempor idolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod tempor icididungna aliqua. Quis ipsum suspenravida. commodo viverra maecenas accumsan lacus vel facilisis. </p>
+
+                  
+
+                  <h2>{{$product->name}}</h2>
+                  <p>{{$product->description}}</p>
                   <div class="row details">
                      <div class="col-xs-12 col-md-10 col-lg-8">
                         <ul>
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Category</div>
-                                 <span>:</span>Brahman Bull
+                                 <span>:</span>{{$product->category}}
                               </label>
                            </li>
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Weight</div>
-                                 <span>:</span>200 KG
+                                 <span>:</span>{{$product->weight}} KG
                               </label>
                            </li>
                            <li>
@@ -87,7 +74,7 @@
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Color</div>
-                                 <span>:</span>Black & White
+                                 <span>:</span>{{$product->color}}
                               </label>
                            </li>
                            <li>
@@ -110,11 +97,11 @@
                      <div class="col-xs-12 col-md-6 col-lg-4">
                         <div class="actual-price">
                            <p class="mb-1">Actual price</p>
-                           <h4 class="amount">RS.175,000/-</h4>
+                           <h4 class="amount">RS. {{number_format($product->price)}}/-</h4>
                         </div>
                         <div class="advance">
                            <p class="mb-1">Advance</p>
-                           <h4 class="amount">RS.25,000/-</h4>
+                           <h4 class="amount">RS. {{number_format(ceil($product->price*0.3))}}/-</h4>
                         </div>
                         <div class="EMI">
                            <p class="mb-1">EMI</p>

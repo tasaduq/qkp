@@ -24,5 +24,12 @@ class HomeController extends Controller
         // dd($products);
         return view('products')->with("products", $products);
     }
+    public function product_detail($id, Request $request){
+        $product = Products::where([
+            "product_id" => $id,
+            "active" => 1,
+        ])->first();
+        return view('product-details')->with("product", $product);
+    }
     
 }

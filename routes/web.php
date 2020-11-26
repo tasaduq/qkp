@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', "HomeController@index");
 
-Route::get('/product/{id}', function ($id) {
-    return view('product-details');
-});
+Route::get('/product/{id}', "HomeController@product_detail");
 
 Route::get('/products', "HomeController@products");
 
