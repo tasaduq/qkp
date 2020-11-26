@@ -91,7 +91,7 @@
                                 $image = \App\Models\Media::find($imageid);
                                 
                             ?>
-                            <div class="product-img"><a href="/product/{{$product->id}}"><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></a></div>
+                            <div class="product-img"><a href="/product/{{$product->product_id}}"><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></a></div>
                             <div class="title">
                             <span class="name">{{$product->name}}</span>
                             <div class="prize">
