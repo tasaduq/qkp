@@ -27,6 +27,12 @@ class ProductsController extends Controller
                 $data["active"] = 1;
             }
         }
+        if($request->has("featured")){
+            if($request->get("featured") == "on");
+            {
+                $data["featured"] = 1;
+            }
+        }
         
 
         Products::insert($data);

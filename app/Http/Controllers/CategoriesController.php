@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Rules\Password;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Hash;
-use DB;
+// use DB;
+use DB,File;
 use Response;
 use Validator;
 
@@ -18,15 +19,27 @@ class CategoriesController extends Controller
         public function add_category(Request $request){
 
         $data = $request->except(["_token"]);
-         
+
+        if ( $request->hasFile("category_image") ){
+        $sImgName = request()->category_image->getClientOriginalName();
+        $sPath = public_path('/category/category_gallery');
+        request()->category_image->move($sPath, $sImgName);
+        
+        $filename = strtolower(time()."_".$sImgName);
+        $data["path"] = '/category/category_gallery/'.$filename;
+        $data["category_image"] = $sImgName;
+        
+        }
+
+
         if($request->has("is_active")){
             $data["is_active"] = 1;
         }
         else{
             $data["is_active"] = 0;
         }
-        
 
+        
         Categories::insert($data);
 
         $result = array("result"=>"true");
@@ -36,10 +49,8 @@ class CategoriesController extends Controller
     }
 
     public function get_category(Request $request){
-        // $categories = Categories::all();
-        // return view('admin.categories')->with('categories',$categories);
         
-        $categories = DB::table('categories')->where('is_active','=','1')->get();
+        $categories = DB::table('categories')->get();
         return view('admin.categories',compact('categories'));
     
     }
@@ -47,8 +58,8 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         
-        $aCategory = DB::table('categories AS C')
-        ->where('C.category_id','=',$id)
+       $aCategory =DB::table('categories')
+        ->where('category_id','=',$id)
         ->first();
         return view('admin.edit_category', compact('aCategory'));
     }
@@ -76,7 +87,8 @@ class CategoriesController extends Controller
     public function destroy($id)
     {  
         /* Actually it does not deletes only changes InActive from 1 to 0 */
-        DB::table('categories')->where('category_id','=',$id)->update(['is_active' => '0']);
+        //DB::table('categories')->where('category_id','=',$id)->update(['is_active' => '0']);
+        DB::table('categories')->where( ['category_id'=> $id])->delete();
         return redirect()->route('category')->with('success','Category Deleted Successfully...');
     }
 }

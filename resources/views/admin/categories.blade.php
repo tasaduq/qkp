@@ -88,9 +88,9 @@
                           <i class="fas fa-ellipsis-v"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="<?php echo route('editCategory', $category->category_id); ?>" type="button" title="Edit">Edit</a>
+                          <a class="dropdown-item" href="<?php echo route('editCategory',$category->category_id); ?>" type="button" title="Edit">Edit</a>
                           <a class="dropdown-item" href="#">Clone</a>
-                          <a class="dropdown-item" href="<?php echo route('deleteCategory', $category->category_id); ?>" onclick="return confirm('Are you sure?')" type="button" title="Delete">Delete</a>
+                          <a class="dropdown-item" href="<?php echo route('deleteCategory',$category->category_id); ?>" onclick="return confirm('Are you sure?')" type="button" title="Delete">Delete</a>
                         </div>
                       </div>
                     </td>
