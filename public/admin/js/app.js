@@ -112,7 +112,7 @@ $(document).ready(function(){
                  html = html + `<div class="col-sm-2 my-3">
                     <div class="animal-image">
                         <img class="img-fluid" src="${image.path}" image-id="${image.id}">
-                        <input class="custom-checkbox image-checkbox" type="file" value="" thumb="${image.thumb}">
+                        <input class="custom-checkbox image-checkbox" type="checkbox" value="${image.id}" thumb="${image.thumb}">
                     </div>
                 </div>`;
             });
@@ -237,17 +237,31 @@ $(document).ready(function(){
     });
 
 
-    $("#add-category-btn").on("click",function(){
+    //$("#add-category-form").on("click",function(){
+    $("#add-category-form").submit(function(e) {    
+        e.preventDefault();
         if(!add_category_form.form()){
             return false;
         }
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         
-        var payload = $("#add-category-form").serialize()
-        console.log(payload);
+        // var payload = $("#add-category-form").serialize()
+        // console.log(payload);
+        var formData = new FormData(this);
+        
         $.ajax({
-            url:"/admin/add-category",
-            data: payload,
             type: "POST",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            url:"/admin/add-category",
+            dataType: "json",
             success: function(result){
                 login.loader.show();
                 if(result.result == "true"){
