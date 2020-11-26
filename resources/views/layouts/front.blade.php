@@ -155,13 +155,9 @@
                 </div>
                 <p><span class="or">Or</span></p>
                 <div class="row social">
-                   <div class="col-sm-4 px-1"><button class="btn google" type="submit"><i
-                            class="fab fa-google"></i>Google</button></div>
-                   <div class="col-sm-4 px-1"><button class="btn facebook" type="submit"><i
-                            class="fab fa-facebook-f"></i>Facebook</button></div>
-                   <div class="col-sm-4 px-1"><button class="btn twitter" type="submit"><i
-                            class="fab fa-twitter"></i>Twitter</button></div>
-                </div>
+                  <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
+                  <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
+               </div>
         
           </div>
        </div>

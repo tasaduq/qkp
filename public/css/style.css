@@ -1156,7 +1156,7 @@ button.slick-next.slick-arrow, button.slick-prev.slick-arrow {
 }
 
 .about-us-section p {
-	line-height: 38px;
+	line-height: 34px;
 }
 
 .about-us-section .about-us-content {
@@ -1250,6 +1250,7 @@ section.our-mission-section i {
 
 .office-contact {
 	padding: 80px 0;
+	background-color: #ffffff;
 }
 
 /* .office-contact-icon-box{margin-bottom: 30px;} */
