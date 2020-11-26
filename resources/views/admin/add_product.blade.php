@@ -38,10 +38,9 @@
                     <div class="col-md-9">
                       <select class="form-control" id="product-category" name="category">
                         <option selected disabled>Select Category</option>
-                        <option value="1">Cow/Bull</option>
-                        <option value="2">Goat</option>
-                        <option value="3">Sheep</option>
-                        <option value="4">Camel</option>
+                        @foreach ($categories as $category)
+                          <option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>

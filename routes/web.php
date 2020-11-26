@@ -83,9 +83,7 @@ Route::get('/admin/dashboard', function () {
 });
 
 
-Route::get('/admin/add_product', function () {
-    return view('admin.add_product');
-});
+Route::get('/admin/add_product', "ProductsController@add_product_view");
 
 
 Route::get('/admin/category', function () {

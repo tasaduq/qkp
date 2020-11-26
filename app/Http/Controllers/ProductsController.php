@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Rules\Password;
 use App\Models\Products;
+use App\Models\Categories;
 use Illuminate\Support\Facades\Hash;
 use Response;
 use Validator;
@@ -48,6 +49,13 @@ class ProductsController extends Controller
         // dd($products);
         // where("deleted",0)->
         return view('admin.products')->with('products',$products);
+        
+    }
+    public function add_product_view(Request $request){
+        
+        $categories = Categories::all();
+        return view('admin.add_product')->with("categories",$categories);
+        
         
     }
 }
