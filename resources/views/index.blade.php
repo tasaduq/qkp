@@ -90,7 +90,7 @@
 
 
          @foreach ($featured_products as $product)
-            <a href="/product/{{$product->id}}">
+            <a href="/product/{{$product->product_id}}">
                <div class="item">
                   <div class="animal-image">
                      <?php
