@@ -91,6 +91,14 @@ class ProductsController extends Controller
         
     }
 
+    public function clone($id){
+        $product = Products::find($id);
+        $new = $product->replicate();
+        $new->save();
+        return redirect()->route('products')->with('success','Product Cloned Successfully...');
+        
+    }
+
     public function destroy($id)
     {  
         $product = Products::find($id);

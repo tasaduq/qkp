@@ -118,6 +118,7 @@ Route::post("add-product", "ProductsController@add_product");
 Route::get('/admin/products', "ProductsController@get_products")->name('products');
 Route::get('/admin/editproduct/{id}','ProductsController@edit')->name('editproduct');
 Route::post('/admin/updateproduct','ProductsController@update')->name('updateproduct');
+Route::get('/admin/cloneproduct/{id}','ProductsController@clone')->name('cloneproduct');
 Route::get('/admin/delete_product/{id}','ProductsController@destroy')->name('deleteproduct');
 /* Products Routes Section Ends */
 

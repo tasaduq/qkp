@@ -107,7 +107,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                           <a class="dropdown-item" href="<?php echo route('editproduct',$product->product_id); ?>" type="button" title="Edit">Edit</a>
-                          <a class="dropdown-item" href="#">Clone</a>
+                          <a class="dropdown-item" href="<?php echo route('cloneproduct',$product->product_id); ?>" type="button" title="Clone">Clone</a>
                           <a class="dropdown-item" href="<?php echo route('deleteproduct',$product->product_id); ?>" onclick="return confirm('Are you sure?')" type="button" title="Delete">Delete</a>
                         </div>
                       </div>
