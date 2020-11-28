@@ -74,7 +74,7 @@ a{
 }
 
 ul li {
-	list-style: none;
+	/* list-style: none; */
 }
 
 a:hover {
@@ -1151,8 +1151,8 @@ button.slick-next.slick-arrow, button.slick-prev.slick-arrow {
 /*********About-us**********************************************************  */
 
 .about-us-section {
-	/* background: #f4eff5; */
-	padding: 80px 0;
+	/* background: #f4eff5; 
+	padding: 80px 0;*/
 }
 
 .about-us-section p {
@@ -1168,7 +1168,6 @@ button.slick-next.slick-arrow, button.slick-prev.slick-arrow {
 .our-mission-section {
 	padding: 80px 0;
 	color: #270037!important;
-	background-color:#ffffff;
 }
 
 .box-icon i {
@@ -1334,6 +1333,7 @@ section.our-mission-section i {
 
 .profile-categories ul {
 	padding-bottom: 40px;
+	list-style:none;
 }
 
 .profile-categories p {
@@ -1532,6 +1532,13 @@ input[type="file"] {
 }
 
 /* checkout */
+
+/* Terms & Conditions */
+.terms-section p{line-height:30px;}
+.terms-section li{line-height:28px; margin-bottom:5px;}
+
+
+.bg_white{background-color:#ffffff;}
 
 /* media Queries */
 

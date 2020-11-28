@@ -5,7 +5,7 @@
        
      <!-- About-us Section -->
 
-     <section class="about-us-section">
+     <section class="about-us-section py-5">
       <div class="container">
           <div class="row about-us-content">
               <div class="col-sm-6 order-sm-6 order-2">
@@ -26,30 +26,29 @@
 
   <!-- About-us Section end -->
 
-<section class="our-mission-section">
+<section class="our-mission-section py-5 bg_white">
  <div class="container">
     <div class="row justify-content-between">
-       <div class="col-sm-12 text-center">
-          <h3 class="pb-2">Our Mission, Vision and Value.</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, tempor.</p>
+       <div class="col-sm-12 text-center mb-5">
+          <h2 class="pb-2">Our Mission, Vision and Value.</h2>
        </div>
-       <div class="col-sm-3 text-center">
+       <div class="col-sm-4 text-center px-4">
            <div class="box-icon py-4">
              <i class="fab fa-font-awesome-flag au-icon"></i>
            </div>
            <p>We are on a mission to help ease the financial pressures of our customers and provide the finest animal to sacrifice in the name of Allah</p>
        </div>
-       <div class="col-sm-3 text-center">
+       <div class="col-sm-4 text-center px-4">
          <div class="box-icon py-4">
             <i class="fas fa-rocket au-icon"></i>
          </div>
-         <p>Our vision is to make qurbani accessible to every Muslim.</p>
+         <p>Our vision is to make qurbani accessible to every Muslim and make the lives of our customers easier and make every Eid ul Azha even more joyous!</p>
      </div>
-     <div class="col-sm-3 text-center">
+     <div class="col-sm-4 text-center px-4">
          <div class="box-icon py-4">
             <i class="fas fa-users au-icon"></i>
          </div>
-         <p>Ikhlaq- Adab- Emaan</p>
+         <p>Qurbani Kiston Pay was founded in the light of Islamic principles, and it reflects in the way we operate. Our team works like a family and we treat our customers the same way. </p>
      </div>
     </div>
  </div>
