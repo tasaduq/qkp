@@ -208,62 +208,12 @@
 
 <!--Clients slider section end -->
 
-<!--Supplier section -->
 
-<section class="supplier-section">
-   <div class="container">
-      <div class="row">
-         <div class="col-sm-9 text-white align-self-center">
-            <h2 class="text-white">Want to become a Supplier?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-         </div>
-         <div class="col-sm-3 d-flex align-items-center button">
-            <button class="btn btn-outline-success my-2 px-4 my-sm-0 ml-auto login" type="submit">Get Started</button>
-         </div>
-      </div>
-   </div>
-</section>
+@include('supplier')
 
-<!--Supplier section end -->
+@include('footer')
 
 
-
-<!-- footer -->
-<section class="footer-section">
-   <div class="container">
-      <div class="row justify-content-around text-center align-items-center">
-         <div class="col-sm-2 text-left">
-            <div class="footerlogo">
-                  <img src="/images/footerlogo.svg" alt="">
-            </div>
-         </div>
-         <div class="col-sm-6 copyright">
-            <span>© Copyrights 2020 QurbaniKistoonPay. All Rights Reserved</span>
-            <span><a href="#"><strong>Privacy Policy</strong></a> - <a href="#"><strong>Terms & Conditions</strong></a></span>
-         </div>
-         <div class="col-sm-3 social-icon">
-            <div class="text-right">
-               <a href="#">
-                  <i class="icon-qkp-facebook"></i>
-               </a>
-               <a href="#">
-                  <i class="icon-qkp-twitter"></i>
-               </a>
-               <a href="#">
-                  <i class="icon-qkp-youtube-play"></i>
-               </a>
-               <a href="#">
-                  <i class="icon-qkp-instagram"></i>
-               </a>
-               <a href="#">
-                  <i class="icon-qkp-snapchat"></i>
-               </a>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!-- footer end -->
 <script src="{{asset('/js/jquery-3.5.1.min.js')}}"></script>
 <script src="{{asset('/js/popper.min.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
