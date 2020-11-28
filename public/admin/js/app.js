@@ -283,54 +283,6 @@ $(document).ready(function(){
         
     })
 
-
-    // update category form starts 
-
-    $("#up-category-btn").submit(function(e) {    
-        e.preventDefault();
-       
-        alert('sss');
-        return false;
-
-
-         $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        
-        // var payload = $("#add-category-form").serialize()
-        // console.log(payload);
-        var formData = new FormData(this);
-        
-        $.ajax({
-            type: "POST",
-            data: formData,
-            cache:false,
-            contentType: false,
-            processData: false,
-            url:"/admin/update_category",
-            dataType: "json",
-            success: function(result){
-                login.loader.show();
-                if(result.result == "true"){
-                    $("#login-error").hide();
-                    window.location = "/admin/categories";
-                }
-                else {
-                    login.loader.hide();
-                    $("#login-error").show();
-                    $("#login-error").html(result.error);
-                }
-                
-            }
-        })
-        
-    })
-
-    // update category ends here 
-
-    
     
     var customer_login_form = $("#login-form").validate({
         rules: {
