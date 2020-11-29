@@ -149,7 +149,7 @@
                         }
                         
                         $image = \App\Models\Media::find($imageid);
-                        $imagethumb = $image ? $image->thumb : "";
+                        $imagethumb = $image ? $image->thumb : $image->path;
                      ?>
                      
                      <img class="img-fluid" src="{{$imagethumb}}" alt="">
