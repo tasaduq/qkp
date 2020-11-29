@@ -40,8 +40,8 @@
                             <h6 class="pb-3 title">Categories</h6>
                             <ul>
                                 <li><a class="active" href="#"><i class="icon-qkp-bull align-middle"></i>Bull</a></li>
-                                <li><a href="#"><i class="icon-qkp-camel align-middle"></i>Camel</a></li>
                                 <li><a href="#"><i class="icon-qkp-goat align-middle"></i>Goat</a></li>
+                                <li><a href="#"><i class="icon-qkp-camel align-middle"></i>Camel</a></li>
                                 <li><a href="#"><i class="icon-qkp-sheep align-middle"></i>Sheep</a></li>
                             </ul>
                         </div>
@@ -91,12 +91,12 @@
                                 $image = \App\Models\Media::find($imageid);
                                 
                             ?>
-                            <div class="product-img"><a href="/product/{{$product->product_id}}"><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></a></div>
+                            <div class="animal-imageCSS "><a href="/product/{{$product->product_id}}"><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></a></div>
                             <div class="title">
                             <span class="name">{{$product->name}}</span>
                             <div class="prize">
                                 <span>Actual Price <strong>{{$product->price}}/-</strong></span>
-                                <span>Monthly Installment <strong>14,583/-</strong></span>
+                                <!-- <span>Monthly Installment <strong>14,583/-</strong></span> -->
                                  <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                             </div>
                             </div>

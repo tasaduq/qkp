@@ -882,6 +882,7 @@ section.footer-section {
 
 .categories ul li {
 	padding-bottom: 18px;
+	list-style: none;
 }
 
 .categories ul li a {
@@ -1065,6 +1066,7 @@ section.footer-section {
 .right-section .details ul li {
 	padding-bottom: 20px;
 	width: 100%;
+	list-style: none;
 }
 
 .right-section .details .form-control {
