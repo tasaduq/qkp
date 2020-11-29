@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{asset('/css/qkp-icons.css')}}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('/css/jquery.fancybox.min.css')}}">
         <title>Qurbani</title>
 
         
@@ -51,8 +52,8 @@
         <div class="modal-dialog modal-dialog-centered modal-login" role="document">
         <div class="modal-content">
             <div class="modal_head text-center">
-                <h4 class="modal-title">Login</h4>
-                <span>with your email</span>
+                <h4 class="modal-title mb-3">Login</h4>
+                <!-- <span>with your email</span> -->
             </div>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
@@ -70,7 +71,7 @@
                   @csrf 
                     <div class="form-group">
                     <i class="fa fa-user"></i>
-                    <input class="form-control" placeholder="email"  type="email" name="email" id="email" required >
+                    <input class="form-control" placeholder="Email"  type="email" name="email" id="email" required >
                     </div>
                     <div class="form-group">
                     <i class="fa fa-lock"></i>
@@ -78,7 +79,7 @@
                     </div>
                     <div class="form-group">
                     <input id="ckb1" type="checkbox" name="remember">
-                    <label class="form-check-label" for="exampleCheck1">Keep me Signed in</label>
+                    <label class="form-check-label" for="exampleCheck1">Keep me signed in</label>
                     </div>
                     <div class="form-group">
                        <span id="login-error" style="display:none;"></span>
@@ -90,10 +91,10 @@
                   </form>
                     <div class="form-group row">
                     <div class="col-sm-6"> <a href="#">Not a member? Sign up</a></div>
-                    <div class="col-sm-6"><a href="{{ route('password.request') }}">I can't remember my password</a></div>
+                    <div class="col-sm-6 text-right"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
 
                     </div>
-                    <p><span class="or">Or</span></p>
+                    <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                     <div class="row social">
                         <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
                         <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
@@ -112,8 +113,8 @@
     <div class="modal-dialog modal-dialog-centered modal-login" role="document">
        <div class="modal-content">
           <div class="modal_head text-center">
-             <h4 class="modal-title">Sign Up</h4>
-             <span>fill out quick signup form</span>
+             <h4 class="modal-title mb-3">Sign Up</h4>
+             <!-- <span>fill out quick signup form</span> -->
           </div>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
    
@@ -139,7 +140,7 @@
                   <input class="form-control" placeholder="Confirm Password" type="password" name="password_confirmation" id="password_confirmation" required>
                </div>
                 <div class="text-center">
-                   <div class="modal-text">Your passwork must be at least 8 Characters long and must contain letters, numbers and special charecters.</span>
+                   <div class="modal-text">Your passwork must be at least 8 Characters long and must contain letters and numbers.</span>
                 </div>
                 </div>
                 <div class="form-group">
@@ -151,9 +152,9 @@
                 </div>
                </form>
                 <div class="form-group row text-center">
-                   <div class="col-sm-12"> <a href="#" >Already register? Login</a></div>
+                   <div class="col-sm-12"> <a href="#" >Already registered? Login</a></div>
                 </div>
-                <p><span class="or">Or</span></p>
+                <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                 <div class="row social">
                   <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
                   <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
@@ -203,7 +204,7 @@
                         <a class="nav-link" href="/contact-us">Contact Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/our-farms">Our Farms</a>
+                        <a class="nav-link" href="/our-farm">Our Farm</a>
                      </li>
                   </ul>
 
@@ -235,9 +236,9 @@
       <script src="{{asset('/js/popper.min.js')}}"></script>
       <script src="{{asset('/js/bootstrap.min.js')}}"></script>
       <script src="{{asset('/js/slick.js')}}"></script> --}}
-
       <script src="{{asset('/js/jquery-validator.js')}}"></script> 
       <script src="{{asset('/js/app.js')}}"></script> 
+      <script src="{{asset('/js/jquery.fancybox.min.js')}}"></script>
       <script>
          window.fbAsyncInit = function() {
          FB.init({

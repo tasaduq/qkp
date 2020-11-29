@@ -11,7 +11,7 @@
       <div class="slide-img img-3"></div>
    </div>
    <div class="container text-center center">
-      <div class="content" id="content">
+      <!-- <div class="content" id="content">
          <div class="row">
             <div class="col-md-12">
                <h2 class="text-white">Search</h2>
@@ -77,6 +77,52 @@
                </div>
             </div>
          </div>
+      </div> -->
+      <div class="content" id="content">
+         <div class="row">
+            <div class="col-md-12">
+               <h2 class="text-white">Search</h2>
+                <p>Search for the finest animals on Shariah compliant installments</p>
+               <div class="row d-flex filter align-items-end mt-4">
+                  <div class="col-sm-5 text-left">
+                     <label class="mb-3 pl-3">Animal Category</label>
+                     <div class="select-container">
+                        <select class="form-control " data-toggle="dropdown">
+                           <option value="1">Cow/Bull</option>
+                           <option value="2">Goat</option>
+                           <option value="3">Camel</option>
+                           <option value="3">Sheep</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 text-left">
+                     <label class="mb-3 pl-3">Price Range</label>
+                     <div class="select-container">
+                        <select class="form-control" data-toggle="dropdown">
+                           <option value="1">25000 - 50000</option>
+                           <option value="2">50000 - 75000</option>
+                           <option value="3">75000 - 100000</option>
+                           <option value="3">100000 - 125000</option>
+                           <option value="3">125000 - 150000</option>
+                           <option value="3">150000 - 175000</option>
+                           <option value="3">175000 - 200000</option>
+                           <option value="3">200000 - 225000</option>
+                           <option value="3">225000 - 250000</option>
+                           <option value="3">250000 - 275000</option>
+                           <option value="3">275000 - 300000</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 text-left">
+                     <label class="mb-3">Estimated Live Weight</label>
+                     <input class="w-100 mt-4" type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                  </div>
+                  <div class="col-sm-1">
+                     <a href="#" type="submit" class="search"><i class="icon-qkp-search-c"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
    </div>
@@ -85,7 +131,7 @@
 
 <section class="section-slider">
    <div class="container text-center slick">
-      <h2>New Arrivals at our farms </h2>
+      <h2>New arrivals at our farm</h2>
       <div class="animals-slider">
 
 
@@ -163,45 +209,48 @@
 
 <section class="client-slider-section">
    <div class="container text-center">
-      <h2>What our customers Say</h2>
+      <h2>What our customers say</h2>
       <div class="client-slider">
-         <div class="row d-inline-flex text-center client-content align-items-center">
-            <div class="col-sm-3">
+         <div class="row d-inline-flex text-center client-content justify-content-center align-items-center">
+            <!-- <div class="col-sm-3">
                <div class="client-image">
                   <img src="/images/client.png" alt="img">
                </div>
                <h6>Abdul Khaliq</h6>
-            </div>
-            <div class="col-sm-9 text-left">
+            </div> -->
+            <div class="col-sm-10">
                <div class="desc">
-                  <p>Qurbani Kistoon Pay turned out to be the most reliable online qurbani partner. By providing monthly installment facility on the animal of my choice. I visited their farms, and they are taking exceptionally good care of the animals.</p>
+                  <p class="text-center"><em>"I was always a bit skeptical about online qurbani websites, but I decided to do my research and talked to their customer service. They are very professional and seem to know what they are doing. The convenience of paying in installments just made everything better"</em></p>
                </div>
+               <div class="client d-block"><h6><em>Abdul Khaliq</em></h6></div>
             </div>
          </div>
-         <div class="row d-inline-flex text-center client-content align-items-center">
-            <div class="col-sm-3">
+         <div class="row d-inline-flex text-center client-content justify-content-center align-items-center">
+            <!-- <div class="col-sm-3">
                <div class="client-image">
                   <img src="/images/client.png" alt="img">
                </div>
                <h6>Nazia Batool</h6>
-            </div>
-            <div class="col-sm-9 text-left">
+            </div> -->
+            <div class="col-sm-10">
                <div class="desc">
-                  <p>My husband was worried about qurbani last year, but Qurbani Kistoon Pay resolved our financial woes. We not only selected the animal of our choice but the ability to pay in easy monthly installments made our choice just so much better! And on top of that the animal will be delivered right at the doorstep. </p>
+                  <p class="text-center"><em>"My husband was worried about qurbani last year, but Qurbani Kistoon Pay resolved our financial woes. We not only selected the animal of our choice but the ability to pay in easy monthly installments made our choice just so much better! And on top of that the animal will be delivered right at the doorstep."</em></p>
                </div>
+               <div class="client d-block"><h6><em>Nazia Batool</em></h6></div>
             </div>
          </div>
-         <div class="row d-inline-flex text-center client-content align-items-center">
-            <div class="col-sm-3">
+         <div class="row d-inline-flex text-center client-content justify-content-center align-items-center">
+            <!-- <div class="col-sm-3">
                <div class="client-image">
                   <img src="/images/client.png" alt="img">
                </div>
                <h6>Khalid Sultan</h6>
-            </div>
-            <div class="col-sm-9 text-left">
+            </div> -->
+            <div class="col-sm-10">
                <div class="desc">
-                  <p>One of my friends told me about Qurbani Kiston Pay so I decided to visit their website. They turned out to be highly competitive and groundbreaking. No other platform offers such a diverse selection of sacrificial animals or monthly shariah compliant installment facility. My Eid ul Azha will be hassle free. </p>
+                  <p class="text-center"><em>"One of my friends told me about Qurbani Kiston Pay so I decided to visit their website. They turned out to be highly competitive and groundbreaking. No other platform offers such a diverse selection of sacrificial animals or monthly shariah compliant installment facility. My Eid ul Azha will be hassle free."</em></p>
                </div>
+               <div class="client d-block"><h6><em>Khalid Sultan</em></h6></div>
             </div>
          </div>
       </div>
