@@ -12,7 +12,7 @@
                <li class="breadcrumb-item active">{{$product->name}}</li>
            </ol>
             <div class="row">
-               <div class="col-sm-6 text-center left-section">
+               <div class="col-sm-6 text-center left-section pb-5">
                   <div class="product-preview">
                      <?php
                      $imageid = array();
@@ -131,7 +131,8 @@
          $category = $category ? $category : array();
          ?>
          <div class="animal-product">
-         @foreach ($category as $category)
+
+            @foreach ($category as $category)
             <div class="item">
                <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
                <div class="title">
@@ -145,7 +146,72 @@
             </div>
             @endforeach
             
-          
+{{--           
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image"><img class="img-fluid" src="/images/Layer 8.png" alt=""></div>
+                  <div class="title">
+                     <span class="name">Achai Bull</span>
+                     <div class="prize">
+                        <span>Actual Price <strong>175,000/-</strong></span>
+                        <span>Monthly Installment <strong>14,583/-</strong></span>
+                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                     </div>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image"><img class="img-fluid" src="/images/Layer 8.png" alt=""></div>
+                  <div class="title">
+                     <span class="name">Achai Bull</span>
+                     <div class="prize">
+                        <span>Actual Price <strong>175,000/-</strong></span>
+                        <span>Monthly Installment <strong>14,583/-</strong></span>
+                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                     </div>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image"><img class="img-fluid" src="/images/Layer 8.png" alt=""></div>
+                  <div class="title">
+                     <span class="name">Achai Bull</span>
+                     <div class="prize">
+                        <span>Actual Price <strong>175,000/-</strong></span>
+                        <span>Monthly Installment <strong>14,583/-</strong></span>
+                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                     </div>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image"><img class="img-fluid" src="/images/Layer 8.png" alt=""></div>
+                  <div class="title">
+                     <span class="name">Achai Bull</span>
+                     <div class="prize">
+                        <span>Actual Price <strong>175,000/-</strong></span>
+                        <span>Monthly Installment <strong>14,583/-</strong></span>
+                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                     </div>
+                  </div>
+               </div>
+            </a>
+            <a href="/product/test">
+               <div class="item">
+                  <div class="animal-image"><img class="img-fluid" src="/images/Layer 8.png" alt=""></div>
+                  <div class="title">
+                     <span class="name">Achai Bull</span>
+                     <div class="prize">
+                        <span>Actual Price <strong>175,000/-</strong></span>
+                        <span>Monthly Installment <strong>14,583/-</strong></span>
+                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                     </div>
+                  </div>
+               </div>
+            </a> --}}
          </div>
          <button class="btn default-btn my-2 px-4 my-sm-0 mr-3 login" type="submit">More Animals in Same Price</button>
          <div class="arrow_prev">
@@ -157,7 +223,7 @@
       </section>
       <!-- Slider End -->
 
-
+      @include('supplier')
       @include('footer')
 
 

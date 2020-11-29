@@ -32,8 +32,8 @@ Route::get('/contact-us', function () {
     return view('contact-us');
 });
 
-Route::get('/our-farms', function () {
-    return view('our-farms');
+Route::get('/our-farm', function () {
+    return view('our-farm');
 });
 
 Route::get('/shariah-compliant', function () {
@@ -55,6 +55,10 @@ Route::get('/terms-conditions', function () {
 
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
+});
+
+Route::get('/faqs', function () {
+    return view('faqs');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

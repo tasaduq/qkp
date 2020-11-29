@@ -11,7 +11,7 @@
               <div class="col-sm-6 order-sm-6 order-2">
                   <h2 class="mb-4">Behtereen Qurbani..Asaan Kiston Pay</h2>
                      <p>Qurbani Kiston Pay is Pakistan`s first and only platform for purchasing the finest qurbani animals, on easy Shariah compliant monthly installments!</p>
-<p>We offer a variety of sacrificial animals which include cows, goats, sheep, camels, and specialty animals under multiple price ranges that are delivered right to your doorstep!</p>
+<p>We offer a variety of sacrificial animals which include bulls/cows, goats, sheep, camels, and specialty animals under multiple price ranges that are delivered right to your doorstep!</p>
 <p>Our animals are cared for at our very own QKP Farms with utmost care under the supervision of thorough professionals. Our animals are given pure organic feed and have 24/7 medical care onsite.</p>
 <p>You are just a few clicks away from Behtereen Qurbani..Asaan Kiston py!</p>
               </div>
@@ -30,7 +30,7 @@
  <div class="container">
     <div class="row justify-content-between">
        <div class="col-sm-12 text-center mb-5">
-          <h2 class="pb-2">Our Mission, Vision and Value.</h2>
+          <h2 class="pb-2">Mission, Vision and Values</h2>
        </div>
        <div class="col-sm-4 text-center px-4">
            <div class="box-icon py-4">
@@ -55,7 +55,7 @@
 </section>
 <!-- Our Mission Section end -->
 
-
+@include('supplier')
 @include('footer')
 
 
