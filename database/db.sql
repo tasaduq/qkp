@@ -129,7 +129,7 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `products` (
-  `product_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(225) NOT NULL,
   `color` varchar(100) DEFAULT NULL,
   `category` int(11) NOT NULL,
@@ -138,22 +138,27 @@ CREATE TABLE `products` (
   `description` text NOT NULL,
   `images` varchar(200) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0,
-  `featured` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `featured` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `name`, `color`, `category`, `weight`, `price`, `description`, `images`, `active`, `featured`) VALUES
-(1, 'asdasdasd', NULL, 2, 123123, 123123123, 'asdasdasd asdas d', '17', 1, 1),
-(2, 'product two', '123123', 2, 11233, 123123123, 'dsad asd asda sdas da ds', '17', 1, 1),
-(3, 'dasd asa', '12312', 2, 213, 123123, 'asdasdasd sada sda das d', '16', 1, 1),
-(4, 'test', 'test', 2, 123123, 1231222, 'asd asdasda d', '16,17', 1, 1),
-(5, 'test', '123123', 1, 11233, 1231213, 'asd ad ada ds', '17', 1, 1),
-(6, '1231232', '123121', 2, 123123, 123123, 'asd asd as d', '17', 1, 1),
-(7, 'asda dasd', 'asd', 2, 123, 12101, 'asd asdasd as d', '17', 1, 1),
-(8, 'test', 'asasd a', 1, 123, 12312321, 'asd asd asdas das', '17', 1, 1);
+-- INSERT INTO `products` (`product_id`, `name`, `color`, `category`, `weight`, `price`, `description`, `images`, `active`, `featured`) VALUES
+-- (1, 'asdasdasd', NULL, 2, 123123, 123123123, 'asdasdasd asdas d', '17', 1, 1),
+-- (2, 'product two', '123123', 2, 11233, 123123123, 'dsad asd asda sdas da ds', '17', 1, 1),
+-- (3, 'dasd asa', '12312', 2, 213, 123123, 'asdasdasd sada sda das d', '16', 1, 1),
+-- (4, 'test', 'test', 2, 123123, 1231222, 'asd asdasda d', '16,17', 1, 1),
+-- (5, 'test', '123123', 1, 11233, 1231213, 'asd ad ada ds', '17', 1, 1),
+-- (6, '1231232', '123121', 2, 123123, 123123, 'asd asd as d', '17', 1, 1),
+-- (7, 'asda dasd', 'asd', 2, 123, 12101, 'asd asdasd as d', '17', 1, 1),
+-- (8, 'test', 'asasd a', 1, 123, 12312321, 'asd asd asdas das', '17', 1, 1);
+
+insert  into `products`(`product_id`,`name`,`color`,`category`,`weight`,`price`,`description`,`images`,`active`,`featured`,`updated_at`,`created_at`) values (1,'newProduct11','grey1',5,45,2000000,'ProductDesc1','17',0,1,NULL,NULL),(3,'baba','white',1,213,280000,'babasesc','16',1,1,NULL,NULL),(4,'cat','whitw',4,2,50000,'cat desc','16,17',1,1,NULL,NULL),(5,'d','123123',1,11233,1231213,'asd ad ada ds','17',1,1,NULL,NULL),(6,'okokokok','123121',2,123123,123123,'okokok','17',1,1,NULL,NULL),(7,'f','asd',2,123,12101,'asd asdasd as d','17',1,1,NULL,NULL),(9,'newProduct11','grey1',5,45,2000000,'ProductDesc1','17',0,1,'2020-11-28 21:34:41','2020-11-28 21:34:41'),(10,'f','asd',2,123,12101,'asd asdasd as d','17',1,1,'2020-11-28 21:34:53','2020-11-28 21:34:53');
 
 -- --------------------------------------------------------
 
@@ -320,3 +325,16 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE `laravel`.`contact`(  
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200),
+  `email` VARCHAR(255),
+  `phone` VARCHAR(255),
+  `subject` VARCHAR(255),
+  `message` TEXT,
+  `addedon` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`id`)
+);
+

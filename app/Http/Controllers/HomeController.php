@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
 
+
 class HomeController extends Controller
 {
     public function index(Request $request){
+
+        $this->ensureCalculationDataInSession();
+
         $featured_products = Products::where([
             "featured" => 1,
             "active" => 1
@@ -31,6 +35,7 @@ class HomeController extends Controller
             "product_id" => $id,
             "active" => 1,
         ])->first();
+       
         return view('product-details')->with("product", $product);
     }
     public function mandi(Request $request){

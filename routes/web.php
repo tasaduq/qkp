@@ -41,9 +41,7 @@ Route::get('/shariah-compliant', function () {
 });
 
 
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::get('/cart', "CartController@index");
 
 Route::get('/checkout', function () {
     return view('checkout');
@@ -122,10 +120,19 @@ Route::post("ajax-register", "CustomLoginController@register");
 Route::get("verifyuser/{hash}", "CustomLoginController@verifyuser");
 
 
+/* Contact Us Section Starts */
+Route::post("add-contact", "ContactusController@add_contact");
+
+
+
 
 /* Products Routes Section Starts */
 Route::post("add-product", "ProductsController@add_product");
-Route::get('/admin/products', "ProductsController@get_products");
+Route::get('/admin/products', "ProductsController@get_products")->name('products');
+Route::get('/admin/editproduct/{id}','ProductsController@edit')->name('editproduct');
+Route::post('/admin/updateproduct','ProductsController@update')->name('updateproduct');
+Route::get('/admin/cloneproduct/{id}','ProductsController@clone')->name('cloneproduct');
+Route::get('/admin/delete_product/{id}','ProductsController@destroy')->name('deleteproduct');
 /* Products Routes Section Ends */
 
 
@@ -142,3 +149,12 @@ Route::post('/admin/upload', "MediaController@upload");
 
 Route::get("/admin/media", "MediaController@index");
 Route::post("/admin/fetch-images", "MediaController@fetch_images");
+
+Route::get("/dumpdata", "HomeController@dumpdata");
+
+
+
+
+Route::prefix('cart')->group(function () {
+    Route::post('add-to-cart', "CartController@add_to_cart");
+});

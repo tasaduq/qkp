@@ -28,6 +28,11 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
@@ -101,9 +106,9 @@
                           <i class="fas fa-ellipsis-v"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Clone</a>
-                          <a class="dropdown-item" href="#">Delete</a>
+                          <a class="dropdown-item" href="<?php echo route('editproduct',$product->product_id); ?>" type="button" title="Edit">Edit</a>
+                          <a class="dropdown-item" href="<?php echo route('cloneproduct',$product->product_id); ?>" type="button" title="Clone">Clone</a>
+                          <a class="dropdown-item" href="<?php echo route('deleteproduct',$product->product_id); ?>" onclick="return confirm('Are you sure?')" type="button" title="Delete">Delete</a>
                         </div>
                       </div>
                     </td>

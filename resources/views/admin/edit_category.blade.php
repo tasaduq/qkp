@@ -24,7 +24,8 @@
             </div>
             
             <!-- Category Edit Form -->
-            <form action="{{ route('updateCategory') }}" method="post">
+            <form action="{{ route('updateCategory') }}" method="post" enctype="multipart/form-data">
+            <!-- <form id="edit-category-form"  enctype="multipart/form-data" > -->
             @csrf
             <div class="card-body border-0">
               <div class="row">
@@ -43,6 +44,19 @@
                       <textarea class="form-control" name="description" id="description" placeholder="Enter Category Discription" rows="4">{{ $aCategory->description }}</textarea>
                     </div>
                   </div>
+
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Category Image</label>
+                    <div class="col-md-9">
+                    <input type="file" name="category_image" id="category_image" />
+                    <input type='hidden' name="imgname" value="{{ $aCategory->category_image }}">
+                    <div class="" style="float: right;">
+                        <img id="logo" src="{{ $aCategory->category_image == '' ? asset('../public/categoty/category_gallery/icon-categories.jpg') : asset('public/category/category_gallery/'.$aCategory->category_image.'') }}" style="width: 150px;height: 150px;">
+                    </div>
+                </div>
+                    
+                  </div>
+
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Category Status</label>
                     <div class="col-md-9">
@@ -67,7 +81,7 @@
                 {{-- <button type="button" class="btn btn-secondary">Secondary</button> --}}
                 {{-- <button type="button" class="btn btn-info">Info</button> --}}
                 <input type='hidden' name="id" value="{{ $aCategory->category_id }}">
-                <input type="submit" class="btn btn-success" id="up-category-btn" value="Update Category">
+                <input type="submit" value="Update Category" class="btn btn-success">
                 {{-- <button type="button" class="btn btn-danger">Danger</button> --}}
                 {{-- <button type="button" class="btn btn-warning">Warning</button> --}}
               </div>

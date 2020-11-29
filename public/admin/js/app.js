@@ -236,8 +236,7 @@ $(document).ready(function(){
         }
     });
 
-
-    //$("#add-category-form").on("click",function(){
+//$("#add-category-form").on("click",function(){
     $("#add-category-form").submit(function(e) {    
         e.preventDefault();
         if(!add_category_form.form()){
@@ -279,7 +278,6 @@ $(document).ready(function(){
         
     })
 
-    
     
     var customer_login_form = $("#login-form").validate({
         rules: {

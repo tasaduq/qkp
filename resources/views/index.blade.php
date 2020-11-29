@@ -149,13 +149,14 @@
                         }
                         
                         $image = \App\Models\Media::find($imageid);
-                        
+                        $imagethumb = $image ? $image->thumb : $image->path;
                      ?>
-                     <img class="img-fluid" src="{{$image->thumb}}" alt="">
+                     
+                     <img class="img-fluid" src="{{$imagethumb}}" alt="">
                   </div>
                   <div class="title">
                      <span class="name">{{$product->name}}</span>
-                     <span class="prize">3,500/- Per Month</span>
+                     <span class="prize">{{number_format($product->price/Session::get("get_feasible_installments"))}}/- Per Month</span>
                   </div>
                </div>
             </a>

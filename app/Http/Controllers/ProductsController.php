@@ -9,6 +9,7 @@ use App\Models\Products;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Hash;
 use Response;
+use DB;
 use Validator;
 
 
@@ -43,11 +44,49 @@ class ProductsController extends Controller
         return Response::json($result);
         
     } 
+
+    
+    public function edit($id)
+    {
+       // get categories
+       $acategory= Categories::all('category_id', 'category_name');
+        
+       $aProduct =DB::table('Products')
+        ->where('product_id','=',$id)
+        ->first();
+       return view('admin.edit_product', compact('aProduct','acategory'));
+    }
+
+    public function update(Request $request)
+    {   
+        // $data = $request->except(["_token"]);
+
+        if($request->has("active")){
+
+            $active = $request->active = 1;
+        }
+        else{
+            $active = $request->active = 0;
+        }
+
+        
+            DB::table('products')->where('product_id','=',$request->id)->update([
+                    'name'     =>    $request->name,
+                    'color'    =>    $request->color,
+                    'category' =>    $request->category,
+                    'weight'   =>    $request->weight,
+                    'price'    =>    $request->price,
+                    'description' => $request->description,
+                    'active' => $active,
+                ]);
+        
+
+        return redirect()->route('products')->with('success','Product Update Successfully...');
+    }
+
+
     public function get_products(Request $request){
         $products = Products::all();
-
-        // dd($products);
-        // where("deleted",0)->
         return view('admin.products')->with('products',$products);
         
     }
@@ -57,5 +96,20 @@ class ProductsController extends Controller
         return view('admin.add_product')->with("categories",$categories);
         
         
+    }
+
+    public function clone($id){
+        $product = Products::find($id);
+        $new = $product->replicate();
+        $new->save();
+        return redirect()->route('products')->with('success','Product Cloned Successfully...');
+        
+    }
+
+    public function destroy($id)
+    {  
+        $product = Products::find($id);
+        $product->delete();
+        return redirect()->route('products')->with('success','Product Deleted Successfully...');
     }
 }
