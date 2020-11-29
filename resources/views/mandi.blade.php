@@ -17,7 +17,7 @@
                
                if($key%2 == 0 ){
                   ?>
-                  <div class="row for-desktop w-100">
+                  <div class="row w-100">
                      <div class="col-md-6 p-0 bg-white" id="cow">
                         <img class="img-fluid" src="{{$category->path}}">
                      </div><!--img-->
@@ -33,15 +33,15 @@
                }
                else{
                   ?>
-                   <div class="row for-desktop w-100">
-                     <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
+                   <div class="row w-100">
+                     <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center order-sm-6 order-2">
                         <div class="m-auto py-3">
                            <h1 class="text-white mb-5">{{$category->category_name}}</h1>
                            {{-- <p>{{$category->description}}</p> --}}
                            <a href="/products?c={{$category->category_id}}"><button class="btn btn-outline-success">Explore</button></a>
                         </div>
                      </div><!--text-->
-                     <div class="col-md-6 p-0 bg-white" id="camel">
+                     <div class="col-md-6 p-0 bg-white order-1 order-sm-6 order-1" id="camel">
                         <img class="img-fluid" src="{{$category->path}}">
                      </div><!--img-->
                   </div><!--row desktop-->
