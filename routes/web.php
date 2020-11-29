@@ -32,8 +32,8 @@ Route::get('/contact-us', function () {
     return view('contact-us');
 });
 
-Route::get('/our-farms', function () {
-    return view('our-farms');
+Route::get('/our-farm', function () {
+    return view('our-farm');
 });
 
 Route::get('/shariah-compliant', function () {

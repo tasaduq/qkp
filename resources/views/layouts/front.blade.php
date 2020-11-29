@@ -204,7 +204,7 @@
                         <a class="nav-link" href="/contact-us">Contact Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/our-farms">Our Farms</a>
+                        <a class="nav-link" href="/our-farm">Our Farm</a>
                      </li>
                   </ul>
 
