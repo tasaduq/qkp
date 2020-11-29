@@ -126,19 +126,24 @@
          <div class="container text-center slick">
          <h2>More Relevant Animals</h2>
          <?php 
-         
-         $category = \App\Models\Products::where("category",$product->category)->get();
-         $category = $category ? $category : array();
+         $category = \App\Models\Products::where("category",$product->category)
+         ->where('product_id','!=',$product->product_id)
+         ->get();
+          $category = $category ? $category : array();
          ?>
          <div class="animal-product">
-
-            @foreach ($category as $category)
+           
+            @foreach ($category as $categories)
+          
             <div class="item">
-               <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
+                
+             <div class="product-img">
+                <a href="/product/{{ $categories->product_id }}">
+                <img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
                <div class="title">
-                  <span class="name">{{ $category->name }}</span>
+                  <span class="name">{{ $categories->name }}</span>
                   <div class="prize">
-                     <span>Actual Price <strong>{{ $category->price }}</strong></span>
+                     <span>Actual Price <strong>{{ $categories->price }}</strong></span>
                      <span>Monthly Installment <strong>14,583/-</strong></span>
                      <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                   </div>
