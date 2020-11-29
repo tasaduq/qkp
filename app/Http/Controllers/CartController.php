@@ -25,6 +25,18 @@ class CartController extends Controller
         
         return view('cart')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);
     }
+    public function checkout(){
+        $cart = $this->get_cart();
+        $products_in_cart = array_keys($cart);
+
+        $products = Products::where([
+            "active" => 1
+        ])->whereIn("product_id", $products_in_cart)->get();
+        
+        $shipping_fee = 5000;
+        
+        return view('checkout')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);
+    }
     public function add_to_cart(Request $request){
         
         

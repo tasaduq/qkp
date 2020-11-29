@@ -42,10 +42,8 @@ Route::get('/shariah-compliant', function () {
 
 
 Route::get('/cart', "CartController@index");
-
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::get('/checkout', "CartController@checkout");
+    
 
 Route::get('/terms-conditions', function () {
     return view('terms-conditions');

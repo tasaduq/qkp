@@ -327,7 +327,7 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
-CREATE TABLE `laravel`.`contact`(  
+CREATE TABLE `contact`(  
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200),
   `email` VARCHAR(255),
@@ -338,3 +338,42 @@ CREATE TABLE `laravel`.`contact`(
   PRIMARY KEY (`id`)
 );
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `preferences`
+--
+
+CREATE TABLE `preferences` (
+  `id` int(11) NOT NULL,
+  `eid_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `preferences`
+--
+
+INSERT INTO `preferences` (`id`, `eid_date`) VALUES
+(1, '2021-07-07');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `preferences`
+--
+ALTER TABLE `preferences`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `preferences`
+--
+ALTER TABLE `preferences`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
