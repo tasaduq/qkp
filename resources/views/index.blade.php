@@ -103,9 +103,10 @@
                         }
                         
                         $image = \App\Models\Media::find($imageid);
-                        
+                        $imagethumb = $image ? $image->thumb : "";
                      ?>
-                     <img class="img-fluid" src="{{$image->thumb}}" alt="">
+                     
+                     <img class="img-fluid" src="{{$imagethumb}}" alt="">
                   </div>
                   <div class="title">
                      <span class="name">{{$product->name}}</span>

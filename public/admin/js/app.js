@@ -236,6 +236,10 @@ $(document).ready(function(){
         }
     });
 
+    // awais testing startns 
+
+    // awais testing ends
+
 
     //$("#add-category-form").on("click",function(){
     $("#add-category-form").submit(function(e) {    
@@ -279,7 +283,6 @@ $(document).ready(function(){
         
     })
 
-    
     
     var customer_login_form = $("#login-form").validate({
         rules: {

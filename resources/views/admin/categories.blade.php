@@ -28,6 +28,11 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
