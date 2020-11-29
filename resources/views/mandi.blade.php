@@ -58,7 +58,7 @@
 
  <!-- mandi section end -->
 
-
+ @include('supplier')
 
 
  @include('footer')

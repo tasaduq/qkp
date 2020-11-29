@@ -13,7 +13,7 @@
     </section>
     
         <!-- sharih-compliance section end -->
-    
+        @include('supplier')
         @include('footer')
         
           <script src="Assets/js/jquery-3.5.1.min.js"></script>

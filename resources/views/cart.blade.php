@@ -76,7 +76,7 @@
 
 
     <!-- cart section end -->
-
+    @include('supplier')
     @include('footer')
 
 @endsection

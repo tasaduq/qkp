@@ -55,7 +55,7 @@
 </section>
 <!-- Our Mission Section end -->
 
-
+@include('supplier')
 @include('footer')
 
 

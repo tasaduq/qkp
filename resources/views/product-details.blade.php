@@ -188,7 +188,7 @@
       </section>
       <!-- Slider End -->
 
-
+      @include('supplier')
       @include('footer')
 
 
