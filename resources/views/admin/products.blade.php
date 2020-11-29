@@ -80,7 +80,11 @@
                       {{$product->description}}
                     </td>
                     <td>
-                      {{$product->category}}
+                      <?php
+                        $category_name = \App\Models\Categories::where("category_id",$product->category)->first();
+                        $category_name = $category_name ? $category_name->category_name : "N/A";
+                      ?>
+                      {{$category_name}}
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
