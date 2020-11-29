@@ -24,7 +24,7 @@
                      <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
                         <div class="m-auto py-3">
                            <h1 class="text-white">{{$category->category_name}}</h1>
-                           <p>{{$category->description}}</p>
+                           <!-- <p>{{$category->description}}</p> -->
                            <a href="/products?c={{$category->category_id}}"><button class="btn btn-outline-success">Explore</button></a>
                         </div>
                      </div><!--text-->
@@ -37,7 +37,7 @@
                      <div class="col-md-6 d-flex align-items-center bg-theme text-white text-center">
                         <div class="m-auto py-3">
                            <h1 class="text-white">{{$category->category_name}}</h1>
-                           <p>{{$category->description}}</p>
+                           <!-- <p>{{$category->description}}</p> -->
                            <a href="/products?c={{$category->category_id}}"><button class="btn btn-outline-success">Explore</button></a>
                         </div>
                      </div><!--text-->

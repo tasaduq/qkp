@@ -72,7 +72,7 @@
                 <div class="icon"><i class="icon-qkp-message-c"></i></div>
                 <div class="text align-self-center">
                    <p class="m-0 pb-1">Email Us At</p>
-                   <span>info@kurbanikistoonpay.com</span>
+                   <span>info@qurbanikistonpay.com</span>
                 </div>
              </div>
           </div>

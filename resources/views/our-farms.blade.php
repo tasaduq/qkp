@@ -11,9 +11,9 @@
 
 <section class="our-farms-section text-center">
     <div class="container">
-       <h1>Our Farms</h1>
+       <h1>Our Farm</h1>
         <div class="desc pb-4">
-            <p>Our farm is in the lush green plains of Sajawal. Our top of the line livestock infrastructure is sprea across acres with access to clean water and organic feed for your qurbani animals.<p>
+            <p>Our farm is in the lush green plains of Sajawal. Our top of the line livestock infrastructure is spread across acres with access to clean water and organic feed for your qurbani animals.<p>
 <p>Our staff is specially trained and monitors all aspects of quality assurance. The animals are checked regularly by our medical teams and highest standards of cleanliness are maintained to ensure your finest qurbani animal reaches your doorstep safe and healthy.</p>
 <p>So, do not hesitate to schedule a visit to our farm and see for yourself!</p>
             </p>

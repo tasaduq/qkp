@@ -8,7 +8,7 @@
              </div>
           </div>
           <div class="col-sm-6 copyright">
-             <span>© Copyrights 2020 QurbaniKistoonPay. All Rights Reserved</span>
+             <span>© Copyrights 2020 Qurbanikistonpay. All Rights Reserved</span>
              <span><a href="privacy-policy"><strong>Privacy Policy</strong></a> - <a href="terms-conditions"><strong>Terms & Conditions</strong></a></span>
           </div>
           <div class="col-sm-3 social-icon">
