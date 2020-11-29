@@ -51,8 +51,7 @@ class ProductsController extends Controller
        // get categories
        $acategory= Categories::all('category_id', 'category_name');
         
-       $aProduct =DB::table('Products')
-        ->where('product_id','=',$id)
+       $aProduct = Products::where('product_id','=',$id)
         ->first();
        return view('admin.edit_product', compact('aProduct','acategory'));
     }
@@ -70,7 +69,7 @@ class ProductsController extends Controller
         }
 
         
-            DB::table('products')->where('product_id','=',$request->id)->update([
+            Products::where('product_id','=',$request->id)->update([
                     'name'     =>    $request->name,
                     'color'    =>    $request->color,
                     'category' =>    $request->category,
