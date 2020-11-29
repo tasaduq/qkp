@@ -74,6 +74,7 @@
                         @foreach ($products as $product)
                         <div class="col-sm-4 col-md-6 col-lg-4">
                             <div class="animal-product">
+                            <a href="/product/{{$product->product_id}}">
                         <div class="item">
                             @if($product->featured)
                                 <div class="featured">Featured</div>
@@ -91,7 +92,7 @@
                                 $image = \App\Models\Media::find($imageid);
                                 
                             ?>
-                            <div class="animal-imageCSS "><a href="/product/{{$product->product_id}}"><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></a></div>
+                            <div class="animal-imageCSS "><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></div>
                             <div class="title">
                             <span class="name">{{$product->name}}</span>
                             <div class="prize">
@@ -100,6 +101,7 @@
                                  <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                             </div>
                             </div>
+                            </a>
                         </div>
                     </div>
                 </div>
