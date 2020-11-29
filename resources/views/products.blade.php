@@ -71,7 +71,7 @@
 
                                 
 
-                        @foreach ($products as $product)
+                        @forelse ($products as $product)
                         <div class="col-sm-4 col-md-6 col-lg-4">
                             <div class="animal-product">
                             <a href="/product/{{$product->product_id}}">
@@ -105,8 +105,11 @@
                         </div>
                     </div>
                 </div>
-                    @endforeach
-
+                
+                    
+                @empty
+                <span class="no-products">There are no products in this category</span>    
+                @endforelse
 
 
                     </div>
