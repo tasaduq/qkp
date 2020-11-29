@@ -90,7 +90,7 @@
 
 
          @foreach ($featured_products as $product)
-            <a href="/product/{{$product->id}}">
+            <a href="/product/{{$product->product_id}}">
                <div class="item">
                   <div class="animal-image">
                      <?php
@@ -103,9 +103,10 @@
                         }
                         
                         $image = \App\Models\Media::find($imageid);
-                        
+                        $imagethumb = $image ? $image->thumb : "";
                      ?>
-                     <img class="img-fluid" src="{{$image->thumb}}" alt="">
+                     
+                     <img class="img-fluid" src="{{$imagethumb}}" alt="">
                   </div>
                   <div class="title">
                      <span class="name">{{$product->name}}</span>
