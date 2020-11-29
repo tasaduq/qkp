@@ -156,7 +156,7 @@
                   </div>
                   <div class="title">
                      <span class="name">{{$product->name}}</span>
-                     <span class="prize">3,500/- Per Month</span>
+                     <span class="prize">{{number_format($product->price/Session::get("get_feasible_installments"))}}/- Per Month</span>
                   </div>
                </div>
             </a>

@@ -60,19 +60,17 @@
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Category</div>
-                                 <span>:</span>{{$product->category}}
+                                 <?php
+                                    $category_name = \App\Models\Categories::where("category_id",$product->category)->first();
+                                    $category_name = $category_name ? $category_name->category_name : "N/A";
+                                 ?>
+                                 <span>:</span>{{$category_name}}
                               </label>
                            </li>
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Weight</div>
                                  <span>:</span>{{$product->weight}} KG
-                              </label>
-                           </li>
-                           <li>
-                              <label class="control-label">
-                                 <div class="attribute">Height</div>
-                                 <span>:</span>6.2 Ft
                               </label>
                            </li>
                            <li>
@@ -86,12 +84,12 @@
                                  <div class="attribute">Plan</div>
                                  <span>:</span>
                                  <div class="form-group">
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                       <option>06 Months</option>
-                                       <option>08 Months</option>
-                                       <option>12 Months</option>
-                                       <option>14 Months</option>
-                                       <option>24 Months</option>
+                                    <select class="form-control" id="product-emi-price-dropdown">
+                                       @for ($i = Session::get("get_feasible_installments"); $i > 0; $i--)
+                                          <option value="{{$i}}" price="{{number_format($product->price/$i)}}" >{{ $i<10?"0".$i:$i}} {{ $i==1?"Month":"Months"}}</option>    
+                                       @endfor
+                                       
+                                       
                                     </select>
                                  </div>
                               </label>
@@ -101,19 +99,19 @@
                      <div class="col-xs-12 col-md-6 col-lg-4">
                         <div class="actual-price">
                            <p class="mb-1">Actual price</p>
-                           <h4 class="amount">RS. {{number_format($product->price)}}/-</h4>
+                           <h4 class="amount">RS.{{number_format($product->price)}}/-</h4>
                         </div>
                         <div class="advance">
                            <p class="mb-1">Advance</p>
-                           <h4 class="amount">RS. {{number_format(ceil($product->price*0.3))}}/-</h4>
+                           <h4 class="amount">RS.{{number_format(ceil($product->price*0.3))}}/-</h4>
                         </div>
                         <div class="EMI">
                            <p class="mb-1">EMI</p>
-                           <h4 class="amount">RS.13,363/-</h4>
+                           <h4 class="amount" id="selected-emi-amount">RS.{{number_format($product->price/Session::get("get_feasible_installments"))}}/-</h4>
                         </div>
                      </div>
                   </div>
-                  <button class="btn default-btn w-100 login" type="submit">Book your Animal</button>
+                  <button class="btn default-btn w-100 login add-to-cart-btn" product="{{$product->product_id}}" type="button">Book your Animal</button>
                </div>
             </div>
          </div>
@@ -127,20 +125,20 @@
          <h2>More Relevant Animals</h2>
          <?php 
          
-         $category = \App\Models\Products::where("category",$product->category)->get();
-         $category = $category ? $category : array();
+         $products = \App\Models\Products::where("category",$product->category)->get();
+         $products = $products ? $products : array();
          ?>
          <div class="animal-product">
 
-            @foreach ($category as $category)
+            @foreach ($products as $product)
             <div class="item">
                <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
                <div class="title">
-                  <span class="name">{{ $category->name }}</span>
+                  <span class="name">{{ $product->name }}</span>
                   <div class="prize">
-                     <span>Actual Price <strong>{{ $category->price }}</strong></span>
-                     <span>Monthly Installment <strong>14,583/-</strong></span>
-                     <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                     <span>Actual Price <strong>RS.{{ $product->price }}/-</strong></span>
+                     <span>Monthly Installment <strong>RS.{{number_format($product->price/Session::get("get_feasible_installments"))}}/-</strong></span>
+                     {{-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> --}}
                   </div>
                </div>
             </div>

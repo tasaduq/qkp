@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
 
+
 class HomeController extends Controller
 {
     public function index(Request $request){
+
+        $this->ensureCalculationDataInSession();
+
         $featured_products = Products::where([
             "featured" => 1,
             "active" => 1
