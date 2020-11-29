@@ -192,8 +192,14 @@ $(document).ready(function(){
     var add_product_form = $("#add-product-form").validate({
         rules: {
             name: "required",
-            weight :  "required",
-            price :  "required",
+            weight :  {
+                required: true,
+                number: true
+            },
+            price :  {
+                required: true,
+                number: true
+            },
             // color :  "required",
             description :  "required",
 

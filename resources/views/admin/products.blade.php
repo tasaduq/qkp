@@ -57,7 +57,7 @@
 
                 <tbody class="list">
 
-                  @foreach($products as $product)
+                  @forelse($products as $product)
 
                   <tr>
                     <td class="">
@@ -77,7 +77,7 @@
                       </div>
                     </th>
                     <td class="budget">
-                      {{$product->description}}
+                      {{substr($product->description, 0, 15)."..."}}
                     </td>
                     <td>
                       <?php
@@ -117,9 +117,9 @@
                       </div>
                     </td>
                   </tr>
-
-                  @endforeach
-                 
+                  @empty
+                    <span class="no-products">There are no products in this category</span>    
+                  @endforelse
                 </tbody>
               </table>
             </div>

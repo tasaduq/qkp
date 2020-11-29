@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index(Request $request){
 
-        $this->ensureCalculationDataInSession();
+        
 
         $featured_products = Products::where([
             "featured" => 1,
@@ -19,6 +19,9 @@ class HomeController extends Controller
         ])->take(10)->get();
 
         return view('index')->with("featured_products", $featured_products);
+    }
+    public function ensureSessionData(){
+        $this->ensureCalculationDataInSession();
     }
     public function products(Request $request){
         $cat = $request->get("c");

@@ -16,6 +16,11 @@
         <title>Qurbani</title>
 
         
+        <?php
+         
+         $home = new \App\Http\Controllers\HomeController;
+         $home->ensureSessionData(); 
+        ?>
     </head>
     
    <body>
