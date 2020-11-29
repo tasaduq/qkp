@@ -120,7 +120,7 @@
 
 
       <!-- More Relevant Animals Slider -->
-      <section class="section-slider">
+      <section class="section-slider" style="display:none;">
          <div class="container text-center slick">
          <h2>More Relevant Animals</h2>
          <?php 
