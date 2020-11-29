@@ -189,22 +189,22 @@
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mx-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link {{ \Request::is("/") ? "active" : "" }}" href="/">Home <span class="sr-only">(current)</span></a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/about-us">About</a>
+                        <a class="nav-link {{ \Request::is("about-us") ? "active" : "" }}" href="/about-us">About</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/shariah-compliant">Shariah Compliance</a>
+                        <a class="nav-link {{ \Request::is("shariah-compliant") ? "active" : "" }}" href="/shariah-compliant">Shariah Compliance</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/mandi">Mandi</a>
+                        <a class="nav-link {{ \Request::is("mandi") ? "active" : ""  }}" href="/mandi">Mandi</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/contact-us">Contact Us</a>
+                        <a class="nav-link {{ \Request::is("contact-us") ? "active" : "" }}" href="/contact-us">Contact Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/our-farm">Our Farm</a>
+                        <a class="nav-link {{ \Request::is("our-farm") ? "active" : "" }}" href="/our-farm">Our Farm</a>
                      </li>
                   </ul>
 
