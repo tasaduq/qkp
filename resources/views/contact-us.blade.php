@@ -19,9 +19,7 @@
           <div class="col-sm-6 order-1 order-sm-6 order-1">
              <div class="contact-us-form">
                 <h2>Get in Touch</h2>
-                <div class="form-group">
-                       <span id="contact-message" style="display:none;"></span>
-                     </div>
+               
                 <form action="" id="add-contact-form">
 
                 @csrf
@@ -47,6 +45,17 @@
                       <label for="message">Your Message:</label>
                       <textarea class="form-control" name="message" id="message" rows="3"></textarea>
                    </div>
+                   <div class="form-group">
+                    <span id="contact-success-message" style="display:none;">
+                     <div class="alert alert-success" role="alert">
+                         Sucessfully Form Submitted
+                     </div> 
+                 </span> <span id="contact-error-message" style="display:none;">
+                    <div class="alert alert-success" role="alert">
+                        Something went wrong
+                    </div> 
+                </span>
+                  </div>
                    <button type="button" class="btn default-btn float-right mb-4"  id="add-contact-btn">Send Message</button> 
                    
                 </form>

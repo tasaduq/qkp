@@ -61,13 +61,14 @@ $(document).ready(function(){
             data: payload,
             type: "POST",
             success: function(result){
-                login.loader.show();
                 if(result.result == "true"){
-                    $("#contact-message").show();
-                    window.location = "/contact-us";
+                    $("#contact-success-message").fadeIn(500);
+                    $("#add-contact-form").trigger('reset');
+                    $("#contact-error-message").hide();
                 }
                 else {
-                    $("#contact-message").hide();
+                    $("#contact-error-message").fadeIn(500);
+                    $("#contact-success-message").hide();
                     
                 }
                 
