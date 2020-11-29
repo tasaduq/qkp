@@ -23,51 +23,51 @@
       <div class="row justify-content-center">
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm1.png">
+               <a href="images/farm1.png" data-fancybox="gallery"><img src="images/farm1.png"></a>
             </div>
          </div>
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm3.png">
+            <a href="images/farm3.png" data-fancybox="gallery"><img src="images/farm3.png"></a>
             </div>
          </div>
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm2.png">
+            <a href="images/farm2.png" data-fancybox="gallery"><img src="images/farm2.png"></a>
             </div>
          </div>
       </div>
       <div class="row py-4">
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm3.png">
+            <a href="images/farm3.png" data-fancybox="gallery"><img src="images/farm3.png"></a>
             </div>
          </div>
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm2.png">
+            <a href="images/farm2.png" data-fancybox="gallery"><img src="images/farm2.png"></a>
             </div>
          </div>
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm1.png">
+            <a href="images/farm1.png" data-fancybox="gallery"><img src="images/farm1.png"></a>
             </div>
          </div>
       </div>
       <div class="row">
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm2.png">
+            <a href="images/farm2.png" data-fancybox="gallery"><img src="images/farm2.png"></a>
             </div>
          </div>
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm1.png">
+            <a href="images/farm1.png" data-fancybox="gallery"><img src="images/farm1.png"></a>
             </div>
          </div>
          <div class="col-sm-4">
             <div class="animal-image">
-               <img src="images/farm3.png">
+            <a href="images/farm3.png" data-fancybox="gallery"><img src="images/farm3.png"></a>
             </div>
          </div>
       </div>
@@ -76,11 +76,17 @@
 
 @include('footer')
 
-      <script src="Assets/js/jquery-3.5.1.min.js"></script>
+      <script src="js/jquery-3.5.1.min.js"></script>
       <script src="Assets/js/popper.min.js"></script>
       <script src="Assets/js/bootstrap.min.js"></script>
       <script src="Assets/js/slick.js"></script>
    </body>
 </html>
+<script>
+   $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+</script>
 
 @endsection

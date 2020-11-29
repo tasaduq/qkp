@@ -11,7 +11,7 @@
       <div class="slide-img img-3"></div>
    </div>
    <div class="container text-center center">
-      <div class="content" id="content">
+      <!-- <div class="content" id="content">
          <div class="row">
             <div class="col-md-12">
                <h2 class="text-white">Search</h2>
@@ -70,6 +70,52 @@
                            <option value="3">Brown</option>
                         </select>
                      </div>
+                  </div>
+                  <div class="col-sm-1">
+                     <a href="#" type="submit" class="search"><i class="icon-qkp-search-c"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div> -->
+      <div class="content" id="content">
+         <div class="row">
+            <div class="col-md-12">
+               <h2 class="text-white">Search</h2>
+               <!-- <p>Search for the finest animals on Shariah compliant installments</p> -->
+               <div class="row d-flex filter align-items-end mt-4">
+                  <div class="col-sm-5 text-left">
+                     <label class="mb-3 pl-3">Animal Category</label>
+                     <div class="select-container">
+                        <select class="form-control " data-toggle="dropdown">
+                           <option value="1">Cow/Bull</option>
+                           <option value="2">Goat</option>
+                           <option value="3">Camel</option>
+                           <option value="3">Sheep</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 text-left">
+                     <label class="mb-3 pl-3">Price Range</label>
+                     <div class="select-container">
+                        <select class="form-control" data-toggle="dropdown">
+                           <option value="1">25000 - 50000</option>
+                           <option value="2">50000 - 75000</option>
+                           <option value="3">75000 - 100000</option>
+                           <option value="3">100000 - 125000</option>
+                           <option value="3">125000 - 150000</option>
+                           <option value="3">150000 - 175000</option>
+                           <option value="3">175000 - 200000</option>
+                           <option value="3">200000 - 225000</option>
+                           <option value="3">225000 - 250000</option>
+                           <option value="3">250000 - 275000</option>
+                           <option value="3">275000 - 300000</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 text-left">
+                     <label class="mb-3">Estimated Live Weight</label>
+                     <input class="w-100 mt-4" type="range" min="1" max="100" value="50" class="slider" id="myRange">
                   </div>
                   <div class="col-sm-1">
                      <a href="#" type="submit" class="search"><i class="icon-qkp-search-c"></i></a>

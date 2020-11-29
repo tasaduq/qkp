@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{asset('/css/qkp-icons.css')}}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('/css/jquery.fancybox.min.css')}}">
         <title>Qurbani</title>
 
         
@@ -235,9 +236,9 @@
       <script src="{{asset('/js/popper.min.js')}}"></script>
       <script src="{{asset('/js/bootstrap.min.js')}}"></script>
       <script src="{{asset('/js/slick.js')}}"></script> --}}
-
       <script src="{{asset('/js/jquery-validator.js')}}"></script> 
       <script src="{{asset('/js/app.js')}}"></script> 
+      <script src="{{asset('/js/jquery.fancybox.min.js')}}"></script>
       <script>
          window.fbAsyncInit = function() {
          FB.init({

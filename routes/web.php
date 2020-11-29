@@ -57,6 +57,10 @@ Route::get('/privacy-policy', function () {
     return view('privacy-policy');
 });
 
+Route::get('/faqs', function () {
+    return view('faqs');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
