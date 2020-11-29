@@ -40,8 +40,8 @@
                               <div class="col-sm-6 label">Actual Price : <strong>RS.{{number_format($product->price)}}/-</strong></div>
                               
                            <div class="col-sm-6 label">Installment Plan : <strong>{{$cart[$product->product_id]["installment"] < 10 ? "0".$cart[$product->product_id]["installment"] : $cart[$product->product_id]["installment"] }} {{$cart[$product->product_id]["installment"] == 1 ?  "Month":"Months" }}</strong></div>
-                              <div class="col-sm-6 label">Advance(30%) : <strong>52,500/-</strong></div>
-                              <div class="col-sm-6 label">Monthly Installment : <strong>14,583/-</strong></div>
+                              <div class="col-sm-6 label">Advance(30%) : <strong>{{number_format(ceil($product->price*0.3))}}/-</strong></div>
+                              <div class="col-sm-6 label">Monthly Installment : <strong>{{number_format(ceil($product->price/$cart[$product->product_id]["installment"]))}}/-</strong></div>
                            </div>
                            <div class="delete_item">
                            <button class="btn default-btn"><span class="fas fa-trash-alt"></span></button>
