@@ -38,6 +38,44 @@ $(document).ready(function(){
         
     })
 
+    var add_contact_form = $("#add-contact-form").validate({
+        rules: {
+            name: "required",
+            email :  "required",
+            phone :  "required",
+            subject :  "required",
+            message :  "required",
+
+        }
+    });
+    
+    $("#add-contact-btn").on("click",function(){
+        if(!add_contact_form.form()){
+            return false;
+        }
+        
+        var payload = $("#add-contact-form").serialize()
+        console.log(payload);
+        $.ajax({
+            url:"/add-contact",
+            data: payload,
+            type: "POST",
+            success: function(result){
+                login.loader.show();
+                if(result.result == "true"){
+                    $("#contact-message").show();
+                    window.location = "/contact-us";
+                }
+                else {
+                    $("#contact-message").hide();
+                    
+                }
+                
+            }
+        })
+        
+    })
+
     $("#register-form-btn").on("click",function(){
         
         if(!customer_register_form.form()){

@@ -31,6 +31,12 @@ class HomeController extends Controller
             "product_id" => $id,
             "active" => 1,
         ])->first();
+        // select * from products where category = $product->category_id
+        // $products_category = Products::where([
+        //     "category" => 1,
+        //     "active" => 1
+        // ])->take(10)->get();
+        
         return view('product-details')->with("product", $product);
     }
     public function mandi(Request $request){

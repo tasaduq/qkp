@@ -125,62 +125,27 @@
       <section class="section-slider">
          <div class="container text-center slick">
          <h2>More Relevant Animals</h2>
+         <?php 
+         
+         $category = \App\Models\Products::where("category",$product->category)->get();
+         $category = $category ? $category : array();
+         ?>
          <div class="animal-product">
+         @foreach ($category as $category)
             <div class="item">
                <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
                <div class="title">
-                  <span class="name">Achai Bull</span>
+                  <span class="name">{{ $category->name }}</span>
                   <div class="prize">
-                     <span>Actual Price <strong>175,000/-</strong></span>
+                     <span>Actual Price <strong>{{ $category->price }}</strong></span>
                      <span>Monthly Installment <strong>14,583/-</strong></span>
                      <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                   </div>
                </div>
             </div>
-            <div class="item">
-               <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-               <div class="title">
-                  <span class="name">Achai Bull</span>
-                  <div class="prize">
-                     <span>Actual Price <strong>175,000/-</strong></span>
-                     <span>Monthly Installment <strong>14,583/-</strong></span>
-                     <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                  </div>
-               </div>
-            </div>
-            <div class="item">
-               <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-               <div class="title">
-                  <span class="name">Achai Bull</span>
-                  <div class="prize">
-                     <span>Actual Price <strong>175,000/-</strong></span>
-                     <span>Monthly Installment <strong>14,583/-</strong></span>
-                     <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                  </div>
-               </div>
-            </div>
-            <div class="item">
-               <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-               <div class="title">
-                  <span class="name">Achai Bull</span>
-                  <div class="prize">
-                     <span>Actual Price <strong>175,000/-</strong></span>
-                     <span>Monthly Installment <strong>14,583/-</strong></span>
-                     <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                  </div>
-               </div>
-            </div>
-            <div class="item">
-               <div class="product-img"><a href="/product/test"><img class="img-fluid" src="/images/Layer 8.png" alt=""></a></div>
-               <div class="title">
-                  <span class="name">Achai Bull</span>
-                  <div class="prize">
-                     <span>Actual Price <strong>175,000/-</strong></span>
-                     <span>Monthly Installment <strong>14,583/-</strong></span>
-                     <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
-                  </div>
-               </div>
-            </div>
+            @endforeach
+            
+          
          </div>
          <button class="btn default-btn my-2 px-4 my-sm-0 mr-3 login" type="submit">More Animals in Same Price</button>
          <div class="arrow_prev">

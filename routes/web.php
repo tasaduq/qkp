@@ -118,6 +118,11 @@ Route::post("ajax-register", "CustomLoginController@register");
 Route::get("verifyuser/{hash}", "CustomLoginController@verifyuser");
 
 
+/* Contact Us Section Starts */
+Route::post("add-contact", "ContactusController@add_contact");
+
+
+
 
 /* Products Routes Section Starts */
 Route::post("add-product", "ProductsController@add_product");

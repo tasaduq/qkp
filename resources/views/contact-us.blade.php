@@ -19,30 +19,36 @@
           <div class="col-sm-6 order-1 order-sm-6 order-1">
              <div class="contact-us-form">
                 <h2>Get in Touch</h2>
-                <form>
+                <div class="form-group">
+                       <span id="contact-message" style="display:none;"></span>
+                     </div>
+                <form action="" id="add-contact-form">
+
+                @csrf
                    <div class="form-group">
                       <label for="name">Your Name:</label>
-                      <input type="text" class="form-control" id="name">
+                      <input type="text" name="name" class="form-control" id="name">
                    </div>
                    <div class="form-row justify-content-between">
                       <div class="form-group col-md-6 pr-3">
                          <label for="email">Email:</label>
-                         <input type="text" class="form-control" id="email">
+                         <input type="email" name="email" class="form-control" id="email">
                       </div>
                       <div class="form-group col-md-6">
                          <label for="phone">Phone:</label>
-                         <input type="text" class="form-control" id="phone">
+                         <input type="text" name="phone" class="form-control" id="phone">
                       </div>
                    </div>
                    <div class="form-group">
                       <label for="subject">Subject:</label>
-                      <input type="text" class="form-control" id="subject">
+                      <input type="text" name="subject" class="form-control" id="subject">
                    </div>
                    <div class="form-group">
                       <label for="message">Your Message:</label>
-                      <textarea class="form-control" id="message" rows="3"></textarea>
+                      <textarea class="form-control" name="message" id="message" rows="3"></textarea>
                    </div>
-                   <button class="btn default-btn float-right mb-4" type="submit">Send Message</button>
+                   <button type="button" class="btn default-btn float-right mb-4"  id="add-contact-btn">Send Message</button> 
+                   
                 </form>
              </div>
           </div>

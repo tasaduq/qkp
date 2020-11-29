@@ -236,12 +236,7 @@ $(document).ready(function(){
         }
     });
 
-    // awais testing startns 
-
-    // awais testing ends
-
-
-    //$("#add-category-form").on("click",function(){
+//$("#add-category-form").on("click",function(){
     $("#add-category-form").submit(function(e) {    
         e.preventDefault();
         if(!add_category_form.form()){
