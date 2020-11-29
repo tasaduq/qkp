@@ -12,7 +12,7 @@
                <li class="breadcrumb-item active">{{$product->name}}</li>
            </ol>
             <div class="row">
-               <div class="col-sm-6 text-center left-section">
+               <div class="col-sm-6 text-center left-section pb-5Detai">
                   <div class="product-preview">
                      <?php
                      $imageid = array();
