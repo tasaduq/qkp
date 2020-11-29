@@ -17,12 +17,16 @@
                      <?php
                      $imageid = array();
                      if ( strpos($product->images, ",") > -1){
-                           $imageid = explode(",",$product->images)[0];      
+                           $imageid = explode(",",$product->images);  
+                           
                      }
                      else {
                         $imageid[0] = $product->images;
                      }
+                    //  dd($imageid);
                      $images = \App\Models\Media::whereIn("id", $imageid)->get();
+                     
+                     $images = $images ? $images : array();
                      ?>
                      @foreach ($images as $image)
                         <div class="item">
