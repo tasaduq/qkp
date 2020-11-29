@@ -92,7 +92,7 @@
                                 $image = \App\Models\Media::find($imageid);
                                 
                             ?>
-                            <div class="animal-imageCSS "><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></div>
+                            <div class="animal-image"><img class="img-fluid" src="{{$image->thumb}}" alt="{{$product->name}}"></div>
                             <div class="title">
                             <span class="name">{{$product->name}}</span>
                             <div class="prize">
