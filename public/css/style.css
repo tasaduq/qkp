@@ -1834,3 +1834,8 @@ input[type='range']::-webkit-slider-runnable-track {
   }
 
   .card-header{background-color: #f4eff5 !important;}
+  label.error {
+    color: #dc3545;
+    margin-top: 5px;
+    font-weight: normal;
+}
