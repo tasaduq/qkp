@@ -98,7 +98,7 @@
                      </div>
                      <div class="col-xs-12 col-md-6 col-lg-4">
                         <div class="actual-price">
-                           <p class="mb-1">Actual price</p>
+                           <p class="mb-1">Full price</p>
                            <h4 class="amount">RS.{{number_format($product->price)}}/-</h4>
                         </div>
                         <div class="advance">
@@ -106,7 +106,7 @@
                            <h4 class="amount">RS.{{number_format(ceil($product->price*0.3))}}/-</h4>
                         </div>
                         <div class="EMI">
-                           <p class="mb-1">EMI</p>
+                           <p class="mb-1">Monthly Installment</p>
                            <h4 class="amount" id="selected-emi-amount">RS.{{number_format($product->price/Session::get("get_feasible_installments"))}}/-</h4>
                         </div>
                      </div>
@@ -154,7 +154,7 @@
                <div class="title">
                   <span class="name">{{ $product->name }}</span>
                   <div class="prize">
-                     <span>Actual Price <strong>RS.{{ $product->price }}/-</strong></span>
+                     <span>Full Price <strong>RS.{{ $product->price }}/-</strong></span>
                      <span>Monthly Installment <strong>RS.{{number_format($product->price/Session::get("get_feasible_installments"))}}/-</strong></span>
                      {{-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> --}}
                   </div>
