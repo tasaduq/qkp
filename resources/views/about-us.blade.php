@@ -17,7 +17,7 @@
               </div>
               <div class="col-sm-6 order-1 order-sm-6 order-1">
                   <div class="image mb-4"> 
-                      <img class="img-fluid" src="/images/about-us.png" alt="img">
+                      <img class="img-fluid image-shadow" src="/images/about-us.png" alt="img">
                   </div>
               </div>
           </div>
