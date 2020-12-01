@@ -48,7 +48,7 @@
                    <div class="form-group">
                     <span id="contact-success-message" style="display:none;">
                      <div class="alert alert-success" role="alert">
-                         Sucessfully Form Submitted
+                         Thankyou for contacting us, our representative will get in touch with you soon.
                      </div> 
                  </span> <span id="contact-error-message" style="display:none;">
                     <div class="alert alert-success" role="alert">

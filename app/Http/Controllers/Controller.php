@@ -18,7 +18,6 @@ class Controller extends BaseController
         
     // }
     public function ensureCalculationDataInSession(){
-        
         Session::put("get_feasible_installments", $this->get_feasible_installments() );
         Session::put("days_before_eid", $this->days_before_eid() );
         Session::put("months_before_eid", $this->months_before_eid() );
@@ -56,7 +55,7 @@ class Controller extends BaseController
         return intval( ceil( $days / 30 ) ) - 1;
     }
     public function dumpdata(){
-
+        $this->ensureCalculationDataInSession();
         $data =  array(
             "get_feasible_installments" => $this->get_feasible_installments(),
             "days_before_eid" => $this->days_before_eid(),

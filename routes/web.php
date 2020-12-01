@@ -36,9 +36,14 @@ Route::get('/our-farm', function () {
     return view('our-farm');
 });
 
-Route::get('/shariah-compliant', function () {
-    return view('sharih-compliance');
+Route::get('/shariah-compliance', function () {
+    return view('shariah-compliance');
 });
+
+Route::get('/Refund-and-cancellation-policy', function () {
+    return view('Refund-and-cancellation-policy');
+});
+
 
 
 Route::get('/cart', "CartController@index");

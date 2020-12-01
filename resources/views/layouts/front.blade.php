@@ -17,9 +17,11 @@
 
         
         <?php
+         // dd("x");
          
          $home = new \App\Http\Controllers\HomeController;
          $home->ensureSessionData(); 
+
         ?>
     </head>
     
@@ -91,7 +93,7 @@
                      </div>
                     
                     <div class="form-group">
-                    <input type="button" class="default-btn btn-block btn-lg" id="login-form-btn" value="Login">
+                    <input type="button" class="default-btn flat-corners btn-block btn-lg" id="login-form-btn" value="Login">
                     </div>
                   </form>
                     <div class="form-group row">
@@ -153,7 +155,7 @@
                 </div>
                
                 <div class="form-group">
-                   <input type="button" class="default-btn btn-block btn-lg" id="register-form-btn" value="Sign Up">
+                   <input type="button" class="default-btn flat-corners btn-block btn-lg" id="register-form-btn" value="Sign Up">
                 </div>
                </form>
                 <div class="form-group row text-center">
@@ -200,7 +202,7 @@
                         <a class="nav-link {{ \Request::is("about-us") ? "active" : "" }}" href="/about-us">About</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link {{ \Request::is("shariah-compliant") ? "active" : "" }}" href="/shariah-compliant">Shariah Compliance</a>
+                        <a class="nav-link {{ \Request::is("shariah-compliance") ? "active" : "" }}" href="/shariah-compliance">Shariah Compliance</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link {{ \Request::is("mandi") ? "active" : ""  }}" href="/mandi">Mandi</a>
