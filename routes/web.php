@@ -13,15 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', "HomeController@index");
-
-Route::get('/product/{id}', "HomeController@product_detail");
-
-Route::get('/products', "HomeController@products");
 
 
-Route::get('/mandi', "HomeController@mandi");
+
+Route::middleware("calculations")->group(function () {
+
+    Route::get('/', "HomeController@index");
+    Route::get('/product/{id}', "HomeController@product_detail");
+    Route::get('/products', "HomeController@products");
+    Route::get('/mandi', "HomeController@mandi");
+    Route::get('/cart', "CartController@index");
+    Route::get('/checkout', "CartController@checkout");
+
     
+
+    Route::prefix('cart')->group(function () {
+        Route::post('add-to-cart', "CartController@add_to_cart");
+    });
+
+});
 
 
 Route::get('/about-us', function () {
@@ -39,10 +49,6 @@ Route::get('/our-farm', function () {
 Route::get('/shariah-compliant', function () {
     return view('sharih-compliance');
 });
-
-
-Route::get('/cart', "CartController@index");
-Route::get('/checkout', "CartController@checkout");
     
 
 Route::get('/terms-conditions', function () {
@@ -151,8 +157,3 @@ Route::post("/admin/fetch-images", "MediaController@fetch_images");
 Route::get("/dumpdata", "HomeController@dumpdata");
 
 
-
-
-Route::prefix('cart')->group(function () {
-    Route::post('add-to-cart', "CartController@add_to_cart");
-});

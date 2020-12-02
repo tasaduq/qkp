@@ -20,9 +20,9 @@ class HomeController extends Controller
 
         return view('index')->with("featured_products", $featured_products);
     }
-    public function ensureSessionData(){
-        $this->ensureCalculationDataInSession();
-    }
+    // public function ensureSessionData(){
+    //     $this->ensureCalculationDataInSession();
+    // }
     public function products(Request $request){
         $cat = $request->get("c");
         $category = Categories::where("category_id", $cat)->first();
