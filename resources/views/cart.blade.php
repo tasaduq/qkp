@@ -37,7 +37,7 @@
                            <div class="row animals_attribute">
                               <div class="col-sm-6 label">Estimated Live Weight : <strong>{{$product->weight}}KG</strong></div>
                               <div class="col-sm-6 label">Color : <strong>{{$product->color}}</strong></div>
-                              <div class="col-sm-6 label">Actual Price : <strong>RS.{{number_format($product->price)}}/-</strong></div>
+                              <div class="col-sm-6 label">Full Price : <strong>RS.{{number_format($product->price)}}/-</strong></div>
                               
                            <div class="col-sm-6 label">Installment Plan : <strong>{{$cart[$product->product_id]["installment"] < 10 ? "0".$cart[$product->product_id]["installment"] : $cart[$product->product_id]["installment"] }} {{$cart[$product->product_id]["installment"] == 1 ?  "Month":"Months" }}</strong></div>
                               <div class="col-sm-6 label">Advance(30%) : <strong>{{number_format(ceil($product->price*0.3))}}/-</strong></div>

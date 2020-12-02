@@ -101,6 +101,18 @@
                     </div>
                     </div>
                   </div>
+
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Product Featured</label>
+                    <div class="col-md-9">
+                    <div id="toggles-component" class="tab-pane tab-example-result" role="tabpanel" aria-labelledby="toggles-component-tab">
+                      <label class="custom-toggle">
+                        <input {{ $aProduct->featured  == 1 ? 'checked':''}} type="checkbox" name="featured" id="featured" >
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                      </label>
+                    </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

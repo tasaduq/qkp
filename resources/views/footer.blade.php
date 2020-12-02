@@ -8,8 +8,8 @@
              </div>
           </div>
           <div class="col-sm-6 copyright">
-             <span>© Copyrights 2020 Qurbanikistonpay. All Rights Reserved</span>
-             <span><a href="privacy-policy"><strong>Privacy Policy</strong></a> - <a href="terms-conditions"><strong>Terms & Conditions</strong></a> - <a href="faqs"><strong>FAQs</strong></a></span>
+             <span>© Copyrights 2020 Qurbanikistonpay (PVT).LTD. All Rights Reserved</span>
+             <span><a href="privacy-policy"><strong>Privacy Policy</strong></a> - <a href="terms-conditions"><strong>Terms & Conditions</strong></a> - <a href="faqs"><strong>FAQs</strong></a> - <a href="Refund-and-cancellation-policy"><strong>Refund & Cancellation Policy</strong></a></span>
           </div>
           <div class="col-sm-3 social-icon">
              <div class="text-right">

@@ -9,16 +9,20 @@
       <div class="slide-img img-1"></div>
       <div class="slide-img img-2"></div>
       <div class="slide-img img-3"></div>
+      <div class="slide-img img-4"></div>
+      <div class="slide-img img-5"></div>
+      <div class="slide-img img-6"></div>
+      <div class="slide-img img-7"></div>
    </div>
    <div class="container text-center center">
-      <!-- <div class="content" id="content">
+      <div class="content" id="content">
          <div class="row">
             <div class="col-md-12">
-               <h2 class="text-white">Search</h2>
-               <p>Search for the finest animals on Shariah compliant installments</p>
+               <h2 class="text-black search-title">Search</h2>
+               {{-- <p class="text-black">Search for the finest animals on Shariah compliant installments</p> --}}
                <div class="button-group row">
                   <div class="col-sm-3">
-                     <button type="button" class="btn rounded-pill btn-outline-primary active"><span>
+                     <button type="button" class="btn rounded-pill btn-outline-primary"><span>
                            <i class="icon-qkp-bull"></i>
                         </span>Bull</button>
                   </div>
@@ -77,8 +81,8 @@
                </div>
             </div>
          </div>
-      </div> -->
-      <div class="content" id="content">
+      </div>
+      {{-- <div class="content" id="content">
          <div class="row">
             <div class="col-md-12">
                <h2 class="text-white">Search</h2>
@@ -123,7 +127,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> --}}
    </div>
    </div>
 </section>
@@ -222,7 +226,7 @@
                <div class="desc">
                   <p class="text-center"><em>"I was always a bit skeptical about online qurbani websites, but I decided to do my research and talked to their customer service. They are very professional and seem to know what they are doing. The convenience of paying in installments just made everything better"</em></p>
                </div>
-               <div class="client d-block"><h6><em>Abdul Khaliq</em></h6></div>
+               <div class="client d-block"><h6><em>- Abdul Khaliq</em></h6></div>
             </div>
          </div>
          <div class="row d-inline-flex text-center client-content justify-content-center align-items-center">
@@ -236,7 +240,7 @@
                <div class="desc">
                   <p class="text-center"><em>"My husband was worried about qurbani last year, but Qurbani Kistoon Pay resolved our financial woes. We not only selected the animal of our choice but the ability to pay in easy monthly installments made our choice just so much better! And on top of that the animal will be delivered right at the doorstep."</em></p>
                </div>
-               <div class="client d-block"><h6><em>Nazia Batool</em></h6></div>
+               <div class="client d-block"><h6><em>- Nazia Batool</em></h6></div>
             </div>
          </div>
          <div class="row d-inline-flex text-center client-content justify-content-center align-items-center">
@@ -250,7 +254,7 @@
                <div class="desc">
                   <p class="text-center"><em>"One of my friends told me about Qurbani Kiston Pay so I decided to visit their website. They turned out to be highly competitive and groundbreaking. No other platform offers such a diverse selection of sacrificial animals or monthly shariah compliant installment facility. My Eid ul Azha will be hassle free."</em></p>
                </div>
-               <div class="client d-block"><h6><em>Khalid Sultan</em></h6></div>
+               <div class="client d-block"><h6><em>- Khalid Sultan</em></h6></div>
             </div>
          </div>
       </div>

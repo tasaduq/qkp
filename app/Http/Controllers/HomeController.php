@@ -11,8 +11,6 @@ class HomeController extends Controller
 {
     public function index(Request $request){
 
-        
-
         $featured_products = Products::where([
             "featured" => 1,
             "active" => 1

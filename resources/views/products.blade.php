@@ -96,7 +96,7 @@
                             <div class="title">
                             <span class="name">{{$product->name}}</span>
                             <div class="prize">
-                                <span>Actual Price <strong>{{$product->price}}/-</strong></span>
+                                <span>Full Price <strong>{{$product->price}}/-</strong></span>
                                 <!-- <span>Monthly Installment <strong>14,583/-</strong></span> -->
                                  <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                             </div>

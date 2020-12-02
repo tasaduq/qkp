@@ -93,9 +93,9 @@ across Pakistan.
     </div>
     <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordion">
       <div class="card-body">
-      You have 14 days to pay after the due date. After that your installment will be combined with
+      You have <Strong>7 days</strong> to pay after the due date. After that your installment will be combined with
 the next month’s installment with a penalty. If you fail to make the second payment within the
-due date the booking will be cancelled. Please refer to our “Refund and cancellation policy”
+due date the booking will be cancelled. Please refer to our “<a href="Refund-and-cancellation-policy"><Strong>Refund and cancellation policy</strong></a>”
 page for more information.
       </div>
     </div>

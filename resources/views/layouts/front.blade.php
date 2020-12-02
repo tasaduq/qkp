@@ -86,7 +86,7 @@
                      </div>
                     
                     <div class="form-group">
-                    <input type="button" class="default-btn btn-block btn-lg" id="login-form-btn" value="Login">
+                    <input type="button" class="default-btn flat-corners btn-block btn-lg" id="login-form-btn" value="Login">
                     </div>
                   </form>
                     <div class="form-group row">
@@ -148,7 +148,7 @@
                 </div>
                
                 <div class="form-group">
-                   <input type="button" class="default-btn btn-block btn-lg" id="register-form-btn" value="Sign Up">
+                   <input type="button" class="default-btn flat-corners btn-block btn-lg" id="register-form-btn" value="Sign Up">
                 </div>
                </form>
                 <div class="form-group row text-center">
@@ -173,14 +173,14 @@
          <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                <a class="navbar-brand" href="/"><img src="/images/logo.svg" alt=""></a>
-               <div class="SearchToggle ml-auto">
+               {{-- <div class="SearchToggle ml-auto">
 
                   @if (Request::is('/'))
                      <button class="navbar-toggler" type="button">
                         <a href="#" type="button" class="toggleSearch"><i class="fas fa-search"></i></a>
                      </button>
                   @endif
-               </div>
+               </div> --}}
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="toggler-icon"><i class="fas fa-bars"></i></span>
@@ -195,7 +195,7 @@
                         <a class="nav-link {{ \Request::is("about-us") ? "active" : "" }}" href="/about-us">About</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link {{ \Request::is("shariah-compliant") ? "active" : "" }}" href="/shariah-compliant">Shariah Compliance</a>
+                        <a class="nav-link {{ \Request::is("shariah-compliance") ? "active" : "" }}" href="/shariah-compliance">Shariah Compliance</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link {{ \Request::is("mandi") ? "active" : ""  }}" href="/mandi">Mandi</a>
