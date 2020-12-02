@@ -68,6 +68,14 @@ class ProductsController extends Controller
             $active = $request->active = 0;
         }
 
+        if($request->has("featured")){
+
+            $featured = $request->featured = 1;
+        }
+        else{
+            $featured = $request->featured = 0;
+        }
+
         
             Products::where('product_id','=',$request->id)->update([
                     'name'     =>    $request->name,
@@ -77,6 +85,7 @@ class ProductsController extends Controller
                     'price'    =>    $request->price,
                     'description' => $request->description,
                     'active' => $active,
+                    'featured' => $featured,
                 ]);
         
 
