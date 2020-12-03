@@ -31,6 +31,8 @@ Route::middleware("calculations")->group(function () {
         Route::post('add-to-cart', "CartController@add_to_cart");
     });
 
+    Route::get('/profile', "UserController@profile");
+
 });
 
 
@@ -66,14 +68,15 @@ Route::get('/faqs', function () {
     return view('faqs');
 });
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
-    return view('profile');
-})->name('profile');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
+//     return view('profile');
+// })->name('profile');
 
 Route::get('/logout', function () {
     Auth::logout();
@@ -157,6 +160,7 @@ Route::post('/admin/upload', "MediaController@upload");
 Route::get("/admin/media", "MediaController@index");
 Route::post("/admin/fetch-images", "MediaController@fetch_images");
 
-Route::get("/dumpdata", "HomeController@dumpdata");
+Route::get("/dumpdata", "DebugController@dumpdata");
+Route::get("/process_checkout", "CartController@process_checkout");
 
 

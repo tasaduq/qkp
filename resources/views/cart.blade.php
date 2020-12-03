@@ -75,9 +75,9 @@
 
                      $total += ceil($product->price*0.3);
                      $total += $shipping_fee;
-                     $product_advance = ceil($product->price*0.3)
+                     $product_advance = $product->advance_formatted();
                    ?>
-                      <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{number_format($product_advance)}}/-</strong></div>
+                      <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{$product_advance}}/-</strong></div>
                       <div class="pb-2 text-left">Shipping :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
                    </div>
                    <hr>

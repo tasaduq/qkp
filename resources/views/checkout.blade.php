@@ -4,9 +4,6 @@
      
     <!-- Checkout section -->
 
-
-
-
 <section class="checkout-section">
     <div class="container">
         <div class="row">
@@ -105,32 +102,32 @@
                               <input type="text" class="form-control" id="lame">
                            </div>
                         </div>
-                        <div class="form-group mb-3">
+                        {{-- <div class="form-group mb-3">
                            <label for="company">Company:</label>
                            <input type="text" class="form-control" id="company">
-                        </div>
+                        </div> --}}
                         <div class="form-group mb-3">
                            <label for="address">Address:</label>
-                           <input type="text" class="form-control" id="address">
+                           <input type="text" class="form-control" id="address" value="{{$user->address || ""}}">
                         </div>
                         <div class="form-row mb-3 justify-content-between">
                            <div class="form-group col-md-6 pr-3">
                               <label for="city">Town/City:</label>
-                              <input type="text" class="form-control" id="city">
+                              <input type="text" class="form-control" id="city" value="{{$user->city || ""}}">
                            </div>
                            <div class="form-group mb-3 col-md-6">
                               <label for="postcode">Postcode/zip:</label>
-                              <input type="text" class="form-control" id="postcode">
+                              <input type="text" class="form-control" id="postcode" value="{{$user->postcode || ""}}">
                            </div>
                         </div>
                         <div class="form-row mb-3 justify-content-between">
                            <div class="form-group col-md-6 pr-3">
                               <label for="phone">Phone:</label>
-                              <input type="text" class="form-control" id="phone">
+                              <input type="text" class="form-control" id="phone" value="{{$user->phone || "" }}">
                            </div>
                            <div class="form-group mb-3 col-md-6">
                               <label for="email">Email:</label>
-                              <input type="email" class="form-control" id="email">
+                              <input type="email" class="form-control" id="email" value="{{$user->email}}">
                            </div>
                         </div>
                         
@@ -175,7 +172,7 @@
                    <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
                    <strong>{{number_format($total_after_tax)}}/-</strong>
                 </div>
-                   <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a>
+                   {{-- <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a> --}}
                 </div>
          </div>
             

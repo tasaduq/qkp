@@ -81,7 +81,7 @@ class CustomLoginController extends Controller
                 'url' => config('app.url').'verifyuser/'.$verification_hash
             ];  
 
-            Mail::to($request->get('email'))->send(new RegisterVerification($maildata));
+            // Mail::to($request->get('email'))->send(new RegisterVerification($maildata));
 
             $result = array(
                 "result"=>"true",  
