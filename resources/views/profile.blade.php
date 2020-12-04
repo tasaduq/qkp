@@ -81,6 +81,7 @@
                               <td>N/A</td>
                               <td>{{number_format($installment->amount)}}/-</td>
                               <td>{{$installment->status ? "Paid" : "Unpaid" }}</td>
+                              {{-- pending status needed --}}
                               <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
                             </tr>
                             @endforeach

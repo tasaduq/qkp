@@ -162,6 +162,9 @@ class CartController extends Controller
         });
 
         // return is_null($entry) ? true : $entry;
+        
+        $this->clear_cart();
+
 
         $result = array(
             "code"=> 200, 
