@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 cart-right-section">
-               <h2>My Shoping Cart</h2>
+               <h2>My Shopping Cart</h2>
                <p><strong>{{count($cart) < 10 ? "0".count($cart) : count($cart)  }} </strong>Animal in Your List</p>
                   @foreach ($products as $product)
                   <div class="cart">
@@ -78,7 +78,7 @@
                      $product_advance = ceil($product->price*0.3)
                    ?>
                       <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{number_format($product_advance)}}/-</strong></div>
-                      <div class="pb-2 text-left">Shipping :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
+                      <div class="pb-2 text-left">Delivery Fee :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
                    </div>
                    <hr>
                   @endforeach
