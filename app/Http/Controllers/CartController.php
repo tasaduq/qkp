@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Response;
 use Session;
+use App\Models\User;
 use App\Models\Products;
 use App\Models\Orders;
 use App\Models\OrderProducts;
@@ -33,7 +34,6 @@ class CartController extends Controller
         $user = Auth::user(); 
         if(!$user){
            return redirect('/cart');
-     
         }
 
 
@@ -92,15 +92,28 @@ class CartController extends Controller
 
         return Response::json($response);
     }
-    public function process_checkout(){
+    public function process_checkout(Request $request){
         
-       
 
-        DB::transaction(function () {
+        $request->validate([
+            "name" => "required|alpha",
+            "city" => "required|integer",
+            "address" => "required",
+            "phone" => "required|integer",
+        ]);
+
+        $input = $request->only("name", "city", "address", "phone" );
+        // dd($request->all());
+
+
+        try {
+        $entry =  DB::transaction(function() use ($input)  {
 
             $cart = $this->get_cart();
             
             $user = Auth::user();
+
+            User::where("id", $user->id)->update($input);
 
             $order = array(
                 "order_number" => rand(1111,9999),
@@ -112,17 +125,19 @@ class CartController extends Controller
             // dd($insertedOrderId);
             // $order_products = array();
             foreach ($cart as $key => $item) {
-                dump($item);
+                // dump($item);
 
                 $product = Products::find($item['product']);
                 
-                dump($product);
-                
+                // dump($product);
+
+                $calculatedShipping = $product->calculated_city_shipping($input["city"]);
 
                 $record = array(
                     "order_id" => $insertedOrderId,
                     "product_id" => $item['product'],
                     "no_of_installments" => $item['installment'], 
+                    "shipping" => $calculatedShipping
                 );
 
                 $orderedProductId = OrderProducts::insertGetId($record);
@@ -145,6 +160,26 @@ class CartController extends Controller
                
             }
         });
+
+        // return is_null($entry) ? true : $entry;
+
+        $result = array(
+            "code"=> 200, 
+            "result"=>"true", 
+            // "url"=> $redirectTo 
+        );
+
+
+        } catch(Exception $e) {
+            $result = array(
+                "code"=> 500, 
+                "result"=> "false", 
+                "error"=> "Something is not right, please try again."
+            );
+        }
+        
+
+        return Response::json($result);
 
     }
     private function clear_cart(){

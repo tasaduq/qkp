@@ -76,6 +76,7 @@
                     <div class="form-group">
                     <i class="fa fa-lock"></i>
                     <input class="form-control" placeholder="Password" type="password" name="password" id="password" required  >
+                    <input class="form-control" type="hidden" name="uri" id="uri" value={{\Request::url()}} required  >
                     </div>
                     <div class="form-group">
                     <input id="ckb1" type="checkbox" name="remember">
@@ -166,6 +167,8 @@
    </div>
    <!-- Register Model end -->
       
+
+
       <!-- Main Header -->
       
    <header>
@@ -232,14 +235,20 @@
       <!-- Banner section -->
       @yield('content')
 
-      {{-- <script src="{{asset('/js/jquery-3.5.1.min.js')}}"></script>
+      <script src="{{asset('/js/jquery-3.5.1.min.js')}}"></script>
       <script src="{{asset('/js/popper.min.js')}}"></script>
       <script src="{{asset('/js/bootstrap.min.js')}}"></script>
-      <script src="{{asset('/js/slick.js')}}"></script> --}}
+      <script src="{{asset('/js/slick.js')}}"></script>
       <script src="{{asset('/js/jquery-validator.js')}}"></script> 
       <script src="{{asset('/js/app.js')}}"></script> 
       <script src="{{asset('/js/jquery.fancybox.min.js')}}"></script>
       <script>
+         
+         @if(!Auth::user())
+            user.setLoggedIn(false);
+         @endif
+
+         /*
          window.fbAsyncInit = function() {
          FB.init({
             appId      : '399602708073529',
@@ -279,9 +288,9 @@
                   }
             });
          
-         })
+         }) */
 
       </script>
-
+   
     </body>
 </html>

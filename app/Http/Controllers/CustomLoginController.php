@@ -19,6 +19,12 @@ class CustomLoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        //$_SERVER["HTTP_REFERER"];
+        $redirectTo = ""; 
+        if($request->has('uri')){
+            $redirectTo = $request->get('uri'); 
+        }
+        
         if (Auth::attempt($credentials)) {
             // Authentication passed...
 
@@ -33,9 +39,11 @@ class CustomLoginController extends Controller
                     $url = "/profile";
                 }
 
+                $redirectTo = $redirectTo != "" ? $redirectTo : $url;
+
                 $result = array(
                     "result"=>"true", 
-                    "url"=> $url 
+                    "url"=> $redirectTo 
                 );
             }
             else{
@@ -51,7 +59,7 @@ class CustomLoginController extends Controller
                 "error"=>"User and password did not match"
             );
         }
-
+        
         return Response::json($result);
         
     }

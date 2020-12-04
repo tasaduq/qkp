@@ -13,7 +13,8 @@ class Products extends Model
     protected $table = 'products';
     protected $fillable = ['name', 'color','category','weight','price','description','active'];
     protected $primaryKey = 'product_id';
-
+    protected $cacheFor = 600; 
+    
     public function installment($i)
     {
         return ($this->price - ceil( $this->price * 0.3) ) / $i;
@@ -39,6 +40,15 @@ class Products extends Model
     {
         return number_format( $this->advance() );
     }
+    public function calculated_city_shipping($cityId)
+    {
+        $shipping = 5000;
+        if( $cityId == "2" ){
+            $shipping = 7000;
+        }
+        return $shipping;
+    }
+    
     // public function installment()
     // {
     //     return number_format( $this->advance() );

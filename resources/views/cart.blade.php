@@ -94,7 +94,9 @@
                       <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
                       <strong>{{number_format($total_after_tax)}}/-</strong>
                    </div>
-                   <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a>
+                   <div class="check-user-login">
+                     <a href="#" class="btn default-btn w-100 checkout-btn">Go to Checkout</a>
+                   </div>
                 </div>
          </div>
             
