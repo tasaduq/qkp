@@ -75,10 +75,10 @@
 
                      $total += ceil($product->price*0.3);
                      $total += $shipping_fee;
-                     $product_advance = ceil($product->price*0.3)
+                     $product_advance = $product->advance_formatted();
                    ?>
-                      <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{number_format($product_advance)}}/-</strong></div>
-                      <div class="pb-2 text-left">Delivery Fee :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
+                      <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{$product_advance}}/-</strong></div>
+                      <div class="pb-2 text-left">Shipping :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
                    </div>
                    <hr>
                   @endforeach
@@ -94,7 +94,9 @@
                       <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
                       <strong>{{number_format($total_after_tax)}}/-</strong>
                    </div>
-                   <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a>
+                   <div class="check-user-login">
+                     <a href="#" class="btn default-btn w-100 checkout-btn">Go to Checkout</a>
+                   </div>
                 </div>
          </div>
             

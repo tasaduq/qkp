@@ -22,285 +22,76 @@
                 <div class="col-sm-9 profile-right-section">
                     <h2>Order Installments Schedule</h2>
                     <p><strong>03 </strong>Animal in Your List</p>
-                    <div class="accordion" id="installment-schedule">
-                      <a data-toggle="collapse" href="#tablecollapse1" role="button" aria-controls="collapse1">
-                         <div class="row schedule pb-3">
-                        <div class="col-sm-4">
-                            <div class="animal-picture text-center">
-                                <img class="img-fluid" src="/images/Layer 8.png">
+
+                    @foreach ($orders as $order)
+                        {{-- {{ json_encode($order) }} --}}
+
+                      #{{ $order->order_number }}
+                      @foreach ($order->products as $orderedProduct)
+                        <div class="accordion" id="installment-schedule">
+                          <a data-toggle="collapse" href="#tablecollapse{{$orderedProduct->id}}" role="button" aria-controls="collapse1">
+                            <div class="row schedule pb-3">
+                            <div class="col-sm-4">
+                                <div class="animal-picture text-center">
+                                    <img class="img-fluid" src="/images/Layer 8.png">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <h2>Achai Bull</h2>
-                            <i class="fas fa-chevron-down fa-pull-right"></i>
-                            <div class="row pro-prize">
-                                <div class="col-sm-5">
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
+                            <div class="col-sm-8">
+                                <h2>{{$orderedProduct->product->name}}</h2>
+                                <i class="fas fa-chevron-down fa-pull-right"></i>
+                                <div class="row pro-prize">
+                                    <div class="col-sm-5">
+                                        <div class="prize">
+                                            <span>Actual Price <strong>{{$orderedProduct->product->price_formatted()}}/-</strong></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-5">
-                                   <div class="prize">
-                                    <span>Actual Price <strong>175,000/-</strong></span>
-                                  </div>
-                               </div>
-                            </div>
-                            <div class="row inline-buttons text-right">
-                                <div class="col-sm-12">
-                                    <button class="btn default-btn mb-1">Janwar Updates</button>
-                                    <button class="btn default-btn mb-1">Make Lump Sum Payment</button>
-                                    <button class="btn default-btn mb-1">Pay Now</button>
-                                </div>
-                            </div>                   
-                        </div>
-                    </div><!--schdule row-->
-                   </a>
-                   <div id="tablecollapse1" class="collapse">
-                     <table  class="table table-responsive-sm text-left">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>Month</th>
-                          <th>Due Date</th>
-                          <th>Installment</th>
-                          <th>Status</th>
-                          <th></th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>January</td>
-                          <td>10-03-2020</td>
-                          <td>14,583/-</td>
-                          <td>Paid</td>
-                          <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
-                        </tr>
-                        <tr>
-                         <td>February</td>
-                         <td>10-04-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                       <tr>
-                         <td>March</td>
-                         <td>10-01-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                      </tbody>
-                    </table>
-                   </div>
-                   </div>
-                   <div class="accordion" id="installment-schedule">
-                      <a data-toggle="collapse" href="#tablecollapse2" role="button" aria-expanded="false" aria-controls="collapse2">
-                         <div class="row schedule pb-3">
-                        <div class="col-sm-4">
-                            <div class="animal-picture text-center">
-                                <img class="img-fluid" src="/images/bull2.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <h2>Bhagnari Bull</h2>
-                            <i class="fas fa-chevron-down fa-pull-right"></i>
-                            <div class="row pro-prize">
-                                <div class="col-sm-5">
-                                    <div class="prize">
+                                    <div class="col-sm-5">
+                                      <div class="prize">
                                         <span>Actual Price <strong>175,000/-</strong></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                   <div class="prize">
-                                    <span>Actual Price <strong>175,000/-</strong></span>
+                                      </div>
                                   </div>
-                               </div>
-                            </div>
-                            <div class="row inline-buttons text-right">
-                                <div class="col-sm-12">
-                                    <button class="btn default-btn mb-1">Janwar Updates</button>
-                                    <button class="btn default-btn mb-1">Make Lump Sum Payment</button>
-                                    <button class="btn default-btn mb-1">Pay Now</button>
                                 </div>
-                            </div>                   
-                        </div>
-                    </div><!--schdule row-->
-                   </a>
-                   <div id="tablecollapse2" class="collapse">
-                     <table  class="table table-responsive-sm text-left">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>Month</th>
-                          <th>Due Date</th>
-                          <th>Installment</th>
-                          <th>Status</th>
-                          <th></th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>January</td>
-                          <td>10-03-2020</td>
-                          <td>14,583/-</td>
-                          <td>Paid</td>
-                          <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
-                        </tr>
-                        <tr>
-                         <td>February</td>
-                         <td>10-04-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                       <tr>
-                         <td>March</td>
-                         <td>10-01-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                      </tbody>
-                    </table>
-                   </div>
-                   </div>
-                   <div class="accordion" id="installment-schedule">
-                      <a data-toggle="collapse" href="#tablecollapse3" role="button" aria-expanded="false" aria-controls="collapse3">
-                         <div class="row schedule pb-3">
-                        <div class="col-sm-4">
-                            <div class="animal-picture text-center">
-                                <img class="img-fluid" src="/images/sheep2.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <h2>Bahawalpuri Sheep</h2>
-                            <i class="fas fa-chevron-down fa-pull-right"></i>
-                            <div class="row pro-prize">
-                                <div class="col-sm-5">
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
+                                <div class="row inline-buttons text-right">
+                                    <div class="col-sm-12">
+                                        <button class="btn default-btn mb-1">Janwar Updates</button>
+                                        <button class="btn default-btn mb-1">Make Lump Sum Payment</button>
+                                        <button class="btn default-btn mb-1">Pay Now</button>
                                     </div>
-                                </div>
-                                <div class="col-sm-5">
-                                   <div class="prize">
-                                    <span>Actual Price <strong>175,000/-</strong></span>
-                                  </div>
-                               </div>
+                                </div>                   
                             </div>
-                            <div class="row inline-buttons text-right">
-                                <div class="col-sm-12">
-                                    <button class="btn default-btn mb-1">Janwar Updates</button>
-                                    <button class="btn default-btn mb-1">Make Lump Sum Payment</button>
-                                    <button class="btn default-btn mb-1">Pay Now</button>
-                                </div>
-                            </div>                   
-                        </div>
-                    </div><!--schdule row-->
-                   </a>
-                   <div id="tablecollapse3" class="collapse">
-                     <table  class="table table-responsive-sm text-left">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>Month</th>
-                          <th>Due Date</th>
-                          <th>Installment</th>
-                          <th>Status</th>
-                          <th></th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>January</td>
-                          <td>10-03-2020</td>
-                          <td>14,583/-</td>
-                          <td>Paid</td>
-                          <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
-                        </tr>
-                        <tr>
-                         <td>February</td>
-                         <td>10-04-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                       <tr>
-                         <td>March</td>
-                         <td>10-01-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                      </tbody>
-                    </table>
-                   </div>
-                   </div>
-                   <div class="accordion" id="installment-schedule">
-                      <a data-toggle="collapse" href="#tablecollapse4" role="button" aria-expanded="false" aria-controls="collapse4">
-                         <div class="row schedule pb-3">
-                        <div class="col-sm-4">
-                            <div class="animal-picture text-center">
-                                <img class="img-fluid" src="/images/goat2.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <h2>Rajanpuri Goat</h2>
-                            <i class="fas fa-chevron-down fa-pull-right"></i>
-                            <div class="row pro-prize">
-                                <div class="col-sm-5">
-                                    <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                   <div class="prize">
-                                    <span>Actual Price <strong>175,000/-</strong></span>
-                                  </div>
-                               </div>
-                            </div>
-                            <div class="row inline-buttons text-right">
-                                <div class="col-sm-12">
-                                    <button class="btn default-btn mb-1">Janwar Updates</button>
-                                    <button class="btn default-btn mb-1">Make Lump Sum Payment</button>
-                                    <button class="btn default-btn mb-1">Pay Now</button>
-                                </div>
-                            </div>                   
-                        </div>
-                    </div><!--schdule row-->
-                   </a>
-                   <div id="tablecollapse4" class="collapse">
-                     <table  class="table table-responsive-sm text-left">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>Month</th>
-                          <th>Due Date</th>
-                          <th>Installment</th>
-                          <th>Status</th>
-                          <th></th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>January</td>
-                          <td>10-03-2020</td>
-                          <td>14,583/-</td>
-                          <td>Paid</td>
-                          <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
-                        </tr>
-                        <tr>
-                         <td>February</td>
-                         <td>10-04-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                       <tr>
-                         <td>March</td>
-                         <td>10-01-2020</td>
-                         <td>14,583/-</td>
-                         <td>unpaid</td>
-                         <td class="text-right pr-0"><button class="btn tbl-btn default-btn">Pay Now</button></td>
-                       </tr>
-                      </tbody>
-                    </table>
-                   </div>
+                        </div><!--schdule row-->
+                        </a>
+                        <div id="tablecollapse{{$orderedProduct->id}}" class="collapse">
+                        <table  class="table table-responsive-sm text-left">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th>Month</th>
+                              <th>Due Date</th>
+                              <th>Installment</th>
+                              <th>Status</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($orderedProduct->installments as $installment)
+                            
+                            <tr>
+                              <td>N/A</td>
+                              {{-- <td>{{$installment->created_at}}</td> --}}
+                              <td>N/A</td>
+                              <td>{{number_format($installment->amount)}}/-</td>
+                              <td>{{$installment->status ? "Paid" : "Unpaid" }}</td>
+                              <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
+                      @endforeach
+                    
+                   @endforeach
+
                    </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Session;
 
 class Products extends Model
 {
@@ -12,4 +13,48 @@ class Products extends Model
     protected $table = 'products';
     protected $fillable = ['name', 'color','category','weight','price','description','active'];
     protected $primaryKey = 'product_id';
+    protected $cacheFor = 600; 
+    
+    public function installment($i)
+    {
+        return ($this->price - ceil( $this->price * 0.3) ) / $i;
+    }
+    public function installment_formatted($i)
+    {
+        return number_format( $this->installment($i) );
+    }
+    
+    public function lowest_installment()
+    {
+        return number_format( ( $this->price - ceil($this->price*0.3) )/Session::get("get_feasible_installments"));
+    }
+    public function price_formatted()
+    {
+        return number_format( $this->price );
+    }
+    public function advance()
+    {
+        return ceil( $this->price*0.3 );
+    }
+    public function advance_formatted()
+    {
+        return number_format( $this->advance() );
+    }
+    public function calculated_city_shipping($cityId)
+    {
+        $shipping = 5000;
+        if( $cityId == "2" ){
+            $shipping = 7000;
+        }
+        return $shipping;
+    }
+    
+    // public function installment()
+    // {
+    //     return number_format( $this->advance() );
+    // }
+    // public function installment_formatted()
+    // {
+    //     return number_format( $this->advance() );
+    // }
 }

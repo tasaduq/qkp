@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use Auth;
 use Response;
 use Session;
+use App\Models\User;
 use App\Models\Products;
+use App\Models\Orders;
+use App\Models\OrderProducts;
+use App\Models\OrderInstallments;
 // use App\Models\Categories;
-
+use DB;
 
 class CartController extends Controller
 {
@@ -26,6 +30,13 @@ class CartController extends Controller
         return view('cart')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);
     }
     public function checkout(){
+
+        $user = Auth::user(); 
+        if(!$user){
+           return redirect('/cart');
+        }
+
+
         $cart = $this->get_cart();
         $products_in_cart = array_keys($cart);
 
@@ -35,7 +46,7 @@ class CartController extends Controller
         
         $shipping_fee = 5000;
         
-        return view('checkout')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);
+        return view('checkout')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee)->with("user",$user);
     }
     public function add_to_cart(Request $request){
         
@@ -80,6 +91,96 @@ class CartController extends Controller
         */
 
         return Response::json($response);
+    }
+    public function process_checkout(Request $request){
+        
+
+        $request->validate([
+            "name" => "required|alpha",
+            "city" => "required|integer",
+            "address" => "required",
+            "phone" => "required|integer",
+        ]);
+
+        $input = $request->only("name", "city", "address", "phone" );
+        // dd($request->all());
+
+
+        try {
+        $entry =  DB::transaction(function() use ($input)  {
+
+            $cart = $this->get_cart();
+            
+            $user = Auth::user();
+
+            User::where("id", $user->id)->update($input);
+
+            $order = array(
+                "order_number" => rand(1111,9999),
+                "user_id" => $user->id,
+                "status" => 0,
+            );
+    
+            $insertedOrderId = Orders::insertGetId($order);
+            // dd($insertedOrderId);
+            // $order_products = array();
+            foreach ($cart as $key => $item) {
+                // dump($item);
+
+                $product = Products::find($item['product']);
+                
+                // dump($product);
+
+                $calculatedShipping = $product->calculated_city_shipping($input["city"]);
+
+                $record = array(
+                    "order_id" => $insertedOrderId,
+                    "product_id" => $item['product'],
+                    "no_of_installments" => $item['installment'], 
+                    "shipping" => $calculatedShipping
+                );
+
+                $orderedProductId = OrderProducts::insertGetId($record);
+
+                $OrderInstallments = array();
+
+                for($i = $item['installment']; $i > 2 ; $i--) { 
+
+                    $currentInstallmentPrice = $product->installment($i);
+
+                    array_push($OrderInstallments, array(
+                        "instalment_number" => $i,
+                        "order_product_id" => $orderedProductId,
+                        "status" => 0,
+                        "amount" => $currentInstallmentPrice,
+                    ));
+                }
+                
+                OrderInstallments::insert($OrderInstallments);
+               
+            }
+        });
+
+        // return is_null($entry) ? true : $entry;
+
+        $result = array(
+            "code"=> 200, 
+            "result"=>"true", 
+            // "url"=> $redirectTo 
+        );
+
+
+        } catch(Exception $e) {
+            $result = array(
+                "code"=> 500, 
+                "result"=> "false", 
+                "error"=> "Something is not right, please try again."
+            );
+        }
+        
+
+        return Response::json($result);
+
     }
     private function clear_cart(){
         return Session::forget("cart");   
