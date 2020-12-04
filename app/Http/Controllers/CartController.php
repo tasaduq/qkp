@@ -96,10 +96,10 @@ class CartController extends Controller
         
 
         $request->validate([
-            "name" => "required|alpha",
+            "name" => "required",
             "city" => "required|integer",
             "address" => "required",
-            "phone" => "required|integer",
+            "phone" => "required",
         ]);
 
         $input = $request->only("name", "city", "address", "phone" );
