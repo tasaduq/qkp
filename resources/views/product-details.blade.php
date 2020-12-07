@@ -50,8 +50,6 @@
                </div>
                <div class="col-sm-6 right-section">
 
-                  
-
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>
                   <div class="row details">

@@ -243,6 +243,13 @@ $(document).ready(function(){
         
     })
 
+    $(".remove-from-cart-btn").on("click", function(){
+        var productid = $(this).attr("productid")
+        cart.removeProduct( productid )
+    })
+
+    
+
     $(".payment-method ").on("click", function(){
         $(".payment-method ").removeClass("selected");
         $(this).addClass("selected");
@@ -309,7 +316,7 @@ var cart = {
                 page.toast.show("Shipping charges updated.", "success")
             },
             error:function(error){
-                page.toast.show("Something went wrong while adding this product, please try again", "success")
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
                 // alert()
                 console.log("error",error)                // responseJSON
             }
@@ -337,7 +344,34 @@ var cart = {
                 console.log("success",result)
             },
             error:function(error){
-                page.toast.show("Something went wrong while adding this product, please try again", "success")
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
+                // alert()
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
+    removeProduct:function(productid){
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            productid:productid
+        }
+        $.ajax({
+            url:"/cart/remove-from-cart",
+            data: payload,
+            dataType: 'json',
+            type: "POST",
+            success: function(result){
+                if( result.code == 200 ){
+                    page.toast.show("Product removed from cart.", "success")
+                    location.reload();
+                } else {
+                    page.toast.show(result.message, "danger")
+                }
+                console.log("success",result)
+            },
+            error:function(error){
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
                 // alert()
                 console.log("error",error)                // responseJSON
             }
