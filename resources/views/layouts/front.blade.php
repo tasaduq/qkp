@@ -232,7 +232,7 @@
          </nav>
    </header>
 
-   <div class="toast success" id="myToast" style="position: absolute;">
+   <div class="toast fade hide" id="myToast" style="position: absolute;" data-autohide="true" data-delay="1000">
       {{-- <div class="toast-header">
           <strong class="mr-auto"><i class="fa fa-grav"></i> We miss you!</strong>
           <small>11 mins ago</small>
@@ -241,7 +241,7 @@
           </button>
       </div> --}}
       <div class="toast-body">
-          <div>Toast content goes here</div>
+          <div>...</div>
       </div>
   </div>
       
