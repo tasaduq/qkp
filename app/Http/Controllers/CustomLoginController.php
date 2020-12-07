@@ -77,6 +77,7 @@ class CustomLoginController extends Controller
         $result = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
+            'verified' => 1, //FIXME
             'password' => Hash::make($request->get('password')),
             'verification_hash' => $verification_hash
         ]);
