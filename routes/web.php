@@ -66,6 +66,12 @@ Route::get('/faqs', function () {
     return view('faqs');
 });
 
+
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
