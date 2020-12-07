@@ -99,7 +99,7 @@
                      </p>
                      <form class="pt-3" id="customer-checkout-form">
                         @csrf
-                        <input type="hidden" name="payment-method" id="payment-method" value="bank-transfer">
+                        <input type="hidden" name="payment-method" id="payment-method" value="cash">
                         <div class="form-row mb-3 justify-content-between">
                            <div class="form-group col-md-6 pr-3">
                               <label for="name">Name:</label>
