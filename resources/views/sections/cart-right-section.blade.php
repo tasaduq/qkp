@@ -21,7 +21,10 @@ $cartpage =  \Request::is("cart") ? true : false;
 
           $installment = $cart[$product->product_id]["installment"];
           $total += $product->advance($installment);
-          $total += $shipping_fee;
+          if($checkoutpage)
+            $total += $shipping_fee;
+
+
           $product_advance = $product->advance_formatted($installment);
           
         ?>
