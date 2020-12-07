@@ -6,6 +6,12 @@
 
 <section class="checkout-section">
     <div class="container">
+      <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="/">Home</a></li>
+         <li class="breadcrumb-item"><a href="/mandi">Mandi</a></li>
+         <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
+         <li class="breadcrumb-item active">Checkout</li>
+     </ol>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 checkout-right-section">
                <h2>Checkout</h2>
@@ -13,7 +19,7 @@
                   
                <div class="row payment-method-section mt-4">
                   <div class="col-sm-6">
-                     <div class="payment-method mb-2">
+                     <div class="payment-method selected mb-2" payment-method="cash">
                         <a class="d-block p-4" href="#">
                            <div class="cash pr-3 d-inline-block">
                               <svg  id="cash" enable-background="new 0 0 511.854 511.854" height="80" viewBox="0 0 511.854 511.854" width="80">
@@ -72,7 +78,7 @@
                      </div>
                   </div>
                   <div class="col-sm-6">
-                     <div class="payment-method mb-2">
+                     <div class="payment-method mb-2" payment-method="bank-transfer">
                         <a class="d-block p-4" href="#">
                            <div class="bank pr-3 d-inline-block">
                               <svg id="bank" enable-background="new 0 0 511.854 511.854" height="80" viewBox="0 0 511.854 511.854" width="80"><g><g><path d="m480.927 190.854c16.542 0 30-13.458 30-30v-38.844c0-12.317-7.377-23.234-18.8-27.831l-224.952-91.98c-7.325-2.951-15.252-2.899-22.391-.042-.166.067 3.765-1.54-225.058 92.023-11.423 4.596-18.8 15.514-18.8 27.831v38.845c0 16.542 13.458 30 30 30h18v226h-18c-16.542 0-30 13.458-30 30v35c0 16.542 13.458 30 30 30h450c16.542 0 30-13.458 30-30v-35c0-16.542-13.458-30-30-30h-18v-226h18.001zm0 256c.019 35.801.1 35 0 35h-450v-35zm-402-30v-226h34v226zm64 0v-226h66v226zm96 0v-226h34v226zm64 0v-226h66v226zm96 0v-226h34v226zm-368-256c0-41.843-.045-38.826.105-38.887l224.895-91.957 224.895 91.957c.155.062.105-2.857.105 38.887-4.986 0-444.075 0-450 0z"/></g><g><path d="m255.927 64.854c-8.284 0-15 6.716-15 15v32c0 8.284 6.716 15 15 15s15-6.716 15-15v-32c0-8.284-6.716-15-15-15z"/></g></g></svg>
@@ -93,6 +99,7 @@
                      </p>
                      <form class="pt-3" id="customer-checkout-form">
                         @csrf
+                        <input type="hidden" name="payment-method" id="payment-method" value="bank-transfer">
                         <div class="form-row mb-3 justify-content-between">
                            <div class="form-group col-md-6 pr-3">
                               <label for="name">Name:</label>
@@ -147,42 +154,7 @@
 
 
 
-            <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section">
-               <h2>Cart Total Amount</h2>
-               <p>Calculation of Total Amount</p>
-                <div class="check-out">
-                  <?php
-                  $total = 0;
-               ?>
-               @foreach ($products as $product)
-                <div class="total">
-                <h6>{{$product->name}}</h6>
-                <?php
-
-                  $total += ceil($product->price*0.3);
-                  $total += $shipping_fee;
-                  $product_advance = ceil($product->price*0.3)
-                ?>
-                   <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{number_format($product_advance)}}/-</strong></div>
-                   <div class="pb-2 text-left">Shipping :<strong class="float-right checkout-shipping">{{number_format($shipping_fee)}}/-</strong></div>
-                </div>
-                <hr>
-               @endforeach
-                <div class="text-left">Sub Total :<strong class="float-right">{{number_format($total)}}/-</strong></div>
-                <hr>
-                <?php 
-                
-                $total_tax = ceil($total*0.13);
-                $total_after_tax = $total + $total_tax;
-                ?>
-                <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">{{number_format($total_tax)}}/-</strong></div>
-                <div class="grand-total text-center">
-                   <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
-                   <strong>{{number_format($total_after_tax)}}/-</strong>
-                </div>
-                   {{-- <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a> --}}
-                </div>
-         </div>
+           
             
         </div>
     </div>

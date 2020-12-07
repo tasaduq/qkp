@@ -15,9 +15,13 @@ class Products extends Model
     protected $primaryKey = 'product_id';
     protected $cacheFor = 600; 
     
-    public function installment($i)
+    public function installment($installment)
     {
-        return ($this->price - ceil( $this->price * 0.3) ) / $i;
+        $advance = 0.3;
+        if( $installment == "1" ){
+            $advance = 0.5;
+        }
+        return ($this->price - ceil( $this->price * $advance ) ) / $installment;
     }
     public function installment_formatted($i)
     {
@@ -32,13 +36,17 @@ class Products extends Model
     {
         return number_format( $this->price );
     }
-    public function advance()
+    public function advance(int $installment = 2)
     {
-        return ceil( $this->price*0.3 );
+        $advance = 0.3;
+        if( $installment == 1 ){
+            $advance = 0.5;
+        }
+        return ceil( $this->price * $advance );
     }
-    public function advance_formatted()
+    public function advance_formatted(int $installment = 2)
     {
-        return number_format( $this->advance() );
+        return number_format( $this->advance($installment) );
     }
     public function calculated_city_shipping($cityId)
     {

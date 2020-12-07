@@ -96,18 +96,26 @@ class CartController extends Controller
         
 
         $request->validate([
+            "payment-method" => "required",
             "name" => "required",
             "city" => "required|integer",
             "address" => "required",
             "phone" => "required",
         ]);
 
-        $input = $request->only("name", "city", "address", "phone" );
-        // dd($request->all());
+        $input = $request->only("name", "city", "address", "phone");
+        $paymentMethod = $request->get("payment-method");
+
+        if( $paymentMethod == "bank-transfer" ){
+            $paymentMethod = 1;
+        }
+        else {
+            $paymentMethod = 0;
+        }
 
 
         try {
-        $entry =  DB::transaction(function() use ($input)  {
+        $entry =  DB::transaction(function() use ($input, $paymentMethod)  {
 
             $cart = $this->get_cart();
             
@@ -119,8 +127,8 @@ class CartController extends Controller
                 "order_number" => rand(1111,9999),
                 "user_id" => $user->id,
                 "status" => 0,
+                "payment_method" => $paymentMethod
             );
-    
             $insertedOrderId = Orders::insertGetId($order);
             // dd($insertedOrderId);
             // $order_products = array();
@@ -193,6 +201,9 @@ class CartController extends Controller
     }
     private function update_cart($cart){
         return Session::put("cart", json_encode($cart));
+    }
+    private function remove_item($item){
+        
     }
     private function add_item($item){
         $cart = $this->get_cart();

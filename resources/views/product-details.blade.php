@@ -85,8 +85,8 @@
                                  <span>:</span>
                                  <div class="form-group">
                                     <select class="form-control" id="product-emi-price-dropdown">
-                                       @for ($i = Session::get("get_feasible_installments"); $i > 2; $i--)
-                                          <option value="{{$i}}" price="{{$product->installment_formatted($i)}}" >{{ $i<10?"0".$i:$i}} {{ $i==1?"Month":"Months"}}</option>    
+                                       @for ($i = Session::get("get_feasible_installments"); $i > 0; $i--)
+                                    <option value="{{$i}}" price="{{$product->installment_formatted($i)}}" installment="{{$i == 1 ? 0.5 : 0.3}}" >{{ $i<10?"0".$i:$i}} {{ $i==1?"Month":"Months"}}</option>    
                                        @endfor
                                        
                                        
@@ -99,11 +99,11 @@
                      <div class="col-xs-12 col-md-6 col-lg-4 px-0">
                         <div class="actual-price line-height-normal">
                            <p class="mb-1">Full price</p>
-                           <h4 class="amount">RS.{{$product->price_formatted()}}/-</h4>
+                           <h4 class="amount"  id="product-price" price="{{$product->price}}" >RS.{{$product->price_formatted()}}/-</h4>
                         </div>
                         <div class="advance line-height-normal">
                            <p class="mb-1">Advance</p>
-                           <h4 class="amount">RS.{{$product->advance_formatted()}}/-</h4>
+                           <h4 class="amount"  id="selected-installment-amount">RS.{{$product->advance_formatted()}}/-</h4>
                         </div>
                         <div class="EMI line-height-normal">
                            <p class="mb-1">Monthly Installment</p>

@@ -476,3 +476,6 @@ ALTER TABLE `order_installments`
 ALTER TABLE `order_products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+
+ALTER TABLE `orders` ADD `payment_method` BOOLEAN NOT NULL DEFAULT FALSE AFTER `status`;
