@@ -54,6 +54,12 @@
 
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>
+
+                  <div class="order-type mt-5 mb-4">
+                     <a class="active mr-2 px-3" href="#">On Installment</a>
+                     <a class="px-3" href="#">Pay Full Amount</a>
+                  </div>
+
                   <div class="row details">
                      <div class="col-xs-12 col-md-10 col-lg-8">
                         <ul>
