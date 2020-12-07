@@ -72,7 +72,7 @@
                            </div>
                            <div class="d-inline-block pt-3 align-middle">  
                            <h3>Cash Payment</h3>
-                           <p>Lorem ipsum dolor amet</p>
+                           <p>Request cash pickup by our rider</p>
                         </div>
                         </a>
                      </div>
@@ -85,7 +85,7 @@
                            </div>
                            <div class="d-inline-block pt-3 align-middle">  
                            <h3>Bank Transfer</h3>
-                           <p>Lorem ipsum dolor amet</p>
+                           <p>Directly transfer into our account</p>
                         </div>
                         </a>
                      </div>

@@ -1927,3 +1927,24 @@ input[type='range']::-webkit-slider-runnable-track {
 } */
 
 .flat-corners{border-radius:0;}
+
+.toast {
+    display: block;
+    opacity: 1;
+    position: fixed;
+    right: 5px;
+    top: 123px;
+	max-width: 441px;
+	padding: 10px 25px 10px 25px;
+	z-index: 999;
+}
+.toast{}
+.toast.danger{background-color:#f44336 !important; color: #fff;}
+.toast.warning{background-color:#ff9800 !important; color: #fff;}
+.toast.info{background-color:#2196f3 !important; color: #fff;}
+.toast.success{background-color:#4caf50 !important; color: #fff;}
+/* .toast.success::before{
+	content:'\f14a';
+	position:absolute;
+	left:15px;
+} */

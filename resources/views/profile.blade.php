@@ -15,8 +15,8 @@
                             <li class="active"><a  href="#">Installment Schedule</a></li>
                             <li><a href="/logout">Logout</a></li>
                         </ul>
-                        <h6>Announcement</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqerra maecenas accumsan lacus vel facilisis. </p>
+                        {{-- <h6>Announcement</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqerra maecenas accumsan lacus vel facilisis. </p> --}}
                     </div>
                 </div>
                 <div class="col-sm-9 profile-right-section">
@@ -40,22 +40,21 @@
                                 <h2>{{$orderedProduct->product->name}}</h2>
                                 <i class="fas fa-chevron-down fa-pull-right"></i>
                                 <div class="row pro-prize">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-6 text-right">
                                         <div class="prize">
-                                            <span>Actual Price <strong>{{$orderedProduct->product->price_formatted()}}/-</strong></span>
+                                            <span>Paid Amount <strong>{{$orderedProduct->product->price_formatted()}}/-</strong></span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-6 text-right">
                                       <div class="prize">
-                                        <span>Actual Price <strong>175,000/-</strong></span>
+                                        <span>Remaining Amount <strong>175,000/-</strong></span>
                                       </div>
                                   </div>
                                 </div>
                                 <div class="row inline-buttons text-right">
                                     <div class="col-sm-12">
-                                        <button class="btn default-btn mb-1">Janwar Updates</button>
-                                        <button class="btn default-btn mb-1">Make Lump Sum Payment</button>
-                                        <button class="btn default-btn mb-1">Pay Now</button>
+                                        <button class="btn btn-warning mb-1">Cancel Order</button>
+                                        <button class="btn btn-success mb-1">Make Lump Sum Payment</button>
                                     </div>
                                 </div>                   
                             </div>
