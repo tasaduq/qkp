@@ -10,11 +10,14 @@ class Categories extends Model
     use HasFactory;
     protected $cacheFor = 10000;
 
-    public function totalCount($query)
+    public function totalCount()
     {
-        // $query->
-        // return number_format( $this->price );
-        return 0;
+        return \App\Models\Products::where([
+            "category" => $this->category_id,
+            "active" => 1,
+            // "sold" => 0,
+        ])->count();
+        
     }
 
 }
