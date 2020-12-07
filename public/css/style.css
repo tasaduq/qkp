@@ -1948,3 +1948,15 @@ input[type='range']::-webkit-slider-runnable-track {
 	position:absolute;
 	left:15px;
 } */
+
+.products-details-section .order-type a{
+	padding: 10px 10px;
+    background: #fff;
+    margin-bottom: 14px;
+    color: #340040;
+    border-radius: 0;
+}
+.products-details-section .order-type a:hover, .products-details-section .order-type a.active{
+	background-color: #290038;
+	color:#fff;
+}
