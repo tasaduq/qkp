@@ -1,7 +1,11 @@
 <?php
 
 
-$checkoutpage =  \Request::is("checkout") ? true : false;
+
+$checkoutpage =  ( \Request::is("checkout") || \Request::is("shipping-cart-update") )? true : false;
+// dd($checkoutpage);
+// $checkoutpage =   ? true : false;
+
 $cartpage =  \Request::is("cart") ? true : false;
 
 ?>
