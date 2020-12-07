@@ -29,6 +29,8 @@ Route::middleware("calculations")->group(function () {
 
     Route::prefix('cart')->group(function () {
         Route::post('add-to-cart', "CartController@add_to_cart");
+        Route::post('remove-from-cart', "CartController@remove_from_cart");
+        
     });
 
     Route::middleware(['auth', 'verified'])->group(function () {
