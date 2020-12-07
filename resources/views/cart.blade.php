@@ -10,9 +10,14 @@
 
 <section class="cart-section">
     <div class="container">
+      <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="/">Home</a></li>
+         <li class="breadcrumb-item"><a href="/mandi">Mandi</a></li>
+         <li class="breadcrumb-item active">Cart</li>
+     </ol>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 cart-right-section">
-               <h2>My Shoping Cart</h2>
+               <h2>My Shopping Cart</h2>
                <p><strong>{{count($cart) < 10 ? "0".count($cart) : count($cart)  }} </strong>Animal in Your List</p>
                   @foreach ($products as $product)
                   <div class="cart">
@@ -28,6 +33,10 @@
                                  }
                                  $image = \App\Models\Media::find($imageid);
                                  $imagethumb = $image ? $image->thumb : $image->path;
+
+
+                                 $installment = $cart[$product->product_id]["installment"];
+
                               ?>
                               <img class="img-fluid" src="{{$imagethumb}}">
                            </div>
@@ -39,9 +48,9 @@
                               <div class="col-sm-6 label">Color : <strong>{{$product->color}}</strong></div>
                               <div class="col-sm-6 label">Full Price : <strong>RS.{{number_format($product->price)}}/-</strong></div>
                               
-                           <div class="col-sm-6 label">Installment Plan : <strong>{{$cart[$product->product_id]["installment"] < 10 ? "0".$cart[$product->product_id]["installment"] : $cart[$product->product_id]["installment"] }} {{$cart[$product->product_id]["installment"] == 1 ?  "Month":"Months" }}</strong></div>
-                              <div class="col-sm-6 label">Advance(30%) : <strong>{{number_format(ceil($product->price*0.3))}}/-</strong></div>
-                              <div class="col-sm-6 label">Monthly Installment : <strong>{{number_format(ceil($product->price/$cart[$product->product_id]["installment"]))}}/-</strong></div>
+                           <div class="col-sm-6 label">Installment Plan : <strong>{{$installment < 10 ? "0".$installment : $installment }} {{$installment == 1 ?  "Month":"Months" }}</strong></div>
+                              <div class="col-sm-6 label">Advance({{ $installment == 1 ? "50%" : "30%" }}) : <strong>{{number_format(ceil($product->advance($installment)))}}/-</strong></div>
+                              <div class="col-sm-6 label">Monthly Installment : <strong>{{number_format(ceil($product->installment($installment)))}}/-</strong></div>
                            </div>
                            <div class="delete_item">
                            <button class="btn default-btn"><span class="fas fa-trash-alt"></span></button>
@@ -61,44 +70,7 @@
                   
             </div>
 
-         <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section">
-               <h2>Cart Total Amount</h2>
-               <p>Calculation of Total Amount</p>
-                <div class="check-out">
-                  <?php
-                     $total = 0;
-                  ?>
-                  @foreach ($products as $product)
-                   <div class="total">
-                   <h6>{{$product->name}}</h6>
-                   <?php
-
-                     $total += ceil($product->price*0.3);
-                     $total += $shipping_fee;
-                     $product_advance = $product->advance_formatted();
-                   ?>
-                      <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{$product_advance}}/-</strong></div>
-                      <div class="pb-2 text-left">Shipping :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
-                   </div>
-                   <hr>
-                  @endforeach
-                   <div class="text-left">Sub Total :<strong class="float-right">{{number_format($total)}}/-</strong></div>
-                   <hr>
-                   <?php 
-                   
-                   $total_tax = ceil($total*0.13);
-                   $total_after_tax = $total + $total_tax;
-                   ?>
-                   <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">{{number_format($total_tax)}}/-</strong></div>
-                   <div class="grand-total text-center">
-                      <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
-                      <strong>{{number_format($total_after_tax)}}/-</strong>
-                   </div>
-                   <div class="check-user-login">
-                     <a href="#" class="btn default-btn w-100 checkout-btn">Go to Checkout</a>
-                   </div>
-                </div>
-         </div>
+        @include("sections.cart-right-section")
             
         </div>
     </div>

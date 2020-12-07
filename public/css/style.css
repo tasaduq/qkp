@@ -1549,6 +1549,21 @@ input[type="file"] {
 	box-shadow: 1px 2px 6px rgb(0 0 0 / 10%);
 	/* border-radius: 5px; */
 }
+.payment-method.selected{
+	background-color:#290038;
+	color: #fff;
+}
+
+
+.payment-method.selected.payment-method h3,
+.payment-method.selected.payment-method p,
+.payment-method.selected #cash,
+.payment-method.selected #bank{
+	color: #edd470;
+	fill: #edd470;
+}
+
+
 .payment-method:hover{
 	background-color:#290038;
 	color: #fff;
@@ -1662,6 +1677,8 @@ input[type="file"] {
 	#installment-schedule .inline-buttons button {
 		width: 100%
 	}
+	.cart{text-align:center;}
+	.cart h2{margin-top:10px;}
 }
 
 @media only screen and (max-width: 430px) {
@@ -1910,3 +1927,24 @@ input[type='range']::-webkit-slider-runnable-track {
 } */
 
 .flat-corners{border-radius:0;}
+
+.toast {
+    display: block;
+    opacity: 1;
+    position: fixed;
+    right: 5px;
+    top: 123px;
+	max-width: 441px;
+	padding: 10px 25px 10px 25px;
+	z-index: 999;
+}
+.toast{}
+.toast.danger{background-color:#f44336 !important; color: #fff;}
+.toast.warning{background-color:#ff9800 !important; color: #fff;}
+.toast.info{background-color:#2196f3 !important; color: #fff;}
+.toast.success{background-color:#4caf50 !important; color: #fff;}
+/* .toast.success::before{
+	content:'\f14a';
+	position:absolute;
+	left:15px;
+} */

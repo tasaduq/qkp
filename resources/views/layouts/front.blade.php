@@ -231,6 +231,19 @@
             </div>
          </nav>
    </header>
+
+   <div class="toast success" id="myToast" style="position: absolute;">
+      {{-- <div class="toast-header">
+          <strong class="mr-auto"><i class="fa fa-grav"></i> We miss you!</strong>
+          <small>11 mins ago</small>
+          <button type="button" class="ml-2 mb-1 close float-right" data-dismiss="toast">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div> --}}
+      <div class="toast-body">
+          <div>Toast content goes here</div>
+      </div>
+  </div>
       
       <!-- Banner section -->
       @yield('content')

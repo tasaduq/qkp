@@ -24,17 +24,17 @@
                   <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>
                            <i class="icon-qkp-bull"></i>
-                        </span>Bull</button>
-                  </div>
-                  <div class="col-sm-3">
-                     <button type="button" class="btn rounded-pill btn-outline-primary"><span>
-                        <i class="icon-qkp-camel"></i>
-                        </span>Camel</button>
+                        </span>Bull / Cow</button>
                   </div>
                   <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>
                         <i class="icon-qkp-goat"></i>
                         </span>Goat</button>
+                  </div>
+                  <div class="col-sm-3">
+                     <button type="button" class="btn rounded-pill btn-outline-primary"><span>
+                        <i class="icon-qkp-camel"></i>
+                        </span>Camel</button>
                   </div>
                   <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>

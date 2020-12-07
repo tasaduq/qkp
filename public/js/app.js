@@ -213,8 +213,18 @@ $(document).ready(function(){
 
 
     $("#product-emi-price-dropdown").on("change", function(){
-        var price = $("#product-emi-price-dropdown option:selected").attr("price")
-        $("#selected-emi-amount").text("RS."+price+"/-")
+        var installment = $("#product-emi-price-dropdown option:selected").attr("price");
+        
+        if( $("#product-emi-price-dropdown option:selected").val() == "1"){
+            var product_price = $("#product-price").attr("price");
+            var advance_percentage = $("#product-emi-price-dropdown option:selected").attr("installment");
+            var advance = (product_price*advance_percentage)
+        
+            $("#selected-installment-amount").text("RS."+advance+"/-")
+            installment = advance;
+        }
+
+        $("#selected-emi-amount").text("RS."+installment+"/-")
     });
 
     $(".add-to-cart-btn").on("click", function(){
@@ -222,6 +232,14 @@ $(document).ready(function(){
         cart.addProduct( $(this).attr("product"), installment )
         
     })
+
+    $(".payment-method ").on("click", function(){
+        $(".payment-method ").removeClass("selected");
+        $(this).addClass("selected");
+        $("#payment-method").val($(this).attr("payment-method"));        
+    })
+
+    
     
 
 });

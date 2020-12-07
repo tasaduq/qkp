@@ -73,6 +73,9 @@ Route::get('/faqs', function () {
     return view('faqs');
 });
 
+Route::get('/payment', function () {
+    return view('payment');
+});
 
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
