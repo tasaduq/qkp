@@ -189,9 +189,18 @@ $(document).ready(function(){
     });
 
     $("#customer-checkout-form #city").on("change", function(e){
-        var shipping = $("#customer-checkout-form #city option:selected").attr("sh")+"/-";
-        $(".checkout-shipping").text(shipping)
-        page.toast.show("Shipping charges updated.", "success")
+
+        var shipping = $("#customer-checkout-form #city option:selected").val();
+
+        cart.updateShipping( shipping )
+
+        // var shipping = $("#customer-checkout-form #city option:selected").attr("sh")+"/-";
+        // $(".checkout-shipping").text(shipping)
+
+
+        
+
+
     });
 
     
@@ -285,6 +294,28 @@ var user = {
     }
 }
 var cart = {
+    updateShipping:function(shipTo){
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            shipping:shipTo,
+        }
+        $.ajax({
+            url:"/shipping-cart-update",
+            data: payload,
+            // dataType: 'json',
+            type: "POST",
+            success: function(result){
+                $(".cart-update-hook").html(result)
+                page.toast.show("Shipping charges updated.", "success")
+            },
+            error:function(error){
+                page.toast.show("Something went wrong while adding this product, please try again", "success")
+                // alert()
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
     addProduct:function(productid, installment){
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),

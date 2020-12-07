@@ -92,6 +92,21 @@ class CartController extends Controller
 
         return Response::json($response);
     }
+    public function shipping_cart_update(Request $request){
+        $cart = $this->get_cart();
+        $products_in_cart = array_keys($cart);
+
+        $products = Products::where([
+            "active" => 1
+        ])->whereIn("product_id", $products_in_cart)->get();
+
+        $shipping_fee = 5000;
+        if( $request->get("shipping") == "2" ){
+            $shipping_fee = 7000;
+        }
+
+        return view('sections.cart-right-section')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);//->with("user",$user);
+    }
     public function process_checkout(Request $request){
         
 

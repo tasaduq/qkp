@@ -24,7 +24,7 @@ Route::middleware("calculations")->group(function () {
     Route::get('/mandi', "HomeController@mandi");
     Route::get('/cart', "CartController@index");
     Route::get('/checkout', "CartController@checkout");
-
+    Route::post('/shipping-cart-update', "CartController@shipping_cart_update");
     
 
     Route::prefix('cart')->group(function () {
