@@ -9,4 +9,12 @@ class Categories extends Model
 {
     use HasFactory;
     protected $cacheFor = 10000;
+
+    public function totalCount($query)
+    {
+        // $query->
+        // return number_format( $this->price );
+        return 0;
+    }
+
 }
