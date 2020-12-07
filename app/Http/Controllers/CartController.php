@@ -99,7 +99,7 @@ class CartController extends Controller
             "name" => "required|alpha",
             "city" => "required|integer",
             "address" => "required",
-            "phone" => "required|integer",
+            "phone" => "required|numeric",
         ]);
 
         $input = $request->only("name", "city", "address", "phone" );
