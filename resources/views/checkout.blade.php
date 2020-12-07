@@ -152,7 +152,7 @@
 
             </div>
 
-
+            @include("sections.cart-right-section")
 
            
             
