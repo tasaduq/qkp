@@ -1958,5 +1958,5 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 .products-details-section .order-type a:hover, .products-details-section .order-type a.active{
 	background-color: #290038;
-	color:#edd470;
+	color:#fff;
 }
