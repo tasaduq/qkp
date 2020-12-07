@@ -24,7 +24,7 @@
                     <p><strong>03 </strong>Animal in Your List</p>
 
                     @foreach ($orders as $order)
-                        {{-- {{ json_encode($order) }} --}}
+                        {{ $order->payment_method ? "Bank Transfer" : "Cash" }} <hr>
 
                       #{{ $order->order_number }}
                       @foreach ($order->products as $orderedProduct)
