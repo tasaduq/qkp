@@ -249,11 +249,8 @@ var page = {
     toast:{
         show:function(message, type){
             
-            $(".toast").removeClass("success");
-            $(".toast").removeClass("danger");
-            $(".toast").removeClass("warning");
-            $(".toast").removeClass("info");
-
+            $(".toast").removeClass("success").removeClass("danger").removeClass("warning").removeClass("info");
+            
             if( type === undefined){
                 type = "info"
             }
