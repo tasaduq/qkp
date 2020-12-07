@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class OrderInstallments extends Model
 {
     use HasFactory;
-    protected $cacheFor = 10000;
+    protected $table = "order_installments";
 }

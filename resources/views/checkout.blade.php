@@ -4,9 +4,6 @@
      
     <!-- Checkout section -->
 
-
-
-
 <section class="checkout-section">
     <div class="container">
         <div class="row">
@@ -94,47 +91,55 @@
                   <p>Your personal data will be used to process your order, support your experience throughout this website,
                      and for other purposes described in our privacy policy.
                      </p>
-                     <form class="pt-3">
+                     <form class="pt-3" id="customer-checkout-form">
+                        @csrf
                         <div class="form-row mb-3 justify-content-between">
                            <div class="form-group col-md-6 pr-3">
                               <label for="name">Name:</label>
-                              <input type="text" class="form-control" id="name">
+                              
+                              <input type="text" class="form-control" id="name" name="name" value="{{$user->name}}">
                            </div>
-                           <div class="form-group mb-3 col-md-6">
+                           <div class="form-group col-md-6 pr-3">
+                              <label for="city">City:</label>
+                              {{-- <input type="text"  value="{{$user->city}}"> --}}
+                              <select class="form-control" id="city" name="city">
+                                 <option value="1" sh="{{number_format("5000")}}">Karachi</option>
+                                 <option value="2" sh="{{number_format("7000")}}">Hyderabad</option>
+                              </select>
+
+                           </div>
+                           {{-- <div class="form-group mb-3 col-md-6">
                               <label for="lame">Last Name:</label>
-                              <input type="text" class="form-control" id="lame">
-                           </div>
+                              <input type="text" class="form-control" id="lame" name="lame">
+                           </div> --}}
                         </div>
-                        <div class="form-group mb-3">
+                        {{-- <div class="form-group mb-3">
                            <label for="company">Company:</label>
-                           <input type="text" class="form-control" id="company">
-                        </div>
+                           <input type="text" class="form-control" id="company" name="company">
+                        </div> --}}
                         <div class="form-group mb-3">
                            <label for="address">Address:</label>
-                           <input type="text" class="form-control" id="address">
+                           <input type="text" class="form-control" id="address" name="address" value="{{$user->address}}">
                         </div>
-                        <div class="form-row mb-3 justify-content-between">
-                           <div class="form-group col-md-6 pr-3">
-                              <label for="city">Town/City:</label>
-                              <input type="text" class="form-control" id="city">
-                           </div>
+                        {{-- <div class="form-row mb-3 justify-content-between">
+                           
                            <div class="form-group mb-3 col-md-6">
                               <label for="postcode">Postcode/zip:</label>
-                              <input type="text" class="form-control" id="postcode">
-                           </div>
-                        </div>
+                              <input type="text" class="form-control" id="postcode" name="postcode" value="{{$user->postcode}}">
+                           </div> 
+                        </div> --}}
                         <div class="form-row mb-3 justify-content-between">
                            <div class="form-group col-md-6 pr-3">
                               <label for="phone">Phone:</label>
-                              <input type="text" class="form-control" id="phone">
+                              <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone }}">
                            </div>
                            <div class="form-group mb-3 col-md-6">
                               <label for="email">Email:</label>
-                              <input type="email" class="form-control" id="email">
+                              <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" disabled>
                            </div>
                         </div>
                         
-                        <button class="btn default-btn float-right mb-4" type="submit">Place Order</button>
+                        <button class="btn default-btn float-right mb-4 place-order" type="submit">Place Order</button>
                      </form>
                </div>
 
@@ -159,7 +164,7 @@
                   $product_advance = ceil($product->price*0.3)
                 ?>
                    <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{number_format($product_advance)}}/-</strong></div>
-                   <div class="pb-2 text-left">Shipping :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
+                   <div class="pb-2 text-left">Shipping :<strong class="float-right checkout-shipping">{{number_format($shipping_fee)}}/-</strong></div>
                 </div>
                 <hr>
                @endforeach
@@ -175,7 +180,7 @@
                    <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
                    <strong>{{number_format($total_after_tax)}}/-</strong>
                 </div>
-                   <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a>
+                   {{-- <a href="/checkout" class="btn default-btn w-100">Go to Checkout</a> --}}
                 </div>
          </div>
             

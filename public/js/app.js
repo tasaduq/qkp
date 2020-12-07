@@ -127,7 +127,7 @@ $(document).ready(function(){
             success: function(result){
                 login.loader.show();
                 if(result.result == "true"){
-                    user.isLoggedIn = true;
+                    user.setLoggedIn(true)
                     $("#login-error").hide();
                     window.location = result.url;
                 }
@@ -153,6 +153,65 @@ $(document).ready(function(){
     }
 
 
+    
+    var customer_checkout_form = $("#customer-checkout-form").validate({
+        rules: {
+            name: {
+                required: true,
+                minlength:3,
+            },
+            address: {
+                required: true,
+            },
+            city: {
+                required: true,
+            },
+            phone: {
+                required: true,
+                number: true
+            }, 
+            email: {
+                required: true,
+                email: true
+            },
+
+        }
+    });
+    $(".place-order").on("click", function(e){
+        e.preventDefault();
+        if(!customer_checkout_form.form()){
+            return false;
+        }
+
+        cart.placeOrder();
+
+    });
+
+    $("#customer-checkout-form #city").on("change", function(e){
+        var shipping = $("#customer-checkout-form #city option:selected").attr("sh")+"/-";
+        $(".checkout-shipping").text(shipping)
+        page.toast.show("Shipping charges updated.")
+    });
+
+    
+
+
+    $(".check-user-login").on("click", function(e){
+        e.preventDefault();
+        if (user.getLoggedIn() === "true"){
+            //redirect to checkout
+            cart.redirectToCheckout();
+        }
+        else {
+            //change redirect url
+            $("#login-form #uri").val("/checkout")
+            //show user login popup
+            user.showLogin();
+        }
+    });
+    
+
+
     $("#product-emi-price-dropdown").on("change", function(){
         var price = $("#product-emi-price-dropdown option:selected").attr("price")
         $("#selected-emi-amount").text("RS."+price+"/-")
@@ -172,12 +231,29 @@ var page = {
         show:function(message){
             //do someting witht this message
         }
+    },
+    loader:{
+        show:function(){
+
+        }, 
+        hide:function(){
+            
+        }
     }
 }
 var user = {
-    isLoggedIn:false,
+    // isLoggedIn:false,
     showLogin:function(){
         $("#login-modal").modal("toggle")
+    }, 
+    setLoggedIn:function(status){
+        return localStorage.setItem("isLogin", status)
+    },
+    getLoggedIn:function(){
+        return localStorage.getItem("isLogin")
+    },
+    redirectToProfile:function(){
+        window.location = "/profile";
     }
 }
 var cart = {
@@ -197,7 +273,7 @@ var cart = {
                     user.showLogin();
                 } else {
                     page.toast.show("Product added to cart.")
-                    cart.redirectToCheckout();
+                    cart.redirectToCart();
                 }
                 console.log("success",result)
             },
@@ -208,9 +284,46 @@ var cart = {
 
         })
     },
-    redirectToCheckout:function(){
+    placeOrder:function(){
+
+        page.loader.show()
+
+        var payload =  $("#customer-checkout-form").serialize();
+
+        $.ajax({
+            url:"/process-cart",
+            data: payload,
+            dataType: 'json',
+            type: "POST",
+            success: function(result){
+                page.loader.hide();
+
+                if( result.code == 200 ){
+                    user.redirectToProfile();
+                } else {
+                    page.toast.show("Unable to process cart at this time, please try again later.")
+                    // cart.redirectToCart();
+                }
+                
+            },
+            error:function(error){
+                page.loader.hide();
+
+                alert("Something went wrong while while processing your cart, please try again.")
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
+    redirectToCart:function(){
         setTimeout(() => {
             window.location = "/cart"    
+        }, 300);
+        
+    },
+    redirectToCheckout:function(){
+        setTimeout(() => {
+            window.location = "/checkout"    
         }, 300);
         
     }
