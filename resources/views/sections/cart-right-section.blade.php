@@ -7,7 +7,7 @@ $cartpage =  \Request::is("cart") ? true : false;
 ?>
 
 
-<div class="col-sm-12 col-md-12 col-lg-3 cart-left-section">
+
     <h2>Cart Total Amount</h2>
     <p>Calculation of Total Amount</p>
      <div class="check-out">
@@ -54,6 +54,5 @@ $cartpage =  \Request::is("cart") ? true : false;
         </div>
         @endif
      </div>
-</div>
 
 

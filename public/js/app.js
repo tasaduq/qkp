@@ -1,5 +1,6 @@
 $(document).ready(function(){
     
+
     var customer_login_form = $("#login-form").validate({
         rules: {
             password: "required",
@@ -188,9 +189,18 @@ $(document).ready(function(){
     });
 
     $("#customer-checkout-form #city").on("change", function(e){
-        var shipping = $("#customer-checkout-form #city option:selected").attr("sh")+"/-";
-        $(".checkout-shipping").text(shipping)
-        page.toast.show("Shipping charges updated.")
+
+        var shipping = $("#customer-checkout-form #city option:selected").val();
+
+        cart.updateShipping( shipping )
+
+        // var shipping = $("#customer-checkout-form #city option:selected").attr("sh")+"/-";
+        // $(".checkout-shipping").text(shipping)
+
+
+        
+
+
     });
 
     
@@ -236,7 +246,7 @@ $(document).ready(function(){
     $(".payment-method ").on("click", function(){
         $(".payment-method ").removeClass("selected");
         $(this).addClass("selected");
-        $("#payment-method").val($(this).attr("payment-method"));        
+        $("#payment-method").val($(this).attr(" "));        
     })
 
     
@@ -246,8 +256,17 @@ $(document).ready(function(){
 
 var page = {
     toast:{
-        show:function(message){
-            //do someting witht this message
+        show:function(message, type){
+            
+            $(".toast").removeClass("success").removeClass("danger").removeClass("warning").removeClass("info");
+            
+            if( type === undefined){
+                type = "info"
+            }
+            
+            $(".toast").addClass(type);
+            $(".toast .toast-body").html(message)
+            $(".toast").toast("show")
         }
     },
     loader:{
@@ -275,6 +294,28 @@ var user = {
     }
 }
 var cart = {
+    updateShipping:function(shipTo){
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            shipping:shipTo,
+        }
+        $.ajax({
+            url:"/shipping-cart-update",
+            data: payload,
+            // dataType: 'json',
+            type: "POST",
+            success: function(result){
+                $(".cart-update-hook").html(result)
+                page.toast.show("Shipping charges updated.", "success")
+            },
+            error:function(error){
+                page.toast.show("Something went wrong while adding this product, please try again", "success")
+                // alert()
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
     addProduct:function(productid, installment){
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),
@@ -290,13 +331,14 @@ var cart = {
                 if( result.code == 100 ){
                     user.showLogin();
                 } else {
-                    page.toast.show("Product added to cart.")
+                    page.toast.show("Product added to cart.", "success")
                     cart.redirectToCart();
                 }
                 console.log("success",result)
             },
             error:function(error){
-                alert("Something went wrong while adding this product, please try again")
+                page.toast.show("Something went wrong while adding this product, please try again", "success")
+                // alert()
                 console.log("error",error)                // responseJSON
             }
 
@@ -319,15 +361,15 @@ var cart = {
                 if( result.code == 200 ){
                     user.redirectToProfile();
                 } else {
-                    page.toast.show("Unable to process cart at this time, please try again later.")
+                    page.toast.show("Unable to process cart at this time, please try again later.", "danger")
                     // cart.redirectToCart();
                 }
                 
             },
             error:function(error){
                 page.loader.hide();
-
-                alert("Something went wrong while while processing your cart, please try again.")
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
+                // alert("Something went wrong while while processing your cart, please try again.")
                 console.log("error",error)                // responseJSON
             }
 

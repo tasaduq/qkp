@@ -152,8 +152,10 @@
 
             </div>
 
-            @include("sections.cart-right-section")
-
+            <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section cart-update-hook">
+               @include("sections.cart-right-section")
+            </div>
+        
            
             
         </div>

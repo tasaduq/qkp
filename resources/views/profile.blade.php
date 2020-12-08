@@ -24,9 +24,10 @@
                     <p><strong>03 </strong>Animal in Your List</p>
 
                     @foreach ($orders as $order)
-                        {{-- {{ json_encode($order) }} --}}
+                        
 
-                      #{{ $order->order_number }}
+                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->status ? "Completed" : "Pending" }}  - {{ date_format($order->created_at,"d-m-Y") }} 
+
                       @foreach ($order->products as $orderedProduct)
                         <div class="accordion" id="installment-schedule">
                           <a data-toggle="collapse" href="#tablecollapse{{$orderedProduct->id}}" role="button" aria-controls="collapse1">
