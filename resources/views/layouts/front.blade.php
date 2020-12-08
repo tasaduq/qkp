@@ -91,7 +91,7 @@
                     </div>
                   </form>
                     <div class="form-group row">
-                    <div class="col-sm-6"> <a href="#">Not a member? Sign up</a></div>
+                    <div class="col-sm-6"> <a href="#register-modal" data-toggle="modal">Not a member? Sign up</a></div>
                     <div class="col-sm-6 text-right"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
 
                     </div>
@@ -153,7 +153,7 @@
                 </div>
                </form>
                 <div class="form-group row text-center">
-                   <div class="col-sm-12"> <a href="#" >Already registered? Login</a></div>
+                   <div class="col-sm-12"> <a href="#login-modal" data-toggle="modal">Already registered? Login</a></div>
                 </div>
                 <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                 <div class="row social">
@@ -210,17 +210,19 @@
                         <a class="nav-link {{ \Request::is("our-farm") ? "active" : "" }}" href="/our-farm">Our Farm</a>
                      </li>
                   </ul>
-
+ 
                   @if(Auth::user())
                      
 
                      <ul class="navbar-nav mx-auto">
+                        
                         <li class="nav-item">
                            <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
                         </li>
                      </ul>
                   @else 
                      <form class="form-inline my-2 my-lg-0">
+                        <a class="cart-icon-wrap mr-3" href="cart"><i class="icon-qkp-shopping-cart"></i><span class="count">12</span></a>
                         <button class="btn btn-outline-success my-2 px-4 my-sm-0 mr-3 login" type="button"
                            data-toggle="modal" data-target="#login-modal" id="login-btn">Login</button>
                         <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
