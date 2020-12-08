@@ -54,11 +54,11 @@
                   <p>{{$product->description}}</p>
 
                   <div class="order-type mt-5 mb-4">
-                     <a class="active mr-2 px-3" href="#">On Installment</a>
-                     <a class="px-3" href="#">Pay Full Amount</a>
+                     <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">On Installment</a>
+                     <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
                   </div>
 
-                  <div class="row details">
+                  <div class="row details instalment-payment-schedule">
                      <div class="col-xs-12 col-md-10 col-lg-8">
                         <ul>
                            <li>
@@ -115,7 +115,47 @@
                         </div>
                      </div>
                   </div>
-                  <button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" type="button">Book your Animal</button>
+                  <div class="row details full-payment-schedule" style="display:none;">
+                     <div class="col-xs-12 col-md-10 col-lg-8">
+                        <ul>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Category</div>
+                                 <?php
+                                    $category_name = \App\Models\Categories::where("category_id",$product->category)->first();
+                                    $category_name = $category_name ? $category_name->category_name : "N/A";
+                                 ?>
+                                 <span>:</span>{{$category_name}}
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Weight</div>
+                                 <span>:</span>{{$product->weight}} KG
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Color</div>
+                                 <span>:</span>{{$product->color}}
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Plan</div>
+                                 <span>:</span>
+                                 <div class="form-group">
+                                    <h4 class="amount"  id="product-price" price="{{$product->price}}" >RS.{{$product->price_formatted()}}/-</h4>
+
+                                 </div>
+                              </label>
+                           </li>
+                        </ul>
+                     </div>
+                    
+                  </div>
+                  <button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" redirect="yes" type="button">Book your Animal</button>
+                  <button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn addcart" product="{{$product->product_id}}" redirect="no" type="button">Add to Cart</button>
                </div>
             </div>
          </div>

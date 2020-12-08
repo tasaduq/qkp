@@ -238,8 +238,12 @@ $(document).ready(function(){
     });
 
     $(".add-to-cart-btn").on("click", function(){
+        var redirect = $(this).attr("redirect");
         var installment = $("#product-emi-price-dropdown option:selected").val()
-        cart.addProduct( $(this).attr("product"), installment )
+        if( $(".payment-schedule.active").attr("type") == "full" ){
+            installment = 0;
+        }
+        cart.addProduct( $(this).attr("product"), installment, redirect)
         
     })
 
@@ -250,12 +254,26 @@ $(document).ready(function(){
 
     
 
-    $(".payment-method ").on("click", function(){
-        $(".payment-method ").removeClass("selected");
+    $(".payment-method").on("click", function(){
+        $(".payment-method").removeClass("selected");
         $(this).addClass("selected");
-        $("#payment-method").val($(this).attr(" "));        
+        $("#payment-method").val($(this).attr("payment-method"));
+    });
+
+    $(".payment-schedule").on("click", function(e){
+        e.preventDefault();
+        $(".payment-schedule").removeClass("active");
+        $(this).addClass("active");
+        if( $(this).attr("type") == "full" ){
+            $(".full-payment-schedule").show();
+            $(".instalment-payment-schedule").hide();
+        } else {
+            $(".full-payment-schedule").hide();
+            $(".instalment-payment-schedule").show();
+        }
     })
 
+    
     
     
 
@@ -323,7 +341,7 @@ var cart = {
 
         })
     },
-    addProduct:function(productid, installment){
+    addProduct:function(productid, installment, redirect){
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),
             productid:productid,
@@ -338,8 +356,12 @@ var cart = {
                 if( result.code == 100 ){
                     user.showLogin();
                 } else {
-                    page.toast.show("Product added to cart.", "success")
-                    cart.redirectToCart();
+                    page.toast.show("Product added to cart.", "success");
+                    if(redirect == "yes"){
+                        cart.redirectToCart();
+                    }else {
+                        cart.updateNumber();
+                    }
                 }
                 console.log("success",result)
             },
@@ -408,6 +430,10 @@ var cart = {
             }
 
         })
+    },
+    updateNumber:function(){
+        var currentNumber = $(".cart-icon-wrap .count").html();
+        $(".cart-icon-wrap .count").html(parseInt(currentNumber)+1);
     },
     redirectToCart:function(){
         setTimeout(() => {
