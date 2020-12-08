@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CustomLoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -169,3 +169,7 @@ Route::get("/dumpdata", "DebugController@dumpdata");
 
 /* Contact Us Section Starts */
 Route::post("add-contact", "ContactusController@add_contact");
+
+/* Facebook Routes  */
+Route::get('login/facebook', [CustomLoginController::class, 'redirectToProvider']);
+Route::get('login/facebook/callback', [CustomLoginController::class, 'handleProviderCallback']);

@@ -97,7 +97,10 @@
                     </div>
                     <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                     <div class="row social">
-                        <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
+                        <div class="col-sm-6 px-1">
+                        {{-- <a id="fb-login-btn" href="{{url('/login/facebook')}}" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i></a> --}}
+                             <button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button>
+                        </div>
                         <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
                     </div>
                
@@ -157,7 +160,10 @@
                 </div>
                 <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                 <div class="row social">
-                  <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
+                {{-- <a id="fb-login-btn" href="{{url('/login/facebook')}}" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i></a>     --}}
+                <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button> 
+                
+                </div>
                   <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
                </div>
         
