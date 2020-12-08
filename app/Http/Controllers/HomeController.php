@@ -16,7 +16,10 @@ class HomeController extends Controller
             "active" => 1
         ])->take(10)->get();
 
-        return view('index')->with("featured_products", $featured_products);
+        //$productsc = DB::​table('products') ->select('color') ->groupBy('color');
+        //$productsc = Products::groupBy('color', 'color')->get();    
+        $productsc = Products::select('color')->distinct()->get();
+        return view('index')->with("featured_products", $featured_products)->with('productcolor',$productsc);
     }
     public function products(Request $request){
         $cat = $request->get("c");

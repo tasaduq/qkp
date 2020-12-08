@@ -56,23 +56,32 @@
                </div>
                <div class="row d-flex filter">
                   <div class="col-sm-6">
-                     <div class="select-container mb-2">
+                    <div class="select-container mb-2">
                         <span>Weight</span>
                         <select class="form-control " data-toggle="dropdown">
-                           <option value="1">200Kg</option>
-                           <option value="2">300Kg</option>
-                           <option value="3">400Kg</option>
-                        </select>
-                     </div>
+                        <?php 
+                            $num=10;
+                            $i=1;
+                            while ($i<=40)
+                            {
+                            $total=$num*$i;
+                            ?>
+                            <option value="{{$total }}">{{$total }} Kg</option>
+                            <?php 
+                            $i++;
+                            } 
+                            ?>
+                           </select>
+                        </div>
                   </div>
                   <div class="col-sm-5">
                      <div class="select-container mb-2">
                         <span>Color</span>
                         <select class="form-control " data-toggle="dropdown">
-                           <option value="1">White</option>
-                           <option value="2">Black</option>
-                           <option value="3">Brown</option>
-                        </select>
+                            <?php  foreach($productcolor as $product){ ?>
+                           <option value="{{ $product->color }}">{{ $product->color }}</option>
+                          <?php   }  ?>     
+                           </select>
                      </div>
                   </div>
                   <div class="col-sm-1">
