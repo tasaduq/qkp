@@ -313,7 +313,7 @@ var cart = {
             type: "POST",
             success: function(result){
                 $(".cart-update-hook").html(result)
-                page.toast.show("Shipping charges updated.", "success")
+                page.toast.show("Delivery Fee updated.", "success")
             },
             error:function(error){
                 page.toast.show("Something went wrong while adding this product, please try again", "danger")

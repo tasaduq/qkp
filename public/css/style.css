@@ -1975,6 +1975,7 @@ input[type='range']::-webkit-slider-runnable-track {
     text-align: center;
     font-size: 12px;
     font-weight: bold;
-    line-height: 23px;
+    line-height: 20px;
     right: -8px;
+    border: 2px solid #290038;
 }

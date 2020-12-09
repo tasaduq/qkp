@@ -30,9 +30,9 @@ $cartpage =  \Request::is("cart") ? true : false;
            <div class="pb-2 text-left">Advance({{ $installment == 1 ? "50%" : "30%" }}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
 
             @if($cartpage)
-            <div class="pb-0 text-left">Shipment to be calculated on checkout</div>
+            <div class="pb-0 text-left">Delivery Fee to be calculated on checkout</div>
             @else
-            <div class="pb-2 text-left">Shipping :<strong class="float-right checkout-shipping">Rs. {{number_format($shipping_fee)}}/-</strong></div>
+            <div class="pb-2 text-left">Delivery Fee :<strong class="float-right checkout-shipping">Rs. {{number_format($shipping_fee)}}/-</strong></div>
             @endif
         </div>
         <hr>

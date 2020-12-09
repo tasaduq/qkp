@@ -54,7 +54,7 @@
                   <p>{{$product->description}}</p>
 
                   <div class="order-type mt-5 mb-4">
-                     <a class="active mr-2 px-3" href="#">On Installment</a>
+                     <a class="active mr-2 px-3" href="#">Kiston Pay</a>
                      <a class="px-3" href="#">Pay Full Amount</a>
                   </div>
 
