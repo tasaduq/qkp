@@ -145,7 +145,10 @@
                               <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" disabled>
                            </div>
                         </div>
-                        
+                        <div class="form-group col-md-12 pr-3">
+                           <input type="checkbox" name="agreement" id="agreement">
+                           <label for="agreement">I agree to the <a href="#">QKP Terms and Conditions</a></label>
+                        </div>
                         <button class="btn default-btn float-right mb-4 place-order" type="submit">Place Order</button>
                      </form>
                </div>

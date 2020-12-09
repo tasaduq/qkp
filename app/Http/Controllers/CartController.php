@@ -61,8 +61,9 @@ class CartController extends Controller
 
         $response = array(
             "code" => 200,
-            "message" => "Item added to cart"
+            "message" => "Item added to cart"    
         );
+        
         
         $item = array(
             "product" => $productid,
@@ -75,7 +76,7 @@ class CartController extends Controller
 
         } else {
             $response = array(
-                "code" => 200,
+                "code" => 500,
                 "message" => ""
             );
         }
@@ -89,7 +90,7 @@ class CartController extends Controller
             );
         }
         */
-
+        $response["cart_count"] = $this->get_cart_count();
         return Response::json($response);
     }
     public function shipping_cart_update(Request $request){
@@ -176,9 +177,11 @@ class CartController extends Controller
                 $product = Products::find($item['product']);
                 
                 // TODO: Enable me
-                // if( !$product->sold_out ){
-
-                // }
+                if( $product->sold_out ){
+                    continue;
+                    // maybe throw exception, and then catch it.
+                    // in cases when two people have added the same product to cart
+                }
 
                 // dump($product);
 
@@ -193,11 +196,15 @@ class CartController extends Controller
 
                 $orderedProductId = OrderProducts::insertGetId($record);
 
+                $res = $product->mark_sold();
+
+                // dump($res);
+                
                 $OrderInstallments = array();
 
                 for($i = $item['installment']; $i > 2 ; $i--) { 
 
-                    $currentInstallmentPrice = $product->installment($i);
+                    $currentInstallmentPrice = $product->installment($item['installment']);
 
                     array_push($OrderInstallments, array(
                         "instalment_number" => $i,
@@ -272,5 +279,16 @@ class CartController extends Controller
         // else {
             // return 0;
         // }
+    }
+    public function get_cart_count(){
+        $cart = $this->get_cart();
+        return count($cart);
+    }
+    public function check_in_cart($productid){
+        $cart = $this->get_cart();
+        if( isset($cart[$productid]) ){
+            return true;
+        }
+        return false;
     }
 }

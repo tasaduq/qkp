@@ -2,13 +2,17 @@
 
 @section('content')
       
-
+<?php
+$category_name = \App\Models\Categories::where("category_id",$product->category)->first();
+$category_name = $category_name ? $category_name->category_name : "N/A";
+?>
       <!-- Products details section -->
       <section class="products-details-section">
          <div class="container">
             <ol class="breadcrumb">
-               <li class="breadcrumb-item"><a href="#">Home</a></li>
-               <li class="breadcrumb-item"><a href="#">Animals</a></li>
+               <li class="breadcrumb-item"><a href="/">Home</a></li>
+               <li class="breadcrumb-item"><a href="/mandi">Mandi</a></li>
+               <li class="breadcrumb-item"><a href="/products?c={{$product->category}}">{{$category_name}}</a></li>
                <li class="breadcrumb-item active">{{$product->name}}</li>
            </ol>
             <div class="row">
@@ -34,6 +38,7 @@
                         </div>
                      @endforeach
                   </div>
+                  @if( count($images) > 1 )
                   <div class="product_arrow_prev">
                      <span><i class="icon-qkp-caret-left"></i></span>
                   </div>
@@ -47,16 +52,17 @@
                         </div>
                      @endforeach
                   </div>
+                  @endif
                </div>
                <div class="col-sm-6 right-section">
 
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>
 
-                  <div class="order-type mt-5 mb-4">
+                  {{-- <div class="order-type mt-5 mb-4">
                      <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
                      <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
-                  </div>
+                  </div> --}}
 
                   <div class="row details instalment-payment-schedule">
                      <div class="col-lg-12">
@@ -64,10 +70,6 @@
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Category</div>
-                                 <?php
-                                    $category_name = \App\Models\Categories::where("category_id",$product->category)->first();
-                                    $category_name = $category_name ? $category_name->category_name : "N/A";
-                                 ?>
                                  <span>:</span>{{$category_name}}
                               </label>
                            </li>
@@ -168,9 +170,13 @@
                      </div>
                     
                   </div>
-                  <div class="row">
+                  <div class="row cart-buttons">
+                     @if( $product->check_in_cart() == "true" )
+                        <div clas="alreadyadded">Added to your cart</div>
+                     @else
                      <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn addcart" product="{{$product->product_id}}" redirect="no" type="button">Add to Cart</button></div>
                      <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" redirect="yes" type="button">Book your Animal</button></div>
+                     @endif
                   </div>
                </div>
             </div>

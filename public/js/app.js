@@ -42,11 +42,11 @@ $(document).ready(function(){
 
     var add_contact_form = $("#add-contact-form").validate({
         rules: {
-            name: "required",
-            email :  "required",
-            phone :  "required",
-            subject :  "required",
-            message :  "required",
+            name : "required",
+            email : "required",
+            phone : "required",
+            subject : "required",
+            message : "required",
 
         }
     });
@@ -175,7 +175,7 @@ $(document).ready(function(){
                 required: true,
                 email: true
             },
-
+            agreement : "required"
         }
     });
     $(".place-order").on("click", function(e){
@@ -243,7 +243,12 @@ $(document).ready(function(){
         if( $(".payment-schedule.active").attr("type") == "full" ){
             installment = 0;
         }
-        cart.addProduct( $(this).attr("product"), installment, redirect)
+        cart.addProduct( $(this).attr("product"), installment, redirect, function(){
+            // $(".add-to-cart-btn").remove();
+            // show added to cart div
+            $(".cart-buttons").html('<div clas="alreadyadded">Animal added to your cart</div>')
+            
+        })
         
     })
 
@@ -251,6 +256,16 @@ $(document).ready(function(){
         var productid = $(this).attr("productid")
         cart.removeProduct( productid )
     })
+
+    $(".cancel-order-animal").on("click", function(){
+        var orderanimalid = $(this).attr("orderanimalid")
+        cart.cancelOrder( orderanimalid )
+    })
+    $(".lumsum-order-animal").on("click", function(){
+        var orderanimalid = $(this).attr("orderanimalid")
+        // cart.cancelOrder( orderanimalid )
+    })
+    
 
     
 
@@ -341,7 +356,7 @@ var cart = {
 
         })
     },
-    addProduct:function(productid, installment, redirect){
+    addProduct:function(productid, installment, redirect, callback){
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),
             productid:productid,
@@ -360,7 +375,10 @@ var cart = {
                     if(redirect == "yes"){
                         cart.redirectToCart();
                     }else {
-                        cart.updateNumber();
+                        cart.updateNumber(result.cart_count);
+                        if(callback != undefined){
+                            callback();
+                        }
                     }
                 }
                 console.log("success",result)
@@ -431,9 +449,45 @@ var cart = {
 
         })
     },
-    updateNumber:function(){
-        var currentNumber = $(".cart-icon-wrap .count").html();
-        $(".cart-icon-wrap .count").html(parseInt(currentNumber)+1);
+    cancelOrderAnimal:function(orderAnimalId){
+        page.loader.show()
+
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            orderanimalid:orderAnimalId
+        }
+
+        $.ajax({
+            url:"/cancel-order-animal",
+            data: payload,
+            dataType: 'json',
+            type: "POST",
+            success: function(result){
+                page.loader.hide();
+
+                if( result.code == 200 ){
+                    user.redirectToProfile();
+                } else {
+                    page.toast.show("Unable to process cancelletion at this time, please try again later.", "danger")
+                    // cart.redirectToCart();
+                }
+                
+            },
+            error:function(error){
+                page.loader.hide();
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
+                // alert("Something went wrong while while processing your cart, please try again.")
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
+    cancelOrder:function(){
+
+    },
+    updateNumber:function(count){
+        // var currentNumber = $(".cart-icon-wrap .count").html();
+        $(".cart-icon-wrap .count").html(count);
     },
     redirectToCart:function(){
         setTimeout(() => {
