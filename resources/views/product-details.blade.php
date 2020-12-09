@@ -2,13 +2,17 @@
 
 @section('content')
       
-
+<?php
+$category_name = \App\Models\Categories::where("category_id",$product->category)->first();
+$category_name = $category_name ? $category_name->category_name : "N/A";
+?>
       <!-- Products details section -->
       <section class="products-details-section">
          <div class="container">
             <ol class="breadcrumb">
-               <li class="breadcrumb-item"><a href="#">Home</a></li>
-               <li class="breadcrumb-item"><a href="#">Animals</a></li>
+               <li class="breadcrumb-item"><a href="/">Home</a></li>
+               <li class="breadcrumb-item"><a href="/mandi">Mandi</a></li>
+               <li class="breadcrumb-item"><a href="/products?c={{$product->category}}">{{$category_name}}</a></li>
                <li class="breadcrumb-item active">{{$product->name}}</li>
            </ol>
             <div class="row">
@@ -53,10 +57,10 @@
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>
 
-                  <div class="order-type mt-5 mb-4">
+                  {{-- <div class="order-type mt-5 mb-4">
                      <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
                      <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
-                  </div>
+                  </div> --}}
 
                   <div class="row details instalment-payment-schedule">
                      <div class="col-lg-12">
@@ -64,10 +68,6 @@
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Category</div>
-                                 <?php
-                                    $category_name = \App\Models\Categories::where("category_id",$product->category)->first();
-                                    $category_name = $category_name ? $category_name->category_name : "N/A";
-                                 ?>
                                  <span>:</span>{{$category_name}}
                               </label>
                            </li>
