@@ -13,6 +13,13 @@
             <div class="col-sm-12 col-md-12 col-lg-9 checkout-right-section">
                <h2>Thank You John!</h2>
                <p>We have received your order. Your order will be confirmed once our rider picks up the payment</p>
+               
+               <div class="alert alert-secondary d-inline-block" role="alert">
+                  <h3>Bank Details</h3>
+                  <p class="mt-4"><label><strong>Bank :</strong></label> Bank AL Habib</p>
+                  <p><label><strong>Account Title :</strong></label> John</p>
+                  <p class="mb-0"><label><strong>Account Number :</strong></label> 1254 0081 01318501 5</p>
+                </div>
                <p>Make your payment directly into our bank. Your order will not be confirmed until the fund have cleared in our Account.</p>   
                <p>Please upload your payment receipt here, and your payment is traked from your order ID </p>
                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
