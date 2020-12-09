@@ -54,13 +54,13 @@
                   <p>{{$product->description}}</p>
 
                   <div class="order-type mt-5 mb-4">
-                     <a class="active mr-2 px-3" href="#">Kiston Pay</a>
-                     <a class="px-3" href="#">Pay Full Amount</a>
+                     <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
+                     <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
                   </div>
 
-                  <div class="row details">
-                     <div class="col-xs-12 col-md-10 col-lg-8">
-                        <ul>
+                  <div class="row details instalment-payment-schedule">
+                     <div class="col-lg-12">
+                        <ul class="mb-0">
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Category</div>
@@ -73,7 +73,13 @@
                            </li>
                            <li>
                               <label class="control-label">
-                                 <div class="attribute">Weight</div>
+                                 <div class="attribute">Current Weight</div>
+                                 <span>:</span>{{$product->weight}} KG
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label" data-toggle="tooltip" title="This is an estimated weight and may vary">
+                                 <div class="attribute">Weight at Delivery</div>
                                  <span>:</span>{{$product->weight}} KG
                               </label>
                            </li>
@@ -83,7 +89,7 @@
                                  <span>:</span>{{$product->color}}
                               </label>
                            </li>
-                           <li>
+                           <li class="pb-0">
                               <label class="control-label">
                                  <div class="attribute">Plan</div>
                                  <span>:</span>
@@ -100,22 +106,72 @@
                            </li>
                         </ul>
                      </div>
-                     <div class="col-xs-12 col-md-6 col-lg-4 px-0">
-                        <div class="actual-price line-height-normal">
-                           <p class="mb-1">Full price</p>
-                           <h4 class="amount"  id="product-price" price="{{$product->price}}" >RS.{{$product->price_formatted()}}/-</h4>
-                        </div>
-                        <div class="advance line-height-normal">
-                           <p class="mb-1">Advance</p>
-                           <h4 class="amount"  id="selected-installment-amount">RS.{{$product->advance_formatted()}}/-</h4>
-                        </div>
-                        <div class="EMI line-height-normal">
-                           <p class="mb-1">Monthly Installment</p>
-                           <h4 class="amount" id="selected-emi-amount">RS.{{$product->lowest_installment()}}/-</h4>
+                     <div class="col-lg-12 pb-4 pricing-wrap">
+                        <div class="row">
+                           <div class="actual-price col-sm-4 line-height-normal">
+                              <p class="mb-1">Full price</p>
+                              <h4 class="amount"  id="product-price" price="{{$product->price}}" >RS.{{$product->price_formatted()}}/-</h4>
+                           </div>
+                           <div class="advance col-sm-4 line-height-normal">
+                              <p class="mb-1">Advance</p>
+                              <h4 class="amount"  id="selected-installment-amount">RS.{{$product->advance_formatted()}}/-</h4>
+                           </div>
+                           <div class="EMI col-sm-4 line-height-normal">
+                              <p class="mb-1">Kist</p>
+                              <h4 class="amount" id="selected-emi-amount">RS.{{$product->lowest_installment()}}/-</h4>
+                           </div>
                         </div>
                      </div>
                   </div>
-                  <button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" type="button">Book your Animal</button>
+                  <div class="row details full-payment-schedule" style="display:none;">
+                     <div class="col-xs-12 col-md-10 col-lg-8">
+                        <ul>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Category</div>
+                                 <?php
+                                    $category_name = \App\Models\Categories::where("category_id",$product->category)->first();
+                                    $category_name = $category_name ? $category_name->category_name : "N/A";
+                                 ?>
+                                 <span>:</span>{{$category_name}}
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Current Weight</div>
+                                 <span>:</span>{{$product->weight}} KG
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label" data-toggle="tooltip" title="This is an estimated weight and may vary">
+                                 <div class="attribute">Weight at Delivery</div>
+                                 <span>:</span>{{$product->weight}} KG
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Color</div>
+                                 <span>:</span>{{$product->color}}
+                              </label>
+                           </li>
+                           <li>
+                              <label class="control-label">
+                                 <div class="attribute">Plan</div>
+                                 <span>:</span>
+                                 <div class="form-group">
+                                    <h4 class="amount"  id="product-price" price="{{$product->price}}" >RS.{{$product->price_formatted()}}/-</h4>
+
+                                 </div>
+                              </label>
+                           </li>
+                        </ul>
+                     </div>
+                    
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn addcart" product="{{$product->product_id}}" redirect="no" type="button">Add to Cart</button></div>
+                     <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" redirect="yes" type="button">Book your Animal</button></div>
+                  </div>
                </div>
             </div>
          </div>
