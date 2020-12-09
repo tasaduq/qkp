@@ -215,7 +215,7 @@
                      $cartC = new \App\Http\Controllers\CartController;
                      $CartCount = $cartC->get_cart_count();
                   ?>
- 
+ <a class="cart-icon-wrap mr-3" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
                   @if(Auth::user())
                      <ul class="navbar-nav mx-auto">
                         
@@ -225,7 +225,7 @@
                      </ul>
                   @else 
                      <form class="form-inline my-2 my-lg-0">
-                        <a class="cart-icon-wrap mr-3" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
+                        
                         <button class="btn btn-outline-success my-2 px-4 my-sm-0 mr-3 login" type="button"
                            data-toggle="modal" data-target="#login-modal" id="login-btn">Login</button>
                         <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
