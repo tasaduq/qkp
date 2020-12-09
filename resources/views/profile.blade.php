@@ -34,7 +34,8 @@
                             <div class="row schedule pb-3">
                             <div class="col-sm-4">
                                 <div class="animal-picture text-center">
-                                    <img class="img-fluid" src="/images/Layer 8.png">
+                                  
+                                    <img class="img-fluid" src="{{$orderedProduct->product->images()[0]->thumb}}">
                                 </div>
                             </div>
                             <div class="col-sm-8">
@@ -54,8 +55,8 @@
                                 </div>
                                 <div class="row inline-buttons text-right">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-warning mb-1">Cancel Order</button>
-                                        <button class="btn btn-success mb-1">Make Lump Sum Payment</button>
+                                        <button class="btn btn-warning mb-1 cancel-order-animal" orderanimalid="{{$orderedProduct->id}}">Cancel Order</button>
+                                        <button class="btn btn-success mb-1 lumsum-order-animal" orderanimalid="{{$orderedProduct->id}}">Make Lump Sum Payment</button>
                                     </div>
                                 </div>                   
                             </div>

@@ -76,7 +76,7 @@ class CartController extends Controller
 
         } else {
             $response = array(
-                "code" => 200,
+                "code" => 500,
                 "message" => ""
             );
         }
@@ -177,9 +177,11 @@ class CartController extends Controller
                 $product = Products::find($item['product']);
                 
                 // TODO: Enable me
-                // if( !$product->sold_out ){
-
-                // }
+                if( $product->sold_out ){
+                    continue;
+                    // maybe throw exception, and then catch it.
+                    // in cases when two people have added the same product to cart
+                }
 
                 // dump($product);
 
@@ -194,11 +196,15 @@ class CartController extends Controller
 
                 $orderedProductId = OrderProducts::insertGetId($record);
 
+                $res = $product->mark_sold();
+
+                // dump($res);
+                
                 $OrderInstallments = array();
 
                 for($i = $item['installment']; $i > 2 ; $i--) { 
 
-                    $currentInstallmentPrice = $product->installment($i);
+                    $currentInstallmentPrice = $product->installment($item['installment']);
 
                     array_push($OrderInstallments, array(
                         "instalment_number" => $i,

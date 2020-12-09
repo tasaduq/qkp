@@ -12,7 +12,7 @@ class Products extends Model
     use HasFactory;
     //use SoftDeletes;
     protected $table = 'products';
-    protected $fillable = ['name', 'color','category','weight','price','description','active'];
+    protected $fillable = ['name', 'color','category','weight','price','description','active', 'featured','sold_out'];
     protected $primaryKey = 'product_id';
     protected $cacheFor = 600; 
     
@@ -60,6 +60,26 @@ class Products extends Model
     public function check_in_cart(){
         $cart = new CartController();
         return $cart->check_in_cart($this->product_id);
+    }
+    public function mark_sold(){
+        $this->sold_out = 1;
+        $this->save();
+        // dd(Self::find($this->product_id)->update(["sold_out","1"]));
+        // return 1;
+    }
+    public function images(){
+
+        $imageid = array();
+        if ( strpos($this->images, ",") > -1){
+              $imageid = explode(",",$this->images);  
+        }
+        else {
+           $imageid[0] = $this->images;
+        }
+        
+        $images = \App\Models\Media::whereIn("id", $imageid)->get();
+                     
+        return $images = $images ? $images : array();
     }
     
     // public function installment()

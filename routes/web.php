@@ -37,6 +37,8 @@ Route::middleware("calculations")->group(function () {
         Route::get('/profile', "UserController@profile");
         Route::get("/process_checkout", "CartController@process_checkout");
         Route::post("/process-cart", "CartController@process_checkout");
+        Route::post("/cancel-order-animal", "OrderController@cancel_order_animal");
+        
         
     });
 
