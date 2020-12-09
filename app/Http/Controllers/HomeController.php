@@ -17,8 +17,12 @@ class HomeController extends Controller
         ])->take(10)->get();
 
         $productsc = Products::select('color')->distinct()->get();
+
+        $categories = Categories::where([
+            "is_active" => 1,
+        ])->get();
         
-        return view('index')->with("featured_products", $featured_products)->with('productcolor',$productsc);
+        return view('index')->with("featured_products", $featured_products)->with('productcolor',$productsc)->with('categories',$categories);
     }
     public function products(Request $request){
         $cat = $request->get("c");

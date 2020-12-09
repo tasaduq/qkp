@@ -21,12 +21,15 @@
                <h2 class="text-black search-title">Search</h2>
                {{-- <p class="text-black">Search for the finest animals on Shariah compliant installments</p> --}}
                <div class="button-group row">
+                <?php
+                foreach ($categories as $category) { ?> 
                   <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>
-                           <i class="icon-qkp-bull"></i>
-                        </span>Bull / Cow</button>
+                           <i class="{{ $category->icon }}"></i>
+                     </span>{{ $category->category_name }}</button>
                   </div>
-                  <div class="col-sm-3">
+                <?php } ?>
+                  {{-- <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>
                         <i class="icon-qkp-goat"></i>
                         </span>Goat</button>
@@ -40,7 +43,7 @@
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>
                         <i class="icon-qkp-sheep"></i>
                         </span>Sheep</button>
-                  </div>
+                  </div> --}}
                </div>
                <div class="row">
                   <div class="col-sm-12">

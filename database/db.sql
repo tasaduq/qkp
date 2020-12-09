@@ -479,3 +479,8 @@ COMMIT;
 
 
 ALTER TABLE `orders` ADD `payment_method` BOOLEAN NOT NULL DEFAULT FALSE AFTER `status`;
+
+
+ALTER TABLE `laravel`.`categories`   
+  ADD COLUMN `icon` VARCHAR(200) NULL AFTER `path`;
+
