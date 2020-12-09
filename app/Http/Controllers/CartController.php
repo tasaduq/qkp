@@ -61,9 +61,9 @@ class CartController extends Controller
 
         $response = array(
             "code" => 200,
-            "message" => "Item added to cart",
-            "cart_count" => $this->get_cart_count()
+            "message" => "Item added to cart"    
         );
+        
         
         $item = array(
             "product" => $productid,
@@ -77,8 +77,7 @@ class CartController extends Controller
         } else {
             $response = array(
                 "code" => 200,
-                "message" => "",
-                "cart_count" => $this->get_cart_count()
+                "message" => ""
             );
         }
         
@@ -91,7 +90,7 @@ class CartController extends Controller
             );
         }
         */
-
+        $response["cart_count"] = $this->get_cart_count();
         return Response::json($response);
     }
     public function shipping_cart_update(Request $request){
