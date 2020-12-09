@@ -61,7 +61,8 @@ class CartController extends Controller
 
         $response = array(
             "code" => 200,
-            "message" => "Item added to cart"
+            "message" => "Item added to cart",
+            "cart_count" => $this->get_cart_count()
         );
         
         $item = array(
@@ -76,7 +77,8 @@ class CartController extends Controller
         } else {
             $response = array(
                 "code" => 200,
-                "message" => ""
+                "message" => "",
+                "cart_count" => $this->get_cart_count()
             );
         }
         
@@ -272,5 +274,16 @@ class CartController extends Controller
         // else {
             // return 0;
         // }
+    }
+    public function get_cart_count(){
+        $cart = $this->get_cart();
+        return count($cart);
+    }
+    public function check_in_cart($productid){
+        $cart = $this->get_cart();
+        if( isset($cart[$productid]) ){
+            return true;
+        }
+        return false;
     }
 }

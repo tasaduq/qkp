@@ -168,9 +168,13 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                      </div>
                     
                   </div>
-                  <div class="row">
+                  <div class="row cart-buttons">
+                     @if( $product->check_in_cart() == "true" )
+                        <div clas="alreadyadded">Added to your cart</div>
+                     @else
                      <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn addcart" product="{{$product->product_id}}" redirect="no" type="button">Add to Cart</button></div>
                      <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" redirect="yes" type="button">Book your Animal</button></div>
+                     @endif
                   </div>
                </div>
             </div>
