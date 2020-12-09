@@ -243,7 +243,12 @@ $(document).ready(function(){
         if( $(".payment-schedule.active").attr("type") == "full" ){
             installment = 0;
         }
-        cart.addProduct( $(this).attr("product"), installment, redirect)
+        cart.addProduct( $(this).attr("product"), installment, redirect, function(){
+            // $(".add-to-cart-btn").remove();
+            // show added to cart div
+            $(".cart-buttons").html('<div clas="alreadyadded">Animal added to your cart</div>')
+            
+        })
         
     })
 
@@ -341,7 +346,7 @@ var cart = {
 
         })
     },
-    addProduct:function(productid, installment, redirect){
+    addProduct:function(productid, installment, redirect, callback){
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),
             productid:productid,
@@ -360,7 +365,10 @@ var cart = {
                     if(redirect == "yes"){
                         cart.redirectToCart();
                     }else {
-                        cart.updateNumber();
+                        cart.updateNumber(result.cart_count);
+                        if(callback != undefined){
+                            callback();
+                        }
                     }
                 }
                 console.log("success",result)
@@ -431,9 +439,9 @@ var cart = {
 
         })
     },
-    updateNumber:function(){
-        var currentNumber = $(".cart-icon-wrap .count").html();
-        $(".cart-icon-wrap .count").html(parseInt(currentNumber)+1);
+    updateNumber:function(count){
+        // var currentNumber = $(".cart-icon-wrap .count").html();
+        $(".cart-icon-wrap .count").html(count);
     },
     redirectToCart:function(){
         setTimeout(() => {
