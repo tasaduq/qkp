@@ -325,6 +325,9 @@ var user = {
     showLogin:function(){
         $("#login-modal").modal("toggle")
     }, 
+    toggleRegistration:function(){
+        $("#register-modal").modal("toggle")
+    }, 
     setLoggedIn:function(status){
         return localStorage.setItem("isLogin", status)
     },
