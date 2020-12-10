@@ -17,7 +17,7 @@
                   {{-- <p>We have received your order. Your order will be confirmed once our rider picks up the payment</p> --}}
                   {{-- <h2></h2> --}}
 
-                  @if(!$order->payment_method)
+                  @if($order->payment_method)
                   {{-- Bank Order --}}
                      <p> You are required to pay the upfront amount in the following account.</p>
 
