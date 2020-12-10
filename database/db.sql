@@ -484,3 +484,4 @@ ALTER TABLE `orders` ADD `payment_method` BOOLEAN NOT NULL DEFAULT FALSE AFTER `
 ALTER TABLE `laravel`.`categories`   
   ADD COLUMN `icon` VARCHAR(200) NULL AFTER `path`;
 
+ALTER TABLE `categories` ADD `icon` VARCHAR(220) NOT NULL AFTER `path`;
