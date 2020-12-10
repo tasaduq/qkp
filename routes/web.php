@@ -104,7 +104,7 @@ Route::get('/admin/login', function () {
 /* Functionality Routes */
 Route::post("ajax-login", "CustomLoginController@login");
 Route::post("ajax-register", "CustomLoginController@register");
-Route::get("verifyuser/{hash}", "CustomLoginController@verifyuser");
+Route::get("verifyuser", "CustomLoginController@verifyuser");
 
 
 Route::middleware(['auth'])->group(function(){
