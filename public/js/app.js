@@ -300,7 +300,7 @@ $(document).ready(function(){
     $("#upload-reciept-form").on("submit", function(e){
         e.preventDefault();
 
-        if( $("#upload-reciept-form [name=reciept]").val() !== "" ){
+        if( $("#upload-reciept-form [name=receipt]").val() !== "" ){
             order.uploadReciept(this);
         } else {
             Swal.fire(
