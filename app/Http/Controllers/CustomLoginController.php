@@ -47,9 +47,11 @@ class CustomLoginController extends Controller
                 );
             }
             else{
+                Auth::logout();
+
                 $result = array(
                     "result"=>"false", 
-                    "error"=>"User and password did not match"
+                    "error"=>"Please verify your email"
                 );    
             }
         }
