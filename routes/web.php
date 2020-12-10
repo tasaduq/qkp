@@ -33,11 +33,17 @@ Route::middleware("calculations")->group(function () {
         
     });
 
-    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['auth'])->group(function () {
         Route::get('/profile', "UserController@profile");
         Route::get("/process_checkout", "CartController@process_checkout");
+        
+        
+
         Route::post("/process-cart", "CartController@process_checkout");
         Route::post("/cancel-order-animal", "OrderController@cancel_order_animal");
+        
+        Route::get("/payment", "OrderController@payment");
+        Route::post("/upload-receipt", "OrderController@upload_receipt");
         
         
     });
@@ -77,11 +83,11 @@ Route::get('/faqs', function () {
     return view('faqs');
 });
 
-Route::get('/payment', function () {
-    return view('payment');
-});
+// Route::get('/payment', function () {
+//     return view('payment');
+// });
 
-Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 

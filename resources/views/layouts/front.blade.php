@@ -262,14 +262,14 @@
       <script src="{{asset('/js/bootstrap.min.js')}}"></script>
       <script src="{{asset('/js/slick.js')}}"></script>
       <script src="{{asset('/js/jquery-validator.js')}}"></script> 
-      
+      <script src="{{asset('/js/jquery.fancybox.min.js')}}"></script>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
       
       <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
       <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
       <script src="{{asset('/js/app.js')}}"></script> 
-      <script src="{{asset('/js/jquery.fancybox.min.js')}}"></script>
+      
       <script>
          
          @if(!Auth::user())

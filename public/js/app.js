@@ -95,7 +95,7 @@ $(document).ready(function(){
                     $("#login-error").hide();
 
                     Swal.fire(
-                        // 'The Internet?',
+                        '',
                         'A verification email has been sent to you, please check your email and verify.',
                         'success'
                       )
@@ -297,7 +297,26 @@ $(document).ready(function(){
             $(".instalment-payment-schedule").show();
         }
     })
+    $("#upload-reciept-form").on("submit", function(e){
+        e.preventDefault();
 
+        if( $("#upload-reciept-form [name=reciept]").val() !== "" ){
+            order.uploadReciept(this);
+        } else {
+            Swal.fire(
+                '',
+                'Please select file first',
+                'error'
+              )
+
+        }
+
+        // if()
+        
+        // $(".payment-method").removeClass("selected");
+        // $(this).addClass("selected");
+        // $("#payment-method").val($(this).attr("payment-method"));
+    });
     
     
     
@@ -452,7 +471,7 @@ var cart = {
                     // user.redirectToProfile();
                     window.location = "/payment";
                 } else {
-                    page.toast.show("Unable to process cart at this time, please try again later.", "danger")
+                    page.toast.show(result.error, "danger")
                     // cart.redirectToCart();
                 }
                 
@@ -517,5 +536,50 @@ var cart = {
             window.location = "/checkout"    
         }, 300);
         
+    }
+}
+
+var order = {
+    uploadReciept:function(form){
+        page.loader.show();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        // var payload = $("#add-category-form").serialize()
+        // console.log(payload);
+        var formData = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            url:"/upload-receipt",
+            dataType: "json",
+            success: function(result){
+                page.loader.hide();
+                if(result.code == 200){
+                    Swal.fire(
+                        '',
+                        'File successfully uploaded, we will notify you once your order has been confirmed',
+                        'success'
+                    )
+                    
+                    window.location = "/";
+                }
+                else {
+                    Swal.fire(
+                        '',
+                        'Something went wrong, please try again.',
+                        'error'
+                      )
+                }
+                
+            }
+        })
     }
 }
