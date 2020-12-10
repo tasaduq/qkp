@@ -328,7 +328,8 @@ var user = {
     }, 
     toggleRegistration:function(){
         $("#register-modal").modal("toggle");
-        $("modal-backdrop").removeClass("show");
+        $(".modal-backdrop").remove();
+        $("body").removeClass("modal-open");
     }, 
     setLoggedIn:function(status){
         return localStorage.setItem("isLogin", status)
