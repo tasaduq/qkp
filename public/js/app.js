@@ -93,7 +93,15 @@ $(document).ready(function(){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#login-error").hide();
-                    alert("A verification email has been sent to you, please check your email and verify.");
+
+                    Swal.fire(
+                        // 'The Internet?',
+                        'A verification email has been sent to you, please check your email and verify.',
+                        'success'
+                      )
+
+
+                    // alert("");
                     //hide registeration popup
                     user.toggleRegistration();
                     // window.location = "/profile"
@@ -441,7 +449,8 @@ var cart = {
                 page.loader.hide();
 
                 if( result.code == 200 ){
-                    user.redirectToProfile();
+                    // user.redirectToProfile();
+                    window.location = "/payment";
                 } else {
                     page.toast.show("Unable to process cart at this time, please try again later.", "danger")
                     // cart.redirectToCart();
