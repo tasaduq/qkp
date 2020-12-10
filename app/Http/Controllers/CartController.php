@@ -209,7 +209,7 @@ class CartController extends Controller
 
                 $orderedProductId = OrderProducts::insertGetId($record);
 
-                $res = $product->mark_sold();
+                // $res = $product->mark_sold();
 
                 // dump($res);
                 
