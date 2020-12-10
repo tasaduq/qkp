@@ -252,7 +252,7 @@ class CartController extends Controller
         $total_upfront_payment = (int) ceil($total_upfront_payment);
         
 
-        // $this->clear_cart();
+        $this->clear_cart();
         // dd($total_upfront_payment);
         Orders::find($insertedOrderId)->update(["upfront"=>$total_upfront_payment]);
         // session::flash("order_first_payment",$total_upfront_payment);
