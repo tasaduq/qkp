@@ -35,7 +35,7 @@ class OrderController extends Controller
     }
     public function payment(){
         // session::put("order_id", 81 );
-        
+        //TODO: get me from somewhere else
         $order_id = session::get("order_id");
         
         $user = Auth::user();
@@ -52,7 +52,7 @@ class OrderController extends Controller
         $this->validate($request, array(
             'receipt' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ));
-
+        //TODO: get me from somewhere else
         $order_id = session::get("order_id");
         // dump($order_id);
         $user = Auth::user();
