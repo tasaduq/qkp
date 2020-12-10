@@ -120,4 +120,14 @@ class ProductsController extends Controller
         $product->delete();
         return redirect()->route('products')->with('success','Product Deleted Successfully...');
     }
+
+    public function productssearch(Request $request){
+        
+        $category = $request->category;
+        $weight  = $request->weight;
+        $product_color = $request->product_color;
+
+        
+    }
+    
 }
