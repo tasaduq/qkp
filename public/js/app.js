@@ -324,9 +324,11 @@ var user = {
     // isLoggedIn:false,
     showLogin:function(){
         $("#login-modal").modal("toggle")
+        // $("modal-backdrop").removeClass("show");
     }, 
     toggleRegistration:function(){
-        $("#register-modal").modal("toggle")
+        $("#register-modal").modal("toggle");
+        $("modal-backdrop").removeClass("show");
     }, 
     setLoggedIn:function(status){
         return localStorage.setItem("isLogin", status)
