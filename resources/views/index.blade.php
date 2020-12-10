@@ -24,7 +24,7 @@
                 <?php
                 foreach ($categories as $category) { ?> 
                   <div class="col-sm-3">
-                  <button type="button" class="category_method_active btn rounded-pill btn-outline-primary btnactive" id="selected_category" selected_category="{{ $category->category_id }}"><span>
+                  <button type="button" class="category_method_active btn rounded-pill btn-outline-primary btnactive" selected_category="{{ $category->category_id }}"><span>
                            <i class="{{ $category->icon }}"></i>
                      </span>{{ $category->category_name }}</button>
                   </div>
