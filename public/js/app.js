@@ -569,7 +569,7 @@ var order = {
                         'success'
                     )
                     
-                    window.location = "/";
+                    window.location = "/profile";
                 }
                 else {
                     Swal.fire(
