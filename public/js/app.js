@@ -94,6 +94,8 @@ $(document).ready(function(){
                 if(result.result == "true"){
                     $("#login-error").hide();
                     alert("A verification email has been sent to you, please check your email and verify.");
+                    //hide registeration popup
+                    user.toggleRegistration();
                     // window.location = "/profile"
                 }
                 else {
