@@ -93,7 +93,7 @@ $(document).ready(function(){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#login-error").hide();
-                    alert("Your account has been created, please login");
+                    alert("A verification email has been sent to you, please check your email and verify.");
                     // window.location = "/profile"
                 }
                 else {
