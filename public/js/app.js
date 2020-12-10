@@ -249,7 +249,38 @@ $(document).ready(function(){
         $("#payment-method").val($(this).attr(" "));        
     })
 
+
+    $("#search_category_btn").on("click",function(){
+       
+        var selected_category  = $('.category_method_active.active').find('button.btnactive:first').attr('selected_category');
+        var product_color = $('#product_color option:selected').val();
+        var weight_ci = $('#weight_ci option:selected').val();
+        if(typeof selected_category == 'undefined'){
+            alert('No Category Selected');
+        }
+
+        // $.ajax({
+        //     url:"/getCategorydetails",
+        //     data: {selected_category:selected_category},
+        //     type: "POST",
+        //     success: function(result){
+        //         if(result.result == "true"){
+        //            console.log(result);
+        //         }
+        //         else {
+        //             console.log(result);
+                    
+        //         }
+                
+        //     }
+        // })
+        
+    });
     
+    $(".category_method_active").on("click",function(){
+        $(".category_method_active").removeClass('active');
+        $(this).addClass('active');
+    });
     
 
 });

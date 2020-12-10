@@ -24,11 +24,12 @@
                 <?php
                 foreach ($categories as $category) { ?> 
                   <div class="col-sm-3">
-                     <button type="button" class="btn rounded-pill btn-outline-primary"><span>
+                  <button type="button" class="category_method_active btn rounded-pill btn-outline-primary btnactive" id="selected_category" selected_category="{{ $category->category_id }}"><span>
                            <i class="{{ $category->icon }}"></i>
                      </span>{{ $category->category_name }}</button>
                   </div>
                 <?php } ?>
+                
                   {{-- <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>
                         <i class="icon-qkp-goat"></i>
@@ -61,17 +62,24 @@
                   <div class="col-sm-6">
                     <div class="select-container mb-2">
                         <span>Weight</span>
-                        <select class="form-control " data-toggle="dropdown">
+                    <select class="form-control " name="weight" class="weight_c" id="weight_ci" data-toggle="dropdown">
                         <?php 
-                            $num=10;
-                            $i=1;
-                            while ($i<=40)
-                            {
-                            $total=$num*$i;
-                            ?>
-                            <option value="{{$total }}">{{$total }} Kg</option>
+                            // $num=10;
+                            // $i=1;
+                            // while ($i<=40)
+                            // {
+                            // $total=$num*$i;
+                            // $secondvlaue = $total+$total;
+                            $data = array('10,20', '30,40', '50,60', '70,80', '90,100', '110,120', '130,140', '1150,160', '170,180', '190,200', '210,220', '230,240', '250,260', '270,280', '290,300', '310,320', '330,340', '350,360', '370,380', '390,400');
+                            foreach($data as $value){
+                            $weightdata = str_replace(",", " -  ", $value);
+                            $weightvalue = $value;
+                            
+                           ?>
+                            {{-- <option value="{{$total }}">{{$total }} - {{$secondvlaue }} Kg</option> --}}
+                            <option value="{{$weightvalue }}"> {{ $weightdata }} Kg</option>
                             <?php 
-                            $i++;
+                            // $i++;
                             } 
                             ?>
                            </select>
@@ -80,7 +88,7 @@
                   <div class="col-sm-5">
                      <div class="select-container mb-2">
                         <span>Color</span>
-                        <select class="form-control " data-toggle="dropdown">
+                        <select class="form-control" id="product_color" class="product_c" data-toggle="dropdown">
                             <?php  foreach($productcolor as $product){ ?>
                            <option value="{{ $product->color }}">{{ $product->color }}</option>
                           <?php   }  ?>     
@@ -88,7 +96,7 @@
                      </div>
                   </div>
                   <div class="col-sm-1">
-                     <a href="#" type="submit" class="search"><i class="icon-qkp-search-c"></i></a>
+                     <a href="javascript:void(0)" type="submit" class="search" id="search_category_btn"><i class="icon-qkp-search-c"></i></a>
                   </div>
                </div>
             </div>
