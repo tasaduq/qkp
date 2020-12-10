@@ -38,6 +38,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                         </div>
                      @endforeach
                   </div>
+                  @if( count($images) > 1 )
                   <div class="product_arrow_prev">
                      <span><i class="icon-qkp-caret-left"></i></span>
                   </div>
@@ -51,6 +52,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                         </div>
                      @endforeach
                   </div>
+                  @endif
                </div>
                <div class="col-sm-6 right-section">
 

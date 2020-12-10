@@ -42,11 +42,11 @@ $(document).ready(function(){
 
     var add_contact_form = $("#add-contact-form").validate({
         rules: {
-            name: "required",
-            email :  "required",
-            phone :  "required",
-            subject :  "required",
-            message :  "required",
+            name : "required",
+            email : "required",
+            phone : "required",
+            subject : "required",
+            message : "required",
 
         }
     });
@@ -93,7 +93,17 @@ $(document).ready(function(){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#login-error").hide();
-                    alert("Your account has been created, please login");
+
+                    Swal.fire(
+                        '',
+                        'A verification email has been sent to you, please check your email and verify.',
+                        'success'
+                      )
+
+
+                    // alert("");
+                    //hide registeration popup
+                    user.toggleRegistration();
                     // window.location = "/profile"
                 }
                 else {
@@ -175,7 +185,7 @@ $(document).ready(function(){
                 required: true,
                 email: true
             },
-
+            agreement : "required"
         }
     });
     $(".place-order").on("click", function(e){
@@ -257,6 +267,16 @@ $(document).ready(function(){
         cart.removeProduct( productid )
     })
 
+    $(".cancel-order-animal").on("click", function(){
+        var orderanimalid = $(this).attr("orderanimalid")
+        cart.cancelOrder( orderanimalid )
+    })
+    $(".lumsum-order-animal").on("click", function(){
+        var orderanimalid = $(this).attr("orderanimalid")
+        // cart.cancelOrder( orderanimalid )
+    })
+    
+
     
 
     $(".payment-method").on("click", function(){
@@ -277,6 +297,19 @@ $(document).ready(function(){
             $(".instalment-payment-schedule").show();
         }
     })
+    $("#upload-reciept-form").on("submit", function(e){
+        e.preventDefault();
+
+        if( $("#upload-reciept-form [name=receipt]").val() !== "" ){
+            order.uploadReciept(this);
+        } else {
+            Swal.fire(
+                '',
+                'Please select file first',
+                'error'
+              )
+
+        }
 
 
     // $("#search_category_btn").on("click",function(){
@@ -336,6 +369,13 @@ $(document).ready(function(){
         $(".category_method_active").removeClass('active');
         $(this).addClass('active');
     });
+        // if()
+        
+        // $(".payment-method").removeClass("selected");
+        // $(this).addClass("selected");
+        // $("#payment-method").val($(this).attr("payment-method"));
+    });
+    
     
     
 
@@ -369,6 +409,12 @@ var user = {
     // isLoggedIn:false,
     showLogin:function(){
         $("#login-modal").modal("toggle")
+        // $("modal-backdrop").removeClass("show");
+    }, 
+    toggleRegistration:function(){
+        $("#register-modal").modal("toggle");
+        $(".modal-backdrop").remove();
+        $("body").removeClass("modal-open");
     }, 
     setLoggedIn:function(status){
         return localStorage.setItem("isLogin", status)
@@ -480,9 +526,10 @@ var cart = {
                 page.loader.hide();
 
                 if( result.code == 200 ){
-                    user.redirectToProfile();
+                    // user.redirectToProfile();
+                    window.location = "/payment";
                 } else {
-                    page.toast.show("Unable to process cart at this time, please try again later.", "danger")
+                    page.toast.show(result.error, "danger")
                     // cart.redirectToCart();
                 }
                 
@@ -495,6 +542,42 @@ var cart = {
             }
 
         })
+    },
+    cancelOrderAnimal:function(orderAnimalId){
+        page.loader.show()
+
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            orderanimalid:orderAnimalId
+        }
+
+        $.ajax({
+            url:"/cancel-order-animal",
+            data: payload,
+            dataType: 'json',
+            type: "POST",
+            success: function(result){
+                page.loader.hide();
+
+                if( result.code == 200 ){
+                    user.redirectToProfile();
+                } else {
+                    page.toast.show("Unable to process cancelletion at this time, please try again later.", "danger")
+                    // cart.redirectToCart();
+                }
+                
+            },
+            error:function(error){
+                page.loader.hide();
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
+                // alert("Something went wrong while while processing your cart, please try again.")
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
+    cancelOrder:function(){
+
     },
     updateNumber:function(count){
         // var currentNumber = $(".cart-icon-wrap .count").html();
@@ -511,5 +594,50 @@ var cart = {
             window.location = "/checkout"    
         }, 300);
         
+    }
+}
+
+var order = {
+    uploadReciept:function(form){
+        page.loader.show();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        // var payload = $("#add-category-form").serialize()
+        // console.log(payload);
+        var formData = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            url:"/upload-receipt",
+            dataType: "json",
+            success: function(result){
+                page.loader.hide();
+                if(result.code == 200){
+                    Swal.fire(
+                        '',
+                        'File successfully uploaded, we will notify you once your order has been confirmed',
+                        'success'
+                    )
+                    
+                    window.location = "/profile";
+                }
+                else {
+                    Swal.fire(
+                        '',
+                        'Something went wrong, please try again.',
+                        'error'
+                      )
+                }
+                
+            }
+        })
     }
 }

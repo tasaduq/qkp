@@ -481,7 +481,12 @@ COMMIT;
 ALTER TABLE `orders` ADD `payment_method` BOOLEAN NOT NULL DEFAULT FALSE AFTER `status`;
 
 
-ALTER TABLE `laravel`.`categories`   
-  ADD COLUMN `icon` VARCHAR(200) NULL AFTER `path`;
-
 ALTER TABLE `categories` ADD `icon` VARCHAR(220) NOT NULL AFTER `path`;
+ALTER TABLE `products` ADD `sold_out` BOOLEAN NOT NULL DEFAULT FALSE AFTER `featured`;
+ALTER TABLE `products` ADD `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `sold_out`, ADD `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
+
+
+ALTER TABLE `orders` ADD `upfront` INT NOT NULL DEFAULT '0' AFTER `status`;
+
+ALTER TABLE `orders` ADD `receipt` BLOB NULL DEFAULT NULL AFTER `payment_method`;
+ALTER TABLE `orders` CHANGE `receipt` `receipt` LONGTEXT NULL DEFAULT NULL;

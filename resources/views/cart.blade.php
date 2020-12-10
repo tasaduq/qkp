@@ -10,7 +10,7 @@
 
 <section class="cart-section">
     <div class="container">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb pt-0">
          <li class="breadcrumb-item"><a href="/">Home</a></li>
          <li class="breadcrumb-item"><a href="/mandi">Mandi</a></li>
          <li class="breadcrumb-item active">Cart</li>

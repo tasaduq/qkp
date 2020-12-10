@@ -76,7 +76,7 @@ class CartController extends Controller
 
         } else {
             $response = array(
-                "code" => 200,
+                "code" => 500,
                 "message" => ""
             );
         }
@@ -152,12 +152,16 @@ class CartController extends Controller
             $paymentMethod = 0;
         }
 
+        $total_upfront_payment = 0;
+
+        DB::beginTransaction();
 
         try {
-        $entry =  DB::transaction(function() use ($input, $paymentMethod)  {
+
+        // $entry =  DB::transaction(function() use ($input, $paymentMethod)  {
 
             $cart = $this->get_cart();
-            
+            // dump($cart);
             $user = Auth::user();
 
             User::where("id", $user->id)->update($input);
@@ -168,37 +172,58 @@ class CartController extends Controller
                 "status" => 0,
                 "payment_method" => $paymentMethod
             );
+            
             $insertedOrderId = Orders::insertGetId($order);
+            // dump($insertedOrderId);
+            session::put("order_id",$insertedOrderId);
+            
             // dd($insertedOrderId);
             // $order_products = array();
             foreach ($cart as $key => $item) {
                 // dump($item);
-
+                $installment = $item['installment'];
                 $product = Products::find($item['product']);
-                
+                // dump($product);
                 // TODO: Enable me
-                // if( !$product->sold_out ){
-
-                // }
+                if( $product->sold_out ){
+                    // continue;
+                    throw new \Exception($product->name." has been sold out");
+                    
+                    // maybe throw exception, and then catch it.
+                    // in cases when two people have added the same product to cart
+                }
 
                 // dump($product);
 
                 $calculatedShipping = $product->calculated_city_shipping($input["city"]);
-
+                // dump($calculatedShipping);
+                $total_upfront_payment += $calculatedShipping;
+                // dump($total_upfront_payment);
+                // dd("calculatedShipping");
                 $record = array(
                     "order_id" => $insertedOrderId,
                     "product_id" => $item['product'],
-                    "no_of_installments" => $item['installment'], 
+                    "no_of_installments" => $installment, 
                     "shipping" => $calculatedShipping
                 );
 
                 $orderedProductId = OrderProducts::insertGetId($record);
 
+                // $res = $product->mark_sold();
+
+                // dump($res);
+                
                 $OrderInstallments = array();
 
-                for($i = $item['installment']; $i > 2 ; $i--) { 
+                //create upfront insert with tax and shipping
+                $advance = $product->advance($installment);
+                // dump($advance);
+                $total_upfront_payment += $advance;
+                // dump($total_upfront_payment);
 
-                    $currentInstallmentPrice = $product->installment($i);
+                for($i = $installment; $i > 2 ; $i--) { 
+
+                    $currentInstallmentPrice = $product->installment($installment);
 
                     array_push($OrderInstallments, array(
                         "instalment_number" => $i,
@@ -206,30 +231,54 @@ class CartController extends Controller
                         "status" => 0,
                         "amount" => $currentInstallmentPrice,
                     ));
+
+                    // if($installment == $i){
+                        // dump($currentInstallmentPrice);
+                        // $total_upfront_payment +=  $currentInstallmentPrice;
+                        // dump($total_upfront_payment);
+                    // }
+
                 }
                 
                 OrderInstallments::insert($OrderInstallments);
                
             }
-        });
+        // });
 
         // return is_null($entry) ? true : $entry;
+        // 
+        $total_tax = ceil($total_upfront_payment*0.13);
+        $total_upfront_payment += $total_tax;
+        $total_upfront_payment = (int) ceil($total_upfront_payment);
         
+
         $this->clear_cart();
-
-
+        // dd($total_upfront_payment);
+        Orders::find($insertedOrderId)->update(["upfront"=>$total_upfront_payment]);
+        // session::flash("order_first_payment",$total_upfront_payment);
+        // dd(session::all());
+        DB::commit();
+        
         $result = array(
             "code"=> 200, 
             "result"=>"true", 
+            "total_upfront_payment" => $total_upfront_payment
             // "url"=> $redirectTo 
         );
 
-
+        } catch(\Exception $e) {
+            DB::rollback();
+            $result = array(
+                "code"=> 501, 
+                "result"=> "false", 
+                "error"=> $e->getMessage(),
+            );
         } catch(Exception $e) {
+            DB::rollback();
             $result = array(
                 "code"=> 500, 
                 "result"=> "false", 
-                "error"=> "Something is not right, please try again."
+                "error"=> "Unable to process cart at this time, please try again later."
             );
         }
         
