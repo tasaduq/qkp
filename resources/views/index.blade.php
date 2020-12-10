@@ -20,11 +20,18 @@
             <div class="col-md-12">
                <h2 class="text-black search-title">Search</h2>
                {{-- <p class="text-black">Search for the finest animals on Shariah compliant installments</p> --}}
+               <form action="{{ route('search') }}" id="product_search_form" method="GET">
+               
+                @csrf 
+                
                <div class="button-group row">
-                <?php
+                
+               <?php
                 foreach ($categories as $category) { ?> 
                   <div class="col-sm-3">
-                  <button type="button" class="category_method_active btn rounded-pill btn-outline-primary btnactive" selected_category="{{ $category->category_id }}"><span>
+                  <input type="hidden" name="category" value="{{ $category->category_id }}">    
+                  <button type="button" class="category_method_active btn rounded-pill btn-outline-primary btnactive" selected_category="{{ $category->category_id }}">
+                     <span>
                            <i class="{{ $category->icon }}"></i>
                      </span>{{ $category->category_name }}</button>
                   </div>
@@ -88,7 +95,7 @@
                   <div class="col-sm-5">
                      <div class="select-container mb-2">
                         <span>Color</span>
-                        <select class="form-control" id="product_color" class="product_c" data-toggle="dropdown">
+                        <select class="form-control" name="product_color"  id="product_color" class="product_c" data-toggle="dropdown">
                             <?php  foreach($productcolor as $product){ ?>
                            <option value="{{ $product->color }}">{{ $product->color }}</option>
                           <?php   }  ?>     
@@ -96,9 +103,11 @@
                      </div>
                   </div>
                   <div class="col-sm-1">
-                     <a href="javascript:void(0)" type="submit" class="search" id="search_category_btn"><i class="icon-qkp-search-c"></i></a>
-                  </div>
+                     {{-- <a href="javascript:void(0)" type="submit" class="search" id="search_category_btn"></a> --}}
+                     <button id="send" type="submit" class="search"><i class="icon-qkp-search-c"></i></button>
+                    </div>
                </div>
+            </form>
             </div>
          </div>
       </div>

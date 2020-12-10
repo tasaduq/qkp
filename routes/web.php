@@ -176,4 +176,5 @@ Route::post("add-contact", "ContactusController@add_contact");
 Route::get('login/facebook', [CustomLoginController::class, 'redirectToProvider']);
 Route::get('login/facebook/callback', [CustomLoginController::class, 'handleProviderCallback']);
 
-Route::post("getCategorydetails", "ProductsController@getcategorydetails");
+Route::get("/productssearch", "ProductsController@productssearch");
+Route::get('search', ['as' => 'search', 'uses' => 'ProductsController@productssearch']);

@@ -121,9 +121,12 @@ class ProductsController extends Controller
         return redirect()->route('products')->with('success','Product Deleted Successfully...');
     }
 
-    public function getcategorydetails(Request $request){
+    public function productssearch(Request $request){
         
-        die('Testing');
+        $category = $request->category;
+        $weight  = $request->weight;
+        $product_color = $request->product_color;
+
         
     }
     
