@@ -87,7 +87,7 @@ class CustomLoginController extends Controller
             $maildata = [
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
-                'url' => config('app.url').'verifyuser/'.$verification_hash
+                'url' => config('app.url').'verifyuser?c='.$verification_hash
             ];  
 
             Mail::to($request->get('email'))->send(new RegisterVerification($maildata));
@@ -105,8 +105,8 @@ class CustomLoginController extends Controller
 
         return Response::json($result);
     }
-    public function verifyuser($verifyhash, Request $request){
-        
+    public function verifyuser(Request $request){
+        $verifyhash = $request->get('c');
         $user = User::where([
             'verification_hash' => $verifyhash
         ])->first();
