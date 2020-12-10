@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 checkout-right-section">
                <h2>Checkout</h2>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+               {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p> --}}
                   
                <div class="row payment-method-section mt-4">
                   <div class="col-sm-6">
@@ -93,7 +93,7 @@
                </div>
 
                <div class="billing py-5">
-                  <h3 class="pb-3">Billing/Shipping Details</h3>
+                  <h3 class="pb-3">Billing/Delivery Details</h3>
                   <p>Your personal data will be used to process your order, support your experience throughout this website,
                      and for other purposes described in our privacy policy.
                      </p>

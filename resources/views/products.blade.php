@@ -64,7 +64,7 @@
                 <div class="col-sm-9 right-section">
                     <h2>{{$category->category_name}}</h2>
                     
-                    <p><strong>179,835 </strong>Animals Stocks are available</p>
+                    <p><strong>{{$category->totalCount()}} </strong>Animals Stocks are available</p>
                     <div class="row justify-content-center">
 
                             

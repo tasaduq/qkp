@@ -1085,7 +1085,7 @@ section.footer-section {
 	font-weight: bold;
 	font-family: 'Poppins-Bold';
 	display: inline-block;
-	width: 75px;
+	width: 175px;
 	color:#270037;
 }
 
@@ -1105,13 +1105,13 @@ section.footer-section {
 	box-shadow: 0px 0px 5px 1px rgb(130 128 130 / 17%);
 }
 
-.right-section .details .actual-price, .advance {
-	border-bottom: 1px solid #eae2ec;
+.right-section .details .actual-price, .advance, .EMI {
+	border-top: 1px solid #eae2ec;
 }
 
-.actual-price, .advance {
-	padding-bottom: 15px;
-	margin-bottom: 15px
+.actual-price, .advance, .EMI {
+	padding-top: 15px;
+	margin-top: 15px
 }
 
 .right-section .details .actual-price p, .advance p, .EMI p {
@@ -1948,3 +1948,37 @@ input[type='range']::-webkit-slider-runnable-track {
 	position:absolute;
 	left:15px;
 } */
+
+.products-details-section .order-type a{
+	padding: 10px 10px;
+    background: #fff;
+    margin-bottom: 14px;
+    color: #340040;
+    border-radius: 0;
+}
+.products-details-section .order-type a:hover, .products-details-section .order-type a.active{
+	background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 56, 1) 47%, rgba(28, 0, 48, 1) 96%);
+	color:#fff;
+}
+
+
+.cart-icon-wrap{position: relative;}
+.icon-qkp-shopping-cart{ font-size:30px; color:#f0d36d!important;}
+.count{
+	position: absolute;
+    display: inline-block;
+    top: -10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 30px;
+    color: #290038;
+    background: #fff;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    right: -8px;
+    border: 2px solid #290038;
+}
+
+tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 56, 1) 47%, rgba(28, 0, 48, 1) 96%); color:#fff;}

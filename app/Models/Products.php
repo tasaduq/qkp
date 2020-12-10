@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\CartController;
 use Session;
 
 class Products extends Model
@@ -55,6 +56,10 @@ class Products extends Model
             $shipping = 7000;
         }
         return $shipping;
+    }
+    public function check_in_cart(){
+        $cart = new CartController();
+        return $cart->check_in_cart($this->product_id);
     }
     
     // public function installment()

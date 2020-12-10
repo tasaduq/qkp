@@ -238,15 +238,44 @@ $(document).ready(function(){
     });
 
     $(".add-to-cart-btn").on("click", function(){
+        var redirect = $(this).attr("redirect");
         var installment = $("#product-emi-price-dropdown option:selected").val()
-        cart.addProduct( $(this).attr("product"), installment )
+        if( $(".payment-schedule.active").attr("type") == "full" ){
+            installment = 0;
+        }
+        cart.addProduct( $(this).attr("product"), installment, redirect, function(){
+            // $(".add-to-cart-btn").remove();
+            // show added to cart div
+            $(".cart-buttons").html('<div clas="alreadyadded">Animal added to your cart</div>')
+            
+        })
         
     })
 
-    $(".payment-method ").on("click", function(){
-        $(".payment-method ").removeClass("selected");
+    $(".remove-from-cart-btn").on("click", function(){
+        var productid = $(this).attr("productid")
+        cart.removeProduct( productid )
+    })
+
+    
+
+    $(".payment-method").on("click", function(){
+        $(".payment-method").removeClass("selected");
         $(this).addClass("selected");
-        $("#payment-method").val($(this).attr(" "));        
+        $("#payment-method").val($(this).attr("payment-method"));
+    });
+
+    $(".payment-schedule").on("click", function(e){
+        e.preventDefault();
+        $(".payment-schedule").removeClass("active");
+        $(this).addClass("active");
+        if( $(this).attr("type") == "full" ){
+            $(".full-payment-schedule").show();
+            $(".instalment-payment-schedule").hide();
+        } else {
+            $(".full-payment-schedule").hide();
+            $(".instalment-payment-schedule").show();
+        }
     })
 
 
@@ -281,6 +310,7 @@ $(document).ready(function(){
         $(".category_method_active").removeClass('active');
         $(this).addClass('active');
     });
+    
     
 
 });
@@ -337,17 +367,17 @@ var cart = {
             type: "POST",
             success: function(result){
                 $(".cart-update-hook").html(result)
-                page.toast.show("Shipping charges updated.", "success")
+                page.toast.show("Delivery Fee updated.", "success")
             },
             error:function(error){
-                page.toast.show("Something went wrong while adding this product, please try again", "success")
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
                 // alert()
                 console.log("error",error)                // responseJSON
             }
 
         })
     },
-    addProduct:function(productid, installment){
+    addProduct:function(productid, installment, redirect, callback){
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),
             productid:productid,
@@ -362,13 +392,47 @@ var cart = {
                 if( result.code == 100 ){
                     user.showLogin();
                 } else {
-                    page.toast.show("Product added to cart.", "success")
-                    cart.redirectToCart();
+                    page.toast.show("Product added to cart.", "success");
+                    if(redirect == "yes"){
+                        cart.redirectToCart();
+                    }else {
+                        cart.updateNumber(result.cart_count);
+                        if(callback != undefined){
+                            callback();
+                        }
+                    }
                 }
                 console.log("success",result)
             },
             error:function(error){
-                page.toast.show("Something went wrong while adding this product, please try again", "success")
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
+                // alert()
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
+    removeProduct:function(productid){
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            productid:productid
+        }
+        $.ajax({
+            url:"/cart/remove-from-cart",
+            data: payload,
+            dataType: 'json',
+            type: "POST",
+            success: function(result){
+                if( result.code == 200 ){
+                    page.toast.show("Product removed from cart.", "success")
+                    location.reload();
+                } else {
+                    page.toast.show(result.message, "danger")
+                }
+                console.log("success",result)
+            },
+            error:function(error){
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
                 // alert()
                 console.log("error",error)                // responseJSON
             }
@@ -405,6 +469,10 @@ var cart = {
             }
 
         })
+    },
+    updateNumber:function(count){
+        // var currentNumber = $(".cart-icon-wrap .count").html();
+        $(".cart-icon-wrap .count").html(count);
     },
     redirectToCart:function(){
         setTimeout(() => {

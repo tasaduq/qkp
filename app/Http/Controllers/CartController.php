@@ -61,8 +61,9 @@ class CartController extends Controller
 
         $response = array(
             "code" => 200,
-            "message" => "Item added to cart"
+            "message" => "Item added to cart"    
         );
+        
         
         $item = array(
             "product" => $productid,
@@ -89,7 +90,7 @@ class CartController extends Controller
             );
         }
         */
-
+        $response["cart_count"] = $this->get_cart_count();
         return Response::json($response);
     }
     public function shipping_cart_update(Request $request){
@@ -106,6 +107,29 @@ class CartController extends Controller
         }
 
         return view('sections.cart-right-section')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);//->with("user",$user);
+    }
+    public function remove_from_cart(Request $request){
+        
+        $request->validate([
+            "productid" => "required|integer",
+        ]);
+        $productid = $request->get("productid");
+        
+        $response = array(
+            "code" => 200,
+            "message" => "Item removed from cart"
+        );
+        // dd($this->remove_item($productid));
+
+        if( $this->remove_item($productid) ) {
+
+        } else {
+            $response = array(
+                "code" => 200,
+                "message" => "Failed to remove item from cart"
+            );
+        }
+        return Response::json($response);
     }
     public function process_checkout(Request $request){
         
@@ -152,6 +176,11 @@ class CartController extends Controller
 
                 $product = Products::find($item['product']);
                 
+                // TODO: Enable me
+                // if( !$product->sold_out ){
+
+                // }
+
                 // dump($product);
 
                 $calculatedShipping = $product->calculated_city_shipping($input["city"]);
@@ -215,9 +244,19 @@ class CartController extends Controller
         return Session::has("cart") ? json_decode(Session::get("cart"), TRUE) : array();
     }
     private function update_cart($cart){
-        return Session::put("cart", json_encode($cart));
+        Session::put("cart", json_encode($cart));
+        return 1;
     }
     private function remove_item($item){
+        
+        $cart = $this->get_cart();
+
+        unset($cart[$item]);
+
+        if($this->update_cart($cart)){
+            return 1;
+        }
+        return 0;
         
     }
     private function add_item($item){
@@ -234,5 +273,16 @@ class CartController extends Controller
         // else {
             // return 0;
         // }
+    }
+    public function get_cart_count(){
+        $cart = $this->get_cart();
+        return count($cart);
+    }
+    public function check_in_cart($productid){
+        $cart = $this->get_cart();
+        if( isset($cart[$productid]) ){
+            return true;
+        }
+        return false;
     }
 }

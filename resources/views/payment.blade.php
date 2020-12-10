@@ -11,8 +11,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 checkout-right-section">
-               <h2>Checkout</h2>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+               <h2>Thank You John!</h2>
+               <p>Your Order has been recieved with <Strong>order#123</a></p>
                   
                
                
