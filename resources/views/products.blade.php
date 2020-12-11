@@ -23,7 +23,32 @@
     
                         <div class="price-range">
                             <h6 class="pb-3 title">Price Range</h6>
-                            <input class="w-100" type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                            {{-- <input class="w-100" type="range" min="1" max="100" value="50" class="slider" id="myRange"> --}}
+                             
+                            <div class="filter-section">
+                                {{-- <div class="h5">По цене</div> --}}
+                                <div class="slider-wrapper">
+                                  <div id="slider" class="store-slider"></div>
+                                </div>
+                                <div class="row filter-row">
+                                  <div class="col-6">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend">
+                                        {{-- <div class="input-group-text">от</div> --}}
+                                      </div>
+                                      <input type="hidden" class="form-control price-input" id="price_from">
+                                    </div>
+                                  </div>
+                                  <div class="col-6">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend">
+                                        {{-- <div class="input-group-text">до</div> --}}
+                                      </div>
+                                      <input type="hidden" class="form-control price-input" id="price_to">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                         </div>
     
                         <div class="by-weight">

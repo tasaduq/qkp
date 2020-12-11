@@ -23,7 +23,7 @@
                     <h2>Order Installments Schedule</h2>
                     <p><strong>03 </strong>Animal in Your List</p>
 
-                    @foreach ($orders as $order)
+                    @forelse ($orders as $order)
                         
 
                       #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->status ? "Completed" : "Pending" }}  - {{ date_format($order->created_at,"d-m-Y") }} 
@@ -91,9 +91,10 @@
                       </div>
                       </div>
                       @endforeach
-                    
-                   @endforeach
-
+                         
+                      @empty
+                      You have not yet placed any orders.
+                      @endforelse
                    </div>
                 </div>
             </div>

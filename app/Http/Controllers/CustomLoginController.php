@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Rules\Password;
 use App\Models\User;
@@ -47,9 +48,11 @@ class CustomLoginController extends Controller
                 );
             }
             else{
+                Auth::logout();
+
                 $result = array(
                     "result"=>"false", 
-                    "error"=>"User and password did not match"
+                    "error"=>"Please verify your email"
                 );    
             }
         }
@@ -77,7 +80,7 @@ class CustomLoginController extends Controller
         $result = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'verified' => 1, //FIXME
+            'verified' => 0, 
             'password' => Hash::make($request->get('password')),
             'verification_hash' => $verification_hash
         ]);
@@ -87,10 +90,10 @@ class CustomLoginController extends Controller
             $maildata = [
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
-                'url' => config('app.url').'verifyuser/'.$verification_hash
+                'url' => config('app.url').'verifyuser?c='.$verification_hash
             ];  
 
-            // Mail::to($request->get('email'))->send(new RegisterVerification($maildata));
+            Mail::to($request->get('email'))->send(new RegisterVerification($maildata));
 
             $result = array(
                 "result"=>"true",  
@@ -105,8 +108,8 @@ class CustomLoginController extends Controller
 
         return Response::json($result);
     }
-    public function verifyuser($verifyhash, Request $request){
-        
+    public function verifyuser(Request $request){
+        $verifyhash = $request->get('c');
         $user = User::where([
             'verification_hash' => $verifyhash
         ])->first();
@@ -126,5 +129,28 @@ class CustomLoginController extends Controller
         }
 
         return view('verifyuser')->with('status',$status);
+    }
+
+    /**
+     * Redirect the user to the Facebook authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Facebook.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+         $user->name;
     }
 }

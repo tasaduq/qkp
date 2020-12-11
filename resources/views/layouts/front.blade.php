@@ -13,6 +13,11 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('/css/jquery.fancybox.min.css')}}">
+        {{-- <link rel="stylesheet" href="sweetalert2.min.css"> --}}
+        {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
+
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
         <title>Qurbani</title>
 
       
@@ -97,7 +102,10 @@
                     </div>
                     <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                     <div class="row social">
-                        <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
+                        <div class="col-sm-6 px-1">
+                        {{-- <a id="fb-login-btn" href="{{url('/login/facebook')}}" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i></a> --}}
+                             <button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button>
+                        </div>
                         <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
                     </div>
                
@@ -157,7 +165,10 @@
                 </div>
                 <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                 <div class="row social">
-                  <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button></div>
+                {{-- <a id="fb-login-btn" href="{{url('/login/facebook')}}" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i></a>     --}}
+                <div class="col-sm-6 px-1"><button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button> 
+                
+                </div>
                   <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
                </div>
         
@@ -258,8 +269,22 @@
       <script src="{{asset('/js/bootstrap.min.js')}}"></script>
       <script src="{{asset('/js/slick.js')}}"></script>
       <script src="{{asset('/js/jquery-validator.js')}}"></script> 
-      <script src="{{asset('/js/app.js')}}"></script> 
       <script src="{{asset('/js/jquery.fancybox.min.js')}}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      
+
+      
+  {{-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@2.3.0/dist/tippy.all.min.js"></script>
+
+
+      <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+      <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+      <script src="{{asset('/js/app.js')}}"></script> 
+      
       <script>
          
          @if(!Auth::user())

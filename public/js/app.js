@@ -93,7 +93,17 @@ $(document).ready(function(){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#login-error").hide();
-                    alert("Your account has been created, please login");
+
+                    Swal.fire(
+                        '',
+                        'A verification email has been sent to you, please check your email and verify.',
+                        'success'
+                      )
+
+
+                    // alert("");
+                    //hide registeration popup
+                    user.toggleRegistration();
                     // window.location = "/profile"
                 }
                 else {
@@ -289,6 +299,292 @@ $(document).ready(function(){
     })
 
     
+    $("#home_search_form").on("submit", function(e){
+        e.preventDefault();
+
+        var selected_category =  $('.category_method_active.active').attr('selected_category'); 
+        var product_color = $('#product_color option:selected').val();
+        var weight_ci = $('#weight_ci option:selected').val();
+        var price_from_to = $('#price_from').val()+"-"+$('#price_to').val();
+    
+        if(selected_category == undefined){
+            alert('Please select a category');
+            return false;
+        } else if (0) {
+
+        }
+
+        window.location = '/products?c='+selected_category+'&co='+product_color+'&w='+weight_ci+'&p='+price_from_to;
+
+        console.log(selected_category, product_color, weight_ci)
+
+    });
+
+    // SLIDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+
+    console.clear();
+
+var currentValue = {
+  from: 35,
+  to: 55
+}
+
+var slider = $('#slider').slider({
+	range: true,
+    min: 35,
+    max: 300,
+	values: [ currentValue.from, currentValue.to ],
+	create: function(event, ui) {		
+		var $slider = $(this);
+    var $sliderWrapper = $slider.closest('.store-slider-wrapper');
+    var $sliderHandlers = $slider.find('.ui-slider-handle');
+    var $sliderHandlersMin = $sliderHandlers.eq(0);
+    var $sliderHandlersMax = $sliderHandlers.eq(1);
+    var $sliderRange = $slider.find('.ui-slider-range');
+    var values = {
+      from: currentValue.from,
+      to: currentValue.to
+    }
+    
+    $sliderHandlersMin.attr('title', '' + values.from + 'K');
+    $sliderHandlersMax.attr('title', '' + values.to + 'K');
+    $sliderRange
+      .attr('title', values.from + 'K - ' + values.to + 'K')
+      .attr('data-tippy-distance', 15);;
+    
+    var tippyOptions = {
+      trigger: 'manual',
+      sticky: true,
+      dynamicTitle: true,
+      hideOnClick: false,
+      arrow: true,
+      arrowType: 'round',
+      animation: 'fade',
+      placement: 'top',
+      livePlacement: false,
+      flipBehavior: [],
+      createPopperInstanceOnInit: true,
+      appendTo: $(this).closest('.filter-section')[0],
+      popperOptions: {
+         modifiers: {
+            // preventOverflow: {
+            //     boundariesElement: $(this).closest('.filter-section')[0],
+            // }
+           computeStyle: {
+             gpuAcceleration: true
+           }
+        },
+      }
+    };
+    
+    tippy($sliderHandlersMin[0], tippyOptions);
+    tippy($sliderHandlersMax[0], tippyOptions);
+    tippy($sliderRange[0], tippyOptions);
+    
+    updateSliderTooltip($slider, values);
+  },
+  slide: function(event, ui) {
+    var $slider = $(this);
+    var $sliderWrapper = $slider.closest('.store-slider-wrapper'); 
+    var values = {
+      from: ui.values[0],
+      to: ui.values[1]
+    }
+    
+    updateSliderTooltip($slider, values, true);
+  }
+});
+
+function updateSliderTooltip($slider, values, updateInput) {
+  if (typeof updateInput === "undefined")
+    var updateInput = true;
+  
+  var $sliderWrapper = $slider.closest('.store-slider-wrapper');
+  var $sliderHandlers = $slider.find('.ui-slider-handle');
+  var $sliderHandlersMin = $sliderHandlers.eq(0);
+  var $sliderHandlersMax = $sliderHandlers.eq(1);
+  var $sliderRange = $slider.find('.ui-slider-range');
+  
+  $sliderHandlersMin.attr('title', '' + values.from + 'K');
+  $sliderHandlersMax.attr('title', '' + values.to + 'K');
+  $sliderRange.attr('title', 'from ' + values.from + 'K to ' + values.to + 'K');
+
+  if (updateInput) {
+    $('#price_from').val(values.from);
+    $('#price_to').val(values.to);
+  }
+  
+  setInterval(function() {
+    var tooltipMinLeft = getCoords($sliderHandlersMin[0]).left;
+    var tooltipMaxLeft = getCoords($sliderHandlersMax[0]).left;
+
+    var tooltipRange = tooltipMaxLeft - tooltipMinLeft;
+    var singleTooltip = tooltipRange < 80;
+
+    if (!singleTooltip) {
+      if (!$sliderHandlersMin[0]._tippy.state.visible)
+        $sliderHandlersMin[0]._tippy.show(0);
+      if (!$sliderHandlersMax[0]._tippy.state.visible)
+        $sliderHandlersMax[0]._tippy.show(0);
+      if ($sliderRange[0]._tippy.state.visible)
+        $sliderRange[0]._tippy.hide(0);
+    } else {
+      if ($sliderHandlersMin[0]._tippy.state.visible)
+        $sliderHandlersMin[0]._tippy.hide(0);
+      if ($sliderHandlersMax[0]._tippy.state.visible)
+        $sliderHandlersMax[0]._tippy.hide(0);
+      if (!$sliderRange[0]._tippy.state.visible)
+        $sliderRange[0]._tippy.show(0);
+    }
+  }, 1);
+}
+
+function updateValues() {
+  var from = $('#price_from').val();
+  var to = $('#price_to').val();
+  
+  updateSliderTooltip(slider, {
+    from: from,
+    to: to
+  }, false);
+  
+  slider.slider({
+    values: [ from, to ]
+  });
+}
+
+$('#price_from').on('blur', function() {
+  $(this).val($(this).val().replace(/[^0-9]/i, ''));
+  
+  if(+$(this).val() > +$('#price_to').val()) {
+    $(this).val($('#price_to').val())
+  }
+  
+  updateValues();
+});
+
+$('#price_to').on('blur', function() {
+  $(this).val($(this).val().replace(/[^0-9]/gi, ''));
+  
+  if(+$(this).val() < +$('#price_from').val()) {
+    $(this).val($('#price_from').val())
+  }
+  
+  updateValues();
+});
+
+function getCoords(elem) {
+	var box = elem.getBoundingClientRect();
+
+	var body = document.body;
+	var docEl = document.documentElement;
+
+	var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+	var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+	var clientTop = docEl.clientTop || body.clientTop || 0;
+	var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+	var top  = box.top +  scrollTop - clientTop;
+	var left = box.left + scrollLeft - clientLeft;
+
+	return { top: Math.round(top), left: Math.round(left) };
+}
+
+        // $( "#slider-range" ).slider({
+        //   range: true,
+        //   min: 35000,
+        //   max: 300000,
+        //   values: [ 35000, 55000 ],
+        //   slide: function( event, ui ) {
+        //     $( "#amount" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        //   }
+        // });
+        // $( "#amount" ).val( "" + $( "#slider-range" ).slider( "values", 0 ) +
+        //   " - " + $( "#slider-range" ).slider( "values", 1 ) );
+      
+
+    /////////////////////////////////////////////////////////////////////
+    
+    $("#upload-reciept-form").on("submit", function(e){
+        e.preventDefault();
+
+        if( $("#upload-reciept-form [name=receipt]").val() !== "" ){
+            order.uploadReciept(this);
+        } else {
+            Swal.fire(
+                '',
+                'Please select file first',
+                'error'
+              )
+
+        }
+    });
+
+    // $("#search_category_btn").on("click",function(){
+       
+    //     var selected_category =  $('.category_method_active.active').attr('selected_category'); 
+    //     var product_color = $('#product_color option:selected').val();
+    //     var weight_ci = $('#weight_ci option:selected').val();
+    //     if(typeof selected_category == 'undefined'){
+    //         alert('No Category Selected');
+    //     }
+
+    //     $.ajax({
+    //         url:"/getCategorydetails",
+    //         data: {selected_category:selected_category},
+    //         type: "POST",
+    //         success: function(result){
+    //             if(result.result == "true"){
+    //                console.log(result);
+    //             }
+    //             else {
+    //                 console.log(result);
+                    
+    //             }
+                
+    //         }
+    //     })
+        
+    // });
+
+
+    // $("#search_category_btn").on("click",function(){
+        
+    //     var payload = $("#product_search_form").serialize()
+    //     console.log(payload);
+    //     $.ajax({
+    //         url:"/add-product",
+    //         data: payload,
+    //         type: "GET",
+    //         success: function(result){
+    //             login.loader.show();
+    //             if(result.result == "true"){
+    //                 $("#login-error").hide();
+    //                 window.location = "/admin/products";
+    //             }
+    //             else {
+    //                 login.loader.hide();
+    //                 $("#login-error").show();
+    //                 $("#login-error").html(result.error);
+    //             }
+                
+    //         }
+    //     })
+        
+    // })
+
+    $(".category_method_active").on("click",function(){
+        $(".category_method_active").removeClass('active');
+        $(this).addClass('active');
+    });
+        // if()
+        
+        // $(".payment-method").removeClass("selected");
+        // $(this).addClass("selected");
+        // $("#payment-method").val($(this).attr("payment-method"));
+    // });
+    
     
     
 
@@ -322,6 +618,12 @@ var user = {
     // isLoggedIn:false,
     showLogin:function(){
         $("#login-modal").modal("toggle")
+        // $("modal-backdrop").removeClass("show");
+    }, 
+    toggleRegistration:function(){
+        $("#register-modal").modal("toggle");
+        $(".modal-backdrop").remove();
+        $("body").removeClass("modal-open");
     }, 
     setLoggedIn:function(status){
         return localStorage.setItem("isLogin", status)
@@ -433,9 +735,10 @@ var cart = {
                 page.loader.hide();
 
                 if( result.code == 200 ){
-                    user.redirectToProfile();
+                    // user.redirectToProfile();
+                    window.location = "/payment";
                 } else {
-                    page.toast.show("Unable to process cart at this time, please try again later.", "danger")
+                    page.toast.show(result.error, "danger")
                     // cart.redirectToCart();
                 }
                 
@@ -500,5 +803,50 @@ var cart = {
             window.location = "/checkout"    
         }, 300);
         
+    }
+}
+
+var order = {
+    uploadReciept:function(form){
+        page.loader.show();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        // var payload = $("#add-category-form").serialize()
+        // console.log(payload);
+        var formData = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            url:"/upload-receipt",
+            dataType: "json",
+            success: function(result){
+                page.loader.hide();
+                if(result.code == 200){
+                    Swal.fire(
+                        '',
+                        'File successfully uploaded, we will notify you once your order has been confirmed',
+                        'success'
+                    )
+                    
+                    window.location = "/profile";
+                }
+                else {
+                    Swal.fire(
+                        '',
+                        'Something went wrong, please try again.',
+                        'error'
+                      )
+                }
+                
+            }
+        })
     }
 }

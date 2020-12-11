@@ -4,54 +4,83 @@
      
     <!-- Checkout section -->
 
-
-
-
 <section class="checkout-section">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 checkout-right-section">
-               <h2>Thank You John!</h2>
-               <p>We have received your order. Your order will be confirmed once our rider picks up the payment</p>
-               
-               <div class="alert alert-secondary d-inline-block" role="alert">
-                  <h3>Bank Details</h3>
-                  <p class="mt-4"><label><strong>Bank :</strong></label> Bank AL Habib</p>
-                  <p><label><strong>Account Title :</strong></label> John</p>
-                  <p class="mb-0"><label><strong>Account Number :</strong></label> 1254 0081 01318501 5</p>
-                </div>
-               <p>Make your payment directly into our bank. Your order will not be confirmed until the fund have cleared in our Account.</p>   
-               <p>Please upload your payment receipt here, and your payment is traked from your order ID </p>
-               <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                     <form class="pt-3">
-                        <div class="form-row mb-4 justify-content-between">
-                           <div class="form-group col-md-6 pr-3">
-                              <label for="name">Name:</label>
-                              <input type="text" class="form-control" id="name">
-                           </div>
-                           <div class="form-group col-md-6">
-                              <label for="email">Email Addrress:</label>
-                              <input type="email" class="form-control" id="email">
-                           </div>
-                        </div>
-                        <div class="form-row mb-4 justify-content-between">
-                           <div class="form-group col-md-6 pr-3">
-                              <label for="city">Order ID:</label>
-                              <input type="text" class="form-control" id="order">
-                           </div>
-                           <div class="form-group col-md-6">
-                              <label for="subject">Upload Payment Reciept:</label>
-                           <input type="text" class="form-control">
-                           <label class="upload_img default-btn position-absolute"> Browser
-                              <input type="file">
-                           </label>
-                           </div>
-                        </div>
-                        <button class="btn default-btn float-right mb-4" type="submit">Submit</button>
-                     </form>
-               </div>
-               
 
+               @if($order)
+
+                  <h2>Thank You {{$user->name}}!</h2>
+                  <br>
+                  <p>You have successfully placed your order. Your total upfront amount payable is  <strong>Rs.{{number_format($order->upfront)}}/-</strong></p>
+                  {{-- <p>We have received your order. Your order will be confirmed once our rider picks up the payment</p> --}}
+                  {{-- <h2></h2> --}}
+
+                  @if($order->payment_method)
+                  {{-- Bank Order --}}
+                     <p> You are required to pay the upfront amount in the following account.</p>
+
+                     <div class="alert alert-secondary d-inline-block" role="alert">
+                        <h3>Bank Details</h3>
+                        <p class="mt-4"><label><strong>Bank :</strong></label> BANK NAME</p>
+                        <p><label><strong>Account Title :</strong></label> QKP PVT LMT</p>
+                        <p class="mb-0"><label><strong>Account Number :</strong></label> 1254 0081 01318501 5</p>
+                     </div>
+                     
+                     <p> Once you have made the deposit/transfer you are to submit a picture/screenshot as proof of the payment.</p>
+                     <p> Please note, your order will be confirmed, once the amount is reflected in our account.</p>
+                     
+                     <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <form id="upload-reciept-form" class="pt-3">
+                           @csrf
+                           {{-- <div class="form-row mb-4 justify-content-between">
+                              <div class="form-group col-md-6 pr-3">
+                                 <label for="name">Name:</label>
+                                 <input type="text" class="form-control" id="name">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label for="email">Email Addrress:</label>
+                                 <input type="email" class="form-control" id="email">
+                              </div>
+                           </div> --}}
+                           <div class="form-row mb-4 justify-content-between">
+                              {{-- <div class="form-group col-md-6 pr-3">
+                                 <label for="city">Order ID:</label>
+                                 <input type="text" class="form-control" id="order">
+                              </div> --}}
+                              <div class="form-group col-md-6">
+                                 <label for="subject">Upload Payment Reciept:</label>
+                              <input type="text" class="form-control">
+                              <label class="upload_img default-btn position-absolute"> Browse
+                                 <input type="file" name="receipt">
+                              </label>
+                              </div>
+                           </div>
+                           <button class="btn default-btn float-right mb-4" id="upload-reciept-submit" type="submit">Submit</button>
+                        </form>
+                  </div>
+
+
+
+                  @else
+                  {{-- Cash order --}}
+                     <p> One of our riders will contact you within the next 24 hours, to collect the mentioned upfront payment.</p>
+                     <p> Please note, your order will be confirmed, once the payment has been received.</p>
+                     
+
+                  @endif
+                  
+                  
+
+               @else
+
+                  <h2>Couldn't Find the order</h2>
+                  <p>Something does not seem to be right, are you sure you are viewing the correct order?</p>
+                  
+
+               @endif
+               
                
 
             </div>
