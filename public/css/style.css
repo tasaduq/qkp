@@ -528,6 +528,7 @@ a:hover {
 .range-slider {
 	position: relative;
 	padding-bottom: 15px;
+	margin-top: -35px;
 }
 
 .range-slider i {
@@ -2000,7 +2001,7 @@ tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 5
   }
   
   .filter-section {
-	  padding: 20px;
+	  /* padding: 20px; */
   }
   
   .filter-section + .filter-section {
