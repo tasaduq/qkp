@@ -14,8 +14,9 @@
         <link rel="stylesheet" href="{{asset('/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('/css/jquery.fancybox.min.css')}}">
         {{-- <link rel="stylesheet" href="sweetalert2.min.css"> --}}
-        
+        {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
 
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 
         <title>Qurbani</title>
 
@@ -271,6 +272,14 @@
       <script src="{{asset('/js/jquery.fancybox.min.js')}}"></script>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
       
+
+      
+  {{-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@2.3.0/dist/tippy.all.min.js"></script>
+
+
       <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
       <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 

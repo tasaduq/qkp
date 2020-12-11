@@ -20,9 +20,9 @@
             <div class="col-md-12">
                <h2 class="text-black search-title">Search</h2>
                {{-- <p class="text-black">Search for the finest animals on Shariah compliant installments</p> --}}
-               <form action="{{ route('search') }}" id="product_search_form" method="GET">
+               <form action="{{ route('search') }}" id="home_search_form" method="GET">
                
-                @csrf 
+                {{-- @csrf  --}}
                 
                <div class="button-group row">
                 
@@ -58,7 +58,42 @@
                      <div class="range-slider">
                         <div class="slidecontainer my-2">
                            <i class="icon-qkp-bull range-before-img"></i>
-                           <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                           {{-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> --}}
+                           {{-- <p>
+                              <label for="amount">Price range:</label>
+                              <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            </p>
+                             
+                            <div id="slider-range"></div> --}}
+
+                            {{-- <div id="slider" class="store-slider"></div> --}}
+                            
+                            <div class="filter-section">
+                              {{-- <div class="h5">По цене</div> --}}
+                              <div class="slider-wrapper">
+                                <div id="slider" class="store-slider"></div>
+                              </div>
+                              <div class="row filter-row">
+                                <div class="col-6">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      {{-- <div class="input-group-text">от</div> --}}
+                                    </div>
+                                    <input type="hidden" class="form-control price-input" id="price_from">
+                                  </div>
+                                </div>
+                                <div class="col-6">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      {{-- <div class="input-group-text">до</div> --}}
+                                    </div>
+                                    <input type="hidden" class="form-control price-input" id="price_to">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            
                            <i class="icon-qkp-bull range-after-img"></i>
                         </div>
 
@@ -77,14 +112,15 @@
                             // {
                             // $total=$num*$i;
                             // $secondvlaue = $total+$total;
-                            $data = array('10,20', '30,40', '50,60', '70,80', '90,100', '110,120', '130,140', '1150,160', '170,180', '190,200', '210,220', '230,240', '250,260', '270,280', '290,300', '310,320', '330,340', '350,360', '370,380', '390,400');
+                           //  $data = array('10,20', '30,40', '50,60', '70,80', '90,100', '110,120', '130,140', '150,160', '170,180', '190,200', '210,220', '230,240', '250,260', '270,280', '290,300', '310,320', '330,340', '350,360', '370,380', '390,400');
+                            $data = array('10-20', '20-30','30-40','40-50', '50-60','60-70', '70-80', '80-90', '90-100', '100-110', '110-120', '120-130', '130-140', '140-150', '150-160', '160-170', '170-180', '180-190', '190-200', '200-210', '210-220', '220-230', '230-240', '250-260', '270-280', '290-300', '310-320', '330-340', '350-360', '370-380', '390-400');
                             foreach($data as $value){
-                            $weightdata = str_replace(",", " -  ", $value);
-                            $weightvalue = $value;
+                           //  $weightdata = str_replace(",", " -  ", $value);
+                           //  $weightvalue = $value;
                             
                            ?>
                             {{-- <option value="{{$total }}">{{$total }} - {{$secondvlaue }} Kg</option> --}}
-                            <option value="{{$weightvalue }}"> {{ $weightdata }} Kg</option>
+                            <option value="{{$value}}"> {{ $value }} Kg</option>
                             <?php 
                             // $i++;
                             } 

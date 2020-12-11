@@ -25,12 +25,44 @@ class HomeController extends Controller
         return view('index')->with("featured_products", $featured_products)->with('productcolor',$productsc)->with('categories',$categories);
     }
     public function products(Request $request){
-        $cat = $request->get("c");
-        $category = Categories::where("category_id", $cat)->first();
-        $products = Products::where([
-            "category" => $cat,
+
+        $where = [
             "active" => 1
-        ])->take(9)->get();
+        ];
+        
+        if( $request->has("c") ){
+            $where["category"] = $request->get("c");
+            $cat = $request->get("c");
+        }
+        else {
+            $cat = Categories::first()->category_id;
+        }
+
+
+        if( $request->has("co") ){
+            $where['color'] = $request->get("co");
+        }
+       
+        $category = Categories::where("category_id", $cat)->first();
+
+        $products = Products::where($where)->take(9);
+
+        if( $request->has("w") ){
+            $weights = explode('-',$request->get("w"));
+            $products = $products->whereBetween('weight', $weights);
+
+        }
+        
+        if( $request->has("p") ){
+            $weights = explode('-',$request->get("p"));
+            $weights[0] = $weights[0]*1000;
+            $weights[1] = $weights[1]*1000;
+            // dump($weights);
+            $products = $products->whereBetween('price', $weights);
+
+        }
+        $products = $products->get();
+        // dd($products);
 
         return view('products')->with("products", $products)->with("category", $category);
     }

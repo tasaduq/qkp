@@ -1982,3 +1982,105 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 
 tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 56, 1) 47%, rgba(28, 0, 48, 1) 96%); color:#fff;}
+
+
+
+
+
+
+/*  SLIDEERRRRRRRRRRRRRRRRRRRRRR  */
+
+
+  
+  .filter-container {
+	max-width: 280px;
+	margin: 50px auto;
+	background: #fff;
+	border-radius: 6px;
+  }
+  
+  .filter-section {
+	  padding: 20px;
+  }
+  
+  .filter-section + .filter-section {
+	border-top: 1px solid #f1f3f4;
+  }
+  
+  .slider-wrapper {
+	margin: 60px auto 0;
+	padding: 0 8px;
+  }
+  
+  .store-slider.ui-slider {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  margin-top: 30px;
+  }
+  
+  .store-slider .ui-slider-range {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  background: rgb(233, 236, 239);
+  }
+  
+  .store-slider .ui-slider-handle {
+	  top: auto;
+	  width: 20px;
+	  height: 20px;
+	  display: flex;
+	  justify-content: center;
+	  margin: 0;
+	  margin-left: -10px;
+	  border-radius: 50%;
+	  border: none;
+	  background: #fff;
+	  box-shadow: 
+		  inset 0 0 0 transparent,
+		  0 0 2px rgba(103, 118, 125, 1), 
+		  0 4px 10px rgba(91, 111, 144, 0.3);
+	  cursor: pointer;
+  }
+  
+  .store-slider .ui-slider-handle:hover,
+  .store-slider .ui-slider-handle.ui-state-hover {
+	  background: #89cd20;
+	  box-shadow: 
+		  inset 0 0 0 1px #75b316,
+		  0 0 2px rgba(103, 118, 125, 0.5), 
+		  0 4px 10px rgba(91, 111, 144, 0.3);
+  }
+  
+  .store-slider.ui-widget.ui-widget-content {
+	  border: 1px solid rgb(206, 212, 218);
+  }
+  
+  .ui-slider-handle:hover,
+  .ui-slider-handle:active,
+  .ui-slider-handle:focus {
+	  outline: none;
+  }
+  
+  .ui-slider-handle:active {
+	  background: #89cd20;
+	  border-color: #75b316;
+  }
+  
+  .tippy-content {
+	font-size: 13px;
+  }
+  
+  .row.filter-row {
+	margin-top: 15px;
+	margin-left: -7px;
+	margin-right: -8px;
+  }
+  
+  .row.filter-row [class*="col-"] {
+	padding-left: 7px;
+	padding-right: 8px;
+  }
+
+  /* SLIDERRRRRRRRRRRRRR ENDDDDDDDDDDDDD */
