@@ -484,18 +484,18 @@ a:hover {
 	margin-bottom: 10px;
 }
 
-.content button:hover, .content button:focus {
-	color: #fff!important;
+.content button:hover, .content button:focus, {
+	color: #270037!important;
 	background: transparent!important;
-	border-color: #fff!important;
+	border-color: #270037!important;
 	box-shadow: none!important;
 }
 
 .button-group button.btn.rounded-pill.active {
-	color: #fff!important;
+	color: #270037!important;
 	background-color: transparent!important;
-	border-color: #fff!important;
-	border: 2px solid #fff!important;
+	border-color: #270037!important;
+	border: 2px solid #270037!important;
 }
 
 .content .button-group img {
@@ -1895,18 +1895,18 @@ input[type='range']::-webkit-slider-runnable-track {
 .text-black{color:#000 !important;}
 .rounded-pill{border-radius: 0 !important;}
 .content button {
-    border: 2px solid #333;
+    border: 2px solid #270037;
     color: #333;
 }
-.range-slider i{color:#000;}
+.range-slider i{color:#270037;}
 .select-container {
-    border: 2px solid #000;
+    border: 2px solid #270037;
 }
 .filter span {
-    color: #000;
+    color: #270037;
 }
-.select-container:after{color:#000;}
-.select-container select{padding-left:100px; color:#000;}
+.select-container:after{color:#270037;}
+.select-container select{padding-left:100px; color:#270037;}
 .select-container {
     border-radius: 0px;
 }
@@ -2024,7 +2024,8 @@ tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 5
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
-	  background: rgb(233, 236, 239);
+	  /* background: rgb(233, 236, 239); */
+	  background: #417d27;
   }
   
   .store-slider .ui-slider-handle {
