@@ -491,11 +491,16 @@ a:hover {
 	box-shadow: none!important;
 }
 
+.button-group button.btn.rounded-pill:hover {
+	color: #f0d36d!important;
+	background-color: #34043f!important;
+	border: 2px solid #34043f!important;
+}
+.button-group button.btn.rounded-pill:focus{box-shadow:none !important;}
 .button-group button.btn.rounded-pill.active {
-	color: #270037!important;
-	background-color: transparent!important;
-	border-color: #270037!important;
-	border: 2px solid #270037!important;
+	color: #f0d36d!important;
+	background-color: #34043f!important;
+	border: 2px solid #34043f!important;
 }
 
 .content .button-group img {
@@ -581,7 +586,7 @@ a:hover {
 .select-container select {
 	width: 100%;
 	border: 0;
-	color: #fff;
+	/* color: #270037; */
 	background: transparent;
 	font-size: 16px;
 	outline: none;
@@ -595,7 +600,7 @@ a:hover {
 	font-weight: 900;
 	font-family: "Font Awesome 5 Free";
 	font-size: 18px;
-	color: #fff;
+	/* color: #270037; */
 	position: absolute;
 	right: 15px;
 	top: 50%;
@@ -605,7 +610,7 @@ a:hover {
 
 .select-container .form-control option {
 	color: #fff!important;
-	background: #000!important;
+	background: #270037!important;
 	padding: 0;
 }
 
@@ -613,7 +618,7 @@ a:hover {
 	outline: none;
 	box-shadow: 0 0 rgba(0, 0, 0, 0)!important;
 	background: transparent;
-	color: #fff;
+	color: #270037;
 }
 
 /* .content select.form-control {
@@ -1792,6 +1797,7 @@ input[type="file"] {
 	.content select.form-control {
 		padding: 0 80px
 	}
+	.filter span{left:15px;}
 	.section-slider button {
 		width: 100%
 	}
@@ -1893,20 +1899,22 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 
 .text-black{color:#000 !important;}
+.text-purple{color:#34043f !important;}
 .rounded-pill{border-radius: 0 !important;}
 .content button {
-    border: 2px solid #270037;
-    color: #333;
+    border: 2px solid #34043f;
+	color: #34043f;
+	font-weight: bold;
 }
-.range-slider i{color:#270037;}
+.range-slider i{color:#34043f;}
 .select-container {
-    border: 2px solid #270037;
+    border: 2px solid #34043f;
 }
 .filter span {
-    color: #270037;
+    color: #34043f;
 }
-.select-container:after{color:#270037;}
-.select-container select{padding-left:100px; color:#270037;}
+.select-container:after{color:#34043f;}
+.select-container select{padding-left:100px; color:#34043f;}
 .select-container {
     border-radius: 0px;
 }
@@ -2056,7 +2064,8 @@ tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 5
   }
   
   .store-slider.ui-widget.ui-widget-content {
-	  border: 1px solid rgb(206, 212, 218);
+	  /* border: 1px solid rgb(206, 212, 218); */
+	  border:none;
   }
   
   .ui-slider-handle:hover,

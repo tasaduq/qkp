@@ -18,7 +18,7 @@
       <div class="content" id="content">
          <div class="row">
             <div class="col-md-12">
-               <h2 class="text-black search-title">Search</h2>
+               <h2 class="text-purple search-title">Search</h2>
                {{-- <p class="text-black">Search for the finest animals on Shariah compliant installments</p> --}}
                <form action="{{ route('search') }}" id="home_search_form" method="GET">
                

@@ -53,7 +53,28 @@
     
                         <div class="by-weight">
                             <h6 class="pb-3 title">By Weight</h6>
-                            <input class="w-100" type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                            <select class="form-control " name="weight" class="weight_c" id="weight_ci" data-toggle="dropdown">
+                                <?php 
+                                    // $num=10;
+                                    // $i=1;
+                                    // while ($i<=40)
+                                    // {
+                                    // $total=$num*$i;
+                                    // $secondvlaue = $total+$total;
+                                   //  $data = array('10,20', '30,40', '50,60', '70,80', '90,100', '110,120', '130,140', '150,160', '170,180', '190,200', '210,220', '230,240', '250,260', '270,280', '290,300', '310,320', '330,340', '350,360', '370,380', '390,400');
+                                    $data = array('10-20', '20-30','30-40','40-50', '50-60','60-70', '70-80', '80-90', '90-100', '100-110', '110-120', '120-130', '130-140', '140-150', '150-160', '160-170', '170-180', '180-190', '190-200', '200-210', '210-220', '220-230', '230-240', '250-260', '270-280', '290-300', '310-320', '330-340', '350-360', '370-380', '390-400');
+                                    foreach($data as $value){
+                                   //  $weightdata = str_replace(",", " -  ", $value);
+                                   //  $weightvalue = $value;
+                                    
+                                   ?>
+                                    {{-- <option value="{{$total }}">{{$total }} - {{$secondvlaue }} Kg</option> --}}
+                                    <option value="{{$value}}"> {{ $value }} Kg</option>
+                                    <?php 
+                                    // $i++;
+                                    } 
+                                    ?>
+                                   </select>
                         </div>
     
                         
@@ -90,11 +111,7 @@
                     <h2>{{$category->category_name}}</h2>
                     
                     <p><strong>{{$category->totalCount()}} </strong>Animals Stocks are available</p>
-                    <div class="row justify-content-center">
-
-                            
-
-                                
+                    <div class="row justify-content-left">
 
                         @forelse ($products as $product)
                         <div class="col-sm-4 col-md-6 col-lg-4">
@@ -147,10 +164,10 @@
         @include('supplier')
         @include('footer')
         
-          <script src="/js/jquery-3.5.1.min.js"></script>
+          {{-- <script src="/js/jquery-3.5.1.min.js"></script>
           <script src="/js/popper.min.js"></script>
           <script src="/js/bootstrap.min.js"></script>
-          <script src="/js/slick.js"></script>
+          <script src="/js/slick.js"></script> --}}
           <script>
               $('.navbar-nav .nav-link').click(function(){
                       $('.navbar-nav .nav-link').removeClass('active');
