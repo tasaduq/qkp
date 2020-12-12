@@ -1,5 +1,7 @@
 $(document).ready(function(){
     
+    if( window.location.pathname == "/" )
+        searchFilter.updateParams();
 
     var customer_login_form = $("#login-form").validate({
         rules: {
@@ -574,9 +576,22 @@ function getCoords(elem) {
         
     // })
 
-    $(".category_method_active").on("click",function(){
+    $(".category_method_active").on("click",function(e){
+        e.preventDefault()
         $(".category_method_active").removeClass('active');
         $(this).addClass('active');
+        
+        var class_name = $(this).find("i").attr("class");
+        $(".range-before-img").attr('class', class_name+' range-before-img')
+        $(".range-after-img").attr('class', class_name+' range-after-img')
+
+        
+
+        searchFilter.updateParams();
+
+                           
+
+
     });
         // if()
         
@@ -590,6 +605,43 @@ function getCoords(elem) {
 
 });
 
+var searchFilter = {
+    updateParams:function(){
+        var selected_category = $(".category_method_active.active").attr("selected_category");
+        $.get('/filter-params?c='+selected_category, function(result){
+            console.log(result)
+            mydata = result;
+            if(result.code == 200){
+
+                if( result.c.length > 0 ){
+                    var color_options = '<option value="0">Select Color</option>';
+                    result.c.forEach(color => {
+                        color_options += '<option value="'+color.color+'">'+color.color+'</option>';
+                    });
+                    $("#product_color").html(color_options)   
+                }
+                if( result.weight_max != null && result.weight_min != null){
+                    var weight_options = "<option value='0'>Select Weight</option>";
+                    
+                    var min = result.weight_min - result.weight_min%10 
+                    var max = (result.weight_max - result.weight_max%10) + 10
+
+                    if( max > 400) { 
+                        max = 400
+                    }
+
+                    for (let index = min; index < max; index = index+10) {
+                        console.log(index, index+10)
+                        var value = index+'-'+(index+10)
+                        weight_options += '<option value="'+value+'"> '+value+' Kg</option>'
+                    }
+
+                    $("#weight_ci").html(weight_options)
+                }
+            }
+        })
+    }
+}
 var page = {
     toast:{
         show:function(message, type){

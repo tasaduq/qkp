@@ -26,16 +26,17 @@
                 
                <div class="button-group row">
                 
-               <?php
-                foreach ($categories as $category) { ?> 
+               
+               @foreach ($categories as $category)
+
                   <div class="col-sm-3">
                   <input type="hidden" name="category" value="{{ $category->category_id }}">    
-                  <button type="button" class="category_method_active btn rounded-pill btn-outline-primary btnactive" selected_category="{{ $category->category_id }}">
+                  <button type="button" class="category_method_active btn rounded-pill btn-outline-primary btnactive {{$loop->first ? "active" : ""}}" selected_category="{{ $category->category_id }}">
                      <span>
                            <i class="{{ $category->icon }}"></i>
                      </span>{{ $category->category_name }}</button>
                   </div>
-                <?php } ?>
+                @endforeach
                 
                   {{-- <div class="col-sm-3">
                      <button type="button" class="btn rounded-pill btn-outline-primary"><span>
@@ -105,6 +106,7 @@
                     <div class="select-container mb-2">
                         <span>Weight</span>
                     <select class="form-control " name="weight" class="weight_c" id="weight_ci" data-toggle="dropdown">
+                     <option value="0">Select Weight</option>
                         <?php 
                             // $num=10;
                             // $i=1;
@@ -132,6 +134,9 @@
                      <div class="select-container mb-2">
                         <span>Color</span>
                         <select class="form-control" name="product_color"  id="product_color" class="product_c" data-toggle="dropdown">
+                           
+                                <option value="0">Select Color</option>
+                                
                             <?php  foreach($productcolor as $product){ ?>
                            <option value="{{ $product->color }}">{{ $product->color }}</option>
                           <?php   }  ?>     
@@ -225,7 +230,8 @@
                   </div>
                   <div class="title">
                      <span class="name">{{$product->name}}</span>
-                     <span class="prize">{{number_format($product->price/Session::get("get_feasible_installments"))}}/- Per Month</span>
+                     <span class="prize">{{number_format($product->price)}}/- Full price</span> <br>
+                     <span class="prize">{{number_format( $product->least_installment() )}}/- Per Month</span>
                   </div>
                </div>
             </a>

@@ -45,6 +45,10 @@ class Products extends Model
         }
         return ceil( $this->price * $advance );
     }
+    public function least_installment(){
+        $currentIsntalment = Session::get("get_feasible_installments");
+        return ( $this->price - $this->advance( $currentIsntalment ) ) / $currentIsntalment;
+    }
     public function advance_formatted(int $installment = 2)
     {
         return number_format( $this->advance($installment) );

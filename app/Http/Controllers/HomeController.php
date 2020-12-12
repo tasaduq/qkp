@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
-
+use Response;
 
 class HomeController extends Controller
 {
     public function index(Request $request){
 
+        
         $featured_products = Products::where([
             "featured" => 1,
             "active" => 1
         ])->take(10)->get();
 
-        $productsc = Products::select('color')->distinct()->get();
+        $productsc = Products::select('color')->where("color", "<>", "Null")->distinct()->get();
 
         $categories = Categories::where([
             "is_active" => 1,
@@ -26,6 +27,11 @@ class HomeController extends Controller
     }
     public function products(Request $request){
 
+        
+
+
+        $productsc = Products::select('color')->where("color", "<>", "Null")->distinct()->get();
+        
         $where = [
             "active" => 1
         ];
@@ -39,15 +45,16 @@ class HomeController extends Controller
         }
 
 
-        if( $request->has("co") ){
+        if( $request->has("co") && $request->get("co") != "0" ){
             $where['color'] = $request->get("co");
         }
        
         $category = Categories::where("category_id", $cat)->first();
 
+        
         $products = Products::where($where)->take(9);
 
-        if( $request->has("w") ){
+        if( $request->has("w") && $request->get("w") != "0" ){
             $weights = explode('-',$request->get("w"));
             $products = $products->whereBetween('weight', $weights);
 
@@ -64,7 +71,30 @@ class HomeController extends Controller
         $products = $products->get();
         // dd($products);
 
-        return view('products')->with("products", $products)->with("category", $category);
+        $categories = Categories::where([
+            "is_active" => 1,
+        ])->get();
+        
+
+        return view('products')->with("products", $products)->with("category", $category)->with('productcolor',$productsc)->with('categories',$categories);
+    }
+    public function filter_params(Request $request){
+
+        $where = array();
+        if( $request->has("c") ){
+            $where["category"] = $request->get("c");
+
+            $product['c'] = Products::select('color')->where($where)->where("color", "<>", "Null")->distinct()->get();
+            $product['weight_min'] = Products::where($where)->min('weight');
+            $product['weight_max'] = Products::where($where)->max('weight');
+            $product['code'] = 200;
+            return Response::json($product);
+
+        }
+        else {
+            //cateory is reuqired
+        }
+        
     }
     public function product_detail($id, Request $request){
         $product = Products::where([

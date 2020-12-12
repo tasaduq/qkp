@@ -50,6 +50,8 @@ Route::middleware("calculations")->group(function () {
 
 });
 
+Route::get('/filter-params', 'HomeController@filter_params');
+
 
 Route::get('/about-us', function () {
     return view('about-us');
