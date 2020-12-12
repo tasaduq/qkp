@@ -670,8 +670,6 @@ var searchFilter = {
     updateParams:function(){
         var selected_category = $(".category_method_active.active").attr("selected_category");
         $.get('/filter-params?c='+selected_category, function(result){
-            console.log(result)
-            mydata = result;
             if(result.code == 200){
 
                 if( result.c.length > 0 ){
@@ -687,12 +685,11 @@ var searchFilter = {
                     var min = result.weight_min - result.weight_min%10 
                     var max = (result.weight_max - result.weight_max%10) + 10
 
-                    if( max > 400) { 
-                        max = 400
+                    if( max > 1000) { 
+                        max = 1000
                     }
 
                     for (let index = min; index < max; index = index+10) {
-                        console.log(index, index+10)
                         var value = index+'-'+(index+10)
                         weight_options += '<option value="'+value+'"> '+value+' Kg</option>'
                     }
