@@ -135,10 +135,10 @@
     @include('supplier')
     @include('footer')
     
-      <script src="js/jquery-3.5.1.min.js"></script>
+      {{-- <script src="js/jquery-3.5.1.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
-      <script src="js/slick.js"></script>
+      <script src="js/slick.js"></script> --}}
       <script>
          $('.navbar-nav .nav-link').click(function(){
                   $('.navbar-nav .nav-link').removeClass('active');

@@ -129,11 +129,7 @@
                     <h2>{{$category->category_name}}</h2>
                     
                     <p><strong>{{$category->totalCount()}} </strong>Animals Stocks are available</p>
-                    <div class="row justify-content-center">
-
-                            
-
-                                
+                    <div class="row justify-content-left">
 
                         @forelse ($products as $product)
                         <div class="col-sm-4 col-md-6 col-lg-4">
@@ -186,10 +182,10 @@
         @include('supplier')
         @include('footer')
         
-          <script src="/js/jquery-3.5.1.min.js"></script>
+          {{-- <script src="/js/jquery-3.5.1.min.js"></script>
           <script src="/js/popper.min.js"></script>
           <script src="/js/bootstrap.min.js"></script>
-          <script src="/js/slick.js"></script>
+          <script src="/js/slick.js"></script> --}}
           <script>
               $('.navbar-nav .nav-link').click(function(){
                       $('.navbar-nav .nav-link').removeClass('active');
