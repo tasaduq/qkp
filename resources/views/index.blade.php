@@ -333,78 +333,9 @@
 @include('footer')
 
 
-<script src="{{asset('/js/jquery-3.5.1.min.js')}}"></script>
+{{-- <script src="{{asset('/js/jquery-3.5.1.min.js')}}"></script>
 <script src="{{asset('/js/popper.min.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('/js/slick.js')}}"></script>
-<script>
+<script src="{{asset('/js/slick.js')}}"></script> --}}
 
-   //      $(document).ready(function(){
-   //      setTimeout(()=>{$("#modal").modal('show')},6000);
-   //  });
-
-   $(document).ready(function () {
-      $(".toggleSearch").click(function () {
-         $("#content").toggle(500);
-      });
-   });
-
-
-   $('.banner-slider').slick({
-      infinite: true,
-      slidesToShow: 1,
-      autoplay: true,
-      slidesToScroll: 1,
-      dots: true,
-      arrows: false,
-      autoplaySpeed: 6000,
-      speed: 500,
-      fade: true,
-      cssEase: 'linear'
-   });
-
-
-   $('.animals-slider').slick({
-      infinite: true,
-      autoplay: true,
-      arrows: true,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      responsive: [
-         {
-            breakpoint: 1200,
-            settings: {
-               slidesToShow: 2,
-               slidesToScroll: 1
-            }
-         },
-         {
-            breakpoint: 768,
-            settings: {
-               slidesToShow: 1,
-               slidesToScroll: 1
-            }
-         }
-
-      ],
-      prevArrow: '.arrow_prev',
-      nextArrow: '.arrow_next',
-   });
-
-
-   $('.client-slider').slick({
-      infinite: true,
-      slidesToShow: 1,
-      autoplay: true,
-      slidesToScroll: 1,
-      dots: true,
-      arrows: false,
-   });
-
-   $('.button.btn.rounded-pill.btn-outline-primary').on('click', function () {
-      $('.button.btn.rounded-pill.btn-outline-primary').toggleClass('active');
-   });
-
-   
-</script>
 @endsection
