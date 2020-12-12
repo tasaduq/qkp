@@ -68,6 +68,7 @@ class HomeController extends Controller
             $products = $products->whereBetween('price', $weights);
 
         }
+        $stock = $products->count();
         $products = $products->get();
         // dd($products);
 
@@ -76,7 +77,7 @@ class HomeController extends Controller
         ])->get();
         
 
-        return view('products')->with("products", $products)->with("category", $category)->with('productcolor',$productsc)->with('categories',$categories);
+        return view('products')->with("products", $products)->with("category", $category)->with('productcolor',$productsc)->with('categories',$categories)->with("stock",$stock);
     }
     public function filter_params(Request $request){
 
