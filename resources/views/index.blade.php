@@ -53,7 +53,7 @@
                         </span>Sheep</button>
                   </div> --}}
                </div>
-               <div class="row">
+               <div class="row mt-3">
                   <div class="col-sm-12">
                      <div class="range-slider">
                         <div class="slidecontainer my-2">
