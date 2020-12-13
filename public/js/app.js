@@ -67,7 +67,7 @@ $(document).ready(function(){
         $('.button.btn.rounded-pill.btn-outline-primary').toggleClass('active');
     });
     
-    if( window.location.pathname == "/" )
+    if( window.location.pathname == "/" || window.location.pathname == "/products" )
         searchFilter.updateParams();
 
     var customer_login_form = $("#login-form").validate({
@@ -532,6 +532,14 @@ $(document).ready(function(){
 
 });
 
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
     
 var ranger = {
@@ -615,7 +623,6 @@ var ranger = {
         if (typeof updateInput === "undefined")
             var updateInput = true;
         
-        console.log("x",slider);
         var sliderWrapper = slider.closest('.store-slider-wrapper');
         var sliderHandlers = slider.find('.ui-slider-handle');
         var sliderHandlersMin = sliderHandlers.eq(0);
@@ -731,6 +738,27 @@ var searchFilter = {
                 $('#price_to').val(range_max);
                 
                 ranger.updateValues();
+
+
+                // var cat = getParameterByName("c");
+                var color = getParameterByName("co");
+
+                $("#product_color").val(color);
+
+
+                var price = getParameterByName("p");
+                
+                range_min = price.split("-")[0]
+                range_max = price.split("-")[1]
+
+                $('#price_from').val(range_min);
+                $('#price_to').val(range_max);
+
+                ranger.updateValues();
+
+                var weight = getParameterByName("w");
+                $("#weight_ci").val(weight);
+
 
             }
         })
