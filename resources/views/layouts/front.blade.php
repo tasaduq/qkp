@@ -177,7 +177,6 @@
     </div>
    </div>
    <!-- Register Model end -->
-      
 
 
       <!-- Main Header -->
@@ -195,6 +194,28 @@
                      </button>
                   @endif
                </div> --}}
+               <?php
+                     $cartC = new \App\Http\Controllers\CartController;
+                     $CartCount = $cartC->get_cart_count();
+                  ?>
+                  <a class="cart-icon-wrap mr-4 hide-on-desktop" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
+                  @if(Auth::user())
+                     <ul class="navbar-nav mx-auto hide-on-desktop">
+                        
+                        <li class="nav-item">
+                           <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
+                        </li>
+                     </ul>
+                  @else 
+                     <form class="form-inline my-2 my-lg-0 hide-on-desktop">
+                        <a href="#" data-toggle="modal" data-target="#login-modal" id="login-btn"><i class="icon-qkp-user"></i></a>
+                        {{-- <button class="btn btn-outline-success my-2 px-4 my-sm-0 login" type="button"
+                           data-toggle="modal" data-target="#login-modal" id="login-btn">Login</button> --}}
+                        {{-- <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
+                           data-toggle="modal" data-target="#register-modal" id="register-btn">Register</button> --}}
+                     </form>
+                  @endif
+
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="toggler-icon"><i class="fas fa-bars"></i></span>
@@ -226,16 +247,15 @@
                      $cartC = new \App\Http\Controllers\CartController;
                      $CartCount = $cartC->get_cart_count();
                   ?>
-                  <a class="cart-icon-wrap mr-4" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
+                  <a class="cart-icon-wrap mr-4 hide-on-mobile" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
                   @if(Auth::user())
-                     <ul class="navbar-nav mx-auto">
-                        
+                     <ul class="navbar-nav mx-auto hide-on-mobile">
                         <li class="nav-item">
                            <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
                         </li>
                      </ul>
                   @else 
-                     <form class="form-inline my-2 my-lg-0">
+                     <form class="form-inline my-2 my-lg-0 hide-on-mobile">
                         
                         <button class="btn btn-outline-success my-2 px-4 my-sm-0 login" type="button"
                            data-toggle="modal" data-target="#login-modal" id="login-btn">Login</button>
