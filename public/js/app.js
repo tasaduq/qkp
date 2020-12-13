@@ -1,3 +1,9 @@
+// var currentValue;
+// var slider;
+// var updateSliderTooltip = function(){};
+// var updateValues= function(){};
+
+
 $(document).ready(function(){
 
     
@@ -120,7 +126,7 @@ $(document).ready(function(){
         }
         
         var payload = $("#add-contact-form").serialize()
-        console.log(payload);
+        // console.log(payload);
         $.ajax({
             url:"/add-contact",
             data: payload,
@@ -387,172 +393,32 @@ $(document).ready(function(){
 
     console.clear();
 
-var currentValue = {
-  from: 35,
-  to: 55
-}
 
-var slider = $('#slider').slider({
-	range: true,
-    min: 35,
-    max: 300,
-	values: [ currentValue.from, currentValue.to ],
-	create: function(event, ui) {		
-		var $slider = $(this);
-    var $sliderWrapper = $slider.closest('.store-slider-wrapper');
-    var $sliderHandlers = $slider.find('.ui-slider-handle');
-    var $sliderHandlersMin = $sliderHandlers.eq(0);
-    var $sliderHandlersMax = $sliderHandlers.eq(1);
-    var $sliderRange = $slider.find('.ui-slider-range');
-    var values = {
-      from: currentValue.from,
-      to: currentValue.to
-    }
+    ranger.bind()
     
-    $sliderHandlersMin.attr('title', '' + values.from + 'K');
-    $sliderHandlersMax.attr('title', '' + values.to + 'K');
-    $sliderRange
-      .attr('title', values.from + 'K - ' + values.to + 'K')
-      .attr('data-tippy-distance', 15);;
-    
-    var tippyOptions = {
-      trigger: 'manual',
-      sticky: true,
-      dynamicTitle: true,
-      hideOnClick: false,
-      arrow: true,
-      arrowType: 'round',
-      animation: 'fade',
-      placement: 'top',
-      livePlacement: false,
-      flipBehavior: [],
-      createPopperInstanceOnInit: true,
-      appendTo: $(this).closest('.filter-section')[0],
-      popperOptions: {
-         modifiers: {
-            // preventOverflow: {
-            //     boundariesElement: $(this).closest('.filter-section')[0],
-            // }
-           computeStyle: {
-             gpuAcceleration: true
-           }
-        },
-      }
-    };
-    
-    tippy($sliderHandlersMin[0], tippyOptions);
-    tippy($sliderHandlersMax[0], tippyOptions);
-    tippy($sliderRange[0], tippyOptions);
-    
-    updateSliderTooltip($slider, values);
-  },
-  slide: function(event, ui) {
-    var $slider = $(this);
-    var $sliderWrapper = $slider.closest('.store-slider-wrapper'); 
-    var values = {
-      from: ui.values[0],
-      to: ui.values[1]
-    }
-    
-    updateSliderTooltip($slider, values, true);
-  }
-});
 
-function updateSliderTooltip($slider, values, updateInput) {
-  if (typeof updateInput === "undefined")
-    var updateInput = true;
-  
-  var $sliderWrapper = $slider.closest('.store-slider-wrapper');
-  var $sliderHandlers = $slider.find('.ui-slider-handle');
-  var $sliderHandlersMin = $sliderHandlers.eq(0);
-  var $sliderHandlersMax = $sliderHandlers.eq(1);
-  var $sliderRange = $slider.find('.ui-slider-range');
-  
-  $sliderHandlersMin.attr('title', '' + values.from + 'K');
-  $sliderHandlersMax.attr('title', '' + values.to + 'K');
-  $sliderRange.attr('title', 'from ' + values.from + 'K to ' + values.to + 'K');
+            
 
-  if (updateInput) {
-    $('#price_from').val(values.from);
-    $('#price_to').val(values.to);
-  }
-  
-  setInterval(function() {
-    var tooltipMinLeft = getCoords($sliderHandlersMin[0]).left;
-    var tooltipMaxLeft = getCoords($sliderHandlersMax[0]).left;
+        $('#price_from').on('blur', function() {
+        $(this).val($(this).val().replace(/[^0-9]/i, ''));
+        
+        if(+$(this).val() > +$('#price_to').val()) {
+            $(this).val($('#price_to').val())
+        }
+        
+        ranger.updateValues();
+        });
 
-    var tooltipRange = tooltipMaxLeft - tooltipMinLeft;
-    var singleTooltip = tooltipRange < 80;
+        $('#price_to').on('blur', function() {
+        $(this).val($(this).val().replace(/[^0-9]/gi, ''));
+        
+        if(+$(this).val() < +$('#price_from').val()) {
+            $(this).val($('#price_from').val())
+        }
+        
+        ranger.updateValues();
+        });
 
-    if (!singleTooltip) {
-      if (!$sliderHandlersMin[0]._tippy.state.visible)
-        $sliderHandlersMin[0]._tippy.show(0);
-      if (!$sliderHandlersMax[0]._tippy.state.visible)
-        $sliderHandlersMax[0]._tippy.show(0);
-      if ($sliderRange[0]._tippy.state.visible)
-        $sliderRange[0]._tippy.hide(0);
-    } else {
-      if ($sliderHandlersMin[0]._tippy.state.visible)
-        $sliderHandlersMin[0]._tippy.hide(0);
-      if ($sliderHandlersMax[0]._tippy.state.visible)
-        $sliderHandlersMax[0]._tippy.hide(0);
-      if (!$sliderRange[0]._tippy.state.visible)
-        $sliderRange[0]._tippy.show(0);
-    }
-  }, 1);
-}
-
-function updateValues() {
-  var from = $('#price_from').val();
-  var to = $('#price_to').val();
-  
-  updateSliderTooltip(slider, {
-    from: from,
-    to: to
-  }, false);
-  
-  slider.slider({
-    values: [ from, to ]
-  });
-}
-
-$('#price_from').on('blur', function() {
-  $(this).val($(this).val().replace(/[^0-9]/i, ''));
-  
-  if(+$(this).val() > +$('#price_to').val()) {
-    $(this).val($('#price_to').val())
-  }
-  
-  updateValues();
-});
-
-$('#price_to').on('blur', function() {
-  $(this).val($(this).val().replace(/[^0-9]/gi, ''));
-  
-  if(+$(this).val() < +$('#price_from').val()) {
-    $(this).val($('#price_from').val())
-  }
-  
-  updateValues();
-});
-
-function getCoords(elem) {
-	var box = elem.getBoundingClientRect();
-
-	var body = document.body;
-	var docEl = document.documentElement;
-
-	var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-	var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
-
-	var clientTop = docEl.clientTop || body.clientTop || 0;
-	var clientLeft = docEl.clientLeft || body.clientLeft || 0;
-
-	var top  = box.top +  scrollTop - clientTop;
-	var left = box.left + scrollLeft - clientLeft;
-
-	return { top: Math.round(top), left: Math.round(left) };
-}
 
         // $( "#slider-range" ).slider({
         //   range: true,
@@ -666,6 +532,161 @@ function getCoords(elem) {
 
 });
 
+
+    
+var ranger = {
+    currentValue:{
+        from: 35,
+        to: 55
+    },
+    range:{
+        min: 35,
+        max: 55
+    },
+    slider:null,
+    bind:function(){
+        $('#slider').slider({
+            range: true,
+            min: ranger.range.min,
+            max: ranger.range.max,
+            values: [ ranger.currentValue.from, ranger.currentValue.to ],
+            create: function(event, ui) {		
+                ranger.slider = $(this);
+                var sliderWrapper = ranger.slider.closest('.store-slider-wrapper');
+                var sliderHandlers = ranger.slider.find('.ui-slider-handle');
+                var sliderHandlersMin = sliderHandlers.eq(0);
+                var sliderHandlersMax = sliderHandlers.eq(1);
+                var sliderRange = ranger.slider.find('.ui-slider-range');
+                var values = {
+                from: ranger.currentValue.from,
+                to: ranger.currentValue.to
+                }
+                
+                sliderHandlersMin.attr('title', '' + values.from + 'K');
+                sliderHandlersMax.attr('title', '' + values.to + 'K');
+                sliderRange
+                .attr('title', values.from + 'K - ' + values.to + 'K')
+                .attr('data-tippy-distance', 15);;
+                
+                var tippyOptions = {
+                    trigger: 'manual',
+                    sticky: true,
+                    dynamicTitle: true,
+                    hideOnClick: false,
+                    arrow: true,
+                    arrowType: 'round',
+                    animation: 'fade',
+                    placement: 'top',
+                    livePlacement: false,
+                    flipBehavior: [],
+                    createPopperInstanceOnInit: true,
+                    appendTo: $(this).closest('.filter-section')[0],
+                    popperOptions: {
+                        modifiers: {
+                            // preventOverflow: {
+                            //     boundariesElement: $(this).closest('.filter-section')[0],
+                            // }
+                        computeStyle: {
+                            gpuAcceleration: true
+                        }
+                        },
+                    }
+                };
+            
+            tippy(sliderHandlersMin[0], tippyOptions);
+            tippy(sliderHandlersMax[0], tippyOptions);
+            tippy(sliderRange[0], tippyOptions);
+            
+            ranger.updateSliderTooltip(ranger.slider, values);
+            },
+            slide: function(event, ui) {
+                ranger.slider = $(this);
+                var sliderWrapper = ranger.slider.closest('.store-slider-wrapper'); 
+                var values = {
+                    from: ui.values[0],
+                    to: ui.values[1]
+                }
+                
+                ranger.updateSliderTooltip(ranger.slider, values, true);
+            }
+        });
+    },
+    updateSliderTooltip:function(slider, values, updateInput) {
+        if (typeof updateInput === "undefined")
+            var updateInput = true;
+        
+        console.log("x",slider);
+        var sliderWrapper = slider.closest('.store-slider-wrapper');
+        var sliderHandlers = slider.find('.ui-slider-handle');
+        var sliderHandlersMin = sliderHandlers.eq(0);
+        var sliderHandlersMax = sliderHandlers.eq(1);
+        var sliderRange = slider.find('.ui-slider-range');
+        
+        sliderHandlersMin.attr('title', '' + values.from + 'K');
+        sliderHandlersMax.attr('title', '' + values.to + 'K');
+        sliderRange.attr('title', 'from ' + values.from + 'K to ' + values.to + 'K');
+
+        if (updateInput) {
+            $('#price_from').val(values.from);
+            $('#price_to').val(values.to);
+        }
+        
+        setInterval(function() {
+            var tooltipMinLeft = ranger.getCoords(sliderHandlersMin[0]).left;
+            var tooltipMaxLeft = ranger.getCoords(sliderHandlersMax[0]).left;
+
+            var tooltipRange = tooltipMaxLeft - tooltipMinLeft;
+            var singleTooltip = tooltipRange < 80;
+
+            if (!singleTooltip) {
+            if (!sliderHandlersMin[0]._tippy.state.visible)
+                sliderHandlersMin[0]._tippy.show(0);
+            if (!sliderHandlersMax[0]._tippy.state.visible)
+                sliderHandlersMax[0]._tippy.show(0);
+            if (sliderRange[0]._tippy.state.visible)
+                sliderRange[0]._tippy.hide(0);
+            } else {
+            if (sliderHandlersMin[0]._tippy.state.visible)
+                sliderHandlersMin[0]._tippy.hide(0);
+            if (sliderHandlersMax[0]._tippy.state.visible)
+                sliderHandlersMax[0]._tippy.hide(0);
+            if (!sliderRange[0]._tippy.state.visible)
+                sliderRange[0]._tippy.show(0);
+            }
+        }, 1);
+    },
+    updateValues:function() {
+        var from = $('#price_from').val();
+        var to = $('#price_to').val();
+        
+        ranger.updateSliderTooltip(ranger.slider, {
+            from: from,
+            to: to
+        }, false);
+        
+        ranger.slider.slider({
+            values: [ from, to ]
+        });
+    },
+    getCoords:function (elem) {
+        var box = elem.getBoundingClientRect();
+
+        var body = document.body;
+        var docEl = document.documentElement;
+
+        var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+        var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+        var clientTop = docEl.clientTop || body.clientTop || 0;
+        var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+        var top  = box.top +  scrollTop - clientTop;
+        var left = box.left + scrollLeft - clientLeft;
+
+        return { top: Math.round(top), left: Math.round(left) };
+    }
+}
+
 var searchFilter = {
     updateParams:function(){
         var selected_category = $(".category_method_active.active").attr("selected_category");
@@ -696,6 +717,21 @@ var searchFilter = {
 
                     $("#weight_ci").html(weight_options)
                 }
+
+                var range_min = result.price_min/1000;
+                range_min = range_min - range_min%10
+                
+                var range_max = result.price_max/1000
+                range_max = (range_max - range_max%10) + 10
+
+                $( "#slider" ).slider( "option", "min", range_min );
+                $( "#slider" ).slider( "option", "max", range_max );
+
+                $('#price_from').val(range_min);
+                $('#price_to').val(range_max);
+                
+                ranger.updateValues();
+
             }
         })
     }

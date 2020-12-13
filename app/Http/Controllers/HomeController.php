@@ -11,7 +11,6 @@ class HomeController extends Controller
 {
     public function index(Request $request){
 
-        
         $featured_products = Products::where([
             "featured" => 1,
             "active" => 1
@@ -28,7 +27,6 @@ class HomeController extends Controller
     public function products(Request $request){
 
         
-
 
         $productsc = Products::select('color')->where("color", "<>", "Null")->distinct()->get();
         
@@ -77,7 +75,11 @@ class HomeController extends Controller
         ])->get();
         
 
-        return view('products')->with("products", $products)->with("category", $category)->with('productcolor',$productsc)->with('categories',$categories)->with("stock",$stock);
+        return view('products')->with("products", $products)
+                                ->with("category", $category)
+                                ->with('productcolor',$productsc)
+                                ->with('categories',$categories)
+                                ->with("stock",$stock);
     }
     public function filter_params(Request $request){
 
@@ -88,6 +90,8 @@ class HomeController extends Controller
             $product['c'] = Products::select('color')->where($where)->where("color", "<>", "Null")->distinct()->get();
             $product['weight_min'] = Products::where($where)->min('weight');
             $product['weight_max'] = Products::where($where)->max('weight');
+            $product['price_min'] = Products::where($where)->min('price');
+            $product['price_max'] = Products::where($where)->max('price');
             $product['code'] = 200;
             return Response::json($product);
 
