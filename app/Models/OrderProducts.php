@@ -19,7 +19,7 @@ class OrderProducts extends Model
     }
     public function paid_amount()
     {
-        return $this->product_upfront + $this->installments->where('status', '1')->sum('amount');   
+        return $this->product_upfront + $this->installments->where('status', '2')->sum('amount');   
     }
     public function remaining_amount()
     {
