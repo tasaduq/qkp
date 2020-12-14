@@ -695,9 +695,11 @@ var ranger = {
 }
 
 var searchFilter = {
+    times:0,
     updateParams:function(){
         var selected_category = $(".category_method_active.active").attr("selected_category");
         $.get('/filter-params?c='+selected_category, function(result){
+            searchFilter.times += 1;
             if(result.code == 200){
 
                 if( result.c.length > 0 ){
@@ -740,7 +742,7 @@ var searchFilter = {
                 ranger.updateValues();
 
 
-                if( window.location.pathname == "/products" ){
+                if( window.location.pathname == "/products" && searchFilter.times == 0){
 
                     // var cat = getParameterByName("c");
                     var color = getParameterByName("co");
