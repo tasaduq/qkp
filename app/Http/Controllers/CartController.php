@@ -169,7 +169,7 @@ class CartController extends Controller
             $order = array(
                 "order_number" => rand(1111,9999),
                 "user_id" => $user->id,
-                "status" => 0,
+                "status" => 1,
                 "payment_method" => $paymentMethod
             );
             
@@ -200,10 +200,18 @@ class CartController extends Controller
                 $total_upfront_payment += $calculatedShipping;
                 // dump($total_upfront_payment);
                 // dd("calculatedShipping");
+                //create upfront insert with tax and shipping
+                $advance = $product->advance($installment);
+
+                $product_upfront_payment = $calculatedShipping+$advance;
+                $product_then_price = $product->price;
+
                 $record = array(
                     "order_id" => $insertedOrderId,
                     "product_id" => $item['product'],
                     "no_of_installments" => $installment, 
+                    "product_then_price" => $product_then_price,
+                    "product_upfront" => $product_upfront_payment,
                     "shipping" => $calculatedShipping
                 );
 
@@ -215,21 +223,38 @@ class CartController extends Controller
                 
                 $OrderInstallments = array();
 
-                //create upfront insert with tax and shipping
-                $advance = $product->advance($installment);
                 // dump($advance);
                 $total_upfront_payment += $advance;
                 // dump($total_upfront_payment);
-
-                for($i = $installment; $i > 2 ; $i--) { 
+                //TODO: I have made this 0 because the number of payments must not be totalling the product price right now
+                for($i = $installment; $i > 0 ; $i--) { 
 
                     $currentInstallmentPrice = $product->installment($installment);
+
+                    $dueDate = date("Y-m-d H:i:s", strtotime( "+".$i." month", strtotime( date("Y-m-d H:i:s") ) ) );
+                    // $dueDate = "DATE_ADD(CURRENT_DATE, INTERVAL ".$i." month )";
+                    /* TODO: calculate due date in cases where due date is overlapping with eid date, adil said this wont happen
+                    if($i == 1){
+                        $eidDate = Session::get('eid_date');
+                        $OneMonthLessThaneidDate = date("Y-m-d H:i:s", strtotime( "-1 month", strtotime( date($eidDate." 00:00:00") ) ) );
+                        
+                        $OneMonthLessThaneidDate    = new DateTime($OneMonthLessThaneidDate);
+
+                        if ($dueDate > $OneMonthLessThaneidDate) {
+                            echo 'greater than';
+                        }else{
+                            echo 'Less than';
+                        }
+                        
+                    }
+                    */
 
                     array_push($OrderInstallments, array(
                         "instalment_number" => $i,
                         "order_product_id" => $orderedProductId,
-                        "status" => 0,
+                        "status" => 1,
                         "amount" => $currentInstallmentPrice,
+                        "due_date" => $dueDate,
                     ));
 
                     // if($installment == $i){

@@ -490,3 +490,126 @@ ALTER TABLE `orders` ADD `upfront` INT NOT NULL DEFAULT '0' AFTER `status`;
 
 ALTER TABLE `orders` ADD `receipt` BLOB NULL DEFAULT NULL AFTER `payment_method`;
 ALTER TABLE `orders` CHANGE `receipt` `receipt` LONGTEXT NULL DEFAULT NULL;
+
+
+ALTER TABLE `order_products` ADD `product_upfront` VARCHAR(200) NOT NULL DEFAULT '0' AFTER `shipping`;
+ALTER TABLE `order_products` ADD `product_then_price` VARCHAR(200) NOT NULL DEFAULT '0' AFTER `product_upfront`;
+
+ALTER TABLE `order_installments` ADD `due_date` DATETIME NULL DEFAULT NULL AFTER `amount`;
+
+UPDATE `orders` SET `status`=1  WHERE 1;
+UPDATE `order_installments` SET `status`=1  WHERE 1;
+
+
+--
+-- Table structure for table `order_installments_status`
+--
+
+CREATE TABLE `order_installments_status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_installments_status`
+--
+
+INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES
+(1, 'Pending Payment', 'Pending Payment'),
+(2, 'Paid', 'Paid'),
+(3, 'Payment Confirmed', 'Payment Confirmed'),
+(4, 'Payment Failed', 'Payment Failed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_products_status`
+--
+
+CREATE TABLE `order_products_status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_products_status`
+--
+
+INSERT INTO `order_products_status` (`id`, `name`, `description`) VALUES
+(1, 'Pending', 'Pending'),
+(2, 'Confirmed', 'Confirmed'),
+(3, 'Due Shipment', 'Due Shipment'),
+(4, 'Shipped/Completed', 'Shipped/Completed'),
+(5, 'Cancelled', 'Cancelled '),
+(6, 'Rejected', 'Rejected');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_status`
+--
+
+INSERT INTO `order_status` (`id`, `name`, `description`) VALUES
+(1, 'Pending Confirmation', 'Pending Confirmation'),
+(2, 'Confirmed', 'Confirmed'),
+(3, 'Due Shipment', 'Due Shipment'),
+(4, 'Shipped/Completed', 'Shipped/Completed'),
+(5, 'Cancelled', 'Cancelled '),
+(6, 'Rejected', 'Rejected');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `order_installments_status`
+--
+ALTER TABLE `order_installments_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_products_status`
+--
+ALTER TABLE `order_products_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_status`
+--
+ALTER TABLE `order_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `order_installments_status`
+--
+ALTER TABLE `order_installments_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `order_products_status`
+--
+ALTER TABLE `order_products_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `order_status`
+--
+ALTER TABLE `order_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;

@@ -26,7 +26,7 @@
                     @forelse ($orders as $order)
                         
 
-                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->status ? "Completed" : "Pending" }}  - {{ date_format($order->created_at,"d-m-Y") }}  - <button class="btn btn-warning mb-1 cancel-order-animal" ordernumber="{{$order->order_number}}">Cancel Order</button>
+                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->get_status->name }}  - {{ date_format($order->created_at,"d-m-Y") }}  - <button class="btn btn-warning mb-1 cancel-order-animal" ordernumber="{{$order->order_number}}">Cancel Order</button>
 
                       @foreach ($order->products as $orderedProduct)
                         <div class="accordion" id="installment-schedule">
@@ -44,12 +44,12 @@
                                 <div class="row pro-prize">
                                     <div class="col-sm-6 text-right">
                                         <div class="prize">
-                                            <span>Paid Amount <strong>{{$orderedProduct->product->price_formatted()}}/-</strong></span>
+                                            <span>Paid Amount <strong>{{number_format($orderedProduct->paid_amount())}}/-</strong></span>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 text-right">
                                       <div class="prize">
-                                        <span>Remaining Amount <strong>175,000/-</strong></span>
+                                        <span>Remaining Amount <strong>{{number_format($orderedProduct->remaining_amount())}}/-</strong></span>
                                       </div>
                                   </div>
                                 </div>
@@ -74,14 +74,15 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($orderedProduct->installments as $installment)
+                            @foreach ($orderedProduct->installments_desc() as $installment)
                             
                             <tr>
-                              <td>N/A</td>
-                              {{-- <td>{{$installment->created_at}}</td> --}}
-                              <td>N/A</td>
+                              <td>{{ $installment->due_date_month() }}</td>
+                              {{-- <td>{{}}</td> --}}
+                             
+                              <td>{{$installment->get_due_date()}}</td>
                               <td>{{number_format($installment->amount)}}/-</td>
-                              <td>{{$installment->status ? "Paid" : "Unpaid" }}</td>
+                              <td>{{$installment->get_status->name}}</td>
                               {{-- pending status needed --}}
                               <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
                             </tr>
