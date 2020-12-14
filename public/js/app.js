@@ -740,25 +740,28 @@ var searchFilter = {
                 ranger.updateValues();
 
 
-                // var cat = getParameterByName("c");
-                var color = getParameterByName("co");
+                if( window.location.pathname == "/products" ){
 
-                $("#product_color").val(color);
+                    // var cat = getParameterByName("c");
+                    var color = getParameterByName("co");
+
+                    $("#product_color").val(color);
 
 
-                var price = getParameterByName("p");
-                
-                range_min = price.split("-")[0]
-                range_max = price.split("-")[1]
+                    var price = getParameterByName("p");
+                    
+                    range_min = price.split("-")[0]
+                    range_max = price.split("-")[1]
 
-                $('#price_from').val(range_min);
-                $('#price_to').val(range_max);
+                    $('#price_from').val(range_min);
+                    $('#price_to').val(range_max);
 
-                ranger.updateValues();
+                    ranger.updateValues();
 
-                var weight = getParameterByName("w");
-                $("#weight_ci").val(weight);
+                    var weight = getParameterByName("w");
+                    $("#weight_ci").val(weight);
 
+                }
 
             }
         })
