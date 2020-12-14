@@ -16,7 +16,7 @@ class UserController extends Controller
     public function profile(Request $request){
 
         $user = Auth::user();
-        $orders = Orders::where("user_id", $user->id)->get();
+        $orders = Orders::where("user_id", $user->id)->orderBy('created_at', 'desc')->get();
         // dd($orders);
         return view('profile')->with("orders", $orders);
     }

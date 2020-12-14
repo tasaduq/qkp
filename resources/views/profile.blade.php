@@ -26,7 +26,7 @@
                     @forelse ($orders as $order)
                         
 
-                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->status ? "Completed" : "Pending" }}  - {{ date_format($order->created_at,"d-m-Y") }} 
+                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->status ? "Completed" : "Pending" }}  - {{ date_format($order->created_at,"d-m-Y") }}  - <button class="btn btn-warning mb-1 cancel-order-animal" ordernumber="{{$order->order_number}}">Cancel Order</button>
 
                       @foreach ($order->products as $orderedProduct)
                         <div class="accordion" id="installment-schedule">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="row inline-buttons text-right">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-warning mb-1 cancel-order-animal" orderanimalid="{{$orderedProduct->id}}">Cancel Order</button>
+                                        <button class="btn btn-warning mb-1 cancel-order-animal" orderanimalid="{{$orderedProduct->id}}">Cancel Animal</button>
                                         <button class="btn btn-success mb-1 lumsum-order-animal" orderanimalid="{{$orderedProduct->id}}">Make Lump Sum Payment</button>
                                     </div>
                                 </div>                   
