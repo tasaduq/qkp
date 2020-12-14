@@ -11,7 +11,7 @@
                     <div class="profile-categories">
                         <h6>Categories</h6>
                         <ul>
-                            <li><a href="#">My Profile Settings</a></li>
+                            {{-- <li><a href="#">My Profile Settings</a></li> --}}
                             <li class="active"><a  href="#">Installment Schedule</a></li>
                             <li><a href="/logout">Logout</a></li>
                         </ul>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-9 profile-right-section">
                     <h2>Order Installments Schedule</h2>
-                    <p><strong>03 </strong>Animal in Your List</p>
+                    {{-- <p><strong>03 </strong>Animal in Your List</p> --}}
 
                     @forelse ($orders as $order)
                         

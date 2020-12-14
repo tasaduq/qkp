@@ -97,7 +97,7 @@
                         
                     </div>
     
-                    <h2 class="mobile"><a class="filter-by" href="#filter-section" data-toggle="collapse"><i class="fas fa-sliders-h"></i>Filter by</a></h2>
+                    {{-- <h2 class="mobile"><a class="filter-by" href="#filter-section" data-toggle="collapse"><i class="fas fa-sliders-h"></i>Filter by</a></h2>
                    <div id="filter-section" class="collapse">
                         <div class="categories active">
                             <h6 class="pb-3 title">Categories</h6>
@@ -120,7 +120,7 @@
                         </div>
     
                         
-                    </div>
+                    </div> --}}
     
     
                 </div>
