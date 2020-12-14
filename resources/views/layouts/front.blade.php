@@ -178,7 +178,20 @@
    </div>
    <!-- Register Model end -->
 
+<!-- top header -->
 
+   <!-- <div class="head-top">
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-12 col-md-auto">
+               <div class="contact"><a href="#"><i class="icon-qkp-phone-c pr-2"></i>UAN 021-111-QKP</a></div>
+            </div>
+            <div class="col-sm-12 col-md-auto">
+               <div class="email"><a href="#"><i class="icon-qkp-message-c pr-2"></i>info@qurbanikistonpay.com</a></div>
+            </div>
+         </div>
+      </div>
+   </div> -->
       <!-- Main Header -->
       
    <header>
@@ -198,12 +211,12 @@
                      $cartC = new \App\Http\Controllers\CartController;
                      $CartCount = $cartC->get_cart_count();
                   ?>
-                  <a class="cart-icon-wrap mr-4 hide-on-desktop" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
+                  
                   @if(Auth::user())
                      <ul class="navbar-nav mx-auto hide-on-desktop">
                         
                         <li class="nav-item">
-                           <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
+                           <a style="display:inline-block; vertical-align:middle;" class="cart-icon-wrap mr-4 hide-on-desktop" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a> <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
                         </li>
                      </ul>
                   @else 
