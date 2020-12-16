@@ -26,7 +26,15 @@
                     @forelse ($orders as $order)
                         
 
-                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->get_status->name }}  - {{ date_format($order->created_at,"d-m-Y") }}  - <button class="btn btn-warning mb-1 cancel-order-animal" ordernumber="{{$order->order_number}}">Cancel Order</button>
+                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->get_status->name }}  - {{ date_format($order->created_at,"d-m-Y") }}   
+                      
+                      @if( $order->cancellable() )
+                        - <button class="btn btn-warning mb-1 order-cancel-btn" ordernumber="{{$order->order_number}}">Cancel Order</button>
+                      @endif
+
+                      @if( $order->payable() )
+                        - <button class="btn tbl-btn default-btn paid order-pay-btn" ordernumber="{{$order->order_number}}">Pay Now</button>
+                      @endif
 
                       @foreach ($order->products as $orderedProduct)
                         <div class="accordion" id="installment-schedule">
@@ -40,56 +48,82 @@
                             </div>
                             <div class="col-sm-8">
                                 <h2>{{$orderedProduct->product->name}}</h2>
-                                <i class="fas fa-chevron-down fa-pull-right"></i>
-                                <div class="row pro-prize">
-                                    <div class="col-sm-6 text-right">
-                                        <div class="prize">
-                                            <span>Paid Amount <strong>{{number_format($orderedProduct->paid_amount())}}/-</strong></span>
+                                @if( $order->in_process() )
+                                  @if( $orderedProduct->in_process() )
+                                    <i class="fas fa-chevron-down fa-pull-right"></i>
+                                    <div class="row pro-prize">
+                                        <div class="col-sm-6 text-right">
+                                            <div class="prize">
+                                                <span>Paid Amount <strong>{{number_format($orderedProduct->paid_amount())}}/-</strong></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                          <div class="prize">
+                                            <span>Remaining Amount <strong>{{number_format($orderedProduct->remaining_amount())}}/-</strong></span>
+                                          </div>
+                                      </div>
+                                    </div>
+                                    <div class="row inline-buttons text-right">
+                                        <div class="col-sm-12">
+                                          @if( $orderedProduct->cancellable() )
+                                            <button class="btn btn-warning mb-1 cancel-order-animal" orderanimalid="{{$orderedProduct->id}}">Cancel Animal</button>
+                                          @endif
+                                          @if( $orderedProduct->payable() )
+                                            <button class="btn btn-success mb-1 lumsum-order-animal" orderanimalid="{{$orderedProduct->id}}">Make Lump Sum Payment</button>
+                                          @endif
                                         </div>
                                     </div>
+                                  @else
+                                  <div class="row">
                                     <div class="col-sm-6 text-right">
                                       <div class="prize">
-                                        <span>Remaining Amount <strong>{{number_format($orderedProduct->remaining_amount())}}/-</strong></span>
+                                        <span> Animal Cancelled </span>
                                       </div>
                                   </div>
                                 </div>
-                                <div class="row inline-buttons text-right">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-warning mb-1 cancel-order-animal" orderanimalid="{{$orderedProduct->id}}">Cancel Animal</button>
-                                        <button class="btn btn-success mb-1 lumsum-order-animal" orderanimalid="{{$orderedProduct->id}}">Make Lump Sum Payment</button>
+                                  @endif
+                                @else
+                                <div class="row">
+                                  <div class="col-sm-6 text-right">
+                                    <div class="prize">
+                                      <span> Order Cancelled </span>
                                     </div>
-                                </div>                   
+                                </div>
+                              </div>
+                                @endif             
                             </div>
                         </div><!--schdule row-->
                         </a>
-                        <div id="tablecollapse{{$orderedProduct->id}}" class="collapse">
-                        <table  class="table table-responsive-sm text-left">
-                          <thead class="thead-dark">
-                            <tr>
-                              <th>Month</th>
-                              <th>Due Date</th>
-                              <th>Installment</th>
-                              <th>Status</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach ($orderedProduct->installments_desc() as $installment)
-                            
-                            <tr>
-                              <td>{{ $installment->due_date_month() }}</td>
-                              {{-- <td>{{}}</td> --}}
-                             
-                              <td>{{$installment->get_due_date()}}</td>
-                              <td>{{number_format($installment->amount)}}/-</td>
-                              <td>{{$installment->get_status->name}}</td>
-                              {{-- pending status needed --}}
-                              <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
-                            </tr>
-                            @endforeach
-                          </tbody>
-                        </table>
-                      </div>
+                        @if( $order->in_process() )
+                            <div id="tablecollapse{{$orderedProduct->id}}" class="collapse">
+                            <table  class="table table-responsive-sm text-left">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th>Month</th>
+                                  <th>Due Date</th>
+                                  <th>Installment</th>
+                                  <th>Status</th>
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($orderedProduct->installments_desc() as $installment)
+                                
+                                <tr>
+                                  <td>{{ $installment->due_date_month() }}</td>
+                                  {{-- <td>{{}}</td> --}}
+                                
+                                  <td>{{$installment->get_due_date()}}</td>
+                                  <td>{{number_format($installment->amount)}}/-</td>
+                                  <td>{{$installment->get_status->name}}</td>
+                                  {{-- pending status needed --}}
+                                  <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
+                                </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                          </div>
+                          @endif
                       </div>
                       @endforeach
                          

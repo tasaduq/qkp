@@ -500,6 +500,9 @@ ALTER TABLE `order_installments` ADD `due_date` DATETIME NULL DEFAULT NULL AFTER
 UPDATE `orders` SET `status`=1  WHERE 1;
 UPDATE `order_installments` SET `status`=1  WHERE 1;
 
+ALTER TABLE `order_products` ADD `status` INT NOT NULL DEFAULT '1' COMMENT 'order_products_status' AFTER `product_then_price`;
+
+UPDATE `order_products` SET `status`=1 WHERE 1
 
 --
 -- Table structure for table `order_installments_status`
@@ -613,3 +616,13 @@ ALTER TABLE `order_products_status`
 ALTER TABLE `order_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
+
+
+
+INSERT INTO `order_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Cancellation', 'Pending Cancellation');
+
+INSERT INTO `order_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Payment', 'Pending Payment'), (NULL, 'Pending Bank Transfer', 'Pending Bank Transfer');
+INSERT INTO `order_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Online Payment', 'Pending Online Payment');
+
+INSERT INTO `order_products_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Cancellation', 'Pending Cancellation');
+UPDATE `order_products_status` SET `name` = 'Pending Confirmation', `description` = 'Pending Confirmation' WHERE `order_products_status`.`id` = 1;

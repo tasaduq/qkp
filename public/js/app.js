@@ -337,8 +337,8 @@ $(document).ready(function(){
     })
 
     $(".cancel-order-animal").on("click", function(){
-        var orderanimalid = $(this).attr("orderanimalid")
-        cart.cancelOrder( orderanimalid )
+        // var orderanimalid = $(this).attr("orderanimalid")
+        order.cancelOrderAnimal( $(this) )
     })
     $(".lumsum-order-animal").on("click", function(){
         var orderanimalid = $(this).attr("orderanimalid")
@@ -387,6 +387,15 @@ $(document).ready(function(){
 
         console.log(selected_category, product_color, weight_ci)
 
+    });
+
+    $(".order-cancel-btn").on("click",function(){
+        order.cancelOrder($(this))
+    });
+
+
+    $(".order-pay-btn").on("click",function(){
+        order.redirectPayment($(this))
     });
 
     // SLIDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
@@ -931,42 +940,6 @@ var cart = {
 
         })
     },
-    cancelOrderAnimal:function(orderAnimalId){
-        page.loader.show()
-
-        var payload = {
-            _token: $("meta[name='csrf-token']").attr("content"),
-            orderanimalid:orderAnimalId
-        }
-
-        $.ajax({
-            url:"/cancel-order-animal",
-            data: payload,
-            dataType: 'json',
-            type: "POST",
-            success: function(result){
-                page.loader.hide();
-
-                if( result.code == 200 ){
-                    user.redirectToProfile();
-                } else {
-                    page.toast.show("Unable to process cancelletion at this time, please try again later.", "danger")
-                    // cart.redirectToCart();
-                }
-                
-            },
-            error:function(error){
-                page.loader.hide();
-                page.toast.show("Something went wrong while adding this product, please try again", "danger")
-                // alert("Something went wrong while while processing your cart, please try again.")
-                console.log("error",error)                // responseJSON
-            }
-
-        })
-    },
-    cancelOrder:function(){
-
-    },
     updateNumber:function(count){
         // var currentNumber = $(".cart-icon-wrap .count").html();
         $(".cart-icon-wrap .count").html(count);
@@ -1027,5 +1000,77 @@ var order = {
                 
             }
         })
+    },
+    cancelOrderAnimal:function(orderAnimalBtn){
+        page.loader.show()
+        var animalNo = orderAnimalBtn.attr('orderanimalid');
+        orderAnimalBtn.attr("disabled",true);
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            orderanimalno:animalNo
+        }
+
+        $.ajax({
+            url:"/cancel-order-animal",
+            data: payload,
+            dataType: 'json',
+            type: "POST",
+            success: function(result){
+                
+                if( result.code == 200 ){
+                    // user.redirectToProfile();
+                    page.toast.show(result.message, "success")
+                    // location.reload();
+                } else {
+                    page.toast.show("Unable to process cancelletion at this time, please try again later.", "danger")
+                    // cart.redirectToCart();
+                }
+                
+            },
+            error:function(error){
+                page.toast.show("Something went wrong while adding this product, please try again", "danger")
+                // alert("Something went wrong while while processing your cart, please try again.")
+                console.log("error",error)                // responseJSON
+            },
+            done:function(){
+                orderAnimalBtn.attr("disabled",false);
+                page.loader.hide();
+            }
+
+        })
+    },
+    cancelOrder:function(orderBtn){
+        var orderNo = orderBtn.attr('ordernumber');
+        orderBtn.attr("disabled",true);
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            orderno:orderNo,
+        }
+        $.ajax({
+            url:"/cancel-order",
+            data: payload,
+            // dataType: 'json',
+            type: "POST",
+            success: function(result){
+                page.loader.hide();
+                orderBtn.attr("disabled",false);
+                if( result.code == 200 ){
+                    page.toast.show(result.message, "success")
+                    location.reload();
+                } else {
+                    page.toast.show("Unable to process cancelletion at this time, please try again later.", "danger")
+                }
+
+            },
+            error:function(error){
+                orderBtn.attr("disabled",false);
+                page.toast.show("Unable to process cancelletion at this time, please try again later.", "danger")
+                console.log("error",error)                // responseJSON
+            }
+
+        })
+    },
+    redirectPayment:function(payBtn){
+        window.location = "/payment/"+payBtn.attr("ordernumber")
     }
 }
