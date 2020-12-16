@@ -29839,3 +29839,35 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 {
     background: transparent;
 }
+
+
+/** Mustafa Shaban **/
+.preloader {
+    background: url(../img/preloader.gif) no-repeat;
+    background-size: 80px;
+    width: 80px;
+    height: 80px;
+    z-index: 9999;
+    position: fixed;
+    top: 42%;
+    left: 49%;
+}
+
+.preloader-container:after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(70, 70, 70, 0.1);
+    z-index: 999999999;
+}
+
+#receiptImg {
+    text-align: center;
+    margin-bottom: 20px;
+}
+#receiptImg img {
+    max-height: 300px;
+}
