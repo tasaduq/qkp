@@ -7,9 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 profile-left-section">
-                    <p>Welcome <span class="name">{{Auth::user()->name}}</span></p>
+                    <p class="mb-0">Welcome <span class="name">{{Auth::user()->name}}</span></p>
                     <div class="profile-categories">
-                        <h6>Categories</h6>
                         <ul>
                             {{-- <li><a href="#">My Profile Settings</a></li> --}}
                             <li class="active"><a  href="#">Installment Schedule</a></li>
