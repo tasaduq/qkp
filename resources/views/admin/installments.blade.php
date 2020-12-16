@@ -27,10 +27,6 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th data-sort=""><div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1">
-                      <label class="custom-control-label" for="customCheck1"></label>
-                    </div></th>
                     <th scope="col" class="sort" data-sort="name">Order #</th>
                     <th scope="col" class="sort" data-sort="budget">Amount</th>
                     <th scope="col" class="sort" data-sort="status">Due Date</th>
@@ -41,25 +37,13 @@
                 <tbody class="list">
                     @foreach($data as $row)
                         <tr>
-                            <td class="">
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                <label class="custom-control-label" for="customCheck2"></label>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="media align-items-center">
-                                <div class="media-body">
-                                  <span class="name mb-0 text-sm">#{{ $row->order_number }}</span>
-                                </div>
-                              </div>
-                            </td>
+                            <td>#{{ $row->order_number }}</td>
                             <td>{{ number_format($row->amount) }}/-</td>
                             <td>{{ date('d-M-Y', strtotime($row->due_date)) }}</td>
                             <td><span class="status {{ strtolower(str_replace(' ', '-', $row->name)) }}">{{ $row->name }}</span></td>
                             <td>
                                 @if($row->status == 2)
-                                    <a href="#" class="btn btn-success btn-xs verify-installment-payment" data-instid="{{ $row->id }}" data-instnum="{{ $row->instalment_number }}" data-ordernum="{{ $row->order_number }}">Verify</a>
+                                    <a href="#" class="btn btn-success btn-sm verify-installment-payment" data-instid="{{ $row->id }}" data-instnum="{{ $row->instalment_number }}" data-ordernum="{{ $row->order_number }}">Verify</a>
                                 @endif
                             </td>
                         </tr>

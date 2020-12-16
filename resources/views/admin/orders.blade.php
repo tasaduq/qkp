@@ -27,12 +27,9 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th data-sort=""><div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1">
-                      <label class="custom-control-label" for="customCheck1"></label>
-                    </div></th>
                     <th scope="col" class="sort" data-sort="name">Order #</th>
                     <th scope="col" class="sort" data-sort="budget">Customer Name</th>
+                    <th scope="col" class="sort" data-sort="budget">Payment Method</th>
                     <th scope="col" class="sort" data-sort="status">Upfront Amount</th>
                     <th scope="col" class="sort" data-sort="status">Created On</th>
                     <th scope="col" class="sort" data-sort="status">Status</th>
@@ -42,21 +39,24 @@
                 <tbody class="list">
                     @foreach($data as $row)
                         <tr>
-                            <td class="">
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                <label class="custom-control-label" for="customCheck2"></label>
-                              </div>
-                            </td>
                             <td>#{{ $row->order_number }}</td>
                             <td>{{ $row->name }}</td>
+                            <td>
+                                @if($row->payment_method == 0)
+                                Cash
+                                @elseif($row->payment_method == 1)
+                                Bank Transfer
+                                @else
+                                Other
+                                @endif
+                            </td>
                             <td>{{ number_format($row->upfront) }}/-</td>
                             <td>{{ date('d-M-Y', strtotime($row->created_at)) }}</td>
                             <td><span class="status {{ strtolower(str_replace(' ', '-', $row->status_name)) }}">{{ $row->status_name }}</span></td>
                             <td>
-                                <a href="{{ route('order_detail', $row->id) }}" class="btn btn-info btn-xs">View</a>
-                                @if($row->status == 7)
-                                    <a href="#" class="btn btn-success btn-xs verify-order-payment" data-orderid="{{ $row->id }}" data-ordernum="{{ $row->order_number }}">Verify</a>
+                                <a href="{{ route('order_detail', $row->id) }}" class="btn btn-info btn-sm">View</a>
+                                @if($row->status == 7 || $row->payment_method == 0)
+                                    <a href="#" class="btn btn-success btn-sm verify-order-payment" data-orderid="{{ $row->id }}" data-ordernum="{{ $row->order_number }}">Verify</a>
                                 @endif
                             </td>
                         </tr>
