@@ -21,7 +21,7 @@ Route::middleware("calculations")->group(function () {
     Route::get('/', "HomeController@index")->name('home');
     Route::get('/product/{id}', "HomeController@product_detail");
     Route::get('/products', "HomeController@products");
-    Route::get('/mandi', "HomeController@mandi");
+    Route::get('/mandi', "HomeController@mandi")->name('mandi');
     Route::get('/cart', "CartController@index");
     Route::get('/checkout', "CartController@checkout");
     Route::post('/shipping-cart-update', "CartController@shipping_cart_update");
@@ -140,13 +140,19 @@ Route::middleware(['auth'])->group(function(){
         return view('admin.add_category');
     });
 
+    Route::get('/admin/orders', "OrderController@get_orders")->name('orders');
 
-    Route::get('/admin/orders', function () {
-        return view('admin.orders');
-    });
-    Route::get('/admin/order_details', function () {
-        return view('admin.order_details');
-    });
+    Route::get('/admin/order/{id}', "OrderController@order_detail")->name('order_detail');
+
+    Route::get('/admin/verify_order/{id}', "OrderController@vrfy_order");
+
+    Route::post('/admin/update_order_status/{status}/{id}', "OrderController@update_order_sts");
+
+    Route::get('/admin/installments', "OrderController@get_installments")->name('installments');
+
+    Route::get('/admin/verify_installment/{id}', "OrderController@vrfy_install");
+
+    Route::post('/admin/update_installment_status/{status}/{id}', "OrderController@update_install_sts");
 
     
 
