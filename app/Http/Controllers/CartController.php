@@ -147,11 +147,11 @@ class CartController extends Controller
 
         if( $paymentMethod == "bank-transfer" ){
             $paymentMethod = 1;
-            $order_status = "9";
+            $order_status = "10";
         }
         else if( $paymentMethod == "cash" ){
             $paymentMethod = 0;
-            $order_status = "8";
+            $order_status = "9";
         }
 
         $total_upfront_payment = 0;

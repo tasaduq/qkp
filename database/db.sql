@@ -626,3 +626,14 @@ INSERT INTO `order_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending 
 
 INSERT INTO `order_products_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Cancellation', 'Pending Cancellation');
 UPDATE `order_products_status` SET `name` = 'Pending Confirmation', `description` = 'Pending Confirmation' WHERE `order_products_status`.`id` = 1;
+
+
+INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES (NULL, 'Overdue', 'Overdue');
+UPDATE `order_installments_status` SET `description` = 'Pending Confirmation' WHERE `order_installments_status`.`id` = 3;
+UPDATE `order_installments_status` SET `name` = 'Pending Confirmation' WHERE `order_installments_status`.`id` = 3;
+
+UPDATE `order_installments_status` SET `name` = 'Upcoming Payment' WHERE `order_installments_status`.`id` = 1;
+
+INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES (NULL, 'Installment due', 'Installment due');
+
+INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Cash Payment', 'Pending Cash Payment');
