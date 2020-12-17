@@ -10,8 +10,10 @@ use Session;
 use App\Models\User;
 use App\Models\Products;
 use App\Models\Orders;
+use App\Models\OrderStatus;
 use App\Models\OrderProducts;
 use App\Models\OrderInstallments;
+use App\Models\OrderInstallmentsStatus;
 // use App\Models\Categories;
 use DB;
 
@@ -89,25 +91,31 @@ class OrderController extends Controller
         return Response::json($response);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function get_orders()
+    public function get_orders(Request $request)
     {
+        //echo $request->input('status');die;
+
         $paginate = config("site.pagination");
 
-        $data = Orders::select('orders.id', 'orders.order_number', 'orders.upfront', 'orders.status', 'orders.payment_method', 'orders.created_at', 'users.name', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')->latest()->paginate($paginate);
-        return view('admin/orders', compact('data'))->with('i', (request()->input('page', 1) - 1) * $paginate);
+        $OrderStatus = OrderStatus::get();
+
+        $selectedStatus = 0;
+        if(is_numeric($request->input('status')) && trim($request->input('status')) > 0) {
+            $selectedStatus = $request->input('status');
+        }
+
+        $data = Orders::select('orders.id', 'orders.order_number', 'orders.upfront', 'orders.status', 'orders.payment_method', 'orders.created_at', 'users.name', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')
+            ->where(function ($query) use ($selectedStatus) {
+                if(is_numeric($selectedStatus) && trim($selectedStatus) > 0)
+                {
+                    $query->where('orders.status', $selectedStatus);
+                }
+            })
+            ->latest()->paginate($paginate);
+
+        return view('admin/orders', compact('data', 'OrderStatus', 'selectedStatus'))->with('i', (request()->input('page', 1) - 1) * $paginate);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function order_detail($id)
     {
         $data = Orders::findOrFail($id);
@@ -136,25 +144,38 @@ class OrderController extends Controller
         return view('admin/order_details', compact('order_details', 'order_products'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function get_installments()
+    public function get_installments(Request $request)
     {
         $paginate = config("site.pagination");
 
-        $data = OrderInstallments::select('order_installments.*', 'orders.order_number', 'order_installments_status.name')->leftJoin('order_products', 'order_products.id', '=', 'order_installments.order_product_id')->leftJoin('order_installments_status', 'order_installments_status.id', '=', 'order_installments.status')->leftJoin('orders', 'orders.id', '=', 'order_products.order_id')->orderBy('order_installments.id', 'DESC')->paginate($paginate);
-        return view('admin/installments', compact('data'))->with('i', (request()->input('page', 1) - 1) * $paginate);
+        $OrderInstallmentsStatus = OrderInstallmentsStatus::get();
+
+        $selectedStatus = 0;
+        if(is_numeric($request->input('status')) && trim($request->input('status')) > 0) {
+            $selectedStatus = $request->input('status');
+        }
+
+        $selectedOrder = 0;
+        if(is_numeric($request->input('order')) && trim($request->input('order')) > 0) {
+            $selectedOrder = $request->input('order');
+        }
+
+        $data = OrderInstallments::select('order_installments.*', 'orders.order_number', 'order_installments_status.name')->leftJoin('order_products', 'order_products.id', '=', 'order_installments.order_product_id')->leftJoin('order_installments_status', 'order_installments_status.id', '=', 'order_installments.status')->leftJoin('orders', 'orders.id', '=', 'order_products.order_id')
+            ->where(function ($query) use ($selectedStatus, $selectedOrder) {
+                if(is_numeric($selectedStatus) && trim($selectedStatus) > 0)
+                {
+                    $query->where('order_installments.status', $selectedStatus);
+                }
+                if(is_numeric($selectedOrder) && trim($selectedOrder) > 0)
+                {
+                    $query->where('orders.order_number', $selectedOrder);
+                }
+            })
+            ->orderBy('order_installments.id', 'DESC')->paginate($paginate);
+
+        return view('admin/installments', compact('data', 'OrderInstallmentsStatus', 'selectedStatus', 'selectedOrder'))->with('i', (request()->input('page', 1) - 1) * $paginate);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function vrfy_order($id)
     {
         $order_details = Orders::select('id', 'receipt')->where([['id', '=', $id]])->first();
@@ -175,13 +196,6 @@ class OrderController extends Controller
         return Response::json($response);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @param  string  $status
-     * @return \Illuminate\Http\Response
-     */
     public function update_order_sts(Request $request, $status, $id)
     {
         $order_details = Orders::where([['id', '=', $id]])->first();
@@ -227,12 +241,6 @@ class OrderController extends Controller
         return Response::json($response);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function vrfy_install($id)
     {
         $installment_details = OrderInstallments::select('id', 'receipt')->where([['id', '=', $id]])->first();
@@ -253,13 +261,6 @@ class OrderController extends Controller
         return Response::json($response);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @param  string  $status
-     * @return \Illuminate\Http\Response
-     */
     public function update_install_sts(Request $request, $status, $id)
     {
         $installment_details = OrderInstallments::where([['id', '=', $id]])->first();

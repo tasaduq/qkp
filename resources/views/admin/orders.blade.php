@@ -20,7 +20,21 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Order Listing</h3>
+            <form method="get">
+              <div class="row">
+                <div class="col-md-3">
+                  <select class="form-control" name="status">
+                    <option value="0">Select Status</option>
+                    @foreach($OrderStatus as $os)
+                        <option {{ $selectedStatus == $os->id ? 'selected="selected"' : '' }} value="{{ $os->id }}">{{ $os->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+              </div>
+            </form>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
@@ -37,30 +51,34 @@
                   </tr>
                 </thead>
                 <tbody class="list">
-                    @foreach($data as $row)
-                        <tr>
-                            <td>#{{ $row->order_number }}</td>
-                            <td>{{ $row->name }}</td>
-                            <td>
-                                @if($row->payment_method == 0)
-                                Cash
-                                @elseif($row->payment_method == 1)
-                                Bank Transfer
-                                @else
-                                Other
-                                @endif
-                            </td>
-                            <td>{{ number_format($row->upfront) }}/-</td>
-                            <td>{{ date('d-M-Y', strtotime($row->created_at)) }}</td>
-                            <td><span class="status {{ strtolower(str_replace(' ', '-', $row->status_name)) }}">{{ $row->status_name }}</span></td>
-                            <td>
-                                <a href="{{ route('order_detail', $row->id) }}" class="btn btn-info btn-sm">View</a>
-                                @if($row->status == 7 || $row->payment_method == 0)
-                                    <a href="#" class="btn btn-success btn-sm verify-order-payment" data-orderid="{{ $row->id }}" data-ordernum="{{ $row->order_number }}">Verify</a>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if(count($data) > 0)
+                        @foreach($data as $row)
+                            <tr>
+                                <td>#{{ $row->order_number }}</td>
+                                <td>{{ $row->name }}</td>
+                                <td>
+                                    @if($row->payment_method == 0)
+                                    Cash
+                                    @elseif($row->payment_method == 1)
+                                    Bank Transfer
+                                    @else
+                                    Other
+                                    @endif
+                                </td>
+                                <td>{{ number_format($row->upfront) }}/-</td>
+                                <td>{{ date('d-M-Y', strtotime($row->created_at)) }}</td>
+                                <td><span class="status {{ strtolower(str_replace(' ', '-', $row->status_name)) }}">{{ $row->status_name }}</span></td>
+                                <td>
+                                    <a href="{{ route('order_detail', $row->id) }}" class="btn btn-info btn-sm">View</a>
+                                    @if($row->status == 7 || $row->payment_method == 0)
+                                        <a href="#" class="btn btn-success btn-sm verify-order-payment" data-orderid="{{ $row->id }}" data-ordernum="{{ $row->order_number }}">Verify</a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr><td colspan="7" class="text-center">No records found</td></tr>
+                    @endif
                 </tbody>
               </table>
             </div>

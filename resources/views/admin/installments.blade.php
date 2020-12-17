@@ -20,7 +20,24 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Installments Listing</h3>
+            <form method="get">
+              <div class="row">
+                <div class="col-md-3">
+                  <input class="form-control" name="order" placeholder="Order ID" value="{{ trim($selectedOrder) != '' && trim($selectedOrder) > 0 ? $selectedOrder : '' }}" />
+                </div>
+                <div class="col-md-3">
+                  <select class="form-control" name="status">
+                    <option value="0">Select Status</option>
+                    @foreach($OrderInstallmentsStatus as $ois)
+                        <option {{ $selectedStatus == $ois->id ? 'selected="selected"' : '' }} value="{{ $ois->id }}">{{ $ois->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+              </div>
+            </form>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
@@ -35,19 +52,23 @@
                   </tr>
                 </thead>
                 <tbody class="list">
-                    @foreach($data as $row)
-                        <tr>
-                            <td>#{{ $row->order_number }}</td>
-                            <td>{{ number_format($row->amount) }}/-</td>
-                            <td>{{ date('d-M-Y', strtotime($row->due_date)) }}</td>
-                            <td><span class="status {{ strtolower(str_replace(' ', '-', $row->name)) }}">{{ $row->name }}</span></td>
-                            <td>
-                                @if($row->status == 2)
-                                    <a href="#" class="btn btn-success btn-sm verify-installment-payment" data-instid="{{ $row->id }}" data-instnum="{{ $row->instalment_number }}" data-ordernum="{{ $row->order_number }}">Verify</a>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if(count($data) > 0)
+                        @foreach($data as $row)
+                            <tr>
+                                <td>#{{ $row->order_number }}</td>
+                                <td>{{ number_format($row->amount) }}/-</td>
+                                <td>{{ date('d-M-Y', strtotime($row->due_date)) }}</td>
+                                <td><span class="status {{ strtolower(str_replace(' ', '-', $row->name)) }}">{{ $row->name }}</span></td>
+                                <td>
+                                    @if($row->status == 2)
+                                        <a href="#" class="btn btn-success btn-sm verify-installment-payment" data-instid="{{ $row->id }}" data-instnum="{{ $row->instalment_number }}" data-ordernum="{{ $row->order_number }}">Verify</a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr><td colspan="5" class="text-center">No records found</td></tr>
+                    @endif
                 </tbody>
               </table>
             </div>
