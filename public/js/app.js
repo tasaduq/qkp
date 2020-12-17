@@ -224,10 +224,10 @@ $(document).ready(function(){
     var login = {
         loader:{
             show:function(){
-
+                page.loader.show()
             },
             hide:function(){
-
+                page.loader.hide()
             }
         }
     }
@@ -795,10 +795,10 @@ var page = {
     },
     loader:{
         show:function(){
-
+            $(".loader").fadeIn();
         }, 
         hide:function(){
-            
+            $(".loader").fadeOut();
         }
     }
 }

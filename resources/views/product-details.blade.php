@@ -55,6 +55,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                   </div>
                   @endif
                </div>
+
                <div class="col-sm-6 right-section">
 
                   <h2>{{$product->name}}</h2>
@@ -65,6 +66,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                      <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
                   </div> --}}
 
+                  @if (!$product->sold_out)
                   <div class="row details instalment-payment-schedule">
                      <div class="col-lg-12">
                         <ul class="mb-0">
@@ -179,6 +181,10 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                      <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" redirect="yes" type="button">Book your Animal</button></div>
                      @endif
                   </div>
+                  @else 
+                     <p>Sold out</p>
+                  @endif
+
                </div>
             </div>
          </div>
