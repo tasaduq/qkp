@@ -210,8 +210,13 @@
 
 
          @foreach ($featured_products as $product)
-            <a href="/product/{{$product->product_id}}">
+            @if (!$product->sold_out)
+               <a href="/product/{{$product->product_id}}">
+            @endif
                <div class="item">
+                  @if ($product->sold_out)
+                     <div class="sold-out">Sold Out</div>
+                  @endif
                   <div class="animal-image">
                      <?php
 
@@ -234,7 +239,9 @@
                      <span class="prize">{{number_format( $product->least_installment() )}}/- Per Month</span>
                   </div>
                </div>
-            </a>
+               @if (!$product->sold_out)
+               </a>
+               @endif
          @endforeach
          
 

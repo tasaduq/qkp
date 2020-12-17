@@ -7,7 +7,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-12">
-              <h5 class="h2 text-white d-inline-block mb-0">Orders</h5>
+              <h5 class="h2 text-white d-inline-block mb-0">Orders Installments</h5>
             </div>
           </div>
         </div>
@@ -23,10 +23,13 @@
             <form method="get">
               <div class="row">
                 <div class="col-md-3">
+                  <input class="form-control" name="order" placeholder="Order ID" value="{{ trim($selectedOrder) != '' && trim($selectedOrder) > 0 ? $selectedOrder : '' }}" />
+                </div>
+                <div class="col-md-3">
                   <select class="form-control" name="status">
                     <option value="0">Select Status</option>
-                    @foreach($OrderStatus as $os)
-                        <option {{ $selectedStatus == $os->id ? 'selected="selected"' : '' }} value="{{ $os->id }}">{{ $os->name }}</option>
+                    @foreach($OrderInstallmentsStatus as $ois)
+                        <option {{ $selectedStatus == $ois->id ? 'selected="selected"' : '' }} value="{{ $ois->id }}">{{ $ois->name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -42,10 +45,8 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="name">Order #</th>
-                    <th scope="col" class="sort" data-sort="budget">Customer Name</th>
-                    <th scope="col" class="sort" data-sort="budget">Payment Method</th>
-                    <th scope="col" class="sort" data-sort="status">Upfront Amount</th>
-                    <th scope="col" class="sort" data-sort="status">Created On</th>
+                    <th scope="col" class="sort" data-sort="budget">Amount</th>
+                    <th scope="col" class="sort" data-sort="status">Due Date</th>
                     <th scope="col" class="sort" data-sort="status">Status</th>
                     <th scope="col">Action</th>
                   </tr>
@@ -55,29 +56,18 @@
                         @foreach($data as $row)
                             <tr>
                                 <td>#{{ $row->order_number }}</td>
-                                <td>{{ $row->name }}</td>
+                                <td>{{ number_format($row->amount) }}/-</td>
+                                <td>{{ date('d-M-Y', strtotime($row->due_date)) }}</td>
+                                <td><span class="status {{ strtolower(str_replace(' ', '-', $row->name)) }}">{{ $row->name }}</span></td>
                                 <td>
-                                    @if($row->payment_method == 0)
-                                    Cash
-                                    @elseif($row->payment_method == 1)
-                                    Bank Transfer
-                                    @else
-                                    Other
-                                    @endif
-                                </td>
-                                <td>{{ number_format($row->upfront) }}/-</td>
-                                <td>{{ date('d-M-Y', strtotime($row->created_at)) }}</td>
-                                <td><span class="status {{ strtolower(str_replace(' ', '-', $row->status_name)) }}">{{ $row->status_name }}</span></td>
-                                <td>
-                                    <a href="{{ route('order_detail', $row->id) }}" class="btn btn-info btn-sm">View</a>
-                                    @if($row->status == 7 || $row->payment_method == 0)
-                                        <a href="#" class="btn btn-success btn-sm verify-order-payment" data-orderid="{{ $row->id }}" data-ordernum="{{ $row->order_number }}">Verify</a>
+                                    @if($row->status == 1 || $row->status == 2)
+                                        <a href="#" class="btn btn-success btn-sm verify-installment-payment" data-instid="{{ $row->id }}" data-instnum="{{ $row->instalment_number }}" data-ordernum="{{ $row->order_number }}">Verify</a>
                                     @endif
                                 </td>
                             </tr>
                         @endforeach
                     @else
-                        <tr><td colspan="7" class="text-center">No records found</td></tr>
+                        <tr><td colspan="5" class="text-center">No records found</td></tr>
                     @endif
                 </tbody>
               </table>
@@ -91,11 +81,11 @@
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="verifyOrderModal" tabindex="-1" role="dialog" aria-labelledby="verifyOrderModalLabel" aria-hidden="true">
+      <div class="modal fade" id="verifyInstallmentModal" tabindex="-1" role="dialog" aria-labelledby="verifyInstallmentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="verifyOrderModalLabel">Order</h5>
+              <h5 class="modal-title" id="verifyInstallmentModalLabel">Installment</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -104,15 +94,15 @@
                 <div id="receiptImg"></div>
               <div class="form-group mb-0">
               <label class="form-control-label" for="input-address">Note (Optional)</label>
-              <form id="verify-order-form">
+              <form id="verify-installment-form">
                 <meta name="csrf-token" content="{{csrf_token()}}">
-                <textarea id="verify-order-note" class="form-control"></textarea>
+                <textarea id="verify-installment-note" class="form-control"></textarea>
               </form>
             </div>
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn btn-secondary update-order-status" data-orderid="" data-orderstate="reject">Reject</a>
-              <a href="#" class="btn btn-primary update-order-status ml-auto" data-orderid="" data-orderstate="approve">Approve</a>
+              <a href="#" class="btn btn-secondary update-installment-status" data-instid="" data-inststate="reject">Reject</a>
+              <a href="#" class="btn btn-primary update-installment-status ml-auto" data-instid="" data-inststate="approve">Approve</a>
             </div>
           </div>
         </div>

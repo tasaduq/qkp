@@ -9,14 +9,18 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>QKP CMS</title>
   <!-- Favicon -->
-  <link rel="icon" href="/admin/img/brand/favicon.png" type="image/png">
+  <link rel="icon" href="{{ asset('admin/img/brand/favicon.png') }}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
-  <link rel="stylesheet" href="/admin/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="/admin/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admin/vendor/nucleo/css/nucleo.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admin/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="/admin/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admin/css/argon.css?v=1.2.0') }}" type="text/css">
+
+    <script type="text/javascript">
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
 </head>
 
 <body>
@@ -27,7 +31,7 @@
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand py-3" href="javascript:void(0)">
           <!-- <img src="/admin/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
-          <img class="img-fluid" src="/admin/img/brand/footerlogo.png">
+          <img class="img-fluid" src="{{ asset('admin/img/brand/footerlogo.png') }}">
         </a>
       </div>
       <div class="navbar-inner">
@@ -68,10 +72,24 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/orders">
-                <i class="ni ni-shop text-primary"></i>
-                <span class="nav-link-text">Orders</span>
-              </a>
+              <a class="nav-link" href="#navbar-orders" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-orders">
+                  <i class="ni ni-cart text-primary"></i>
+                  <span class="nav-link-text">Orders</span>
+                </a>
+              <div class="collapse" id="navbar-orders">
+                <ul class="nav nav-sm flex-column">
+                  <li class="nav-item">
+                    <a href="{{ route('orders') }}" class="nav-link">
+                      <span class="sidenav-normal"> Orders Listing </span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('installments') }}" class="nav-link">
+                      <span class="sidenav-normal"> Installment Listing </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </li>
             {{-- <li class="nav-item">
               <a class="nav-link" href="../../pages/widgets.html">
@@ -158,7 +176,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="../admin/img/theme/team-1.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="{{ asset('admin/img/theme/team-1.jpg') }}" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -177,7 +195,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="../admin/img/theme/team-2.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="{{ asset('admin/img/theme/team-2.jpg') }}" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -196,7 +214,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="../admin/img/theme/team-3.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="{{ asset('admin/img/theme/team-3.jpg') }}" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -215,7 +233,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="../admin/img/theme/team-4.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="{{ asset('admin/img/theme/team-4.jpg') }}" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -234,7 +252,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="../admin/img/theme/team-5.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="{{ asset('admin/img/theme/team-5.jpg') }}" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -305,7 +323,7 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="../admin/img/theme/team-4.jpg">
+                    <img alt="Image placeholder" src="{{ asset('admin/img/theme/team-4.jpg') }}">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
@@ -361,15 +379,15 @@
 </div>
 <!-- Argon Scripts -->
 <!-- Core -->
-<script src="/admin/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/js/jquery-validator.js"></script> 
-<script src="/admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/admin/vendor/js-cookie/js.cookie.js"></script>
-<script src="/admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-<script src="/admin/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<script src="{{ asset('admin/vendor/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery-validator.js') }}"></script>
+<script src="{{ asset('admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/js-cookie/js.cookie.js') }}"></script>
+<script src="{{ asset('admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
 <!-- Argon JS -->
-<script src="/admin/js/argon.js?v=1.2.0"></script>
-<script src="/admin/js/app.js"></script>
+<script src="{{ asset('admin/js/argon.js?v=1.2.0') }}"></script>
+<script src="{{ asset('admin/js/app.js') }}"></script>
 </body>
 
 </html>

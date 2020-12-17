@@ -337,4 +337,176 @@ $(document).ready(function(){
         }
     }
 
-})
+                       function showPreloader(jBlock) {
+
+                       var preloader = jQuery('<div class="preloader"></div>');
+                       var target = jBlock;
+                       if (!target) {
+                       target = jQuery('body');
+                       preloader.addClass('fixed');
+                       } else {
+                       target = jQuery(target);
+                       }
+
+                       if (target.hasClass('preloader-container')) {
+                       return;
+                       }
+
+                       target.addClass('preloader-container').append(preloader);
+                       var $preloader = target.find('.preloader');
+
+                       jQuery(window).resize();
+                       }
+
+                       function hidePreloader(jBlock) {
+                       if (!jBlock) {
+                       jBlock = jQuery('.preloader-container');
+                       }
+                       jBlock.children('.preloader').remove();
+                       jBlock.removeClass('preloader-container');
+                       }
+
+       $(".verify-order-payment").on("click", function(e){
+        e.preventDefault();
+        var orderId = $(this).data('orderid');
+                       var orderNum = $(this).data('ordernum');
+                  if(orderId > 0 && orderNum > 0) {
+               $.ajax({
+                   url:APP_URL+"/admin/verify_order/"+orderId,
+                   dataType: 'json',
+                   type: "GET",
+                   beforeSend: function () {
+                       showPreloader();
+                   },
+                   success: function(result){
+                       hidePreloader();
+                    if(result.code == 200){
+                       $('.update-order-status').attr('data-orderid', orderId);
+                       $('#verify-order-note').val('');
+
+                       if(result.receiptImg != null) {
+                        $('#receiptImg').html('<img src="'+result.receiptImg+'" alt="order_receipt" />');
+                       } else {
+                       $('#receiptImg').html('');
+                       }
+                       $('#verifyOrderModalLabel').html('Order #'+orderNum);
+                       $("#verifyOrderModal").modal('show');
+                    }
+                    else {
+                       alert('Nothing found, please try again!');
+                    }
+                   }
+               });
+                       }
+       });
+
+                       $(".update-order-status").on("click", function(e){
+                       e.preventDefault();
+                       var orderId = $(this).data('orderid');
+                       var orderState = $(this).data('orderstate');
+                       var orderNote = $('#verify-order-note').val();
+
+                       if(orderId > 0) {
+                       $.ajaxSetup({
+                       headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                       }
+                       });
+
+                       $.ajax({
+                       url:APP_URL+"/admin/update_order_status/"+orderState+"/"+orderId,
+                       data: {
+                       "order_note": orderNote
+                       },
+                       dataType: 'json',
+                       type: "POST",
+                       beforeSend: function () {
+                       showPreloader();
+                       },
+                       success: function(result){
+                       hidePreloader();
+                       if(result.code == 200){
+                       alert('Order status updated!');
+                       location.reload();
+                       }
+                       else {
+                       alert('Nothing update, please try again!');
+                       }
+                       }
+                       });
+                       }
+                       });
+
+                       $(".verify-installment-payment").on("click", function(e){
+                       e.preventDefault();
+                       var orderNum = $(this).data('ordernum');
+                       var instId = $(this).data('instid');
+                       var instNum = $(this).data('instnum');
+                       if(orderNum > 0 && instId > 0 && instNum > 0) {
+                       $.ajax({
+                       url:APP_URL+"/admin/verify_installment/"+instId,
+                       dataType: 'json',
+                       type: "GET",
+                       beforeSend: function () {
+                       showPreloader();
+                       },
+                       success: function(result){
+                       hidePreloader();
+                       if(result.code == 200){
+                       $('.update-installment-status').attr('data-instid', instId);
+                       $('#verify-installment-note').val('');
+
+                       if(result.receiptImg != null) {
+                       $('#receiptImg').html('<img src="'+result.receiptImg+'" alt="installment_receipt" />');
+                       } else {
+                       $('#receiptImg').html('');
+                       }
+
+                       $('#verifyInstallmentModalLabel').html('Installment #'+instNum+' of Order #'+orderNum);
+                       $("#verifyInstallmentModal").modal('show');
+                       }
+                       else {
+                       alert('Nothing found, please try again!');
+                       }
+                       }
+                       });
+                       }
+                       });
+
+                       $(".update-installment-status").on("click", function(e){
+                       e.preventDefault();
+                       var instId = $(this).data('instid');
+                       var instState = $(this).data('inststate');
+                       var instNote = $('#verify-installment-note').val();
+
+                       if(instId > 0) {
+                       $.ajaxSetup({
+                       headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                       }
+                       });
+
+                       $.ajax({
+                       url:APP_URL+"/admin/update_installment_status/"+instState+"/"+instId,
+                       data: {
+                       "installment_note": instNote
+                       },
+                       dataType: 'json',
+                       type: "POST",
+                       beforeSend: function () {
+                       showPreloader();
+                       },
+                       success: function(result){
+                       hidePreloader();
+                       if(result.code == 200){
+                       alert('Installment status updated!');
+                       location.reload();
+                       }
+                       else {
+                       alert('Nothing update, please try again!');
+                       }
+                       }
+                       });
+                       }
+                       });
+});

@@ -147,9 +147,11 @@ class CartController extends Controller
 
         if( $paymentMethod == "bank-transfer" ){
             $paymentMethod = 1;
+            $order_status = "10";
         }
-        else {
+        else if( $paymentMethod == "cash" ){
             $paymentMethod = 0;
+            $order_status = "9";
         }
 
         $total_upfront_payment = 0;
@@ -165,11 +167,11 @@ class CartController extends Controller
             $user = Auth::user();
 
             User::where("id", $user->id)->update($input);
-
+            
             $order = array(
                 "order_number" => rand(1111,9999),
                 "user_id" => $user->id,
-                "status" => 1,
+                "status" => $order_status,
                 "payment_method" => $paymentMethod
             );
             
