@@ -41,8 +41,9 @@ Route::middleware("calculations")->group(function () {
 
         Route::post("/process-cart", "CartController@process_checkout");
         Route::post("/cancel-order-animal", "OrderController@cancel_order_animal");
-        
+        Route::post("/cancel-order", "OrderController@cancel_order");
         Route::get("/payment", "OrderController@payment");
+        Route::get("/payment/{order_no}", "OrderController@payment");
         Route::post("/upload-receipt", "OrderController@upload_receipt");
         
         
