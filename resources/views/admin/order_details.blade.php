@@ -29,10 +29,16 @@
             <div class="card-body">
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Upfront</label>
-                        <input disabled id="input-address" class="form-control text-center" value="{{ number_format($order_details->upfront) }}/-" type="text">
+                        <input disabled id="input-address" class="form-control" value="{{ number_format($order_details->upfront) }}/-" type="text">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">Payment Method</label>
+                        <input disabled id="input-address" class="form-control" value="{{ $order_details->payment_method == 0 ? 'Cash' : ($order_details->payment_method == 1 ? 'Bank Transfer' : 'Other') }}" type="text">
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -67,7 +73,7 @@
                         <input disabled id="input-address" class="form-control" value="{{ $order_details->address }}" type="text">
                       </div>
                     </div>
-                    @if($order_details->status == 7)
+                    @if($order_details->status == 7 || $order_details->payment_method == 0)
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Note</label>
