@@ -41,7 +41,7 @@
             </div>
          </div>
       </div> -->
-
+<div class="loader" Style="display:none;"><img src="/images/loader.gif" alt=""></div>
 
       {{-- {{dd(Session::all())}} --}}
 
@@ -179,34 +179,10 @@
    <!-- Register Model end -->
 
 <!-- top header -->
-
-   <!-- <div class="head-top">
+   <div class="head-top hide-on-desktop">
       <div class="container">
          <div class="row">
-            <div class="col-sm-12 col-md-auto">
-               <div class="contact"><a href="#"><i class="icon-qkp-phone-c pr-2"></i>UAN 021-111-QKP</a></div>
-            </div>
-            <div class="col-sm-12 col-md-auto">
-               <div class="email"><a href="#"><i class="icon-qkp-message-c pr-2"></i>info@qurbanikistonpay.com</a></div>
-            </div>
-         </div>
-      </div>
-   </div> -->
-      <!-- Main Header -->
-      
-   <header>
-      <div class="header" id="topheader">
-         <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-               <a class="navbar-brand" href="/"><img src="/images/logo.svg" alt=""></a>
-               {{-- <div class="SearchToggle ml-auto">
-
-                  @if (Request::is('/'))
-                     <button class="navbar-toggler" type="button">
-                        <a href="#" type="button" class="toggleSearch"><i class="fas fa-search"></i></a>
-                     </button>
-                  @endif
-               </div> --}}
+            <div class="col-sm-12 text-right">
                <?php
                      $cartC = new \App\Http\Controllers\CartController;
                      $CartCount = $cartC->get_cart_count();
@@ -228,6 +204,26 @@
                            data-toggle="modal" data-target="#register-modal" id="register-btn">Register</button> --}}
                      </form>
                   @endif
+            </div>
+         </div>
+      </div>
+   </div>
+      <!-- Main Header -->
+      
+   <header>
+      <div class="header" id="topheader">
+         <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+               <a class="navbar-brand" href="/"><img src="/images/logo.svg" alt=""></a>
+               {{-- <div class="SearchToggle ml-auto">
+
+                  @if (Request::is('/'))
+                     <button class="navbar-toggler" type="button">
+                        <a href="#" type="button" class="toggleSearch"><i class="fas fa-search"></i></a>
+                     </button>
+                  @endif
+               </div> --}}
+               
 
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
