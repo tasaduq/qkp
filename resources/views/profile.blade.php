@@ -116,7 +116,14 @@
                                   <td>{{number_format($installment->amount)}}/-</td>
                                   <td>{{$installment->get_status->name}}</td>
                                   {{-- pending status needed --}}
-                                  <td class="text-right pr-0"><button class="btn tbl-btn default-btn paid">Pay Now</button></td>
+                                  <td class="text-right pr-0">
+                                  @if($installment->payable())
+                                    <button class="btn btn-success default-btn installment-pay-btn" installment="{{$installment->id}}">Pay Now</button>
+                                    {{-- <button class="btn tbl-btn default-btn paid">Pay Now</button> --}}
+                                  @else
+                                    <button class="btn tbl-btn default-btn paid" installment="{{$installment->id}}">Pay Now</button>
+                                  @endif
+                                  </td>
                                 </tr>
                                 @endforeach
                               </tbody>

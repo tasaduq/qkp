@@ -398,6 +398,13 @@ $(document).ready(function(){
         order.redirectPayment($(this))
     });
 
+    
+    $(".installment-pay-btn").on("click",function(){
+        order.payInstalment($(this))
+    });
+
+
+
     // SLIDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
     console.clear();
@@ -1072,5 +1079,9 @@ var order = {
     },
     redirectPayment:function(payBtn){
         window.location = "/payment/"+payBtn.attr("ordernumber")
+    },
+    payInstalment:function(instalmentBtn){
+        window.location = "/instalment-payment/"+instalmentBtn.attr("installment");
+
     }
 }

@@ -157,6 +157,28 @@ class OrderController extends Controller
 
         return view('payment')->with("order", $order)->with("user", $user);
     }
+    public function instalment_payment($order_no = null, Request $request){
+        // session::put("order_id", 81 );
+
+        $user = Auth::user();
+        echo $user_id = $user->id;
+        
+        
+        // if( $order_no != null){
+        //     $where = ["order_number"=>$order_no, "user_id"=>$user_id];
+        // }
+        // else {
+            
+        //     $order_id = session::get("order_id");
+        //     $where = ["id"=>$order_id, "user_id"=>$user_id];
+        // }   
+        
+        // $order = Orders::where($where)->first();
+
+        // session::put("order_id",$order->id);
+
+        // return view('payment')->with("order", $order)->with("user", $user);
+    }
     public function upload_receipt(Request $request){
 
         $this->validate($request, array(
