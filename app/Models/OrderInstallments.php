@@ -27,4 +27,8 @@ class OrderInstallments extends Model
         return "N/A";
         
     }
+    public function payable(){
+        return $this->status == "7" ||  $this->status == "8";
+    }
+    
 }

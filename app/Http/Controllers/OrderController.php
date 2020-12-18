@@ -179,6 +179,28 @@ class OrderController extends Controller
 
         return view('payment')->with("order", $order)->with("user", $user);
     }
+    public function instalment_payment($order_no = null, Request $request){
+        // session::put("order_id", 81 );
+
+        $user = Auth::user();
+        echo $user_id = $user->id;
+        
+        
+        // if( $order_no != null){
+        //     $where = ["order_number"=>$order_no, "user_id"=>$user_id];
+        // }
+        // else {
+            
+        //     $order_id = session::get("order_id");
+        //     $where = ["id"=>$order_id, "user_id"=>$user_id];
+        // }   
+        
+        // $order = Orders::where($where)->first();
+
+        // session::put("order_id",$order->id);
+
+        // return view('payment')->with("order", $order)->with("user", $user);
+    }
     public function upload_receipt(Request $request){
 
         $this->validate($request, array(
@@ -209,7 +231,7 @@ class OrderController extends Controller
             // dd($receipt);
             // echo "<img src=\"$receipt\" alt=\"\" />";
 
-
+            $order->status = "1";
             $order->receipt = $receipt;
             if($order->save()){
                 $response = array(
@@ -250,6 +272,8 @@ class OrderController extends Controller
     {
         $data = Orders::findOrFail($id);
 
+        $OrderStatus = OrderStatus::get();
+
         $order_details = Orders::select('orders.id', 'orders.status', 'orders.order_number', 'orders.upfront', 'orders.payment_method', 'orders.created_at', 'users.name', 'users.phone', 'users.city', 'users.email', 'users.address', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')->where([['orders.id', '=', $id]])->first();
         //print_r($order_details->toArray());die;
 
@@ -271,7 +295,7 @@ class OrderController extends Controller
 
         //print_r($order_products);die;
 
-        return view('admin/order_details', compact('order_details', 'order_products'));
+        return view('admin/order_details', compact('order_details', 'order_products', 'OrderStatus'));
     }
 
     public function get_installments(Request $request)
@@ -306,9 +330,16 @@ class OrderController extends Controller
         return view('admin/installments', compact('data', 'OrderInstallmentsStatus', 'selectedStatus', 'selectedOrder'))->with('i', (request()->input('page', 1) - 1) * $paginate);
     }
 
-    public function vrfy_order($id)
+    public function vrfy_order($status, $id)
     {
-        $order_details = Orders::select('id', 'receipt')->where([['id', '=', $id]])->first();
+        $statusId = 0;
+        if($status == 'confirmation') {
+            $statusId = 1;
+        } if($status == 'cancellation') {
+            $statusId = 8;
+        }
+
+        $order_details = Orders::select('id', 'receipt')->where([['id', '=', $id], ['status', '=', $statusId]])->first();
 
         if($order_details) {
             $response = array(
@@ -332,14 +363,38 @@ class OrderController extends Controller
 
         if($order_details) {
 
-            if(trim($request->order_note) != '') {
-                $orderNote = $request->order_note;
-            } else {
-                $orderNote = NULL;
-            }
-            if($status == 'reject') {
-                $state = 6;
+            if($status == 'updstatus') {
+                if(trim($request->order_status) != '' && $request->order_status > 0) {
+                    $orderStatus = $request->order_status;
 
+                    if($orderStatus == 6 || $orderStatus == 5) {
+                        $order_details->restock();
+                    }
+                    Orders::where([['id', '=', $id]])->update(['status' => $orderStatus]);
+
+                    $response = array(
+                        "code" => 200,
+                        "message" => ""
+                    );
+                } else {
+                    $response = array(
+                        "code" => 404,
+                        "message" => ""
+                    );
+                }
+            } elseif($status == 'reject') {
+                if(trim($request->order_note) != '') {
+                    $orderNote = $request->order_note;
+                } else {
+                    $orderNote = NULL;
+                }
+
+                if($order_details->status == 1) {
+                    $state = 6;
+                    $order_details->restock();
+                } else if($order_details->status == 8) {
+                    $state = 2;
+                }
                 Orders::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
 
                 $response = array(
@@ -347,7 +402,18 @@ class OrderController extends Controller
                     "message" => ""
                 );
             } elseif($status == 'approve') {
-                $state = 2;
+                if(trim($request->order_note) != '') {
+                    $orderNote = $request->order_note;
+                } else {
+                    $orderNote = NULL;
+                }
+
+                if($order_details->status == 1) {
+                    $state = 2;
+                } else if($order_details->status == 8) {
+                    $state = 5;
+                    $order_details->restock();
+                }
 
                 Orders::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
 

@@ -224,10 +224,10 @@ $(document).ready(function(){
     var login = {
         loader:{
             show:function(){
-
+                page.loader.show()
             },
             hide:function(){
-
+                page.loader.hide()
             }
         }
     }
@@ -397,6 +397,13 @@ $(document).ready(function(){
     $(".order-pay-btn").on("click",function(){
         order.redirectPayment($(this))
     });
+
+    
+    $(".installment-pay-btn").on("click",function(){
+        order.payInstalment($(this))
+    });
+
+
 
     // SLIDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
@@ -795,10 +802,10 @@ var page = {
     },
     loader:{
         show:function(){
-
+            $(".loader").fadeIn();
         }, 
         hide:function(){
-            
+            $(".loader").fadeOut();
         }
     }
 }
@@ -1072,5 +1079,9 @@ var order = {
     },
     redirectPayment:function(payBtn){
         window.location = "/payment/"+payBtn.attr("ordernumber")
+    },
+    payInstalment:function(instalmentBtn){
+        window.location = "/instalment-payment/"+instalmentBtn.attr("installment");
+
     }
 }

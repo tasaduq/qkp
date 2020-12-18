@@ -60,7 +60,7 @@
                                 <td>{{ date('d-M-Y', strtotime($row->due_date)) }}</td>
                                 <td><span class="status {{ strtolower(str_replace(' ', '-', $row->name)) }}">{{ $row->name }}</span></td>
                                 <td>
-                                    @if($row->status == 1 || $row->status == 2)
+                                    @if($row->status == 3)
                                         <a href="#" class="btn btn-success btn-sm verify-installment-payment" data-instid="{{ $row->id }}" data-instnum="{{ $row->instalment_number }}" data-ordernum="{{ $row->order_number }}">Verify</a>
                                     @endif
                                 </td>

@@ -20,6 +20,10 @@
 
         <title>Qurbani</title>
 
+    <script type="text/javascript">
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
+
       
     </head>
     

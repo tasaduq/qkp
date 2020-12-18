@@ -70,8 +70,12 @@
                                 <td><span class="status {{ strtolower(str_replace(' ', '-', $row->status_name)) }}">{{ $row->status_name }}</span></td>
                                 <td>
                                     <a href="{{ route('order_detail', $row->id) }}" class="btn btn-info btn-sm">View</a>
-                                    @if($row->status == 7 || $row->payment_method == 0)
+                                    @if($row->status == 1)
                                         <a href="#" class="btn btn-success btn-sm verify-order-payment" data-orderid="{{ $row->id }}" data-ordernum="{{ $row->order_number }}">Verify</a>
+                                    @endif
+
+                                    @if($row->status == 8)
+                                        <a href="#" class="btn btn-danger btn-sm verify-order-cancellation" data-orderid="{{ $row->id }}" data-ordernum="{{ $row->order_number }}">Verify</a>
                                     @endif
                                 </td>
                             </tr>
@@ -113,6 +117,33 @@
             <div class="modal-footer">
               <a href="#" class="btn btn-secondary update-order-status" data-orderid="" data-orderstate="reject">Reject</a>
               <a href="#" class="btn btn-primary update-order-status ml-auto" data-orderid="" data-orderstate="approve">Approve</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="verifyOrderCancellationModal" tabindex="-1" role="dialog" aria-labelledby="verifyOrderCancellationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="verifyOrderCancellationModalLabel">Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group mb-0">
+              <label class="form-control-label" for="input-address">Note (Optional)</label>
+              <form id="verify-order-form">
+                <meta name="csrf-token" content="{{csrf_token()}}">
+                <textarea id="verify-order-cancellation-note" class="form-control"></textarea>
+              </form>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-secondary update-order-cancellation-status" data-orderid="" data-orderstate="reject">Reject</a>
+              <a href="#" class="btn btn-primary update-order-cancellation-status ml-auto" data-orderid="" data-orderstate="approve">Approve</a>
             </div>
           </div>
         </div>
