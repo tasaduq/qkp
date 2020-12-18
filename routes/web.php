@@ -44,6 +44,7 @@ Route::middleware("calculations")->group(function () {
         Route::post("/cancel-order", "OrderController@cancel_order");
         Route::get("/payment", "OrderController@payment");
         Route::get("/payment/{order_no}", "OrderController@payment");
+        // Route::get("/installment-payment", "OrderController@installment_payment");
         Route::post("/upload-receipt", "OrderController@upload_receipt");
         
         
@@ -80,6 +81,10 @@ Route::get('/terms-conditions', function () {
 
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
+});
+
+Route::get('/installment-payment', function () {
+    return view('installment-payment');
 });
 
 Route::get('/faqs', function () {
