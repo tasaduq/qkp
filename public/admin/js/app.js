@@ -503,6 +503,43 @@ $(document).ready(function(){
                        }
                        });
 
+                       $(".update-order-upd-status").on("click", function(e){
+                       e.preventDefault();
+                       var orderId = $(this).data('orderid');
+                       var orderState = $(this).data('orderstate');
+                       var orderStatus = $('#updstatus option:selected').val();
+
+                       if(orderId > 0) {
+                       $.ajaxSetup({
+                       headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                       }
+                       });
+
+                       $.ajax({
+                       url:APP_URL+"/admin/update_order_status/"+orderState+"/"+orderId,
+                       data: {
+                       "order_status": orderStatus
+                       },
+                       dataType: 'json',
+                       type: "POST",
+                       beforeSend: function () {
+                       showPreloader();
+                       },
+                       success: function(result){
+                       hidePreloader();
+                       if(result.code == 200){
+                       alert('Order status updated!');
+                       location.reload();
+                       }
+                       else {
+                       alert('Nothing update, please try again!');
+                       }
+                       }
+                       });
+                       }
+                       });
+
                        $(".verify-installment-payment").on("click", function(e){
                        e.preventDefault();
                        var orderNum = $(this).data('ordernum');

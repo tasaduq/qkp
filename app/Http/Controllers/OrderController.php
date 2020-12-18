@@ -250,6 +250,8 @@ class OrderController extends Controller
     {
         $data = Orders::findOrFail($id);
 
+        $OrderStatus = OrderStatus::get();
+
         $order_details = Orders::select('orders.id', 'orders.status', 'orders.order_number', 'orders.upfront', 'orders.payment_method', 'orders.created_at', 'users.name', 'users.phone', 'users.city', 'users.email', 'users.address', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')->where([['orders.id', '=', $id]])->first();
         //print_r($order_details->toArray());die;
 
@@ -271,7 +273,7 @@ class OrderController extends Controller
 
         //print_r($order_products);die;
 
-        return view('admin/order_details', compact('order_details', 'order_products'));
+        return view('admin/order_details', compact('order_details', 'order_products', 'OrderStatus'));
     }
 
     public function get_installments(Request $request)
@@ -339,12 +341,32 @@ class OrderController extends Controller
 
         if($order_details) {
 
-            if(trim($request->order_note) != '') {
-                $orderNote = $request->order_note;
-            } else {
-                $orderNote = NULL;
-            }
-            if($status == 'reject') {
+            if($status == 'updstatus') {
+                if(trim($request->order_status) != '' && $request->order_status > 0) {
+                    $orderStatus = $request->order_status;
+
+                    if($orderStatus == 6 || $orderStatus == 5) {
+                        $order_details->restock();
+                    }
+                    Orders::where([['id', '=', $id]])->update(['status' => $orderStatus]);
+
+                    $response = array(
+                        "code" => 200,
+                        "message" => ""
+                    );
+                } else {
+                    $response = array(
+                        "code" => 404,
+                        "message" => ""
+                    );
+                }
+            } elseif($status == 'reject') {
+                if(trim($request->order_note) != '') {
+                    $orderNote = $request->order_note;
+                } else {
+                    $orderNote = NULL;
+                }
+
                 if($order_details->status == 1) {
                     $state = 6;
                     $order_details->restock();
@@ -358,6 +380,12 @@ class OrderController extends Controller
                     "message" => ""
                 );
             } elseif($status == 'approve') {
+                if(trim($request->order_note) != '') {
+                    $orderNote = $request->order_note;
+                } else {
+                    $orderNote = NULL;
+                }
+
                 if($order_details->status == 1) {
                     $state = 2;
                 } else if($order_details->status == 8) {

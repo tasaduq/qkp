@@ -89,8 +89,7 @@
                         <a href="#" class="btn btn-primary update-order-status float-right" data-orderid="{{ $order_details->id }}" data-orderstate="approve">Approve</a>
                       </div>
                     </div>
-                    @endif
-                    @if($order_details->status == 8)
+                    @elseif($order_details->status == 8)
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Note</label>
@@ -104,6 +103,25 @@
                       <div class="form-group">
                         <a href="#" class="btn btn-secondary update-order-cancellation-status" data-orderid="{{ $order_details->id }}" data-orderstate="reject">Reject</a>
                         <a href="#" class="btn btn-primary update-order-cancellation-status float-right" data-orderid="{{ $order_details->id }}" data-orderstate="approve">Approve</a>
+                      </div>
+                    </div>
+                    @else
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">Status</label>
+                        <form id="verify-order-form">
+                            <meta name="csrf-token" content="{{csrf_token()}}">
+                            <select class="form-control" id="updstatus">
+                                @foreach($OrderStatus as $os)
+                                    <option {{ $order_details->status == $os->id ? 'selected="selected"' : '' }} value="{{ $os->id }}">{{ $os->name }}</option>
+                                @endforeach
+                              </select>
+                          </form>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <a href="#" class="btn btn-primary update-order-upd-status" data-orderid="{{ $order_details->id }}" data-orderstate="updstatus">Update Status</a>
                       </div>
                     </div>
                     @endif
