@@ -1023,7 +1023,7 @@ var order = {
             dataType: 'json',
             type: "POST",
             success: function(result){
-                
+                page.loader.hide()
                 if( result.code == 200 ){
                     // user.redirectToProfile();
                     page.toast.show(result.message, "success")
