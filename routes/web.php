@@ -144,7 +144,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/admin/order/{id}', "OrderController@order_detail")->name('order_detail');
 
-    Route::get('/admin/verify_order/{id}', "OrderController@vrfy_order");
+    Route::get('/admin/verify_order/{status}/{id}', "OrderController@vrfy_order");
 
     Route::post('/admin/update_order_status/{status}/{id}', "OrderController@update_order_sts");
 

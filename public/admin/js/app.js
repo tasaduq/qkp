@@ -372,7 +372,7 @@ $(document).ready(function(){
                        var orderNum = $(this).data('ordernum');
                   if(orderId > 0 && orderNum > 0) {
                $.ajax({
-                   url:APP_URL+"/admin/verify_order/"+orderId,
+                   url:APP_URL+"/admin/verify_order/confirmation/"+orderId,
                    dataType: 'json',
                    type: "GET",
                    beforeSend: function () {
@@ -405,6 +405,72 @@ $(document).ready(function(){
                        var orderId = $(this).data('orderid');
                        var orderState = $(this).data('orderstate');
                        var orderNote = $('#verify-order-note').val();
+
+                       if(orderId > 0) {
+                       $.ajaxSetup({
+                       headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                       }
+                       });
+
+                       $.ajax({
+                       url:APP_URL+"/admin/update_order_status/"+orderState+"/"+orderId,
+                       data: {
+                       "order_note": orderNote
+                       },
+                       dataType: 'json',
+                       type: "POST",
+                       beforeSend: function () {
+                       showPreloader();
+                       },
+                       success: function(result){
+                       hidePreloader();
+                       if(result.code == 200){
+                       alert('Order status updated!');
+                       location.reload();
+                       }
+                       else {
+                       alert('Nothing update, please try again!');
+                       }
+                       }
+                       });
+                       }
+                       });
+
+                       $(".verify-order-cancellation").on("click", function(e){
+                       e.preventDefault();
+                       var orderId = $(this).data('orderid');
+                       var orderNum = $(this).data('ordernum');
+                       if(orderId > 0 && orderNum > 0) {
+                       $.ajax({
+                       url:APP_URL+"/admin/verify_order/cancellation/"+orderId,
+                       dataType: 'json',
+                       type: "GET",
+                       beforeSend: function () {
+                       showPreloader();
+                       },
+                       success: function(result){
+                       hidePreloader();
+                       if(result.code == 200){
+                       $('.update-order-cancellation-status').attr('data-orderid', orderId);
+                       $('#verify-order-note').val('');
+
+                       $('#verifyOrderCancellationModalLabel').html('Order #'+orderNum+' Cancellation Request');
+                       $("#verifyOrderCancellationModal").modal('show');
+                       }
+                       else {
+                       alert('Nothing found, please try again!');
+                       }
+                       }
+                       });
+                       }
+                       });
+
+                       $(".update-order-cancellation-status").on("click", function(e){
+                       e.preventDefault();
+                       var orderId = $(this).data('orderid');
+                       var orderState = $(this).data('orderstate');
+                       var orderNote = $('#verify-order-cancellation-note').val();
 
                        if(orderId > 0) {
                        $.ajaxSetup({

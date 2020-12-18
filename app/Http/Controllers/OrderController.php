@@ -306,9 +306,16 @@ class OrderController extends Controller
         return view('admin/installments', compact('data', 'OrderInstallmentsStatus', 'selectedStatus', 'selectedOrder'))->with('i', (request()->input('page', 1) - 1) * $paginate);
     }
 
-    public function vrfy_order($id)
+    public function vrfy_order($status, $id)
     {
-        $order_details = Orders::select('id', 'receipt')->where([['id', '=', $id]])->first();
+        $statusId = 0;
+        if($status == 'confirmation') {
+            $statusId = 1;
+        } if($status == 'cancellation') {
+            $statusId = 8;
+        }
+
+        $order_details = Orders::select('id', 'receipt')->where([['id', '=', $id], ['status', '=', $statusId]])->first();
 
         if($order_details) {
             $response = array(
@@ -338,8 +345,12 @@ class OrderController extends Controller
                 $orderNote = NULL;
             }
             if($status == 'reject') {
-                $state = 6;
-
+                if($order_details->status == 1) {
+                    $state = 6;
+                    $order_details->restock();
+                } else if($order_details->status == 8) {
+                    $state = 2;
+                }
                 Orders::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
 
                 $response = array(
@@ -347,7 +358,12 @@ class OrderController extends Controller
                     "message" => ""
                 );
             } elseif($status == 'approve') {
-                $state = 2;
+                if($order_details->status == 1) {
+                    $state = 2;
+                } else if($order_details->status == 8) {
+                    $state = 5;
+                    $order_details->restock();
+                }
 
                 Orders::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
 

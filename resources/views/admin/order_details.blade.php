@@ -73,7 +73,7 @@
                         <input disabled id="input-address" class="form-control" value="{{ $order_details->address }}" type="text">
                       </div>
                     </div>
-                    @if($order_details->status == 7 || $order_details->payment_method == 0)
+                    @if($order_details->status == 1)
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Note</label>
@@ -86,7 +86,24 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <a href="#" class="btn btn-secondary update-order-status" data-orderid="{{ $order_details->id }}" data-orderstate="reject">Reject</a>
-                                      <a href="#" class="btn btn-primary update-order-status float-right" data-orderid="{{ $order_details->id }}" data-orderstate="approve">Approve</a>
+                        <a href="#" class="btn btn-primary update-order-status float-right" data-orderid="{{ $order_details->id }}" data-orderstate="approve">Approve</a>
+                      </div>
+                    </div>
+                    @endif
+                    @if($order_details->status == 8)
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">Note</label>
+                        <form id="verify-order-form">
+                            <meta name="csrf-token" content="{{csrf_token()}}">
+                            <textarea id="verify-order-cancellation-note" class="form-control"></textarea>
+                          </form>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <a href="#" class="btn btn-secondary update-order-cancellation-status" data-orderid="{{ $order_details->id }}" data-orderstate="reject">Reject</a>
+                        <a href="#" class="btn btn-primary update-order-cancellation-status float-right" data-orderid="{{ $order_details->id }}" data-orderstate="approve">Approve</a>
                       </div>
                     </div>
                     @endif
