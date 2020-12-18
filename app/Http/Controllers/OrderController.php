@@ -209,7 +209,7 @@ class OrderController extends Controller
             // dd($receipt);
             // echo "<img src=\"$receipt\" alt=\"\" />";
 
-
+            $order->status = "1";
             $order->receipt = $receipt;
             if($order->save()){
                 $response = array(
