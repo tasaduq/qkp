@@ -618,4 +618,10 @@ $(document).ready(function(){
 
                         $("#orderFiltersModal").modal('show');
                        });
+
+                       $(".order-payment-receipt").on("click", function(e){
+                       e.preventDefault();
+
+                       $("#paymentReceiptModal").modal('show');
+                       });
 });
