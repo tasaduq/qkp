@@ -44,6 +44,7 @@ Route::middleware("calculations")->group(function () {
         Route::post("/cancel-order", "OrderController@cancel_order");
         Route::get("/payment", "OrderController@payment");
         Route::get("/payment/{order_no}", "OrderController@payment");
+        // Route::get("/installment-payment", "OrderController@installment_payment");
         Route::post("/upload-receipt", "OrderController@upload_receipt");
         
         
@@ -80,6 +81,10 @@ Route::get('/terms-conditions', function () {
 
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
+});
+
+Route::get('/installment-payment', function () {
+    return view('installment-payment');
 });
 
 Route::get('/faqs', function () {
@@ -148,11 +153,15 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/admin/update_order_status/{status}/{id}', "OrderController@update_order_sts");
 
+    Route::post('/admin/update_orders_status', "OrderController@update_orders_sts")->name('update_orders_sts');
+
     Route::get('/admin/installments', "OrderController@get_installments")->name('installments');
 
     Route::get('/admin/verify_installment/{id}', "OrderController@vrfy_install");
 
     Route::post('/admin/update_installment_status/{status}/{id}', "OrderController@update_install_sts");
+
+    Route::post('/admin/update_installments_status', "OrderController@update_installs_sts")->name('update_installs_sts');
 
     
 

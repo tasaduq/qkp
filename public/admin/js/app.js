@@ -612,4 +612,16 @@ $(document).ready(function(){
                        });
                        }
                        });
+
+                       $(".order-filters-btn").on("click", function(e){
+                       e.preventDefault();
+
+                        $("#orderFiltersModal").modal('show');
+                       });
+
+                       $(".order-payment-receipt").on("click", function(e){
+                       e.preventDefault();
+
+                       $("#paymentReceiptModal").modal('show');
+                       });
 });

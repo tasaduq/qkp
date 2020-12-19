@@ -21,8 +21,13 @@
           <div class="card">
             <div class="card-header">
               <div class="row align-items-center">
-                <div class="col-12">
+                <div class="col-9">
                   <h3 class="mb-0">Details </h3>
+                </div>
+                <div class="col-3 text-right">
+                    @if($order_details->payment_method == 1 && $order_details->receipt != null)
+                    <a class="btn btn-success btn-sm order-payment-receipt" href="#">View Receipt</a>
+                    @endif
                 </div>
               </div>
             </div>
@@ -138,7 +143,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Payment History</h3>
+                  <h3 class="mb-0">Item(s)</h3>
                 </div>
               </div>
             </div>
@@ -212,6 +217,27 @@
             <div class="modal-footer">
               <a href="#" class="btn btn-secondary update-installment-status" data-instid="" data-inststate="reject">Reject</a>
               <a href="#" class="btn btn-primary update-installment-status ml-auto" data-instid="" data-inststate="approve">Approve</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="paymentReceiptModal" tabindex="-1" role="dialog" aria-labelledby="paymentReceiptModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="paymentReceiptModalLabel">Payment Receipt</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body pt-0">
+                <div id="receiptImg">
+                @if($order_details->receipt != null)
+                    <img src="{{ $order_details->receipt }}" alt="order_receipt" />
+                @endif
+                </div>
             </div>
           </div>
         </div>

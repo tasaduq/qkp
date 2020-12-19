@@ -29871,3 +29871,19 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 #receiptImg img {
     max-height: 300px;
 }
+
+
+span.status.pending-cancellation, span.status.pending-confirmation {
+    font-weight: bold;
+    color: #eca82d;
+}
+
+span.status.cancelled {
+    font-weight: bold;
+    color: #f5365c;
+}
+
+span.status.confirmed {
+    font-weight: bold;
+    color: #3dbd65;
+}
