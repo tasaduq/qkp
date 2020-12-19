@@ -612,4 +612,10 @@ $(document).ready(function(){
                        });
                        }
                        });
+
+                       $(".order-filters-btn").on("click", function(e){
+                       e.preventDefault();
+
+                        $("#orderFiltersModal").modal('show');
+                       });
 });

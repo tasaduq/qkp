@@ -157,6 +157,7 @@ class OrderController extends Controller
 
         return view('payment')->with("order", $order)->with("user", $user);
     }
+
     public function payment($order_no = null, Request $request){
         // session::put("order_id", 81 );
 
@@ -179,6 +180,7 @@ class OrderController extends Controller
 
         return view('payment')->with("order", $order)->with("user", $user);
     }
+
     public function instalment_payment($order_no = null, Request $request){
         // session::put("order_id", 81 );
 
@@ -201,6 +203,7 @@ class OrderController extends Controller
 
         // return view('payment')->with("order", $order)->with("user", $user);
     }
+
     public function upload_receipt(Request $request){
 
         $this->validate($request, array(
@@ -251,13 +254,49 @@ class OrderController extends Controller
 
         $OrderStatus = OrderStatus::get();
 
+        $selectedOrder = 0;
+        if(is_numeric($request->input('order')) && trim($request->input('order')) > 0) {
+            $selectedOrder = $request->input('order');
+        }
+
+        $customerName = '';
+        if(trim($request->input('name')) != '') {
+            $customerName = $request->input('name');
+        }
+
+        $dateFrom = '';
+        if(trim($request->input('date_from')) != '') {
+            $dateFrom = $request->input('date_from');
+        }
+
+        $dateTo = '';
+        if(trim($request->input('date_to')) != '') {
+            $dateTo = $request->input('date_to');
+        }
+
         $selectedStatus = 0;
         if(is_numeric($request->input('status')) && trim($request->input('status')) > 0) {
             $selectedStatus = $request->input('status');
         }
 
         $data = Orders::select('orders.id', 'orders.order_number', 'orders.upfront', 'orders.status', 'orders.payment_method', 'orders.created_at', 'users.name', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')
-            ->where(function ($query) use ($selectedStatus) {
+            ->where(function ($query) use ($selectedOrder, $customerName, $dateFrom, $dateTo, $selectedStatus) {
+                if(is_numeric($selectedOrder) && trim($selectedOrder) > 0)
+                {
+                    $query->where('orders.order_number', $selectedOrder);
+                }
+                if(trim($customerName) != '')
+                {
+                    $query->where('users.name', 'LIKE', "%{$customerName}%");
+                }
+                if(trim($dateFrom) != '')
+                {
+                    $query->whereDate('orders.created_at', '>=', date('Y-m-d', strtotime($dateFrom)));
+                }
+                if(trim($dateTo) != '')
+                {
+                    $query->whereDate('orders.created_at', '<=', date('Y-m-d', strtotime($dateTo)));
+                }
                 if(is_numeric($selectedStatus) && trim($selectedStatus) > 0)
                 {
                     $query->where('orders.status', $selectedStatus);
@@ -265,7 +304,7 @@ class OrderController extends Controller
             })
             ->latest()->paginate($paginate);
 
-        return view('admin/orders', compact('data', 'OrderStatus', 'selectedStatus'))->with('i', (request()->input('page', 1) - 1) * $paginate);
+        return view('admin/orders', compact('data', 'OrderStatus', 'selectedStatus', 'selectedOrder', 'customerName', 'dateFrom', 'dateTo'))->with('i', (request()->input('page', 1) - 1) * $paginate);
     }
 
     public function order_detail($id)
@@ -304,30 +343,48 @@ class OrderController extends Controller
 
         $OrderInstallmentsStatus = OrderInstallmentsStatus::get();
 
-        $selectedStatus = 0;
-        if(is_numeric($request->input('status')) && trim($request->input('status')) > 0) {
-            $selectedStatus = $request->input('status');
-        }
-
         $selectedOrder = 0;
         if(is_numeric($request->input('order')) && trim($request->input('order')) > 0) {
             $selectedOrder = $request->input('order');
         }
 
+        $dateFrom = '';
+        if(trim($request->input('date_from')) != '') {
+            $dateFrom = $request->input('date_from');
+        }
+
+        $dateTo = '';
+        if(trim($request->input('date_to')) != '') {
+            $dateTo = $request->input('date_to');
+        }
+
+        $selectedStatus = 0;
+        if(is_numeric($request->input('status')) && trim($request->input('status')) > 0) {
+            $selectedStatus = $request->input('status');
+        }
+
         $data = OrderInstallments::select('order_installments.*', 'orders.order_number', 'order_installments_status.name')->leftJoin('order_products', 'order_products.id', '=', 'order_installments.order_product_id')->leftJoin('order_installments_status', 'order_installments_status.id', '=', 'order_installments.status')->leftJoin('orders', 'orders.id', '=', 'order_products.order_id')
-            ->where(function ($query) use ($selectedStatus, $selectedOrder) {
-                if(is_numeric($selectedStatus) && trim($selectedStatus) > 0)
-                {
-                    $query->where('order_installments.status', $selectedStatus);
-                }
+            ->where(function ($query) use ($selectedOrder, $selectedStatus, $dateFrom, $dateTo) {
                 if(is_numeric($selectedOrder) && trim($selectedOrder) > 0)
                 {
                     $query->where('orders.order_number', $selectedOrder);
                 }
+                if(trim($dateFrom) != '')
+                {
+                    $query->whereDate('order_installments.due_date', '>=', date('Y-m-d', strtotime($dateFrom)));
+                }
+                if(trim($dateTo) != '')
+                {
+                    $query->whereDate('order_installments.due_date', '<=', date('Y-m-d', strtotime($dateTo)));
+                }
+                if(is_numeric($selectedStatus) && trim($selectedStatus) > 0)
+                {
+                    $query->where('order_installments.status', $selectedStatus);
+                }
             })
             ->orderBy('order_installments.id', 'DESC')->paginate($paginate);
 
-        return view('admin/installments', compact('data', 'OrderInstallmentsStatus', 'selectedStatus', 'selectedOrder'))->with('i', (request()->input('page', 1) - 1) * $paginate);
+        return view('admin/installments', compact('data', 'OrderInstallmentsStatus', 'selectedStatus', 'selectedOrder', 'dateFrom', 'dateTo'))->with('i', (request()->input('page', 1) - 1) * $paginate);
     }
 
     public function vrfy_order($status, $id)
@@ -435,6 +492,18 @@ class OrderController extends Controller
         }
 
         return Response::json($response);
+    }
+
+    public function update_orders_sts(Request $request)
+    {
+        if((isset($request->status_update) && trim($request->status_update) > 0) && (isset($request->selectedOrderIds) && is_array($request->selectedOrderIds) && !empty($request->selectedOrderIds))) {
+
+            Orders::whereIn('id', $request->selectedOrderIds)->update(['status' => $request->status_update]);
+
+            return redirect()->back()->with("success","Order(s) updated successfully!");
+        } else {
+            return redirect()->back()->withErrors("Something went wrong, please try again!");
+        }
     }
 
     public function vrfy_install($id)

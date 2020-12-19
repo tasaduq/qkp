@@ -6,8 +6,11 @@
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
-            <div class="col-lg-12">
+            <div class="col-lg-7">
               <h5 class="h2 text-white d-inline-block mb-0">Orders Installments</h5>
+            </div>
+            <div class="col-lg-5 text-right">
+              <a href="#" class="btn btn-neutral btn-sm order-filters-btn">Filters</a>
             </div>
           </div>
         </div>
@@ -103,6 +106,74 @@
             <div class="modal-footer">
               <a href="#" class="btn btn-secondary update-installment-status" data-instid="" data-inststate="reject">Reject</a>
               <a href="#" class="btn btn-primary update-installment-status ml-auto" data-instid="" data-inststate="approve">Approve</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="orderFiltersModal" tabindex="-1" role="dialog" aria-labelledby="orderFiltersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderFiltersModalLabel">Filters</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body pt-0">
+                <form method="get">
+                  <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-control-label">Order #</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="order" value="{{ trim($selectedOrder) != '' && trim($selectedOrder) > 0 ? $selectedOrder : '' }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-control-label">Date From</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="date" class="form-control" name="date_from" value="{{ trim($dateFrom) != '' ? $dateFrom : '' }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-control-label">Date To</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="date" class="form-control" name="date_to" value="{{ trim($dateTo) != '' ? $dateTo : '' }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-control-label">Status</label>
+                            </div>
+                            <div class="col-md-10">
+                              <select class="form-control" name="status">
+                                <option value="0">Select Status</option>
+                                @foreach($OrderInstallmentsStatus as $os)
+                                    <option {{ $selectedStatus == $os->id ? 'selected="selected"' : '' }} value="{{ $os->id }}">{{ $os->name }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                  </div>
+                </form>
             </div>
           </div>
         </div>

@@ -159,6 +159,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/admin/update_installment_status/{status}/{id}', "OrderController@update_install_sts");
 
+    Route::post('/admin/update_orders_status', "OrderController@update_orders_sts")->name('update_orders_sts');
+
     
 
     
