@@ -12,7 +12,7 @@
                     <div id="filter-section-desktop" class="desktop">
                         <h2><i class="fas fa-sliders-h"></i>Filter by</h2>
                         <div class="categories">
-                            <h6 class="pb-3">Categories</h6>
+                            <h6 class="pb-3 title">Categories</h6>
                             <ul>
 
                                 
