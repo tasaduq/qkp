@@ -153,13 +153,15 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/admin/update_order_status/{status}/{id}', "OrderController@update_order_sts");
 
+    Route::post('/admin/update_orders_status', "OrderController@update_orders_sts")->name('update_orders_sts');
+
     Route::get('/admin/installments', "OrderController@get_installments")->name('installments');
 
     Route::get('/admin/verify_installment/{id}', "OrderController@vrfy_install");
 
     Route::post('/admin/update_installment_status/{status}/{id}', "OrderController@update_install_sts");
 
-    Route::post('/admin/update_orders_status', "OrderController@update_orders_sts")->name('update_orders_sts');
+    Route::post('/admin/update_installments_status', "OrderController@update_installs_sts")->name('update_installs_sts');
 
     
 

@@ -22,31 +22,46 @@
         <div class="col">
           <div class="card">
             <!-- Card header -->
+            <form method="post" action="{{ route('update_installs_sts') }}">
+                    @csrf
             <div class="card-header border-0">
-            <form method="get">
               <div class="row">
                 <div class="col-md-3">
-                  <input class="form-control" name="order" placeholder="Order ID" value="{{ trim($selectedOrder) != '' && trim($selectedOrder) > 0 ? $selectedOrder : '' }}" />
-                </div>
-                <div class="col-md-3">
-                  <select class="form-control" name="status">
+                  <select class="form-control" name="status_update">
                     <option value="0">Select Status</option>
-                    @foreach($OrderInstallmentsStatus as $ois)
-                        <option {{ $selectedStatus == $ois->id ? 'selected="selected"' : '' }} value="{{ $ois->id }}">{{ $ois->name }}</option>
+                    @foreach($OrderInstallmentsStatus as $os)
+                        <option value="{{ $os->id }}">{{ $os->name }}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="col-md-3">
-                  <button type="submit" class="btn btn-primary">Filter</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </div>
-            </form>
             </div>
+            @if (session('success'))
+                  <div class="alert alert-success ml-3 mr-3">
+                  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      {{ session('success') }}
+                  </div>
+              @endif
+
+               @if($errors->any())
+                  <div class="alert alert-danger ml-3 mr-3">
+                  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      <ul class="mb-0">
+                      @foreach($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                      @endforeach
+                      </ul>
+                  </div>
+              @endif
             <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
+                    <th data-sort="">Select</th>
                     <th scope="col" class="sort" data-sort="name">Order #</th>
                     <th scope="col" class="sort" data-sort="budget">Amount</th>
                     <th scope="col" class="sort" data-sort="status">Due Date</th>
@@ -58,6 +73,12 @@
                     @if(count($data) > 0)
                         @foreach($data as $row)
                             <tr>
+                                <td>
+                                  <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="selectedInstallmentsIds[]" class="custom-control-input" id="customCheck-{{ $row->id }}" value="{{ $row->id }}">
+                                    <label class="custom-control-label" for="customCheck-{{ $row->id }}"></label>
+                                  </div>
+                                </td>
                                 <td>#{{ $row->order_number }}</td>
                                 <td>{{ number_format($row->amount) }}/-</td>
                                 <td>{{ date('d-M-Y', strtotime($row->due_date)) }}</td>
@@ -75,6 +96,7 @@
                 </tbody>
               </table>
             </div>
+            </form>
             <!-- Card footer -->
             <div class="card-footer py-4">
               @include('admin.pagination.default', ['paginator' => $data])

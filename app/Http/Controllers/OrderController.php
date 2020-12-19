@@ -500,7 +500,7 @@ class OrderController extends Controller
 
             Orders::whereIn('id', $request->selectedOrderIds)->update(['status' => $request->status_update]);
 
-            return redirect()->back()->with("success","Order(s) updated successfully!");
+            return redirect()->back()->with("success","Order(s) status updated successfully!");
         } else {
             return redirect()->back()->withErrors("Something went wrong, please try again!");
         }
@@ -569,6 +569,18 @@ class OrderController extends Controller
         }
 
         return Response::json($response);
+    }
+
+    public function update_installs_sts(Request $request)
+    {
+        if((isset($request->status_update) && trim($request->status_update) > 0) && (isset($request->selectedInstallmentsIds) && is_array($request->selectedInstallmentsIds) && !empty($request->selectedInstallmentsIds))) {
+
+            OrderInstallments::whereIn('id', $request->selectedInstallmentsIds)->update(['status' => $request->status_update]);
+
+            return redirect()->back()->with("success","Installment(s) status updated successfully!");
+        } else {
+            return redirect()->back()->withErrors("Something went wrong, please try again!");
+        }
     }
 }
 
