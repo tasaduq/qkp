@@ -81,14 +81,48 @@
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Product Image</label>
                     <div class="col-md-9">
-                    <input type="file" name="images" id="images" />
-                    <input type='hidden' name="imgname" value="{{ $aProduct->images }}">
-                    <div class="" style="float: right;">
-                       
+                      
+                      <button type="button" class="btn btn-info btn-lg media-modal-btn" data-toggle="modal" data-target="#media-modal" >Select Images</button>                   
+                      {{-- <div id="dropzone-multiple-component" class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="dropzone-multiple-component-tab">
+                        <div class="dropzone dropzone-multiple dz-clickable" data-toggle="dropzone" data-dropzone-multiple="" data-dropzone-url="http://">
+                        <div class="dz-default dz-message"><span>Drop files here to upload</span></div></div>
+                      </div> --}}
+                      <div class="added-product-images">
+
+                        <?php
+                        $imageid = array();
+                        if ( strpos($aProduct->images, ",") > -1){
+                              $imageid = explode(",",$aProduct->images);  
+                              
+                        }
+                        else {
+                            $imageid[0] = $aProduct->images;
+                        }
+                        //  dd($imageid);
+                        $images = \App\Models\Media::whereIn("id", $imageid)->get();
+                        
+                        $images = $images ? $images : array();
+                        ?>
+                        
+                          @foreach ($images as $image)
+                          <div class="col-sm-2 my-3">
+                            <div class="animal-image">
+                              <img class="img-fluid" src="{{$image->thumb}}" image-id="{{$image->id}}">
+                              <input class="custom-checkbox image-checkbox" name="images[]" type="hidden" value="{{$image->id}}" thumb="{{$image->thumb}}">
+                              <button class="remove-product-image">Remove</button>
+                            </div>
+                          </div>
+                          @endforeach
+                        
+                        
+                      </div>
+                      
+                        
                     </div>
                 </div>
+                
                     
-                  </div>
+                  
 
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Product Status</label>
@@ -136,5 +170,64 @@
         </div>
       </div>
       
+<!-- Modal -->
+<div id="media-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xxl">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="">Upload Media Files</h2>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+      <div class="row mt-5 justify-content-left images-container">
+
+        
+         {{-- <div class="col-sm-2 my-3">
+            <div class="animal-image">
+               <img class="img-fluid" src="/admin/img/brand/farm1.png">
+               <input class="custom-checkbox" type="checkbox">
+            </div>
+         </div>
+          --}}
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary add-product-images">Add</button> <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ <style>
+    .animal-image {
+        height: 175px;
+        overflow: hidden;
+    }
+    .modal-xxl{max-width:90% !important;}
+    .animal-image {
+    height: 175px;
+    overflow: hidden;position:relative;
+}
+.custom-checkbox{position:absolute; width:100%; height:100%; top:0; left:0;appearance:none;}
+input[type=checkbox]:checked{ border:5px solid #721c86;}
+input[type=checkbox]:checked::before {
+    content: "\2713";
+    color: #73ae2c;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    display: inline-block;
+    margin: 8px 0px 0px 10px;
+    box-shadow: 0 0 10px 0 #000000bf;
+}
+</style>
     
     @endsection

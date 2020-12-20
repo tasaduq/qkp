@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="row inline-buttons text-right">
                                         <div class="col-sm-12">
-                                          @if( $orderedProduct->cancellable() )
+                                          @if( $orderedProduct->cancellable() && $order->products->count() > 1 )
                                             <button class="btn btn-warning mb-1 cancel-order-animal" orderanimalid="{{$orderedProduct->id}}">Cancel Animal</button>
                                           @endif
                                           @if( $orderedProduct->payable() )
@@ -121,7 +121,9 @@
                                     <button class="btn btn-success default-btn installment-pay-btn" installment="{{$installment->id}}">Pay Now</button>
                                     {{-- <button class="btn tbl-btn default-btn paid">Pay Now</button> --}}
                                   @else
+                                    @if( $installment->get_status->id != "3")  
                                     <button class="btn tbl-btn default-btn paid" installment="{{$installment->id}}">Pay Now</button>
+                                    @endif
                                   @endif
                                   </td>
                                 </tr>
@@ -141,9 +143,34 @@
             </div>
         </div>
     </section>
-    
-    
-    
+    {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Launch demo modal
+    </button>
+     --}}
+
+<!-- Modal -->
+<div class="modal fade" id="cancelOrderModal" tabindex="-1" role="dialog" aria-labelledby="cancelOrderModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Cancel Order</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to cancel your order?
+      <textarea id="note"></textarea>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      <button type="button" class="btn btn-primary">Yes</button>
+    </div>
+  </div>
+</div>
+</div>
+
     
         <!-- profile section end -->
         @include('footer')
@@ -158,5 +185,8 @@
                    $(this).addClass('active');
                    });
           </script>
+
+
+
 
           @endsection

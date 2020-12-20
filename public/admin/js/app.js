@@ -12,6 +12,12 @@ $(document).ready(function(){
         media.loadPopupImagesCategory();
     });
 
+    
+    $(document).on('click', '.remove-product-image', function (e) {
+        e.preventDefault();
+        $(this).parent(".animal-image").remove();
+    });
+    
     $('.add-product-images').on('click', function () {
 
         $('#media-modal').modal("toggle");
@@ -43,6 +49,7 @@ $(document).ready(function(){
                    <div class="animal-image">
                        <img class="img-fluid" src="${image.thumb}" image-id="${image.id}">
                        <input class="custom-checkbox image-checkbox" name="images[]" type="hidden" value="${image.id}" thumb="${image.thumb}">
+                       <button class="remove-product-image">Remove</button>
                    </div>
                </div>`;
            });
@@ -611,5 +618,17 @@ $(document).ready(function(){
                        }
                        });
                        }
+                       });
+
+                       $(".order-filters-btn").on("click", function(e){
+                       e.preventDefault();
+
+                        $("#orderFiltersModal").modal('show');
+                       });
+
+                       $(".order-payment-receipt").on("click", function(e){
+                       e.preventDefault();
+
+                       $("#paymentReceiptModal").modal('show');
                        });
 });

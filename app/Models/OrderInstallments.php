@@ -10,6 +10,11 @@ class OrderInstallments extends Model
     use HasFactory;
     protected $table = "order_installments";
 
+    public function order_product()
+    {
+        return $this->belongsTo('App\Models\OrderProducts', 'order_product_id', 'id');
+    }
+    
     public function get_status()
     {
         return $this->hasOne("App\Models\OrderInstallmentsStatus", "id", "status" );
@@ -26,6 +31,9 @@ class OrderInstallments extends Model
         }
         return "N/A";
         
+    }
+    public function is_user($user_id){
+        return $this->order_product->is_user($user_id);
     }
     public function payable(){
         return $this->status == "7" ||  $this->status == "8";

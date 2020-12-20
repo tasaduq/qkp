@@ -337,14 +337,56 @@ $(document).ready(function(){
     })
 
     $(".cancel-order-animal").on("click", function(){
+        var btn = $(this);
         // var orderanimalid = $(this).attr("orderanimalid")
-        order.cancelOrderAnimal( $(this) )
+
+        
+        Swal.fire({
+            input: 'textarea',
+            inputLabel: 'Are you sure you want to cancel?',
+            inputPlaceholder: 'Cancellation Note',
+            inputAttributes: {
+              'aria-label': 'Cancellation Note'
+            },
+            // showCancelButton: true,
+            confirmButtonText: `Yes`,
+            showDenyButton: true,
+            denyButtonText: `No`,
+          }).then((result) => {
+              
+              
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                message = $("textarea#swal2-input").val();
+                order.cancelOrderAnimal( btn , message)
+            } else if (result.isDenied) {
+            //   Swal.fire('Changes are not saved', '', 'info')
+            }
+          })
+
+
+        
     })
     $(".lumsum-order-animal").on("click", function(){
         var orderanimalid = $(this).attr("orderanimalid")
         // cart.cancelOrder( orderanimalid )
     })
     
+    $(".payment-method.installment-payment").on("click", function(e){
+        e.preventDefault();
+        $(".payment-method").removeClass("selected");
+        $(this).addClass("selected");
+        if( $(this).attr("payment-method") == "bank-transfer" ) {
+            $(".banktransfer").show();
+            $(".cashpayment").hide();
+        }
+        else if( $(this).attr("payment-method") == "cash" ) {
+            
+            $(".banktransfer").hide();
+            $(".cashpayment").show();
+        }
+        
+    });
 
     
 
@@ -390,7 +432,33 @@ $(document).ready(function(){
     });
 
     $(".order-cancel-btn").on("click",function(){
-        order.cancelOrder($(this))
+        var btn = $(this);
+        // $("#cancelOrderModal").modal('show')
+
+        Swal.fire({
+            input: 'textarea',
+            inputLabel: 'Are you sure you want to cancel?',
+            inputPlaceholder: 'Cancellation Note',
+            inputAttributes: {
+              'aria-label': 'Cancellation Note'
+            },
+            // showCancelButton: true,
+            confirmButtonText: `Yes`,
+            showDenyButton: true,
+            denyButtonText: `No`,
+          }).then((result) => {
+              
+              
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                message = $("textarea#swal2-input").val();
+                order.cancelOrder(btn, message)
+            } else if (result.isDenied) {
+            //   Swal.fire('Changes are not saved', '', 'info')
+            }
+          })
+
+        
     });
 
 
@@ -451,6 +519,22 @@ $(document).ready(function(){
 
     /////////////////////////////////////////////////////////////////////
     
+    $("#upload-reciept-installment-form").on("submit", function(e){
+        e.preventDefault();
+
+        if( $("#upload-reciept-installment-form [name=receipt]").val() !== "" ){
+            order.uploadInstallmentReciept(this);
+        } else {
+            Swal.fire(
+                '',
+                'Please select file first',
+                'error'
+              )
+
+        }
+    });
+
+
     $("#upload-reciept-form").on("submit", function(e){
         e.preventDefault();
 
@@ -989,13 +1073,29 @@ var order = {
             success: function(result){
                 page.loader.hide();
                 if(result.code == 200){
+                    // Swal.fire(
+                    //     '',
+                    //     'File successfully uploaded, we will notify you once your order has been confirmed',
+                    //     'success'
+                    // )
+                    
                     Swal.fire(
                         '',
                         'File successfully uploaded, we will notify you once your order has been confirmed',
                         'success'
-                    )
+                    ).then((result) => {
+                        window.location = "/profile";
+              
+                        // /* Read more about isConfirmed, isDenied below */
+                        // if (result.isConfirmed) {
+                        //     message = $("textarea#swal2-input").val();
+                        //     order.cancelOrderAnimal( btn , message)
+                        // } else if (result.isDenied) {
+                        // //   Swal.fire('Changes are not saved', '', 'info')
+                        // }
+                      })
                     
-                    window.location = "/profile";
+                    // window.location = "/profile";
                 }
                 else {
                     Swal.fire(
@@ -1008,13 +1108,66 @@ var order = {
             }
         })
     },
-    cancelOrderAnimal:function(orderAnimalBtn){
+    uploadInstallmentReciept:function(form){
+        page.loader.show();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        // var payload = $("#add-category-form").serialize()
+        // console.log(payload);
+        var formData = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            url:"/upload-installment-receipt",
+            dataType: "json",
+            success: function(result){
+                page.loader.hide();
+                if(result.code == 200){
+                    Swal.fire(
+                        '',
+                        'File successfully uploaded, we will notify you once your installment has been confirmed',
+                        'success'
+                    ).then((result) => {
+                        window.location = "/profile";
+              
+                        // /* Read more about isConfirmed, isDenied below */
+                        // if (result.isConfirmed) {
+                        //     message = $("textarea#swal2-input").val();
+                        //     order.cancelOrderAnimal( btn , message)
+                        // } else if (result.isDenied) {
+                        // //   Swal.fire('Changes are not saved', '', 'info')
+                        // }
+                      })
+                    
+                    
+                }
+                else {
+                    Swal.fire(
+                        '',
+                        'Something went wrong, please try again.',
+                        'error'
+                      )
+                }
+                
+            }
+        })
+    },
+    cancelOrderAnimal:function(orderAnimalBtn, message){
         page.loader.show()
         var animalNo = orderAnimalBtn.attr('orderanimalid');
         orderAnimalBtn.attr("disabled",true);
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),
-            orderanimalno:animalNo
+            orderanimalno:animalNo,
+            message: message
         }
 
         $.ajax({
@@ -1023,7 +1176,7 @@ var order = {
             dataType: 'json',
             type: "POST",
             success: function(result){
-                
+                page.loader.hide()
                 if( result.code == 200 ){
                     // user.redirectToProfile();
                     page.toast.show(result.message, "success")
@@ -1046,12 +1199,13 @@ var order = {
 
         })
     },
-    cancelOrder:function(orderBtn){
+    cancelOrder:function(orderBtn, message){
         var orderNo = orderBtn.attr('ordernumber');
         orderBtn.attr("disabled",true);
         var payload = {
             _token: $("meta[name='csrf-token']").attr("content"),
             orderno:orderNo,
+            message: message
         }
         $.ajax({
             url:"/cancel-order",
