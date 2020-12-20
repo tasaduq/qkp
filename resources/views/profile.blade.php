@@ -24,7 +24,7 @@
 
                     @forelse ($orders as $order)
                         
-
+<div style="background:#fff; box-shadow:0 0 15px 0 #ccc;">
                       #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->get_status->name }}  - {{ date_format($order->created_at,"d-m-Y") }}   
                       
                       @if( $order->cancellable() )
@@ -34,7 +34,7 @@
                       @if( $order->payable() )
                         - <button class="btn tbl-btn default-btn paid order-pay-btn" ordernumber="{{$order->order_number}}">Pay Now</button>
                       @endif
-
+</div>
                       @foreach ($order->products as $orderedProduct)
                         <div class="accordion" id="installment-schedule">
                           <a data-toggle="collapse" href="#tablecollapse{{$orderedProduct->id}}" role="button" aria-controls="collapse1">
@@ -74,7 +74,7 @@
                                     </div>
                                   @else
                                   <div class="row">
-                                    <div class="col-sm-6 text-right">
+                                    <div class="col-sm-6 text-left">
                                       <div class="prize">
                                         <span> Animal Cancelled </span>
                                       </div>

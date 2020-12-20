@@ -385,7 +385,7 @@ $(document).ready(function(){
                        $('#verify-order-note').val('');
 
                        if(result.receiptImg != null) {
-                        $('#receiptImg').html('<img src="'+result.receiptImg+'" alt="order_receipt" />');
+                        $('#receiptImg').html('<img class="img-fluid" src="'+result.receiptImg+'" alt="order_receipt" />');
                        } else {
                        $('#receiptImg').html('');
                        }
@@ -560,7 +560,7 @@ $(document).ready(function(){
                        $('#verify-installment-note').val('');
 
                        if(result.receiptImg != null) {
-                       $('#receiptImg').html('<img src="'+result.receiptImg+'" alt="installment_receipt" />');
+                       $('#receiptImg').html('<img class="img-fluid" src="'+result.receiptImg+'" alt="installment_receipt" />');
                        } else {
                        $('#receiptImg').html('');
                        }
