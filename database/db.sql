@@ -637,3 +637,8 @@ UPDATE `order_installments_status` SET `name` = 'Upcoming Payment' WHERE `order_
 INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES (NULL, 'Installment due', 'Installment due');
 
 INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Cash Payment', 'Pending Cash Payment');
+
+ALTER TABLE `orders` ADD `cancellation_msg` TEXT NULL AFTER `receipt`;
+ALTER TABLE `order_products` ADD `cancellation_msg` TEXT NULL AFTER `status`;
+
+ALTER TABLE `order_installments` ADD `receipt` LONGTEXT NULL AFTER `payment_date`;

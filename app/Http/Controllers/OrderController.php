@@ -33,6 +33,8 @@ class OrderController extends Controller
 
            
         $productOrderId = $request->get("orderanimalno");
+        $message = $request->get("message");
+
         $user = Auth::user();
         $user_id = $user->id;
         
@@ -60,7 +62,7 @@ class OrderController extends Controller
 
         if( $orderProduct->is_confirmed() ){
             //if payment is made, submit a cancellation request
-            if($orderProduct->request_cancel()){
+            if($orderProduct->request_cancel($message)){
                 $response["code"] = 200;
                 $response["message"] = "Request for cancellation has been submitted";
             }
@@ -76,7 +78,7 @@ class OrderController extends Controller
             // TODO: this should never happened, because on order confirmation, the animal is also to be marked as confirmed.
 
 
-            if($orderProduct->immediate_cancel()){
+            if($orderProduct->immediate_cancel($message)){
                 if($orderProduct->restock()){
 
                     
@@ -96,6 +98,8 @@ class OrderController extends Controller
         ));
         
         $order_number = $request->get("orderno");
+        $message = $request->get("message");
+
         $user = Auth::user();
         $user_id = $user->id;
         
@@ -113,7 +117,7 @@ class OrderController extends Controller
 
         if( $order->is_confirmed() ){
             //if payment is made, submit a cancellation request
-            if($order->request_cancel()){
+            if($order->request_cancel($message)){
                 $response["code"] = 200;
                 $response["message"] = "Request for cancellation has been submitted";
             }
@@ -123,7 +127,7 @@ class OrderController extends Controller
             //check if payment has been made
             //if no payment is made, cancel this order
             //make the animal available in the market again
-            if($order->immediate_cancel()){
+            if($order->immediate_cancel($message)){
                 if($order->restock()){
                     $response["code"] = 200;
                     $response["message"] = "Order has been cancelled successfully";
@@ -135,30 +139,37 @@ class OrderController extends Controller
 
     }
     
-    public function installment_payment($order_no = null, Request $request){
+    public function installment_payment($installment_id = null, Request $request){
         // session::put("order_id", 81 );
 
         $user = Auth::user();
         $user_id = $user->id;
         
+    
+        if( $installment_id != null){
+            
+            $installment = OrderInstallments::find($installment_id);
+            if($installment){
 
-        if( $order_no != null){
-            $where = ["order_number"=>$order_no, "user_id"=>$user_id];
+                if( ! $installment->is_user($user_id) ){
+                    abort(404);
+                }
+                if( $installment->get_status->id == "8" ){
+                    return view('installment-payment')->with("installment", $installment)->with("user", $user);
+                }
+            }
+            else {
+                abort(404);           
+            }   
+            
         }
         else {
-            
-            $order_id = session::get("order_id");
-            $where = ["id"=>$order_id, "user_id"=>$user_id];
+            abort(404);           
         }   
         
-        $order = Orders::where($where)->first();
-
-        session::put("order_id",$order->id);
-
-        return view('payment')->with("order", $order)->with("user", $user);
     }
 
-    public function payment($order_no = null, Request $request){
+    public function payment($installment_id = null, Request $request){
         // session::put("order_id", 81 );
 
         $user = Auth::user();
@@ -203,7 +214,59 @@ class OrderController extends Controller
 
         // return view('payment')->with("order", $order)->with("user", $user);
     }
+    public function upload_installment_receipt(Request $request){
 
+        $this->validate($request, array(
+            'receipt' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'installment' => 'required|integer',
+        ));
+        //TODO: get me from somewhere else
+        // $order_id = session::get("order_id");
+        // dump($order_id);
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $installment_id = $request->get('installment');
+        // $order = Orders::where(["id"=>$order_id, "user_id"=>$user_id])->first();
+        $installment = OrderInstallments::find($installment_id);
+
+        if( ! $installment->is_user($user_id) ){
+            $response = array(
+                "code" => 404,
+                "message" => "Something is not right, please refresh and retry.."
+            );
+            return Response::json($response);
+
+        }
+
+        $response = array(
+            "code" => 100,
+            "message" => "Something went wrong, please try again"
+        );
+
+        //save the data to the database
+        if($request->hasFile('receipt')){
+            
+            $receiptFile = $request->file('receipt');
+            $receiptMime = $receiptFile->getMimeType();
+            $receiptFile = file_get_contents($receiptFile);
+            $base64_receipt = base64_encode($receiptFile);
+
+            $receipt = 'data: '.$receiptMime.';base64,'.$base64_receipt;
+            // dd($receipt);
+            // echo "<img src=\"$receipt\" alt=\"\" />";
+
+            $installment->status = "3";
+            $installment->receipt = $receipt;
+            if($installment->save()){
+                $response = array(
+                    "code" => 200,
+                    "message" => "Receipt saved"
+                );
+            }
+        }
+        return Response::json($response);
+    }
     public function upload_receipt(Request $request){
 
         $this->validate($request, array(
