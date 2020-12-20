@@ -150,7 +150,7 @@
                               <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">{{number_format($installment->amount*0.13)}}/-</strong></div>
                      <div class="grand-total text-center">
                         <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
-                        <strong>{{number_format($installment->amount+$installment->amount*0.13)}}/-</strong>
+                        <strong>{{number_format($installment->after_tax_amount)}}/-</strong>
                      </div>
                   </div>
 
