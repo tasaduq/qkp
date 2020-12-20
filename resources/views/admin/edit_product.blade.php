@@ -103,15 +103,17 @@
                         
                         $images = $images ? $images : array();
                         ?>
-                        <div class="col-sm-2 my-3">
+                        
                           @foreach ($images as $image)
+                          <div class="col-sm-2 my-3">
                             <div class="animal-image">
                               <img class="img-fluid" src="{{$image->thumb}}" image-id="{{$image->id}}">
                               <input class="custom-checkbox image-checkbox" name="images[]" type="hidden" value="{{$image->id}}" thumb="{{$image->thumb}}">
                               <button class="remove-product-image">Remove</button>
                             </div>
+                          </div>
                           @endforeach
-                        </div>
+                        
                         
                       </div>
                       
