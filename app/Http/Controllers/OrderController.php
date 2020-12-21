@@ -169,7 +169,7 @@ class OrderController extends Controller
         
     }
 
-    public function payment($installment_id = null, Request $request){
+    public function payment($order_no = null, Request $request){
         // session::put("order_id", 81 );
 
         $user = Auth::user();
