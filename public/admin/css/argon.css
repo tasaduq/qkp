@@ -29878,7 +29878,7 @@ span.status.pending-cancellation, span.status.pending-confirmation {
     color: #eca82d;
 }
 
-span.status.cancelled {
+span.status.cancelled, span.status.rejected {
     font-weight: bold;
     color: #f5365c;
 }
