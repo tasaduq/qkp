@@ -2,10 +2,6 @@
 
 @section('content')
 
-  <?php 
-  $firstOrder = 0; 
-  $firstProduct = 0; 
-  ?>
     <!-- profile section -->
     <section class="profile-section">
         <div class="container">
@@ -37,30 +33,12 @@
 
                         @if( $order->payable() )
                           <button data-toggle="tooltip" data-placement="top" title="Upload Your Receipt" class="order-pay-btn default-styling float-right" ordernumber="{{$order->order_number}}"><i class="fas fa-receipt"></i></button>
-                    
-                      <div style="background:#fff; box-shadow:0 0 15px 0 #ccc;">
-                        #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->get_status->name }}  - {{ date_format($order->created_at,"d-m-Y") }}   
-                        
-                        @if( $order->cancellable() )
-                          - <button class="btn btn-warning mb-1 order-cancel-btn" ordernumber="{{$order->order_number}}">Cancel Order</button>
-                        @endif
-
-                        @if( $order->payable() )
-                          - <button class="btn tbl-btn default-btn paid order-pay-btn" ordernumber="{{$order->order_number}}">Pay Now</button>
                         @endif
                       </div>
                       @foreach ($order->products as $orderedProduct)
                         <div class="accordion" id="installment-schedule">
                           <a data-toggle="collapse" href="#tablecollapse{{$orderedProduct->id}}" role="button" aria-controls="collapse1">
                             <div class="row schedule">
-                         
-                    <?php 
-                      $firstOrder = $loop->parent->index ; 
-                      $firstProduct = $loop->index ; 
-                    ?>
-                    
-                          <a data-toggle="collapse" href="#tablecollapse{{$orderedProduct->id}}" role="button" aria-controls="collapse1" aria-expanded="{{$firstOrder == 0 && $firstProduct == 0 ? "true" : "false"}}">
-                            <div class="row schedule pb-3">
                             <div class="col-sm-4">
                                 <div class="animal-picture text-center">
                                   
@@ -118,8 +96,6 @@
                         @if( $order->in_process() )
                             <div id="tablecollapse{{$orderedProduct->id}}" class="collapse mt-3">
                             <table  class="table table-responsive-sm text-left mb-0">
-                          <div id="tablecollapse{{$orderedProduct->id}}" class="collapse {{ $firstOrder == 0 && $firstProduct == 0 ? "show" : ""}}">
-                            <table  class="table table-responsive-sm text-left">
                               <thead class="thead-dark">
                                 <tr>
                                   <th>Month</th>
@@ -145,7 +121,7 @@
                                     <button class="btn btn-success default-btn installment-pay-btn" installment="{{$installment->id}}">Pay Now</button>
                                     {{-- <button class="btn tbl-btn default-btn paid">Pay Now</button> --}}
                                   @else
-                                    @if( $installment->get_status->id != "3" && $installment->get_status->id != "9" )  
+                                    @if( $installment->get_status->id != "3")  
                                     <button class="btn tbl-btn default-btn paid" installment="{{$installment->id}}">Pay Now</button>
                                     @endif
                                   @endif
