@@ -145,8 +145,8 @@
                               <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" disabled>
                            </div>
                         </div>
-                        <div class="form-group col-md-12 pr-3">
-                           <input type="checkbox" name="agreement" id="agreement">
+                        <div class="form-group col-md-12 px-0 d-flex">
+                           <input class="mr-3" type="checkbox" name="agreement" id="agreement" style="width:25px; height:25px;">
                            <label for="agreement">I have read and agree to the <a href="#">QKP Terms and Conditions</a> governing my placement of this order, as well as agree to <a href="#">Cancellation Terms</a> of service</label>
                         </div>
                         <button class="btn default-btn float-right mb-4 place-order" type="submit">Place Order</button>
@@ -155,7 +155,7 @@
 
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section cart-update-hook">
+            <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section cart-update-hook" style="margin-top: -35px;">
                @include("sections.cart-right-section")
             </div>
         

@@ -264,7 +264,7 @@
                   ?>
                   <a class="cart-icon-wrap mr-4 hide-on-mobile" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
                   @if(Auth::user())
-                     <ul class="navbar-nav mx-auto hide-on-mobile">
+                     <ul class="navbar-nav hide-on-mobile">
                         <li class="nav-item">
                            <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
                         </li>

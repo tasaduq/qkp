@@ -23,22 +23,22 @@
                     {{-- <p><strong>03 </strong>Animal in Your List</p> --}}
 
                     @forelse ($orders as $order)
+ <div class="installment-Schedule-wrap">                       
+                      <div class="order-detail-wrap">
+                        <strong>#{{ $order->order_number }}</strong> - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->get_status->name }}  - {{ date_format($order->created_at,"d-m-Y") }}   
                         
-<div style="background:#fff; box-shadow:0 0 15px 0 #ccc;">
-                      #{{ $order->order_number }} - {{ $order->payment_method ? "Bank Transfer" : "Cash" }} - {{ $order->get_status->name }}  - {{ date_format($order->created_at,"d-m-Y") }}   
-                      
-                      @if( $order->cancellable() )
-                        - <button class="btn btn-warning mb-1 order-cancel-btn" ordernumber="{{$order->order_number}}">Cancel Order</button>
-                      @endif
+                        @if( $order->cancellable() )
+                          <button data-toggle="tooltip" data-placement="top" title="Cancel Order" class="order-cancel-btn default-styling float-right" ordernumber="{{$order->order_number}}"><span class="icon-qkp-minus-circle"></span></button>
+                        @endif
 
-                      @if( $order->payable() )
-                        - <button class="btn tbl-btn default-btn paid order-pay-btn" ordernumber="{{$order->order_number}}">Pay Now</button>
-                      @endif
-</div>
+                        @if( $order->payable() )
+                          <button data-toggle="tooltip" data-placement="top" title="Upload Your Receipt" class="order-pay-btn default-styling float-right" ordernumber="{{$order->order_number}}"><i class="fas fa-receipt"></i></button>
+                        @endif
+                      </div>
                       @foreach ($order->products as $orderedProduct)
                         <div class="accordion" id="installment-schedule">
                           <a data-toggle="collapse" href="#tablecollapse{{$orderedProduct->id}}" role="button" aria-controls="collapse1">
-                            <div class="row schedule pb-3">
+                            <div class="row schedule">
                             <div class="col-sm-4">
                                 <div class="animal-picture text-center">
                                   
@@ -83,7 +83,7 @@
                                   @endif
                                 @else
                                 <div class="row">
-                                  <div class="col-sm-6 text-right">
+                                  <div class="col-sm-6 text-left">
                                     <div class="prize">
                                       <span> Order Cancelled </span>
                                     </div>
@@ -94,8 +94,8 @@
                         </div><!--schdule row-->
                         </a>
                         @if( $order->in_process() )
-                            <div id="tablecollapse{{$orderedProduct->id}}" class="collapse">
-                            <table  class="table table-responsive-sm text-left">
+                            <div id="tablecollapse{{$orderedProduct->id}}" class="collapse mt-3">
+                            <table  class="table table-responsive-sm text-left mb-0">
                               <thead class="thead-dark">
                                 <tr>
                                   <th>Month</th>
@@ -134,7 +134,7 @@
                           @endif
                       </div>
                       @endforeach
-                         
+ </div>                         
                       @empty
                       You have not yet placed any orders.
                       @endforelse
