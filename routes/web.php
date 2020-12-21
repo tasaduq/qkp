@@ -47,6 +47,8 @@ Route::middleware("calculations")->group(function () {
         Route::get("/instalment-payment/{installment_id}", "OrderController@installment_payment");
         Route::post("/upload-receipt", "OrderController@upload_receipt");
         Route::post("/upload-installment-receipt", "OrderController@upload_installment_receipt");
+        Route::post("/request-installment-cash-collection", "OrderController@installment_request");
+        
         
         
         

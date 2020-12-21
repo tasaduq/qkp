@@ -136,12 +136,13 @@
                             <div class="animal-product">
                             <a href="/product/{{$product->product_id}}">
                         <div class="item">
-                            @if($product->featured)
+                            @if($product->sold_out)
+                                <div class="sold-out">Sold Out</div>
+                            @elseif($product->featured)
                                 <div class="featured">Featured</div>
                             @endif
 
                             <?php
-
                                 if ( strpos($product->images, ",") > -1){
                                     $imageid = explode(",",$product->images)[0];
                                 }

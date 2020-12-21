@@ -82,7 +82,7 @@
                   <p> One of our riders will contact you within the next 24 hours, to collect the mentioned upfront payment.</p>
                   <p> Please note, your instalment will be confirmed, once the payment has been received.</p>
                   <br>
-                  <button class="btn default-btn float-right mb-4 place-order" type="submit">Request Cash Collection</button>
+                  <button class="btn default-btn float-right mb-4 request-installment-cash-collection" type="button" installmentid="{{$installment->id}}">Request Cash Collection</button>
                   
                </div>
                <div class="billing py-5 banktransfer" style="display:none">

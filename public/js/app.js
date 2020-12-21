@@ -519,6 +519,12 @@ $(document).ready(function(){
 
     /////////////////////////////////////////////////////////////////////
     
+    $(".request-installment-cash-collection").on("click",function(e){
+        e.preventDefault();
+        var installment = $(this).attr("installmentid");
+        order.requestInstallmentCollection(installment)
+    })
+
     $("#upload-reciept-installment-form").on("submit", function(e){
         e.preventDefault();
 
@@ -1133,7 +1139,7 @@ var order = {
                 if(result.code == 200){
                     Swal.fire(
                         '',
-                        'File successfully uploaded, we will notify you once your installment has been confirmed',
+                        'File successfully uploaded, we will notify you once your instalment has been confirmed',
                         'success'
                     ).then((result) => {
                         window.location = "/profile";
@@ -1158,6 +1164,48 @@ var order = {
                 }
                 
             }
+        })
+    },
+    requestInstallmentCollection:function(installment){
+        page.loader.show()
+        var payload = {
+            _token: $("meta[name='csrf-token']").attr("content"),
+            installment:installment,
+        }
+
+        $.ajax({
+            url:"/request-installment-cash-collection",
+            data: payload,
+            dataType: 'json',
+            type: "POST",
+            success: function(result){
+                page.loader.hide()
+                if( result.code == 200 ){
+                    // user.redirectToProfile();
+                    Swal.fire(
+                        '',
+                        'Your request has been received, one of our rider will contact you within 24 hours to collect the payment.',
+                        'success'
+                    ).then((result) => {
+                        window.location = "/profile";
+                      })
+                    // page.toast.show(result.message, "success")
+                    // location.reload();
+                } else {
+                    page.toast.show("Unable to request for cash collection, please try again later.", "danger")
+                    // cart.redirectToCart();
+                }
+                
+            },
+            error:function(error){
+                page.toast.show("Unable to request for cash collection, please try again later.", "danger")
+                // alert("Something went wrong while while processing your cart, please try again.")
+                console.log("error",error)                // responseJSON
+            },
+            done:function(){
+                page.loader.hide();
+            }
+
         })
     },
     cancelOrderAnimal:function(orderAnimalBtn, message){
