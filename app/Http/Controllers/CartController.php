@@ -232,7 +232,9 @@ class CartController extends Controller
                 for($i = $installment; $i > 0 ; $i--) { 
 
                     $currentInstallmentPrice = $product->installment($installment);
+                    $currentInstallmentPrice = round($currentInstallmentPrice);
                     $currentInstallmentPriceWithTax = $currentInstallmentPrice+($currentInstallmentPrice*0.13);
+                    $currentInstallmentPriceWithTax = round($currentInstallmentPriceWithTax);
                     $dueDate = date("Y-m-d H:i:s", strtotime( "+".$i." month", strtotime( date("Y-m-d H:i:s") ) ) );
                     // $dueDate = "DATE_ADD(CURRENT_DATE, INTERVAL ".$i." month )";
                     /* TODO: calculate due date in cases where due date is overlapping with eid date, adil said this wont happen
@@ -256,7 +258,7 @@ class CartController extends Controller
                         "order_product_id" => $orderedProductId,
                         "status" => 1,
                         "amount" => $currentInstallmentPrice,
-                        "after_tax_amount" => $currentInstallmentPrice,
+                        "after_tax_amount" => $currentInstallmentPriceWithTax,
                         "due_date" => $dueDate,
                     ));
 
