@@ -64,10 +64,18 @@
                     </div>
                   </div>
 
+                  
                   <div class="form-group row">
-                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Product Weight</label>
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Current Weight</label>
                     <div class="col-md-9">
-                    <input class="form-control" type="number" placeholder="Product Weight" id="weight" name="weight" value="{{ $aProduct->weight }}">
+                      <input class="form-control" type="text" placeholder="Enter Current Weight" name="current_weight" value="{{ $aProduct->current_weight }}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Estimated Weight</label>
+                    <div class="col-md-9">
+                    <input class="form-control" type="text" placeholder="Enter Estimated Weight" id="weight" name="weight" value="{{ $aProduct->weight }}">
                     </div>
                   </div>
 

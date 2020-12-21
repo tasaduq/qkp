@@ -753,3 +753,5 @@ ALTER TABLE `order_installments` ADD `after_tax_amount` TEXT NOT NULL AFTER `amo
 
 -- to fix after_tax_amount in mid way
 -- UPDATE `order_installments` SET `after_tax_amount`= FLOOR(`amount` * 0.13)
+
+ALTER TABLE `products` ADD `current_weight` INT NULL AFTER `category`;

@@ -80,6 +80,7 @@ class ProductsController extends Controller
             'name'     =>    $request->name,
             'color'    =>    $request->color,
             'category' =>    $request->category,
+            'current_weight'   =>    $request->current_weight,
             'weight'   =>    $request->weight,
             'price'    =>    $request->price,
             'description' => $request->description,
