@@ -214,6 +214,42 @@ class OrderController extends Controller
 
         // return view('payment')->with("order", $order)->with("user", $user);
     }
+    
+    public function installment_request(Request $request){
+        $this->validate($request, array(
+            'installment' => 'required|integer',
+        ));
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $installment_id = $request->get('installment');
+        $installment = OrderInstallments::find($installment_id);
+
+        if( ! $installment->is_user($user_id) ){
+            $response = array(
+                "code" => 404,
+                "message" => "Something is not right, please refresh and retry.."
+            );
+            return Response::json($response);
+
+        }
+
+        $response = array(
+            "code" => 100,
+            "message" => "Something went wrong, please try again"
+        );
+
+        $installment->status = "9";
+        
+        if($installment->save()){
+            $response = array(
+                "code" => 200,
+                "message" => "Receipt saved"
+            );
+        }
+
+        return Response::json($response);
+    }
     public function upload_installment_receipt(Request $request){
 
         $this->validate($request, array(

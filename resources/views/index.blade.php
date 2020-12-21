@@ -214,9 +214,12 @@
                <a href="/product/{{$product->product_id}}">
             @endif
                <div class="item">
-                  @if ($product->sold_out)
+                  @if($product->sold_out)
                      <div class="sold-out">Sold Out</div>
+                  @elseif($product->featured)
+                     <div class="featured">Featured</div>
                   @endif
+                  
                   <div class="animal-image">
                      <?php
 
