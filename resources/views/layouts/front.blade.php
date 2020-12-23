@@ -167,7 +167,7 @@
                 </div>
                </form>
                 <div class="form-group row text-center">
-                   <div class="col-sm-12"> <a href="#login-modal" data-toggle="modal">Already registered? Login</a></div>
+                   <div class="col-sm-12"> <a href="#login-modal" data-toggle="modal" data-dismiss="modal">Already registered? Login</a></div>
                 </div>
                 <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                 <div class="row social">
