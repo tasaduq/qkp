@@ -35,11 +35,13 @@ class Orders extends Model
     public function is_confirmed(){
         return $this->status == "2";
     }
-    public function request_cancel(){
+    public function request_cancel($message){
+        $this->cancellation_msg = $message;
         $this->status = "8";
         return $this->save();
     }
-    public function immediate_cancel(){
+    public function immediate_cancel($message){
+        $this->cancellation_msg = $message;
         $this->status = "5";
         return $this->save();
     }

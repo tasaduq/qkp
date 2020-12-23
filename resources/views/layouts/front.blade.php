@@ -56,29 +56,6 @@
       @endif
 
 
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-         Launch demo modal
-       </button>
-      <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLongTitle">Cancel Order</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         Are you sure you want to cancel your order?
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-         <button type="button" class="btn btn-primary">Yes</button>
-       </div>
-     </div>
-   </div>
- </div>
 
 
     <!-- Login Modal -->
@@ -125,7 +102,7 @@
                     </div>
                   </form>
                     <div class="form-group row">
-                    <div class="col-sm-6"> <a href="#register-modal" data-toggle="modal">Not a member? Sign up</a></div>
+                    <div class="col-sm-6"> <a href="#register-modal" data-toggle="modal" data-dismiss="modal" >Not a member? Sign up</a></div>
                     <div class="col-sm-6 text-right"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
 
                     </div>
@@ -287,7 +264,7 @@
                   ?>
                   <a class="cart-icon-wrap mr-4 hide-on-mobile" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
                   @if(Auth::user())
-                     <ul class="navbar-nav mx-auto hide-on-mobile">
+                     <ul class="navbar-nav hide-on-mobile">
                         <li class="nav-item">
                            <a class="nav-link" href="/profile">{{Auth::user()->name}}</a>
                         </li>

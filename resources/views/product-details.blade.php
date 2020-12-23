@@ -79,7 +79,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Current Weight</div>
-                                 <span>:</span>{{$product->weight}} KG
+                                 <span>:</span>{{$product->current_weight}} KG
                               </label>
                            </li>
                            <li>

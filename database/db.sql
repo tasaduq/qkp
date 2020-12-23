@@ -637,3 +637,120 @@ UPDATE `order_installments_status` SET `name` = 'Upcoming Payment' WHERE `order_
 INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES (NULL, 'Installment due', 'Installment due');
 
 INSERT INTO `order_installments_status` (`id`, `name`, `description`) VALUES (NULL, 'Pending Cash Payment', 'Pending Cash Payment');
+
+ALTER TABLE `orders` ADD `cancellation_msg` TEXT NULL AFTER `receipt`;
+ALTER TABLE `order_products` ADD `cancellation_msg` TEXT NULL AFTER `status`;
+
+ALTER TABLE `order_installments` ADD `receipt` LONGTEXT NULL AFTER `payment_date`;
+
+--
+-- Table structure for table `emails`
+--
+
+CREATE TABLE `emails` (
+  `id` int(11) NOT NULL,
+  `code` varchar(200) NOT NULL,
+  `email` longtext NOT NULL,
+  `flags` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `installment_status_emails`
+--
+
+CREATE TABLE `installment_status_emails` (
+  `id` int(11) NOT NULL,
+  `installment_status_id` int(11) NOT NULL,
+  `email_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_status_emails`
+--
+
+CREATE TABLE `order_status_emails` (
+  `id` int(11) NOT NULL,
+  `order_status_id` int(11) NOT NULL,
+  `email_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_status_emails`
+--
+
+CREATE TABLE `product_status_emails` (
+  `id` int(11) NOT NULL,
+  `product_status_id` int(11) NOT NULL,
+  `email_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `installment_status_emails`
+--
+ALTER TABLE `installment_status_emails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_status_emails`
+--
+ALTER TABLE `order_status_emails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_status_emails`
+--
+ALTER TABLE `product_status_emails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `installment_status_emails`
+--
+ALTER TABLE `installment_status_emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_status_emails`
+--
+ALTER TABLE `order_status_emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_status_emails`
+--
+ALTER TABLE `product_status_emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+ALTER TABLE `order_installments` CHANGE `amount` `amount` TEXT NOT NULL;
+ALTER TABLE `order_installments` ADD `after_tax_amount` TEXT NOT NULL AFTER `amount`;
+
+-- to fix after_tax_amount in mid way
+-- UPDATE `order_installments` SET `after_tax_amount`= `amount`+(`amount` * 0.13)
+ALTER TABLE `products` ADD `current_weight` INT NULL AFTER `category`;

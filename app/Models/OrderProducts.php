@@ -49,11 +49,13 @@ class OrderProducts extends Model
     public function in_process(){
         return $this->cancellable();
     }
-    public function request_cancel(){
+    public function request_cancel($message){
+        $this->cancellation_msg = $message;
         $this->status = "7";
         return $this->save();
     }
-    public function immediate_cancel(){
+    public function immediate_cancel($message){
+        $this->cancellation_msg = $message;
         $this->status = "5";
         return $this->save();
     }

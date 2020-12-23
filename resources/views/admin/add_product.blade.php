@@ -62,7 +62,12 @@
                     </div>
                   </div>
 
-
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Current Weight</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" placeholder="Enter Current Weight" name="current_weight">
+                    </div>
+                  </div>
 
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Estimated Weight</label>

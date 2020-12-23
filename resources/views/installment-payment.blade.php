@@ -11,7 +11,7 @@
                <h2>Installment Payment</h2>
                <div class="row payment-method-section mt-4">
                   <div class="col-sm-6">
-                     <div class="payment-method selected mb-2" payment-method="cash">
+                     <div class="payment-method installment-payment selected mb-2" payment-method="cash">
                         <a class="d-block p-4" href="#">
                            <div class="cash pr-3 d-inline-block">
                               <svg id="cash" enable-background="new 0 0 511.854 511.854" height="80" viewBox="0 0 511.854 511.854" width="80">
@@ -55,7 +55,7 @@
                      </div>
                   </div>
                   <div class="col-sm-6">
-                     <div class="payment-method mb-2" payment-method="bank-transfer">
+                     <div class="payment-method installment-payment mb-2" payment-method="bank-transfer">
                         <a class="d-block p-4" href="#">
                            <div class="bank pr-3 d-inline-block">
                               <svg id="bank" enable-background="new 0 0 511.854 511.854" height="80" viewBox="0 0 511.854 511.854" width="80">
@@ -77,6 +77,59 @@
                      </div>
                   </div>
                </div>
+
+               <div class="billing py-5 cashpayment">
+                  <p> One of our riders will contact you within the next 24 hours, to collect the mentioned upfront payment.</p>
+                  <p> Please note, your instalment will be confirmed, once the payment has been received.</p>
+                  <br>
+                  <button class="btn default-btn float-right mb-4 request-installment-cash-collection" type="button" installmentid="{{$installment->id}}">Request Cash Collection</button>
+                  
+               </div>
+               <div class="billing py-5 banktransfer" style="display:none">
+                  <p> Please make the bank transfer in the following account.</p>
+
+                  <div class="alert alert-secondary d-inline-block" role="alert">
+                     <h3>Bank Details</h3>
+                     <p class="mt-4"><label><strong>Bank :</strong></label> BANK NAME</p>
+                     <p><label><strong>Account Title :</strong></label> QKP PVT LMT</p>
+                     <p class="mb-0"><label><strong>Account Number :</strong></label> 1254 0081 01318501 5</p>
+                  </div>
+                  
+                  <p> Once you have made the deposit/transfer you are to submit a picture/screenshot as proof of the payment.</p>
+                  <p> Please note, your instalment will be confirmed, once the amount is reflected in our account.</p>
+                  
+                  <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                     <form id="upload-reciept-installment-form" class="pt-3">
+                        @csrf
+                        {{-- <div class="form-row mb-4 justify-content-between">
+                           <div class="form-group col-md-6 pr-3">
+                              <label for="name">Name:</label>
+                              <input type="text" class="form-control" id="name">
+                           </div>
+                           <div class="form-group col-md-6">
+                              <label for="email">Email Addrress:</label>
+                              <input type="email" class="form-control" id="email">
+                           </div>
+                        </div> --}}
+                        <div class="form-row mb-4 justify-content-between">
+                           {{-- <div class="form-group col-md-6 pr-3">
+                              <label for="city">Order ID:</label>
+                              <input type="text" class="form-control" id="order">
+                           </div> --}}
+                           <div class="form-group col-md-6">
+                              <label for="subject">Upload Payment Reciept:</label>
+                           <input type="text" class="form-control">
+                           <label class="upload_img default-btn position-absolute"> Browse
+                              <input type="file" name="receipt">
+                           </label>
+                           </div>
+                           <input type="hidden" name="installment" value="{{$installment->id}}">
+                        </div>
+                        <button class="btn default-btn float-right mb-4" id="upload-installment-reciept-submit" type="submit">Submit</button>
+                     </form>
+               </div>
+                  
+               </div>
                
 
             </div>
@@ -87,17 +140,17 @@
                
                <div class="check-out" style="margin-top:63px;">
                   <div class="total">
-                     <h6>Bhagnari Cow</h6>
-                        <div class="pb-2 text-left">Installment :<strong class="float-right">30,000/-</strong></div>
+                     <h6>{{$installment->order_product->product->name}}</h6>
+                        <div class="pb-2 text-left">Instalment :<strong class="float-right">{{number_format($installment->amount)}}/-</strong></div>
                            {{-- <div class="pb-0 text-left">Delivery Fee to be calculated on checkout</div> --}}
                         </div>
                      <hr>
-                           <div class="text-left">Sub Total :<strong class="float-right">30,000/-</strong></div>
+                           <div class="text-left">Sub Total :<strong class="float-right">{{number_format($installment->amount)}}/-</strong></div>
                      <hr>
-                              <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">3,900/-</strong></div>
+                              <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">{{number_format($installment->amount*0.13)}}/-</strong></div>
                      <div class="grand-total text-center">
                         <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
-                        <strong>33,900/-</strong>
+                        <strong>{{number_format($installment->after_tax_amount)}}/-</strong>
                      </div>
                   </div>
 

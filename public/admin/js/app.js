@@ -12,6 +12,12 @@ $(document).ready(function(){
         media.loadPopupImagesCategory();
     });
 
+    
+    $(document).on('click', '.remove-product-image', function (e) {
+        e.preventDefault();
+        $(this).parent(".animal-image").remove();
+    });
+    
     $('.add-product-images').on('click', function () {
 
         $('#media-modal').modal("toggle");
@@ -43,6 +49,7 @@ $(document).ready(function(){
                    <div class="animal-image">
                        <img class="img-fluid" src="${image.thumb}" image-id="${image.id}">
                        <input class="custom-checkbox image-checkbox" name="images[]" type="hidden" value="${image.id}" thumb="${image.thumb}">
+                       <button class="remove-product-image">Remove</button>
                    </div>
                </div>`;
            });
@@ -401,7 +408,7 @@ $(document).ready(function(){
                        $('#verify-order-note').val('');
 
                        if(result.receiptImg != null) {
-                        $('#receiptImg').html('<img src="'+result.receiptImg+'" alt="order_receipt" />');
+                        $('#receiptImg').html('<img class="img-fluid" src="'+result.receiptImg+'" alt="order_receipt" />');
                        } else {
                        $('#receiptImg').html('');
                        }
@@ -598,7 +605,7 @@ $(document).ready(function(){
                        $('#verify-installment-note').val('');
 
                        if(result.receiptImg != null) {
-                       $('#receiptImg').html('<img src="'+result.receiptImg+'" alt="installment_receipt" />');
+                       $('#receiptImg').html('<img class="img-fluid" src="'+result.receiptImg+'" alt="installment_receipt" />');
                        } else {
                        $('#receiptImg').html('');
                        }

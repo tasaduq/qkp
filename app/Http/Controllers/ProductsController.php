@@ -76,17 +76,23 @@ class ProductsController extends Controller
             $featured = $request->featured = 0;
         }
 
+        $data = array(
+            'name'     =>    $request->name,
+            'color'    =>    $request->color,
+            'category' =>    $request->category,
+            'current_weight'   =>    $request->current_weight,
+            'weight'   =>    $request->weight,
+            'price'    =>    $request->price,
+            'description' => $request->description,
+            'active' => $active,
+            'featured' => $featured,
+        );
+
+        if($request->has("images")){
+            $data["images"] = implode(",",$request->get("images"));
+        }
         
-            Products::where('product_id','=',$request->id)->update([
-                    'name'     =>    $request->name,
-                    'color'    =>    $request->color,
-                    'category' =>    $request->category,
-                    'weight'   =>    $request->weight,
-                    'price'    =>    $request->price,
-                    'description' => $request->description,
-                    'active' => $active,
-                    'featured' => $featured,
-                ]);
+        Products::where('product_id','=',$request->id)->update($data);
         
 
         return redirect()->route('products')->with('success','Product Update Successfully...');

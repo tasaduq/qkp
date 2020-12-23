@@ -20,7 +20,7 @@
             <div class="col-md-12">
                <h2 class="text-purple search-title">Search</h2>
                {{-- <p class="text-black">Search for the finest animals on Shariah compliant installments</p> --}}
-               <form action="{{ route('search') }}" id="home_search_form" method="GET">
+               <form action="#" id="home_search_form" method="GET">
                
                 {{-- @csrf  --}}
                 
@@ -214,9 +214,12 @@
                <a href="/product/{{$product->product_id}}">
             @endif
                <div class="item">
-                  @if ($product->sold_out)
+                  @if($product->sold_out)
                      <div class="sold-out">Sold Out</div>
+                  @elseif($product->featured)
+                     <div class="featured">Featured</div>
                   @endif
+                  
                   <div class="animal-image">
                      <?php
 
