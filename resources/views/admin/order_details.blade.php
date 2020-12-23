@@ -177,7 +177,7 @@
                                         <span class="status {{ strtolower(str_replace(' ', '-', $installments->name)) }}">{{ $installments->name }}</span>
                                     </td>
                                     <td align="right">
-                                        @if($installments->status == 2)
+                                        @if($installments->status == 3)
                                             <a href="#" class="btn btn-success btn-sm verify-installment-payment" data-instid="{{ $installments->id }}" data-instnum="{{ $installments->instalment_number }}" data-ordernum="{{ $order_details->order_number }}">Verify</a>
                                         @endif
                                     </td>

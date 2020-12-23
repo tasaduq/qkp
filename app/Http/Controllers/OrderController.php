@@ -418,6 +418,10 @@ class OrderController extends Controller
     {
         $order_details = Orders::where([['id', '=', $id]])->first();
 
+        $installmentsStates = array(1, 7, 8);
+
+        $productStates = array(1, 7);
+
         if($order_details) {
 
             if($status == 'updstatus') {
@@ -449,6 +453,14 @@ class OrderController extends Controller
                 if($order_details->status == 1) {
                     $state = 6;
                     $order_details->restock();
+
+                    $order_products = OrderProducts::where([['order_id', '=', $id], ['status', '=', 1]])->pluck('id')->toArray();
+
+                    OrderProducts::where([['order_id', '=', $id], ['status', '=', 1]])->update(['status' => $state]);
+
+                    if($order_products) {
+                        OrderInstallments::whereIn('order_product_id', $order_products)->whereIn('status', $installmentsStates)->update(['status' => 11]);
+                    }
                 } else if($order_details->status == 8) {
                     $state = 2;
                 }
@@ -467,9 +479,19 @@ class OrderController extends Controller
 
                 if($order_details->status == 1) {
                     $state = 2;
+
+                    OrderProducts::where([['order_id', '=', $id], ['status', '=', 1]])->update(['status' => $state]);
                 } else if($order_details->status == 8) {
                     $state = 5;
                     $order_details->restock();
+
+                    $order_products = OrderProducts::whereIn('status', $productStates)->where([['order_id', '=', $id]])->pluck('id')->toArray();
+
+                    OrderProducts::whereIn('status', $productStates)->where([['order_id', '=', $id]])->update(['status' => $state]);
+
+                    if($order_products) {
+                        OrderInstallments::whereIn('order_product_id', $order_products)->whereIn('status', $installmentsStates)->update(['status' => 11]);
+                    }
                 }
 
                 Orders::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
@@ -547,7 +569,7 @@ class OrderController extends Controller
                     "message" => ""
                 );
             } elseif($status == 'approve') {
-                $state = 3;
+                $state = 2;
 
                 OrderInstallments::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
 

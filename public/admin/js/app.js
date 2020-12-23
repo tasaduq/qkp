@@ -326,6 +326,22 @@ $(document).ready(function(){
         })
     }
 
+       var modal = document.querySelector(".dh-modal");
+       var closeButton = document.querySelector(".dh-close-button");
+
+       function toggleModal() {
+        modal.classList.toggle("dh-show-modal");
+       }
+
+       function windowOnClick(event) {
+           if (event.target === modal) {
+            toggleModal();
+           }
+       }
+
+       closeButton.addEventListener("click", toggleModal);
+       window.addEventListener("click", windowOnClick);
+
     var login = {
         loader:{
             show:function(){
@@ -393,7 +409,9 @@ $(document).ready(function(){
                        $("#verifyOrderModal").modal('show');
                     }
                     else {
-                       alert('Nothing found, please try again!');
+                       $('.dh-modal-h2').html('Something want wrong');
+                       $('.dh-modal-p').html('Nothing found, please try again.');
+                       toggleModal();
                     }
                    }
                });
@@ -426,11 +444,17 @@ $(document).ready(function(){
                        success: function(result){
                        hidePreloader();
                        if(result.code == 200){
-                       alert('Order status updated!');
-                       location.reload();
+                       $('.dh-modal-h2').html('Success');
+                       $('.dh-modal-p').html('Order status updated.');
+                       toggleModal();
+                       setTimeout( function(){
+                            location.reload();
+                       }  , 2500 );
                        }
                        else {
-                       alert('Nothing update, please try again!');
+                       $('.dh-modal-h2').html('Success');
+                       $('.dh-modal-p').html('Nothing update, please try again.');
+                       toggleModal();
                        }
                        }
                        });
@@ -459,7 +483,9 @@ $(document).ready(function(){
                        $("#verifyOrderCancellationModal").modal('show');
                        }
                        else {
-                       alert('Nothing found, please try again!');
+                       $('.dh-modal-h2').html('Something went wrong');
+                       $('.dh-modal-p').html('Nothing found, please try again.');
+                       toggleModal();
                        }
                        }
                        });
@@ -492,11 +518,17 @@ $(document).ready(function(){
                        success: function(result){
                        hidePreloader();
                        if(result.code == 200){
-                       alert('Order status updated!');
+                       $('.dh-modal-h2').html('Success');
+                       $('.dh-modal-p').html('Order status updated.');
+                       toggleModal();
+                       setTimeout( function(){
                        location.reload();
+                       }  , 2500 );
                        }
                        else {
-                       alert('Nothing update, please try again!');
+                       $('.dh-modal-h2').html('Somwthing went wrong');
+                       $('.dh-modal-p').html('Nothing update, please try again.');
+                       toggleModal();
                        }
                        }
                        });
@@ -529,11 +561,17 @@ $(document).ready(function(){
                        success: function(result){
                        hidePreloader();
                        if(result.code == 200){
-                       alert('Order status updated!');
+                       $('.dh-modal-h2').html('Success');
+                       $('.dh-modal-p').html('Order status updated.');
+                       toggleModal();
+                       setTimeout( function(){
                        location.reload();
+                       }  , 2500 );
                        }
                        else {
-                       alert('Nothing update, please try again!');
+                       $('.dh-modal-h2').html('Something went wrong');
+                       $('.dh-modal-p').html('Nothing update, please try again.');
+                       toggleModal();
                        }
                        }
                        });
@@ -602,11 +640,17 @@ $(document).ready(function(){
                        success: function(result){
                        hidePreloader();
                        if(result.code == 200){
-                       alert('Installment status updated!');
+                       $('.dh-modal-h2').html('Success');
+                       $('.dh-modal-p').html('Installment status updated.');
+                       toggleModal();
+                       setTimeout( function(){
                        location.reload();
+                       }  , 2500 );
                        }
                        else {
-                       alert('Nothing update, please try again!');
+                       $('.dh-modal-h2').html('Something went wrong');
+                       $('.dh-modal-p').html('Nothing update, please try again.');
+                       toggleModal();
                        }
                        }
                        });

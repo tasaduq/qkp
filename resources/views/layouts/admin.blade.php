@@ -364,6 +364,16 @@
 
     @yield('content')
 
+    <div class="dh-modal">
+        <div class="dh-modal-content">
+            <span class="dh-close-button">&times;</span>
+            <div class="dh-modal-content-main">
+                <h2 class="dh-modal-h2"></h2>
+                <p class="dh-modal-p"></p>
+            </div>
+        </div>
+    </div>
+
   <!-- Footer -->
   <footer class="footer pt-0">
     <div class="row align-items-center justify-content-lg-between">
