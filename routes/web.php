@@ -144,6 +144,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin/add_category', function () {
         return view('admin.add_category');
     });
+    Route::get('/admin/settings', function () {
+        return view('admin.settings');
+    });
 
     Route::get('/admin/orders', "OrderController@get_orders")->name('orders');
 

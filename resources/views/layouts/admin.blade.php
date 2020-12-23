@@ -51,7 +51,7 @@ $user = Auth::user();
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#navbar-dashboards" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-dashboards">
-                <i class="ni ni-shop text-primary"></i>
+                <i class="ni ni-delivery-fast text-primary"></i>
                 <span class="nav-link-text">Products</span>
               </a>
               <div class="collapse" id="navbar-dashboards">
@@ -71,7 +71,7 @@ $user = Auth::user();
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/admin/media">
-                <i class="ni ni-shop text-primary"></i>
+                <i class="ni ni-image text-primary"></i>
                 <span class="nav-link-text">Media</span>
               </a>
             </li>
