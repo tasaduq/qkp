@@ -113,6 +113,7 @@ $(document).ready(function(){
         },
         listIamges:function(selector, images){
             var html = "";
+            $(selector).append(html);
             images.forEach(image => {
                  console.log(image)
 
