@@ -8,17 +8,17 @@
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
               <h6 class="h2 text-white d-inline-block mb-0">Products</h6>
-              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              {{-- <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Tables</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Tables</li>
                 </ol>
-              </nav>
+              </nav> --}}
             </div>
             <div class="col-lg-6 col-5 text-right">
               <a href="/admin/add_product" class="btn btn-sm btn-neutral">Add New Product</a>
-              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+              {{-- <a href="#" class="btn btn-sm btn-neutral">Filters</a> --}}
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Light table</h3>
+              <h3 class="mb-0">Product Listing</h3>
             </div>
             <!-- Light table -->
             <div class="table-responsive">

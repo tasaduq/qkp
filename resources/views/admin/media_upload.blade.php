@@ -10,7 +10,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Products</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Media</h6>
             </div>
           </div>
         </div>
@@ -437,10 +437,10 @@
             
             <div class="container" role="main">
                 <h1><a href="https://css-tricks.com/article-url"></a></h1>
-                <nav role="navigation">
+                {{-- <nav role="navigation">
                 <a href="https://css-tricks.com/examples/DragAndDropFileUploading/" class="is-selected">Auto Submit</a>
                 <a href="https://css-tricks.com/examples/DragAndDropFileUploading/?submit-on-demand">Submit On Demand</a>
-                </nav>
+                </nav> --}}
                 <form method="post" action="/admin/upload" enctype="multipart/form-data" novalidate="" class="box has-advanced-upload">
                     @csrf
                 <div class="box__input">

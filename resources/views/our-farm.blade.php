@@ -21,51 +21,51 @@
 
       <h1>Farm Gallery</h1>
       <div class="row justify-content-center">
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
                <a href="images/farm1.png" data-fancybox="gallery"><img src="images/farm1.png"></a>
             </div>
          </div>
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm3.png" data-fancybox="gallery"><img src="images/farm3.png"></a>
             </div>
          </div>
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm2.png" data-fancybox="gallery"><img src="images/farm2.png"></a>
             </div>
          </div>
       </div>
-      <div class="row py-4">
-         <div class="col-sm-4">
+      <div class="row">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm3.png" data-fancybox="gallery"><img src="images/farm3.png"></a>
             </div>
          </div>
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm2.png" data-fancybox="gallery"><img src="images/farm2.png"></a>
             </div>
          </div>
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm1.png" data-fancybox="gallery"><img src="images/farm1.png"></a>
             </div>
          </div>
       </div>
       <div class="row">
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm2.png" data-fancybox="gallery"><img src="images/farm2.png"></a>
             </div>
          </div>
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm1.png" data-fancybox="gallery"><img src="images/farm1.png"></a>
             </div>
          </div>
-         <div class="col-sm-4">
+         <div class="col-sm-4 py-2">
             <div class="animal-image">
             <a href="images/farm3.png" data-fancybox="gallery"><img src="images/farm3.png"></a>
             </div>

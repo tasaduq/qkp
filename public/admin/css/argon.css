@@ -29940,3 +29940,7 @@ span.status.confirmed {
     font-weight: bold;
     color: #3dbd65;
 }
+span.status.upcoming-payment {
+    font-weight: bold;
+    color: #11cdef;
+}
