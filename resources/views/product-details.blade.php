@@ -16,7 +16,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                <li class="breadcrumb-item active">{{$product->name}}</li>
            </ol>
             <div class="row">
-               <div class="col-sm-6 text-center left-section pb-5">
+               <div class="col-sm-6 text-center left-section">
                   <div class="product-preview">
                      <?php
                      $imageid = array();
@@ -33,7 +33,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                      $images = $images ? $images : array();
                      ?>
                      @foreach ($images as $image)
-                        <div class="item">
+                        <div class="item d-flex justify-content-center align-items-center">
                            <img class="img-fluid" src="{{$image->path}}" alt="">
                         </div>
                      @endforeach
@@ -46,9 +46,9 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                   <div class="product_arrow_next">
                      <span><i class="icon-qkp-caret-right"></i></span>
                   </div>
-                  <div class="slider slider-nav">
+                  <div class="slider slider-nav my-3">
                      @foreach ($images as $image)
-                        <div class="item">
+                        <div class="item thumbnail">
                            <img class="img-fluid" src="{{$image->path}}" alt="">
                         </div>
                      @endforeach
@@ -251,10 +251,10 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
 
 
 
-      {{-- <script src="/js/jquery-3.5.1.min.js"></script>
+      <script src="/js/jquery-3.5.1.min.js"></script>
       <script src="/js/popper.min.js"></script>
       <script src="/js/bootstrap.min.js"></script>
-      <script src="/js/slick.js"></script> --}}
+      <script src="/js/slick.js"></script>
 
       <script>
          $('.product-preview').slick({

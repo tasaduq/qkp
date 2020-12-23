@@ -1141,14 +1141,18 @@ section.footer-section {
 }
 
 .product-preview .item img {
-	width: 380px;
-	max-width: 100%;
+	/* width: 380px; */
+	max-width: 80%;
 }
 
 .slider.slider-nav .thumbnail {
 	border: 2px solid #ebe7ec;
 	border-radius: 5px;
 	padding: 8px;
+	height:75px;
+	width:90px !important;
+	overflow: hidden;
+	margin:0 5px
 }
 .slick-slide.slick-current.slick-active .thumbnail {
     border: 2px solid #270037;
@@ -1156,7 +1160,8 @@ section.footer-section {
 
 .product-preview .item {
 	position: relative;
-	padding: 100px 0;
+	/* padding: 100px 0; */
+	height:440px;
 }
 
 .product_arrow_prev.slick-arrow {
