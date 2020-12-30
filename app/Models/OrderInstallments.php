@@ -9,7 +9,7 @@ class OrderInstallments extends Model
 {
     use HasFactory;
     protected $table = "order_installments";
-
+    protected $fillable = ['status', 'invoice'];
     public function order_product()
     {
         return $this->belongsTo('App\Models\OrderProducts', 'order_product_id', 'id');

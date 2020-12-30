@@ -15,6 +15,7 @@ use App\Models\OrderProducts;
 use App\Models\OrderInstallments;
 use App\Models\OrderInstallmentsStatus;
 // use App\Models\Categories;
+use App\Http\Controllers\INVOICER;
 use DB;
 
 
@@ -239,12 +240,26 @@ class OrderController extends Controller
             "message" => "Something went wrong, please try again"
         );
 
+        //pending cash payment
         $installment->status = "9";
         
         if($installment->save()){
+
+            $data = array(
+                "amount" => $installment->amount,
+                "tax" => $installment->after_tax_amount - $installment->amount,
+                "after_tax_amount" => $installment->after_tax_amount,
+                "due_date" => $installment->due_date
+            );
+
+            $user = Auth::user();
+            
+            EMAILER::send("INSTALLMENT", $installment->status, $data, $user, true);
+
+
             $response = array(
                 "code" => 200,
-                "message" => "Receipt saved"
+                "message" => "Request Submitted"
             );
         }
 
@@ -295,6 +310,19 @@ class OrderController extends Controller
             $installment->status = "3";
             $installment->receipt = $receipt;
             if($installment->save()){
+
+                $data = array(
+                    "amount" => $installment->amount,
+                    "tax" => $installment->after_tax_amount - $installment->amount,
+                    "after_tax_amount" => $installment->after_tax_amount,
+                    "due_date" => $installment->due_date
+                );
+    
+                $user = Auth::user();
+                
+                EMAILER::send("INSTALLMENT", $installment->status, $data, $user, true);
+
+                
                 $response = array(
                     "code" => 200,
                     "message" => "Receipt saved"
@@ -336,6 +364,17 @@ class OrderController extends Controller
             $order->status = "1";
             $order->receipt = $receipt;
             if($order->save()){
+
+                $data = array(
+                    "amount" => $installment->upfront,
+                    // "tax" => $installment->after_tax_amount - $installment->amount,
+                    // "after_tax_amount" => $installment->after_tax_amount,
+                    // "due_date" => $installment->due_date
+                );
+                    
+                EMAILER::send("ORDER", $order->status, $data, $user, true);
+
+
                 $response = array(
                     "code" => 200,
                     "message" => "Receipt saved"
@@ -412,7 +451,7 @@ class OrderController extends Controller
 
         $OrderStatus = OrderStatus::get();
 
-        $order_details = Orders::select('orders.id', 'orders.status', 'orders.order_number', 'orders.receipt', 'orders.upfront', 'orders.payment_method', 'orders.created_at', 'users.name', 'users.phone', 'users.city', 'users.email', 'users.address', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')->where([['orders.id', '=', $id]])->first();
+        $order_details = Orders::select('orders.id', 'orders.status', 'orders.order_number', 'orders.receipt','orders.invoice', 'orders.upfront', 'orders.payment_method', 'orders.created_at', 'users.name', 'users.phone', 'users.city', 'users.email', 'users.address', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')->where([['orders.id', '=', $id]])->first();
         //print_r($order_details->toArray());die;
 
         $order_products = OrderProducts::select('order_products.id', 'order_products.no_of_installments', 'order_products.shipping', 'order_products.product_upfront', 'order_products.product_then_price', 'order_products.status', 'products.product_id', 'products.name', 'order_products_status.name AS order_products_status_name')->leftJoin('products', 'products.product_id', '=', 'order_products.product_id')->leftJoin('order_products_status', 'order_products_status.id', '=', 'order_products.status')->where([['order_products.order_id', '=', $id]])->get();
@@ -527,10 +566,17 @@ class OrderController extends Controller
                 if(trim($request->order_status) != '' && $request->order_status > 0) {
                     $orderStatus = $request->order_status;
 
+                    $update = array('status' => $orderStatus);
+
                     if($orderStatus == 6 || $orderStatus == 5) {
                         $order_details->restock();
                     }
-                    Orders::where([['id', '=', $id]])->update(['status' => $orderStatus]);
+                    else if ($orderStatus == 2 ){
+                        $invoice = INVOICER::generate("ORDER", $order_details, "2");
+                        $update['invoice'] = $invoice['path'];
+                    }
+                    
+                    Orders::where([['id', '=', $id]])->update($update);
 
                     $response = array(
                         "code" => 200,
@@ -593,7 +639,13 @@ class OrderController extends Controller
                     }
                 }
 
-                Orders::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
+                $update = array('status' => $state, 'receipt_verify_note' => $orderNote);
+                if ($state == 2 ){
+                    $invoice = INVOICER::generate("ORDER", $order_details, "2");
+                    $update['invoice'] = $invoice['path'];
+                }
+                
+                Orders::where([['id', '=', $id]])->update($update);
 
                 $response = array(
                     "code" => 200,
@@ -670,7 +722,14 @@ class OrderController extends Controller
             } elseif($status == 'approve') {
                 $state = 2;
 
-                OrderInstallments::where([['id', '=', $id]])->update(['status' => $state, 'receipt_verify_note' => $orderNote]);
+                $orderisntallment = OrderInstallments::where([['id', '=', $id]]);
+                $record = $orderisntallment->first();
+                if($orderisntallment->update(['status' => $state, 'receipt_verify_note' => $orderNote])){
+                    $invoice = INVOICER::generate("INSTALLMENT", $record, $state);
+                    $orderisntallment->update(['invoice' => $invoice]);
+                }
+
+                
 
                 $response = array(
                     "code" => 200,
@@ -688,6 +747,7 @@ class OrderController extends Controller
                 "message" => ""
             );
         }
+        
 
         return Response::json($response);
     }

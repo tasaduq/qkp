@@ -754,3 +754,177 @@ ALTER TABLE `order_installments` ADD `after_tax_amount` TEXT NOT NULL AFTER `amo
 -- to fix after_tax_amount in mid way
 -- UPDATE `order_installments` SET `after_tax_amount`= `amount`+(`amount` * 0.13)
 ALTER TABLE `products` ADD `current_weight` INT NULL AFTER `category`;
+
+
+INSERT INTO `emails` (`id`, `code`, `email`, `flags`) VALUES (NULL, 'INSTALLMENT_CASH_PAYMENT', 'Dear Customer,\r\n\r\nOne of our agents will get in touch with you in the next 24 hours for collecting the cash payment of {{amount}}\r\n\r\n\r\n{{amount}}\r\n{{tax}}\r\n{{after_tax_amount}}\r\n{{due_date}}\r\n\r\n\r\nFor further help, or queries feel free to call XXX-XXX-XXX\r\n\r\nRegards\r\n\r\nQKP', 'amount,tax,after_tax_amount,due_date\r\n');
+INSERT INTO `emails` (`id`, `code`, `email`, `flags`, `admin`) VALUES (NULL, 'INSTALLMENT_CASH_PAYMENT', 'Dear Admin,\r\n\r\nA Customer has requested for collection of cash payment for their installment of amount {{after_tax_amount}}\r\n\r\n\r\n{{amount}}\r\n{{tax}}\r\n{{after_tax_amount}}\r\n{{due_date}}\r\n\r\n<a hred=\"{{link}}\">Click here to view details</a>\r\n\r\n', 'amount,tax,after_tax_amount,due_date,link', '1');
+
+
+ALTER TABLE `emails` ADD `admin` BOOLEAN NOT NULL COMMENT '0 = user, 1 = admin' AFTER `flags`;
+
+
+-- phpMyAdmin SQL Dump
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 29, 2020 at 05:21 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `laravel`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice_templates`
+--
+
+CREATE TABLE `invoice_templates` (
+  `id` int(11) NOT NULL,
+  `type` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL COMMENT 'status of installment or order',
+  `template` longtext NOT NULL,
+  `flags` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoice_templates`
+--
+
+INSERT INTO `invoice_templates` (`id`, `type`, `status`, `template`, `flags`) VALUES
+(1, 'INSTALLMENT', 8, 'Invoice details\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<style type=\"text/css\">\r\n.tg  {border-collapse:collapse;border-spacing:0;}\r\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg .tg-0lax{text-align:left;vertical-align:top}\r\n</style>\r\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 492px\">\r\n<colgroup>\r\n<col style=\"width: 184px\">\r\n<col style=\"width: 92px\">\r\n<col style=\"width: 106px\">\r\n<col style=\"width: 110px\">\r\n</colgroup>\r\n<thead>\r\n  <tr>\r\n    <th class=\"tg-0lax\">Animal</th>\r\n    <th class=\"tg-0lax\">Amount</th>\r\n    <th class=\"tg-0lax\">Tax</th>\r\n    <th class=\"tg-0lax\">Total</th>\r\n    <th class=\"tg-0lax\">Due Date</th>\r\n  </tr>\r\n</thead>\r\n<tbody>\r\n  <tr>\r\n    <td class=\"tg-0lax\"></td>\r\n    <td class=\"tg-0lax\">{{amount}}</td>\r\n    <td class=\"tg-0lax\">{{tax}}</td>\r\n    <td class=\"tg-0lax\">{{after_tax_amount}}</td>\r\n    <td class=\"tg-0lax\">{{due_date}}</td>\r\n  </tr>\r\n</tbody>\r\n</table>', 'amount,tax,after_tax_amount,due_date'),
+(2, 'ORDER', 1, 'Invoice details\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<style type=\"text/css\">\r\n.tg  {border-collapse:collapse;border-spacing:0;}\r\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg .tg-0lax{text-align:left;vertical-align:top}\r\n</style>\r\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 492px\">\r\n<colgroup>\r\n<col style=\"width: 184px\">\r\n<col style=\"width: 92px\">\r\n<col style=\"width: 106px\">\r\n<col style=\"width: 110px\">\r\n</colgroup>\r\n<thead>\r\n  <tr>\r\n    <th class=\"tg-0lax\">Animal</th>\r\n    <th class=\"tg-0lax\">Amount</th>\r\n    <th class=\"tg-0lax\">Tax</th>\r\n    <th class=\"tg-0lax\">Total</th>\r\n    <th class=\"tg-0lax\">Due Date</th>\r\n  </tr>\r\n</thead>\r\n<tbody>\r\n  <tr>\r\n    <td class=\"tg-0lax\"></td>\r\n    <td class=\"tg-0lax\">{{amount}}</td>\r\n    <td class=\"tg-0lax\">{{tax}}</td>\r\n    <td class=\"tg-0lax\">{{after_tax_amount}}</td>\r\n    <td class=\"tg-0lax\">{{due_date}}</td>\r\n  </tr>\r\n</tbody>\r\n</table>', 'amount,tax,after_tax_amount,due_date'),
+(3, 'ORDER', 2, 'Invoice details\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<style type=\"text/css\">\r\n.tg  {border-collapse:collapse;border-spacing:0;}\r\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg .tg-0lax{text-align:left;vertical-align:top}\r\n</style>\r\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 492px\">\r\n<colgroup>\r\n<col style=\"width: 184px\">\r\n<col style=\"width: 92px\">\r\n<col style=\"width: 106px\">\r\n<col style=\"width: 110px\">\r\n</colgroup>\r\n<thead>\r\n  <tr>\r\n    <th class=\"tg-0lax\">Animal</th>\r\n    <th class=\"tg-0lax\">Amount</th>\r\n    <th class=\"tg-0lax\">Tax</th>\r\n    <th class=\"tg-0lax\">Total</th>\r\n    <th class=\"tg-0lax\">Due Date</th>\r\n  </tr>\r\n</thead>\r\n<tbody>\r\n  <tr>\r\n    <td class=\"tg-0lax\"></td>\r\n    <td class=\"tg-0lax\">{{amount}}</td>\r\n    <td class=\"tg-0lax\">{{tax}}</td>\r\n    <td class=\"tg-0lax\">{{after_tax_amount}}</td>\r\n    <td class=\"tg-0lax\">{{due_date}}</td>\r\n  </tr>\r\n</tbody>\r\n</table>', 'amount,tax,after_tax_amount,due_date'),
+(4, 'INSTALLMENT', 2, 'Invoice details\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<style type=\"text/css\">\r\n.tg  {border-collapse:collapse;border-spacing:0;}\r\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg .tg-0lax{text-align:left;vertical-align:top}\r\n</style>\r\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 492px\">\r\n<colgroup>\r\n<col style=\"width: 184px\">\r\n<col style=\"width: 92px\">\r\n<col style=\"width: 106px\">\r\n<col style=\"width: 110px\">\r\n</colgroup>\r\n<thead>\r\n  <tr>\r\n    <th class=\"tg-0lax\">Animal</th>\r\n    <th class=\"tg-0lax\">Amount</th>\r\n    <th class=\"tg-0lax\">Tax</th>\r\n    <th class=\"tg-0lax\">Total</th>\r\n    <th class=\"tg-0lax\">Due Date</th>\r\n  </tr>\r\n</thead>\r\n<tbody>\r\n  <tr>\r\n    <td class=\"tg-0lax\"></td>\r\n    <td class=\"tg-0lax\">{{amount}}</td>\r\n    <td class=\"tg-0lax\">{{tax}}</td>\r\n    <td class=\"tg-0lax\">{{after_tax_amount}}</td>\r\n    <td class=\"tg-0lax\">{{due_date}}</td>\r\n  </tr>\r\n</tbody>\r\n</table>', 'amount,tax,after_tax_amount,due_date'),
+(5, 'INSTALLMENT', 7, 'Invoice details\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<style type=\"text/css\">\r\n.tg  {border-collapse:collapse;border-spacing:0;}\r\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\r\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\r\n.tg .tg-0lax{text-align:left;vertical-align:top}\r\n</style>\r\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 492px\">\r\n<colgroup>\r\n<col style=\"width: 184px\">\r\n<col style=\"width: 92px\">\r\n<col style=\"width: 106px\">\r\n<col style=\"width: 110px\">\r\n</colgroup>\r\n<thead>\r\n  <tr>\r\n    <th class=\"tg-0lax\">Animal</th>\r\n    <th class=\"tg-0lax\">Amount</th>\r\n    <th class=\"tg-0lax\">Tax</th>\r\n    <th class=\"tg-0lax\">Total</th>\r\n    <th class=\"tg-0lax\">Due Date</th>\r\n  </tr>\r\n</thead>\r\n<tbody>\r\n  <tr>\r\n    <td class=\"tg-0lax\"></td>\r\n    <td class=\"tg-0lax\">{{amount}}</td>\r\n    <td class=\"tg-0lax\">{{tax}}</td>\r\n    <td class=\"tg-0lax\">{{after_tax_amount}}</td>\r\n    <td class=\"tg-0lax\">{{due_date}}</td>\r\n  </tr>\r\n</tbody>\r\n</table>', 'amount,tax,after_tax_amount,due_date');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `invoice_templates`
+--
+ALTER TABLE `invoice_templates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `invoice_templates`
+--
+ALTER TABLE `invoice_templates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
+
+
+-- phpMyAdmin SQL Dump
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 29, 2020 at 05:22 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `laravel`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_templates`
+--
+
+CREATE TABLE `email_templates` (
+  `id` int(11) NOT NULL,
+  `type` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL,
+  `subject` text NOT NULL,
+  `email` longtext NOT NULL,
+  `flags` text NOT NULL,
+  `admin` tinyint(1) NOT NULL COMMENT '0 = user, 1 = admin'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `email_templates`
+--
+
+INSERT INTO `email_templates` (`id`, `type`, `status`, `subject`, `email`, `flags`, `admin`) VALUES
+(1, 'INSTALLMENT', 9, 'Request for Cash Collection', 'Dear Customer,\r\n\r\nOne of our agents will get in touch with you in the next 24 hours for collecting the cash payment of {{amount}}\r\n\r\n\r\n{{amount}}\r\n{{tax}}\r\n{{after_tax_amount}}\r\n{{due_date}}\r\n\r\n\r\nFor further help, or queries feel free to call XXX-XXX-XXX\r\n\r\nRegards\r\n\r\nQKP', 'amount,tax,after_tax_amount,due_date', 0),
+(2, 'INSTALLMENT', 9, 'Request for Cash Collection', 'Dear Admin,\r\n\r\nA Customer has requested for collection of cash payment for their installment of amount {{after_tax_amount}}\r\n\r\n\r\n{{amount}}\r\n{{tax}}\r\n{{after_tax_amount}}\r\n{{due_date}}\r\n\r\n<a hred=\"{{link}}\">Click here to view details</a>\r\n\r\n', 'amount,tax,after_tax_amount,due_date,link', 1),
+(3, 'INSTALLMENT', 3, 'Bank Transfer Installment Submitted', 'Dear Customer,\r\n\r\nOne of our agents will get in touch with you in the next 24 hours for collecting the cash payment of {{amount}}\r\n\r\n\r\n{{amount}}\r\n{{tax}}\r\n{{after_tax_amount}}\r\n{{due_date}}\r\n\r\n\r\nFor further help, or queries feel free to call XXX-XXX-XXX\r\n\r\nRegards\r\n\r\nQKP', 'amount,tax,after_tax_amount,due_date', 0),
+(4, 'INSTALLMENT', 3, 'Bank Transfer Installment Submitted', 'Dear Admin,\r\n\r\nA Customer has uploaded receipt of their bank transfer payment for their installment of amount {{after_tax_amount}}\r\n\r\n\r\n{{amount}}\r\n{{tax}}\r\n{{after_tax_amount}}\r\n{{due_date}}\r\n\r\n<a hred=\"{{link}}\">Click here to view details</a>\r\n\r\n', 'amount,tax,after_tax_amount,due_date,link', 1),
+(5, 'INSTALLMENT', 2, 'Paid', '', '', 0),
+(6, 'INSTALLMENT', 2, 'Paid', '', '', 1),
+(7, 'INSTALLMENT', 4, 'Payment Failed', '', '', 0),
+(8, 'INSTALLMENT', 4, 'Payment Failed', '', '', 1),
+(9, 'INSTALLMENT', 7, 'Overdue', '', '', 0),
+(10, 'INSTALLMENT', 7, 'Overdue', '', '', 1),
+(11, 'INSTALLMENT', 8, 'Installment due', '', '', 0),
+(12, 'INSTALLMENT', 8, 'Installment due', '', '', 1),
+(13, 'ORDER', 1, 'Pending Confirmation', 'Pending Confirmation', '', 0),
+(14, 'ORDER', 1, 'Pending Confirmation', 'Pending Confirmation', '', 1),
+(15, 'ORDER', 2, 'Confirmed', 'Confirmed', '', 0),
+(16, 'ORDER', 2, 'Confirmed', 'Confirmed', '', 1),
+(17, 'ORDER', 3, 'Due Shipment', 'Due Shipment', '', 0),
+(18, 'ORDER', 3, 'Due Shipment', 'Due Shipment', '', 1),
+(19, 'ORDER', 4, 'Shipped/Completed', 'Shipped/Completed', '', 0),
+(20, 'ORDER', 4, 'Shipped/Completed', 'Shipped/Completed', '', 1),
+(21, 'ORDER', 5, 'Cancelled', 'Cancelled ', '', 0),
+(22, 'ORDER', 5, 'Cancelled', 'Cancelled ', '', 1),
+(23, 'ORDER', 6, 'Rejected', 'Rejected', '', 0),
+(24, 'ORDER', 6, 'Rejected', 'Rejected', '', 1),
+(27, 'ORDER', 8, 'Pending Cancellation', 'Pending Cancellation', '', 0),
+(28, 'ORDER', 8, 'Pending Cancellation', 'Pending Cancellation', '', 1),
+(29, 'ORDER', 9, 'Pending Cash Payment', 'Pending Cash Payment', '', 0),
+(30, 'ORDER', 9, 'Pending Cash Payment', 'Pending Cash Payment', '', 1),
+(31, 'ORDER', 10, 'Pending Bank Transfer', 'Pending Bank Transfer', '', 0),
+(32, 'ORDER', 10, 'Pending Bank Transfer', 'Pending Bank Transfer', '', 1),
+(33, 'ORDER', 11, 'Pending Online Payment', 'Pending Online Payment', '', 0),
+(34, 'ORDER', 11, 'Pending Online Payment', 'Pending Online Payment', '', 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `email_templates`
+--
+ALTER TABLE `email_templates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `email_templates`
+--
+ALTER TABLE `email_templates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+COMMIT;
+
+
+ALTER TABLE `orders` ADD `invoice` VARCHAR(200) NOT NULL AFTER `upfront`;
+ALTER TABLE `orders` CHANGE `invoice` `invoice` VARCHAR(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `order_installments` ADD `invoice` VARCHAR(200) NOT NULL AFTER `after_tax_amount`;
+ALTER TABLE `order_installments` CHANGE `invoice` `invoice` VARCHAR(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+

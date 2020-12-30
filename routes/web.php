@@ -36,7 +36,7 @@ Route::middleware("calculations")->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/profile', "UserController@profile");
         Route::get("/process_checkout", "CartController@process_checkout");
-        
+        Route::get("/view/invoice/{invoice}", "HomeController@view_invoice");
         
 
         Route::post("/process-cart", "CartController@process_checkout");

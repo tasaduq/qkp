@@ -28,6 +28,15 @@
                     @if($order_details->payment_method == 1 && $order_details->receipt != null)
                     <a class="btn btn-success btn-sm order-payment-receipt" href="#">View Receipt</a>
                     @endif
+
+                    
+                    @if($order_details->invoice != "")
+                    
+                      <a href="/view/invoice/{{$order_details->invoice}}" target="_blank">View invoice</a>
+                    @endif
+
+
+
                 </div>
               </div>
             </div>
@@ -78,6 +87,7 @@
                         <input disabled id="input-address" class="form-control" value="{{ $order_details->address }}" type="text">
                       </div>
                     </div>
+                    
                     @if($order_details->status == 1)
                     <div class="col-md-12">
                       <div class="form-group">
@@ -121,7 +131,7 @@
                                     <option {{ $order_details->status == $os->id ? 'selected="selected"' : '' }} value="{{ $os->id }}">{{ $os->name }}</option>
                                 @endforeach
                               </select>
-                          </form>
+                          </form>                          
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -165,6 +175,7 @@
                                 <th scope="col">Due Date</th>
                                 <th scope="col">Installment</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Invoice</th>
                                 <th class="text-right" scope="col">Actions</th>
                               </tr>
                             </thead>
@@ -176,6 +187,13 @@
                                     <td>
                                         <span class="status {{ strtolower(str_replace(' ', '-', $installments->name)) }}">{{ $installments->name }}</span>
                                     </td>
+                                    <td>
+                                      @if($installments->invoice != "")
+                                        <a href="/view/invoice/{{$installments->invoice}}" target="_blank">View Invoice</a>
+                                      @else 
+                                        N/A
+                                      @endif
+                                  </td>
                                     <td align="right">
                                         @if($installments->status == 3)
                                             <a href="#" class="btn btn-success btn-sm verify-installment-payment" data-instid="{{ $installments->id }}" data-instnum="{{ $installments->instalment_number }}" data-ordernum="{{ $order_details->order_number }}">Verify</a>

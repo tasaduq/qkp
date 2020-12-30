@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
 use Response;
+use App\Http\Controllers\EMAILER;
+use App\Http\Controllers\INVOICER;
+use Auth;
 
 class HomeController extends Controller
 {
     public function index(Request $request){
+
 
         $featured_products = Products::where([
             "featured" => 1,
@@ -115,5 +119,11 @@ class HomeController extends Controller
         ])->get();
         return view('mandi')->with('categories', $categories);
     }
-    
+    public function view_invoice($invoice, Request $request){
+        return response()->file(
+            storage_path('app\invoices\\'.$invoice)
+        );
+        // return PDF::loadHTML('<h1>Test</h1>')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+    }
+        
 }

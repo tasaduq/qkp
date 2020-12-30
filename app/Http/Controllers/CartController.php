@@ -288,6 +288,16 @@ class CartController extends Controller
         // session::flash("order_first_payment",$total_upfront_payment);
         // dd(session::all());
         DB::commit();
+
+        $data = array(
+            "amount" => $total_upfront_payment,
+            // "tax" => $installment->after_tax_amount - $installment->amount,
+            // "after_tax_amount" => $installment->after_tax_amount,
+            // "due_date" => $installment->due_date
+        );
+            
+        EMAILER::send("ORDER", 1, $data, $user, true);
+
         
         $result = array(
             "code"=> 200, 
