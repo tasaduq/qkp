@@ -59,7 +59,8 @@ class EMAILER
         
 
         if($admin == true){
-            $emailTemplate = DB::table($table)->where($table.'.'.$statusid,$status)->where('admin','1')->leftJoin('emails', 'emails.code', '=', $table.'.email_code')->first();
+            // $emailTemplate = DB::table($table)->where($table.'.'.$statusid,$status)->where('admin','1')->leftJoin('emails', 'emails.code', '=', $table.'.email_code')->first();
+            $emailTemplate = DB::table($table)->where('status',$status)->where('admin','1')->first();
             
             $parsedEmail = SELF::parse($emailTemplate, $data);
             $sender['toEmail'] = env('ADMIN_EMAIL');
