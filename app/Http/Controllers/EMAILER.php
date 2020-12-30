@@ -66,7 +66,7 @@ class EMAILER
             $sender['toEmail'] = env('ADMIN_EMAIL');
             $sender['toSubject'] = $emailTemplate->subject;
 
-            Mail::send([], [], function ($message) use ($sender, $data) {
+            Mail::send([], [], function ($message) use ($sender, $parsedEmail) {
                 $message->to($sender['toEmail']);
                 $message->subject($sender['toSubject']);
                 $message->setBody($parsedEmail, 'text/html');;
