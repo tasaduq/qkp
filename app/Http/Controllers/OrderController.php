@@ -366,7 +366,7 @@ class OrderController extends Controller
             if($order->save()){
 
                 $data = array(
-                    "amount" => $installment->upfront,
+                    "amount" => $order->upfront,
                     // "tax" => $installment->after_tax_amount - $installment->amount,
                     // "after_tax_amount" => $installment->after_tax_amount,
                     // "due_date" => $installment->due_date
