@@ -726,7 +726,7 @@ class OrderController extends Controller
                 $record = $orderisntallment->first();
                 if($orderisntallment->update(['status' => $state, 'receipt_verify_note' => $orderNote])){
                     $invoice = INVOICER::generate("INSTALLMENT", $record, $state);
-                    $orderisntallment->update(['invoice' => $invoice]);
+                    $orderisntallment->update( ['invoice' => $invoice['path'] ]);
                 }
 
                 
