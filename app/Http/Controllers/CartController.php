@@ -296,7 +296,7 @@ class CartController extends Controller
             // "due_date" => $installment->due_date
         );
             
-        EMAILER::send("ORDER", 1, $data, $user, true);
+        EMAILER::send("ORDER", $order_status, $data, $user, true);
 
         
         $result = array(
