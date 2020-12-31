@@ -31,9 +31,15 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => env('391268055427184'),
-        'client_secret' => env('e5daa0b81766d345528a2a520c7434b0'),
-        'redirect' => 'http://qkp.local/login/facebook/callback',
+        'client_id' => '763477780922965',
+        'client_secret' => 'e5976e1f739de5d75f44f5db8a22e876',
+        'redirect' => 'http://localhost/qkp/public/login/facebook/callback',
+    ],
+
+    'google' => [
+        'client_id' => '438283219792-rdnkdhbs3e9f729tlsuom5tvem9q3ujh.apps.googleusercontent.com',
+        'client_secret' => 'e2APL3R0XWgY09egNOV4L_uj',
+        'redirect' => 'http://localhost/qkp/public/login/google/callback',
     ],
 
 ];
