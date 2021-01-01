@@ -12,6 +12,7 @@ use App\Models\Orders;
 use App\Models\OrderProducts;
 use App\Models\OrderInstallments;
 // use App\Models\Categories;
+use App\Http\Controllers\EMAILER;
 use DB;
 
 class CartController extends Controller

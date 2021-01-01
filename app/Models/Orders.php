@@ -12,6 +12,10 @@ class Orders extends Model
     protected $fillable = ['upfront'];
     
 
+    public function user()
+    {
+        return $this->belongsTo("App\Models\User", "user_id", "id" );
+    }
     public function products()
     {
         return $this->hasMany('App\Models\OrderProducts', 'order_id');

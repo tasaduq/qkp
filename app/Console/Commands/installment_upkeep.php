@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\OrderInstallments;
+use App\Http\Controllers\EMAILER;
 use App\Http\Controllers\INVOICER;
 use DB;
 
@@ -41,7 +42,9 @@ class installment_upkeep extends Command
     public function handle()
     {
 
-        $installmentsDue = OrderInstallments::where("due_date", "like", date("Y-m-d")."%")->get();
+        
+
+        $installmentsDue = OrderInstallments::where("due_date", "like", date("Y-m-d")."%")->where('status', "1")->get();
        
         DB::beginTransaction();
         try {
@@ -54,6 +57,9 @@ class installment_upkeep extends Command
                     "status" => "8",
                     "invoice" => $invoice['path'],
                 ]);
+                    
+                $user = $record->order_product->order->user;
+                EMAILER::send("INSTALLMENT", "8", $record, $user, true);
             }
             DB::commit();
         } catch(\Exception $e) {
@@ -86,10 +92,9 @@ class installment_upkeep extends Command
         }
         */
 
-        $sevenDueDays = date("Y-m-d", strtotime( "+7 days", strtotime( date("Y-m-d") ) ) );
+        $sevenDueDays = date("Y-m-d", strtotime( "-7 days", strtotime( date("Y-m-d") ) ) );
 
-
-        $installmentsOverdue = OrderInstallments::where("due_date", "like", $sevenDueDays."%")->get();
+        $installmentsOverdue = OrderInstallments::where("due_date", "like", $sevenDueDays."%")->where('status', "8")->get();
         // ->update([
         //    "status" => "7"
         // ]);
@@ -106,6 +111,9 @@ class installment_upkeep extends Command
                     "status" => "7",
                     "invoice" => $invoice['path'],
                 ]);
+
+                $user = $record->order_product->order->user;
+                EMAILER::send("INSTALLMENT", "7", $record, $user, true);
             }
             DB::commit();
         } catch(\Exception $e) {    

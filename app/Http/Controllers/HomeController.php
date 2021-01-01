@@ -70,8 +70,9 @@ class HomeController extends Controller
             $products = $products->whereBetween('price', $weights);
 
         }
-        $stock = $products->count();
-        $products = $products->get();
+        
+        $products = $products->orderBy('sold_out')->orderBy('created_at')->get();
+        $stock = $products->where('sold_out',0)->count();
         // dd($products);
 
         $categories = Categories::where([

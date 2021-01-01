@@ -16,6 +16,7 @@ use App\Models\OrderInstallments;
 use App\Models\OrderInstallmentsStatus;
 // use App\Models\Categories;
 use App\Http\Controllers\INVOICER;
+use App\Http\Controllers\EMAILER;
 use DB;
 
 
@@ -570,8 +571,16 @@ class OrderController extends Controller
 
                     if($orderStatus == 6 || $orderStatus == 5) {
                         $order_details->restock();
+
+                        $user = $order_details->user;
+                        EMAILER::send("ORDER", $orderStatus, $order_details, $user, true);
+
                     }
                     else if ($orderStatus == 2 ){
+    
+                        $user = $order_details->user;
+                        EMAILER::send("ORDER", $orderStatus, $order_details, $user, true);
+
                         $invoice = INVOICER::generate("ORDER", $order_details, "2");
                         $update['invoice'] = $invoice['path'];
                     }
@@ -641,6 +650,10 @@ class OrderController extends Controller
 
                 $update = array('status' => $state, 'receipt_verify_note' => $orderNote);
                 if ($state == 2 ){
+                    
+                    $user = $order_details->user;
+                    EMAILER::send("ORDER", $state, $order_details, $user, true);
+
                     $invoice = INVOICER::generate("ORDER", $order_details, "2");
                     $update['invoice'] = $invoice['path'];
                 }
