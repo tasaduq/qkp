@@ -99,19 +99,27 @@ class installment_upkeep extends Command
         //    "status" => "7"
         // ]);
         
-
+        
         DB::beginTransaction();
         try {
-            $installmentsOverdue = OrderInstallments::take(2)->get();
+            // $installmentsOverdue = OrderInstallments::take(2)->get();
             // $records = $installmentsDue->get();
             foreach($installmentsOverdue as $key => $record) {
-                $invoice = INVOICER::generate("INSTALLMENT", $record, "7");
-                // dd("a");
+                
+                // $invoice = INVOICER::generate("INSTALLMENT", $record, "7");
+              
                 $record->update([
                     "status" => "7",
-                    "invoice" => $invoice['path'],
+                    // "invoice" => $invoice['path'],
                 ]);
 
+                $penalty = 0.25;
+                $penaltyAmount = $record->amount * $penalty;
+                
+                $amountWithPenalty = $record->amount + $penaltyAmount;
+                
+                $record->mergeNextInstallmentAmount($amountWithPenalty);
+                
                 $user = $record->order_product->order->user;
                 EMAILER::send("INSTALLMENT", "7", $record, $user, true);
             }
