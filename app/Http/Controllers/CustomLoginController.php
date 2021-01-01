@@ -137,9 +137,9 @@ class CustomLoginController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -147,10 +147,41 @@ class CustomLoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-        $user = Socialite::driver('facebook')->user();
+        $userSocial = Socialite::driver($provider)->user();
 
-         $user->name;
+        $user  =   User::where(['email' => $userSocial->getEmail()])->first();
+        //print_r($users->id);die;
+        if($user) {
+            Auth::loginUsingId($user->id);
+            if (Auth::check()) {
+                return redirect()->route('profile');
+            }
+            return redirect('/');
+        } else {
+            $verification_hash = Hash::make($userSocial->getName()."+".$userSocial->getEmail());
+
+            User::create([
+                'name'          => $userSocial->getName(),
+                'email'         => $userSocial->getEmail(),
+                'verified' => 1,
+                'email_verified_at' => date('Y-m-d H:i:s'),
+                'password' => $verification_hash,
+                'verification_hash' => $verification_hash,
+                'profile_photo_path'         => $userSocial->getAvatar(),
+                'provider_id'   => $userSocial->getId(),
+                'provider'      => $provider,
+            ]);
+
+            $newUser  =   User::where(['email' => $userSocial->getEmail()])->first();
+            //print_r($users);die;
+
+            Auth::loginUsingId($newUser->id);
+            if (Auth::check()) {
+                return redirect()->route('profile');
+            }
+            return redirect('/');
+        }
     }
 }

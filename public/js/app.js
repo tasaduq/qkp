@@ -201,7 +201,7 @@ $(document).ready(function(){
 
     function submitRequest(payload){
         $.ajax({
-            url:"/ajax-login",
+            url:APP_URL+"/ajax-login",
             data: payload,
             type: "POST",
             success: function(result){

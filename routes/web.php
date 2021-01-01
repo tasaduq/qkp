@@ -13,9 +13,6 @@ use App\Http\Controllers\CustomLoginController;
 |
 */
 
-
-
-
 Route::middleware("calculations")->group(function () {
 
     Route::get('/', "HomeController@index")->name('home');
@@ -34,7 +31,7 @@ Route::middleware("calculations")->group(function () {
     });
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/profile', "UserController@profile");
+        Route::get('/profile', "UserController@profile")->name('profile');
         Route::get("/process_checkout", "CartController@process_checkout");
         Route::get("/view/invoice/{invoice}", "HomeController@view_invoice");
         
@@ -202,8 +199,8 @@ Route::get("/dumpdata", "DebugController@dumpdata");
 Route::post("add-contact", "ContactusController@add_contact");
 
 /* Facebook Routes  */
-Route::get('login/facebook', [CustomLoginController::class, 'redirectToProvider']);
-Route::get('login/facebook/callback', [CustomLoginController::class, 'handleProviderCallback']);
+Route::get('login/{provider}', [CustomLoginController::class, 'redirectToProvider']);
+Route::get('login/{provider}/callback', [CustomLoginController::class, 'handleProviderCallback']);
 
 // Route::get("/productssearch", "ProductsController@productssearch");
 // Route::get('search', ['as' => 'search', 'uses' => 'ProductsController@productssearch']);

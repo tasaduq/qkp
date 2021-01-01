@@ -31,9 +31,15 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => env('391268055427184'),
-        'client_secret' => env('e5daa0b81766d345528a2a520c7434b0'),
-        'redirect' => 'http://qkp.local/login/facebook/callback',
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_URL'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_URL'),
     ],
 
 ];

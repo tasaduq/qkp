@@ -109,10 +109,11 @@
                     <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                     <div class="row social">
                         <div class="col-sm-6 px-1">
-                        {{-- <a id="fb-login-btn" href="{{url('/login/facebook')}}" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i></a> --}}
-                             <button id="fb-login-btn" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i>Facebook</button>
+                            <a id="fb-login-btn" href="{{url('/login/facebook')}}" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i> Facebook</a>
                         </div>
-                        <div class="col-sm-6 px-1"><button class="btn google" type="button"><i class="fab fa-google"></i>Google</button></div>
+                        <div class="col-sm-6 px-1">
+                            <a id="fb-login-btn" href="{{url('/login/google')}}" class="btn google" type="button"><i class="fab fa-google"></i> Google</a>
+                        </div>
                     </div>
                
             </div>

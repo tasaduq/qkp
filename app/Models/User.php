@@ -27,6 +27,11 @@ class User extends Authenticatable
         'email',
         'password',
         'verification_hash',
+        'provider',
+        'provider_id',
+        'verified',
+        'email_verified_at',
+        'profile_photo_path',
     ];
 
     /**
