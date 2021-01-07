@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/thetechbond/public_html/qkp_laravel/
+    - /bin/cp -R . $DEPLOYPATH
