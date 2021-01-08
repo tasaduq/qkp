@@ -25,8 +25,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-qkp-insta:before {
-  content: "\e907";
+.icon-qkp-goat:before {
+  content: "\e908";
 }
 .icon-qkp-sheep:before {
   content: "\e900";
@@ -40,7 +40,7 @@
 .icon-qkp-message-c:before {
   content: "\e903";
 }
-.icon-qkp-goat:before {
+.icon-qkp-goat2:before {
   content: "\e904";
 }
 .icon-qkp-search-c:before {
@@ -48,6 +48,12 @@
 }
 .icon-qkp-phone-c:before {
   content: "\e906";
+}
+.icon-qkp-insta:before {
+  content: "\e907";
+}
+.icon-check-square:before {
+  content: "\e909";
 }
 .icon-qkp-asterisk:before {
   content: "\f069";
