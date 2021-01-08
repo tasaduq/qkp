@@ -25,7 +25,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-qkp-goat2:before {
+.icon-qkp-goat:before {
   content: "\e908";
 }
 .icon-qkp-sheep:before {
@@ -39,9 +39,6 @@
 }
 .icon-qkp-message-c:before {
   content: "\e903";
-}
-.icon-qkp-goat:before {
-  content: "\e904";
 }
 .icon-qkp-search-c:before {
   content: "\e905";
