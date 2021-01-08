@@ -242,6 +242,75 @@ $(document).ready(function(){
         
     })
 
+    
+    var update_settings_form = $("#update-settings-form").validate({
+        rules: {
+            eid_date :  {
+                required: true,
+            },
+            enable_tax :  {
+                required: true,
+            },
+            overdue_penalty:  {
+                required: true,
+                number: true
+            },
+            tax_value :  {
+                required: true,
+                number: true
+            },
+            bank_name :  {
+                required: true,
+            },
+            account_title :  {
+                required: true,
+            },
+            account_number :  {
+                required: true,
+            },
+            regular_advance :  {
+                required: true,
+                number: true
+            },
+            final_advance :  {
+                required: true,
+                number: true
+            },
+
+        }
+    });
+    
+    $("#update-settings-btn").on("click",function(){
+        if(!update_settings_form.form()){
+            return false;
+        }
+        
+        var payload = $("#update-settings-form").serialize()
+        console.log(payload);
+        $.ajax({
+            url:"/update-settings",
+            data: payload,
+            type: "POST",
+            success: function(result){
+                login.loader.show();
+                if(result.result == "true"){
+                    $("#settings-error").hide();
+                    window.location = "/admin/settings";
+                }
+                else {
+                    login.loader.hide();
+                    $("#settings-error").show();
+                    $("#settings-error").html(result.error);
+                }
+                
+            }
+        })
+        
+    })
+
+
+    
+    
 
     var add_category_form = $("#add-category-form").validate({
         rules: {

@@ -141,9 +141,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin/add_category', function () {
         return view('admin.add_category');
     });
-    Route::get('/admin/settings', function () {
-        return view('admin.settings');
-    });
+
+    Route::get('/admin/settings', 'SettingsController@view')->name('settings');
+    Route::post('/update-settings', 'SettingsController@update');
 
     Route::get('/admin/orders', "OrderController@get_orders")->name('orders');
 

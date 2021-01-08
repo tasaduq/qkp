@@ -1,0 +1,24 @@
+!src/
+!src/**
+!public_html/
+!public_html/**
+
+/node_modules
+/src/public/product
+/src/public/hot
+/src/public/storage
+/src/public/category
+/src/storage/*.key
+# /vendor
+src/.env
+/src/.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+error_log
+index.html
+
+.idea

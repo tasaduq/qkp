@@ -113,7 +113,7 @@ class installment_upkeep extends Command
                     // "invoice" => $invoice['path'],
                 ]);
 
-                $penalty = 0.25;
+                $penalty = SETTINGS::calculate('overdue_penalty');
                 $penaltyAmount = $record->amount * $penalty;
                 
                 $amountWithPenalty = $record->amount + $penaltyAmount;

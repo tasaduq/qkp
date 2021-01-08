@@ -24,8 +24,12 @@ class CalculationController extends Controller
         Session::put("months_before_eid", $this->months_before_eid() );
         Session::put("isOperational", $this->isOperational() );
         Session::put("eid_date", $this->eid_date() );
+        Session::put("settings", $this->settings() );
         Session::put("days_before_eid", $this->days_before_eid() );
 
+    }
+    private function settings(){
+        return DB::table("preferences")->first();
     }
     private function eid_date(){
         return DB::table("preferences")->first()->eid_date;

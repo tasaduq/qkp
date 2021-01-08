@@ -101,7 +101,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                                  <div class="form-group">
                                     <select class="form-control" id="product-emi-price-dropdown">
                                        @for ($i = Session::get("get_feasible_installments"); $i > 0; $i--)
-                                    <option value="{{$i}}" price="{{$product->installment_formatted($i)}}" installment="{{$i == 1 ? 0.5 : 0.3}}" >{{ $i<10?"0".$i:$i}} {{ $i==1?"Month":"Months"}}</option>    
+                                    <option value="{{$i}}" price="{{$product->installment_formatted($i)}}" installment="{{$i == 1 ? $product->final_advance() : $product->regular_advance()}}" >{{ $i<10?"0".$i:$i}} {{ $i==1?"Month":"Months"}}</option>    
                                        @endfor
                                        
                                        

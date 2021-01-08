@@ -23,9 +23,9 @@
 
                      <div class="alert alert-secondary d-inline-block" role="alert">
                         <h3>Bank Details</h3>
-                        <p class="mt-4"><label><strong>Bank :</strong></label> BANK NAME</p>
-                        <p><label><strong>Account Title :</strong></label> QKP PVT LMT</p>
-                        <p class="mb-0"><label><strong>Account Number :</strong></label> 1254 0081 01318501 5</p>
+                        <p class="mt-4"><label><strong>Bank :</strong></label> {{\Session::get('settings')->bank_name}} </p>
+                        <p><label><strong>Account Title :</strong></label> {{\Session::get('settings')->account_title}} </p>
+                        <p class="mb-0"><label><strong>Account Number :</strong></label> {{\Session::get('settings')->account_number}} </p>
                      </div>
                      
                      <p> Once you have made the deposit/transfer you are to submit a picture/screenshot as proof of the payment.</p>
@@ -99,9 +99,9 @@
                 <h6>{{$product->name}}</h6>
                 <?php
 
-                  $total += ceil($product->price*0.3);
+                  $total += ceil($product->price*SETTINGS::calculate('regular_advance'));
                   $total += $shipping_fee;
-                  $product_advance = ceil($product->price*0.3)
+                  $product_advance = ceil($product->price*SETTINGS::calculate('regular_advance'))
                 ?>
                    <div class="pb-2 text-left">Advance(30%) :<strong class="float-right">{{number_format($product_advance)}}/-</strong></div>
                    <div class="pb-2 text-left">Shipping :<strong class="float-right">{{number_format($shipping_fee)}}/-</strong></div>
@@ -112,7 +112,7 @@
                 <hr>
                 <?php 
                 
-                $total_tax = ceil($total*0.13);
+                $total_tax = ceil($total*SETTINGS::calculate('tax_value'));
                 $total_after_tax = $total + $total_tax;
                 ?>
                 <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">{{number_format($total_tax)}}/-</strong></div>

@@ -232,7 +232,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        
+        'SETTINGS' => App\Http\Controllers\SETTINGS::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],

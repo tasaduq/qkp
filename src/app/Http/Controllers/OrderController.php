@@ -144,6 +144,7 @@ class OrderController extends Controller
     public function installment_payment($installment_id = null, Request $request){
         // session::put("order_id", 81 );
 
+        
         $user = Auth::user();
         $user_id = $user->id;
         
@@ -168,6 +169,7 @@ class OrderController extends Controller
         else {
             abort(404);           
         }   
+        abort(404);
         
     }
 

@@ -90,9 +90,9 @@
 
                   <div class="alert alert-secondary d-inline-block" role="alert">
                      <h3>Bank Details</h3>
-                     <p class="mt-4"><label><strong>Bank :</strong></label> BANK NAME</p>
-                     <p><label><strong>Account Title :</strong></label> QKP PVT LMT</p>
-                     <p class="mb-0"><label><strong>Account Number :</strong></label> 1254 0081 01318501 5</p>
+                     <p class="mt-4"><label><strong>Bank :</strong></label> {{\Session::get('settings')->bank_name}} </p>
+                        <p><label><strong>Account Title :</strong></label> {{\Session::get('settings')->account_title}} </p>
+                        <p class="mb-0"><label><strong>Account Number :</strong></label> {{\Session::get('settings')->account_number}} </p>
                   </div>
                   
                   <p> Once you have made the deposit/transfer you are to submit a picture/screenshot as proof of the payment.</p>
@@ -147,9 +147,9 @@
                      <hr>
                            <div class="text-left">Sub Total :<strong class="float-right">{{number_format($installment->amount)}}/-</strong></div>
                      <hr>
-                              <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">{{number_format($installment->amount*0.13)}}/-</strong></div>
+                              <div class="text-left pt-2 pb-3">Sales Tax ({{\SETTINGS::get("tax_value")}}%) :<strong class="float-right">{{number_format($installment->amount*SETTINGS::calculate('tax_value'))}}/-</strong></div>
                      <div class="grand-total text-center">
-                        <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
+                        <p class="mb-0 pb-1">Total Upfront Payment After {{\SETTINGS::get("tax_value")}}% Sales Tax</p>
                         <strong>{{number_format($installment->after_tax_amount)}}/-</strong>
                      </div>
                   </div>

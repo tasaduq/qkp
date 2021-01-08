@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\CartController;
+use SETTINGS;
 use Session;
 
 class Products extends Model
@@ -18,11 +19,19 @@ class Products extends Model
     
     public function installment($installment)
     {
-        $advance = 0.3;
+        $advance = $this->regular_advance();
         if( $installment == "1" ){
-            $advance = 0.5;
+            $advance = $this->final_advance();
         }
         return ($this->price - ceil( $this->price * $advance ) ) / $installment;
+    }
+    public function regular_advance()
+    {
+        return SETTINGS::calculate('regular_advance');
+    }
+    public function final_advance()
+    {
+        return SETTINGS::calculate('final_advance');
     }
     public function installment_formatted($i)
     {
@@ -31,7 +40,7 @@ class Products extends Model
     
     public function lowest_installment()
     {
-        return number_format( ( $this->price - ceil($this->price*0.3) )/Session::get("get_feasible_installments"));
+        return number_format( ( $this->price - ceil($this->price*$this->regular_advance()) )/Session::get("get_feasible_installments"));
     }
     public function price_formatted()
     {
@@ -39,9 +48,9 @@ class Products extends Model
     }
     public function advance(int $installment = 2)
     {
-        $advance = 0.3;
+        $advance = $this->regular_advance();
         if( $installment == 1 ){
-            $advance = 0.5;
+            $advance = $this->final_advance();
         }
         return ceil( $this->price * $advance );
     }

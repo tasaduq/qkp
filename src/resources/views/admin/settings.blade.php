@@ -19,44 +19,76 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Update Sttings</h3>
+              {{-- <h3 class="mb-0">Update Sttings</h3> --}}
             </div>
             <!-- Product Form -->
-            <form action="" id="add-product-form">
+            <form action="" id="update-settings-form">
               @csrf
+
             <div class="card-body border-0">
               <div class="row">
                 <div class="col-lg-7">
                   <div class="form-group row">
-                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Product Name</label>
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Eid Date</label>
                     <div class="col-md-9">
-                      <input class="form-control" type="text" placeholder="Enter Product Name" name="name">
+                      <input class="form-control" type="date" name="eid_date" value="{{$settings->eid_date}}">
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Current Weight</label>
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Enable Tax</label>
                     <div class="col-md-9">
-                      <input class="form-control" type="text" placeholder="Enter Current Weight" name="current_weight">
+                      <input class="form-control" type="checkbox"  name="enable_tax" {{$settings->enable_tax ? "checked=checked" : ""}}>
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Estimated Weight</label>
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Tax value (%)</label>
                     <div class="col-md-9">
-                      <input class="form-control" type="text" placeholder="Enter Estimated Weight" name="weight">
+                      <input class="form-control" type="text" name="tax_value" value="{{$settings->tax_value}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Overdue Penalty (%)</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" name="overdue_penalty" value="{{$settings->overdue_penalty}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Bank Name</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" name="bank_name" value="{{$settings->bank_name}}">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Color</label>
+                      <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Account Title </label>
                     <div class="col-md-9">
-                      <input class="form-control" type="text" placeholder="Enter Color" name="color">
+                      <input class="form-control" type="text" name="account_title" value="{{$settings->account_title}}">
                     </div>
                   </div>
                   <div class="form-group row">
-                      <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Price</label>
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Account Number </label>
                     <div class="col-md-9">
-                      <input class="form-control" type="number" placeholder="Enter Price" name="price">
+                      <input class="form-control" type="text" name="account_number" value="{{$settings->account_number}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Regular Advance (%) </label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" name="regular_advance" value="{{$settings->regular_advance}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Final Advance (%)</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" name="final_advance" value="{{$settings->final_advance}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-9">
+                      <span id="settings-error"></span>
                     </div>
                   </div>
                   {{-- <div class="form-group row">
@@ -84,7 +116,7 @@
             <!-- Card footer -->
             <div class="card-footer py-4">
               <div id="buttons-colors-component" class="text-right" role="tabpanel" aria-labelledby="buttons-colors-component-tab">
-                <button type="button" class="btn btn-success" id="add-product-btn">Save Settings</button>
+                <button type="button" class="btn btn-success" id="update-settings-btn">Save Settings</button>
               </div>
             </form>
             </div>

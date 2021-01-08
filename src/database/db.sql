@@ -928,3 +928,7 @@ ALTER TABLE `orders` CHANGE `invoice` `invoice` VARCHAR(200) CHARACTER SET utf8m
 ALTER TABLE `order_installments` ADD `invoice` VARCHAR(200) NOT NULL AFTER `after_tax_amount`;
 ALTER TABLE `order_installments` CHANGE `invoice` `invoice` VARCHAR(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
 
+ALTER TABLE `preferences` ADD `enable_tax` BOOLEAN NOT NULL AFTER `eid_date`, ADD `tax_value` TEXT NOT NULL AFTER `enable_tax`, ADD `bank_name` TEXT NOT NULL AFTER `tax_value`, ADD `account_title` TEXT NOT NULL AFTER `bank_name`, ADD `account_number` TEXT NOT NULL AFTER `account_title`;
+ALTER TABLE `preferences` ADD `overdue_penalty` INT NOT NULL AFTER `enable_tax`;
+ALTER TABLE `preferences` ADD `regular_advance` TEXT NOT NULL AFTER `account_number`;
+ALTER TABLE `preferences` ADD `final_advance` TEXT NOT NULL AFTER `regular_advance`;

@@ -27,7 +27,7 @@ $cartpage =  \Request::is("cart") ? true : false;
           $product_advance = $product->advance_formatted($installment);
           
         ?>
-           <div class="pb-2 text-left">Advance({{ $installment == 1 ? "50%" : "30%" }}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
+           <div class="pb-2 text-left">Advance({{ $installment == 1 ? \SETTINGS::get("regular_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
 
             @if($cartpage)
             <div class="pb-0 text-left">Delivery Fee to be calculated on checkout</div>
@@ -41,12 +41,12 @@ $cartpage =  \Request::is("cart") ? true : false;
         <hr>
         <?php 
         
-        $total_tax = ceil($total*0.13);
+        $total_tax = ceil($total*SETTINGS::calculate('tax_value'));
         $total_after_tax = $total + $total_tax;
         ?>
-        <div class="text-left pt-2 pb-3">Sales Tax (13%) :<strong class="float-right">{{number_format($total_tax)}}/-</strong></div>
+        <div class="text-left pt-2 pb-3">Sales Tax ({{\SETTINGS::get("tax_value")}}%) :<strong class="float-right">{{number_format($total_tax)}}/-</strong></div>
         <div class="grand-total text-center">
-           <p class="mb-0 pb-1">Total Upfront Payment After 13% Sales Tax</p>
+           <p class="mb-0 pb-1">Total Upfront Payment After {{\SETTINGS::get("tax_value")}}% Sales Tax</p>
            <strong>{{number_format($total_after_tax)}}/-</strong>
         </div>
 
