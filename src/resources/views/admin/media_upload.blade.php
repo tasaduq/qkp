@@ -454,8 +454,6 @@
                 <div class="box__error">Error! <span></span>. <a href="/admin/upload" class="box__restart" role="button">Try again!</a></div>
                 <input type="hidden" name="ajax" value="1"><input type="hidden" name="ajax" value="1"></form>
                 <footer>
-                <p><strong>Be sure to try the demo on a browser (e.g. IE 9 and below) that does not support drag&amp;drop file upload. You can also try with a JavaScript support disabled.</strong></p>
-                <p>The icon was borrowed from <a href="http://www.flaticon.com/free-icon/outbox_3686" target="_blank">FlatIcon</a>.</p>
                 </footer>
                 </div>
                 <script>

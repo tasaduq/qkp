@@ -118,7 +118,7 @@ Route::post("ajax-register", "CustomLoginController@register");
 Route::get("verifyuser", "CustomLoginController@verifyuser");
 
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['admin'])->group(function(){
 
 
     Route::get('/admin/register', function () {

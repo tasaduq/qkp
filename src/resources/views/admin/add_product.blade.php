@@ -151,7 +151,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-      <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+      
       <div class="row mt-5 justify-content-left images-container">
 
         

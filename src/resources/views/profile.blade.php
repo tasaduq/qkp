@@ -68,7 +68,7 @@
                                             <button class="btn btn-warning mb-1 cancel-order-animal" orderanimalid="{{$orderedProduct->id}}">Cancel Animal</button>
                                           @endif
                                           @if( $orderedProduct->payable() )
-                                            <button class="btn btn-success mb-1 lumsum-order-animal" orderanimalid="{{$orderedProduct->id}}">Make Lump Sum Payment</button>
+                                            {{-- <button class="btn btn-success mb-1 lumsum-order-animal" orderanimalid="{{$orderedProduct->id}}">Make Lump Sum Payment</button> --}}
                                           @endif
                                         </div>
                                     </div>
