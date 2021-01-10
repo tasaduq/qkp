@@ -361,6 +361,17 @@ $(document).ready(function(){
         
     })
 
+    var login = {
+        loader:{
+            show:function(){
+
+            },
+            hide:function(){
+
+            }
+        }
+    }
+ 
     
     var customer_login_form = $("#login-form").validate({
         rules: {
@@ -419,17 +430,7 @@ $(document).ready(function(){
        closeButton.addEventListener("click", toggleModal);
        window.addEventListener("click", windowOnClick);
 
-    var login = {
-        loader:{
-            show:function(){
-
-            },
-            hide:function(){
-
-            }
-        }
-    }
-
+ 
                        function showPreloader(jBlock) {
 
                        var preloader = jQuery('<div class="preloader"></div>');
