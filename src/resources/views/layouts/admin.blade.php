@@ -9,14 +9,14 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>QKP CMS</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('admin/img/brand/favicon.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('admn/img/brand/favicon.png') }}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
-  <link rel="stylesheet" href="{{ asset('admin/vendor/nucleo/css/nucleo.css') }}" type="text/css">
-  <link rel="stylesheet" href="{{ asset('admin/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admn/vendor/nucleo/css/nucleo.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admn/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="{{ asset('admin/css/argon.css?v=1.2.0') }}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admn/css/argon.css?v=1.2.0') }}" type="text/css">
 
     <script type="text/javascript">
         var APP_URL = {!! json_encode(url('/')) !!}
@@ -35,7 +35,7 @@ $user = Auth::user();
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand py-3" href="javascript:void(0)">
           <!-- <img src="/admin/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
-          <img class="img-fluid" src="{{ asset('admin/img/brand/footerlogo.png') }}">
+          <img class="img-fluid" src="{{ asset('admn/img/brand/footerlogo.png') }}">
         </a>
       </div>
       <div class="navbar-inner">
@@ -401,15 +401,15 @@ $user = Auth::user();
 </div>
 <!-- Argon Scripts -->
 <!-- Core -->
-<script src="{{ asset('admin/vendor/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('admn/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('js/jquery-validator.js') }}"></script>
-<script src="{{ asset('admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('admin/vendor/js-cookie/js.cookie.js') }}"></script>
-<script src="{{ asset('admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
-<script src="{{ asset('admin/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
+<script src="{{ asset('admn/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('admn/vendor/js-cookie/js.cookie.js') }}"></script>
+<script src="{{ asset('admn/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
+<script src="{{ asset('admn/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
 <!-- Argon JS -->
-<script src="{{ asset('admin/js/argon.js?v=1.2.0') }}"></script>
-<script src="{{ asset('admin/js/app.js') }}"></script>
+<script src="{{ asset('admn/js/argon.js?v=1.2.0') }}"></script>
+<script src="{{ asset('admn/js/app.js') }}"></script>
 </body>
 
 </html>

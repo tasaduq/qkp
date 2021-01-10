@@ -157,7 +157,7 @@
         
          {{-- <div class="col-sm-2 my-3">
             <div class="animal-image">
-               <img class="img-fluid" src="/admin/img/brand/farm1.png">
+               <img class="img-fluid" src="/admn/img/brand/farm1.png">
                <input class="custom-checkbox" type="checkbox">
             </div>
          </div>

@@ -392,6 +392,6 @@
         </div>
       </div>
 
-      <script src="/admin/vendor/chart.js/dist/Chart.min.js"></script>
-      <script src="/admin/vendor/chart.js/dist/Chart.extension.js"></script>
+      <script src="/admn/vendor/chart.js/dist/Chart.min.js"></script>
+      <script src="/admn/vendor/chart.js/dist/Chart.extension.js"></script>
      @endsection

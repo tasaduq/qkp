@@ -108,9 +108,11 @@ Route::get('/logout', function () {
 
 
 // Admin
-Route::get('/admin_login', function () {
+Route::get('/admin', function () {
     if(!Auth::check()){
         return redirect('/admin/login');
+    } else {
+        return redirect('/admin/dashboard');
     }
 });
 Route::get('/admin/login', function () {
