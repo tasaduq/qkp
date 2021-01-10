@@ -16,7 +16,7 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role == "admin" ){
+        if(auth()->user()->role == "admin" || auth()->user()->role == "super_admin"){
             return $next($request);
         }
         return redirect('/')->with('error','Looks like, you got lost');

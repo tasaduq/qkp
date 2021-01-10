@@ -118,11 +118,19 @@ $user = Auth::user();
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="/admin/settings" target="_blank">
+              <a class="nav-link" href="/admin/settings">
                 <i class="ni ni-settings-gear-65"></i>
                 <span class="nav-link-text">Settings</span>
               </a>
             </li>
+            
+            {{-- <li class="nav-item">
+              <a class="nav-link" href="/admin/users">
+                <i class="ni ni-settings-gear-65"></i>
+                <span class="nav-link-text">Users</span>
+              </a>
+            </li>
+             --}}
           </ul>
         </div>
       </div>

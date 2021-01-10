@@ -100,7 +100,8 @@ class ProductsController extends Controller
 
 
     public function get_products(Request $request){
-        $products = Products::all();
+        $paginate = config("site.pagination");
+        $products = Products::latest()->paginate($paginate);
         return view('admin.products')->with('products',$products);
         
     }

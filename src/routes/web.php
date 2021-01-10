@@ -190,6 +190,8 @@ Route::middleware(['admin'])->group(function(){
     Route::get("/admin/media", "MediaController@index");
     Route::post("/admin/fetch-images", "MediaController@fetch_images");
 
+    Route::get('/admin/users', "UsersController@get_users")->name('users');
+
 });
 Route::get("/dumpdata", "DebugController@dumpdata");
 
