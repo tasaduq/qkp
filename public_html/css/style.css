@@ -1706,6 +1706,9 @@ input[type="file"] {
 
 @media only screen and (max-width: 430px) {
 
+	.animal-product .item{text-align:center;}
+	.animal-product .title{text-align:center;}
+
 	.payment-method-section .payment-method{
 		text-align:center!important;
 	}
@@ -2124,7 +2127,7 @@ tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 5
 
   /* LOADERRRRRRR */
   .loader{position: fixed; width: 100%;height:100%; background-color: rgba(255, 255, 255, .8);z-index: 99999;}
-  .loader img{position: absolute; top: 0;right:0; bottom:0; left:0; margin:auto;z-index: ;}
+  .loader img{position: absolute; top: 0;right:0; bottom:0; left:0; margin:auto;}
 
 
   /* ------------ */
