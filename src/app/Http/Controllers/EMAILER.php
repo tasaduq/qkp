@@ -49,7 +49,7 @@ class EMAILER
         $sender['toSubject'] = $emailTemplate->subject;
         // return $parsed;
 
-        
+        //return true;
 
         Mail::send([], [], function ($message) use ($sender, $parsedEmail) {
             $message->to($sender['toEmail']);
@@ -63,7 +63,7 @@ class EMAILER
             $emailTemplate = DB::table($table)->where('type',$type)->where('status',$status)->where('admin','1')->first();
             
             $parsedEmail = SELF::parse($emailTemplate, $data);
-            $sender['toEmail'] = env('ADMIN_EMAIL');
+            $sender['toEmail'] = "support@qurbanikistonpay.com";//env('ADMIN_EMAIL');
             $sender['toSubject'] = $emailTemplate->subject;
 
             Mail::send([], [], function ($message) use ($sender, $parsedEmail) {
