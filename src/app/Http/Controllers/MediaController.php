@@ -19,7 +19,8 @@ class MediaController extends Controller
         
     } 
     public function fetch_images(Request $request){
-        $images = Media::take(20)->get();
+        // $images = Media::take(20)->get();
+        $images = Media::all();
         echo json_encode([ 'result'=> "true", 'data'=> $images]);
 
     }
@@ -35,9 +36,9 @@ class MediaController extends Controller
                 foreach ($request->file("files") as $key => $file) {
                     $filename = strtolower(time()."_".$file->getClientOriginalName());
                     // $path = ;
-                    $file->move(public_path('/product/images'), $filename);
+                    $file->move(public_path('/../../public_html/product/images'), $filename);
 
-                    $this->resize_crop_image(300, 220, public_path('/product/images')."/".$filename,  public_path('/product/images/')."thumb_".$filename);
+                    $this->resize_crop_image(300, 220, public_path('/../../public_html/product/images')."/".$filename,  public_path('/../../public_html/product/images/')."thumb_".$filename);
 
                     $filedata = array(
                         "name" => $file->getClientOriginalName(),
