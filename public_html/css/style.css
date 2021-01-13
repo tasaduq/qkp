@@ -119,12 +119,12 @@ a:hover {
 /* Modal */
 
 .modal.show .modal-dialog {
-	width: 100%!important
+	/* width: 100%!important */
 }
 
 .modal-login {
 	color: #636363;
-	width: 350px;
+	/* width: 350px; */
 }
 
 .modal-login .modal-content {
