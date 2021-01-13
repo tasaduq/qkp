@@ -35,6 +35,7 @@ authorities. Click on the link below if you wish to read the fatwa.</p>
                     does not go against any Shariah principle.</p>
                       <p>Our payment plans are in light of Shariah principles and have been authenticated by relevant religious
                 authorities. Click on the link below if you wish to read the fatwa.</p>
+                <p><strong><a href="/documents/fatwa.pdf" target="_blank">Click here to view Fatwa</a></strong></p>
           </div>
           <div class="col-sm-4 order-1 order-sm-6 order-1">
               <div class="image mb-4"> 

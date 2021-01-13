@@ -20,19 +20,11 @@
 
         <title>Qurbani</title>
 
-         <script type="text/javascript">
-            var APP_URL = {!! json_encode(url('/')) !!}
-         </script>
+    <script type="text/javascript">
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
 
-         <!-- Global site tag (gtag.js) - Google Analytics -->
-         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WC3DDLCSV1"></script>
-         <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-
-         gtag('config', 'G-WC3DDLCSV1');
-         </script>
+      
     </head>
     
    <body>
@@ -198,12 +190,10 @@
       <div class="container">
          <div class="row">
             <div class="col-sm-12 text-right">
-               <?php
-                     $cartC = new \App\Http\Controllers\CartController;
-                     $CartCount = $cartC->get_cart_count();
-                  ?>
+               
                   
                   @if(Auth::user())
+                  
                      <ul class="navbar-nav mx-auto hide-on-desktop">
                         
                         <li class="nav-item">
@@ -380,9 +370,7 @@
          
          }) */
 
-         
       </script>
-
    <!-- This site is converting visitors into subscribers and customers with https://respond.io --><script id="respondio__widget" src="https://cdn.respond.io/webchat/widget/widget.js?cId=679390333993714e5954c4cc80b9a52dd7f31f1dd5b2b9d3cda912bc0f5b26eb"></script><!-- https://respond.io -->
     </body>
 </html>
