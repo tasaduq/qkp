@@ -203,14 +203,14 @@
                      $CartCount = $cartC->get_cart_count();
                   ?>
                   
-                  @if(Auth::user())
+                  {{-- @if(Auth::user()) --}}
                      <ul class="navbar-nav mx-auto hide-on-desktop">
                         
                         <li class="nav-item">
                            <a style="display:inline-block; vertical-align:middle;" class="cart-icon-wrap mr-4 hide-on-desktop" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a> <a class="nav-link reg-user-name" href="/profile">{{Auth::user()->name}}</a>
                         </li>
                      </ul>
-                  @else 
+                  {{-- @else  --}}
                      <form class="form-inline my-2 my-lg-0 hide-on-desktop">
                         <a href="#" data-toggle="modal" data-target="#login-modal" id="login-btn" style="font-size:18px;"><i class="icon-qkp-user" style="vertical-align:middle; margin-right:10px;"></i> Login</a>
                         {{-- <button class="btn btn-outline-success my-2 px-4 my-sm-0 login" type="button"
@@ -218,7 +218,7 @@
                         {{-- <button class="btn btn-outline-success my-2 px-3 my-sm-0 register" type="button" 
                            data-toggle="modal" data-target="#register-modal" id="register-btn">Register</button> --}}
                      </form>
-                  @endif
+                  {{-- @endif --}}
             </div>
          </div>
       </div>
