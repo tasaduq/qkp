@@ -145,13 +145,23 @@
                            {{-- <div class="pb-0 text-left">Delivery Fee to be calculated on checkout</div> --}}
                         </div>
                      <hr>
-                           <div class="text-left">Sub Total :<strong class="float-right">{{number_format($installment->amount)}}/-</strong></div>
+                     <div class="text-left">Sub Total :<strong class="float-right">{{number_format($installment->amount)}}/-</strong></div>
                      <hr>
-                              <div class="text-left pt-2 pb-3">Sales Tax ({{\SETTINGS::get("tax_value")}}%) :<strong class="float-right">{{number_format($installment->amount*SETTINGS::calculate('tax_value'))}}/-</strong></div>
+                     @if(\SETTINGS::get("enable_tax"))
+                     <div class="text-left pt-2 pb-3">Sales Tax ({{\SETTINGS::get("tax_value")}}%) :<strong class="float-right">{{number_format($installment->amount*SETTINGS::calculate('tax_value'))}}/-</strong></div>
                      <div class="grand-total text-center">
-                        <p class="mb-0 pb-1">Total Upfront Payment After {{\SETTINGS::get("tax_value")}}% Sales Tax</p>
+                        <p class="mb-0 pb-1">Total Payment After {{\SETTINGS::get("tax_value")}}% Sales Tax</p>
                         <strong>{{number_format($installment->after_tax_amount)}}/-</strong>
                      </div>
+                     @else
+                     
+                     <div class="grand-total text-center">
+                        <p class="mb-0 pb-1">Total Payment</p>
+                        <strong>{{number_format($installment->amount)}}/-</strong>
+                     </div>
+                     @endif
+
+
                   </div>
 
             </div>

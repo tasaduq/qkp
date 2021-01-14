@@ -35,12 +35,12 @@
                     </div>
                   </div>
 
-                  {{-- <div class="form-group row">
+                  <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Enable Tax</label>
                     <div class="col-md-9">
                       <input class="form-control" type="checkbox"  name="enable_tax" {{$settings->enable_tax ? "checked=checked" : ""}}>
                     </div>
-                  </div> --}}
+                  </div>
 
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Tax value (%)</label>

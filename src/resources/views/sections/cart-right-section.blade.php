@@ -44,11 +44,19 @@ $cartpage =  \Request::is("cart") ? true : false;
         $total_tax = ceil($total*SETTINGS::calculate('tax_value'));
         $total_after_tax = $total + $total_tax;
         ?>
+        @if(\SETTINGS::get("enable_tax"))
         <div class="text-left pt-2 pb-3">Sales Tax ({{\SETTINGS::get("tax_value")}}%) :<strong class="float-right">{{number_format($total_tax)}}/-</strong></div>
         <div class="grand-total text-center">
            <p class="mb-0 pb-1">Total Upfront Payment After {{\SETTINGS::get("tax_value")}}% Sales Tax</p>
            <strong>{{number_format($total_after_tax)}}/-</strong>
         </div>
+        @else
+        
+        <div class="grand-total text-center">
+           <p class="mb-0 pb-1">Total Upfront Payment </p>
+           <strong>{{number_format($total)}}/-</strong>
+        </div>
+        @endif
 
         @if($cartpage)
         <div class="check-user-login">
