@@ -8,7 +8,7 @@
  <section class="contact-us-section">
     <div class="container">
        <div class="row">
-          <div class="col-sm-6 order-sm-6 order-2">
+          <div class="col-md-5 order-md-5 order-2">
              <div class="map">
                 <iframe
                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.055398809335!2d67.08915712849011!3d24.930182609072844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f4eb7183b97%3A0x35709df45c0003aa!2sLuckyOne%20Mall!5e0!3m2!1sen!2s!4v1602927965218!5m2!1sen!2s"
@@ -16,7 +16,7 @@
                    tabindex="0"></iframe>
              </div>
           </div>
-          <div class="col-sm-6 order-1 order-sm-6 order-1">
+          <div class="col-md-7 order-1 order-md-7 order-1">
              <div class="contact-us-form">
                 <h2>Get in Touch</h2>
                
