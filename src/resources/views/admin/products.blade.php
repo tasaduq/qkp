@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-6 col-5 text-right">
               <a href="/admin/add_product" class="btn btn-sm btn-neutral">Add New Product</a>
-              {{-- <a href="#" class="btn btn-sm btn-neutral">Filters</a> --}}
+              <a href="#" class="btn btn-sm btn-neutral product-filters-btn">Filters</a>
             </div>
           </div>
         </div>
@@ -148,4 +148,72 @@
       </div>
       
     
+<!-- Modal -->
+<div class="modal fade" id="productFiltersModal" tabindex="-1" role="dialog" aria-labelledby="productFiltersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productFiltersModalLabel">Filters</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body pt-0">
+          <form method="get">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label class="form-control-label">Product Name</label>
+                      </div>
+                      <div class="col-md-10">
+                          <input type="text" class="form-control" name="name" placeholder="Customer Name" value="{{ trim($productName) != '' ? $productName : '' }}" />
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label class="form-control-label">Date From</label>
+                      </div>
+                      <div class="col-md-10">
+                          <input type="date" class="form-control" name="date_from" value="{{ trim($dateFrom) != '' ? $dateFrom : '' }}" />
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label class="form-control-label">Date To</label>
+                      </div>
+                      <div class="col-md-10">
+                          <input type="date" class="form-control" name="date_to" value="{{ trim($dateTo) != '' ? $dateTo : '' }}" />
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label class="form-control-label">Status</label>
+                      </div>
+                      <div class="col-md-10">
+                        <select class="form-control" name="status">
+                          {{-- <option value="">Select Status</option> --}}
+                          <option value="1">Enable</option>
+                          <option value="0">Disabled</option>
+                        </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
   @endsection

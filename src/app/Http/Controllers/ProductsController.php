@@ -102,7 +102,50 @@ class ProductsController extends Controller
     public function get_products(Request $request){
         $paginate = config("site.pagination");
         $products = Products::latest()->paginate($paginate);
-        return view('admin.products')->with('products',$products);
+        
+        $productName = '';
+        if(trim($request->input('name')) != '') {
+            $customerName = $request->input('name');
+        }
+
+        $dateFrom = '';
+        if(trim($request->input('date_from')) != '') {
+            $dateFrom = $request->input('date_from');
+        }
+
+        $dateTo = '';
+        if(trim($request->input('date_to')) != '') {
+            $dateTo = $request->input('date_to');
+        }
+        
+        $selectedStatus = '';
+        if($selectedStatus = $request->has('status')) {
+            $selectedStatus = $request->input('status');
+        }
+
+        $products = Products::where(function ($query) use ($productName, $dateFrom, $dateTo, $selectedStatus) {
+            
+            if(trim($productName) != '')
+            {
+                $query->where('name', 'LIKE', "%{$productName}%");
+            }
+            if(trim($dateFrom) != '')
+            {
+                $query->whereDate('created_at', '>=', date('Y-m-d', strtotime($dateFrom)));
+            }
+            if(trim($dateTo) != '')
+            {
+                $query->whereDate('created_at', '<=', date('Y-m-d', strtotime($dateTo)));
+            }
+            if(is_numeric($selectedStatus))
+            {
+                $query->where('active', $selectedStatus);
+            }
+        })
+        ->latest()->paginate($paginate);
+
+
+        return view('admin.products', compact('productName', 'dateFrom', 'dateTo'))->with('products',$products)->with('');
         
     }
     public function add_product_view(Request $request){

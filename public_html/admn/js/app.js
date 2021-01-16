@@ -735,11 +735,18 @@ $(document).ready(function(){
                        }
                        });
 
+                       $(".product-filters-btn").on("click", function(e){
+                        e.preventDefault();
+ 
+                         $("#productFiltersModal").modal('show');
+                        });
+
                        $(".order-filters-btn").on("click", function(e){
                        e.preventDefault();
 
                         $("#orderFiltersModal").modal('show');
                        });
+                       
 
                        $(".order-payment-receipt").on("click", function(e){
                        e.preventDefault();
