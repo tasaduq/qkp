@@ -1703,6 +1703,11 @@ input[type="file"] {
 	}
 	.cart{text-align:center;}
 	.cart h2{margin-top:10px;}
+	.footerlogo {
+		text-align: center!important
+	}
+	.social-icon .text-right{text-align: center!important}
+	.copyright{margin:15px 0;}
 }
 
 @media only screen and (max-width: 430px) {

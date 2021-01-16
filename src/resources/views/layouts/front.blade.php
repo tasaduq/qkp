@@ -211,13 +211,9 @@
                         </li>
                      </ul>
                   @else 
-                  <ul class="navbar-nav mx-auto hide-on-desktop">
-                        
-                     <li class="nav-item">
                         <a style="display:inline-block; vertical-align:middle;" class="cart-icon-wrap mr-4 hide-on-desktop" href="/cart"><i class="icon-qkp-shopping-cart"></i><span class="count">{{$CartCount}}</span></a>
-                     </li>
-                  </ul>
-                     <form class="form-inline my-2 my-lg-0 hide-on-desktop">
+                     
+                     <form class="form-inline my-2 my-lg-0 hide-on-desktop" style="display:inline-block !important;">
                         <a href="#" data-toggle="modal" data-target="#login-modal" id="login-btn" style="font-size:18px;"><i class="icon-qkp-user" style="vertical-align:middle; margin-right:10px;"></i> Login</a>
                         {{-- <button class="btn btn-outline-success my-2 px-4 my-sm-0 login" type="button"
                            data-toggle="modal" data-target="#login-modal" id="login-btn">Login</button> --}}
