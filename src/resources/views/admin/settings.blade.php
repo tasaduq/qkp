@@ -38,7 +38,15 @@
                   <div class="form-group row">
                     <label for="example-text-input" class="col-md-3 col-form-label form-control-label">Enable Tax</label>
                     <div class="col-md-9">
-                      <input class="form-control" type="checkbox"  name="enable_tax" {{$settings->enable_tax ? "checked=checked" : ""}}>
+                      {{-- <input class="form-control" type="checkbox"  name="enable_tax" {{$settings->enable_tax ? "checked=checked" : ""}}> --}}
+
+                      <div id="toggles-component" class="tab-pane tab-example-result" role="tabpanel" aria-labelledby="toggles-component-tab">
+                        <label class="custom-toggle">
+                          <input type="checkbox" name="enable_tax" {{$settings->enable_tax ? "checked=checked" : ""}}>
+                          <span class="custom-toggle-slider rounded-circle"></span>
+                        </label>
+                      </div>
+                      
                     </div>
                   </div>
 

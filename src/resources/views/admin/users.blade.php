@@ -10,7 +10,7 @@
               <h5 class="h2 text-white d-inline-block mb-0">Users</h5>
             </div>
             <div class="col-lg-5 text-right">
-              <a href="#" class="btn btn-neutral btn-sm order-filters-btn">Filters</a>
+              <a href="#" class="btn btn-neutral btn-sm user-filters-btn">Filters</a>
             </div>
           </div>
         </div>
@@ -76,9 +76,9 @@
                                 <td>{{ $row->role }}</td>
                                 <td> 
                                     @if($row->role == "")
-                                    <a href="#" class="btn btn-info btn-sm" >Make Admin</a>
+                                    <a href="#" class="btn btn-info btn-sm make-admin" id="{{$row->id}}">Make Admin</a>
                                     @else 
-                                    <a href="#" class="btn btn-danger btn-sm" >Revoke Admin</a>
+                                    <a href="#" class="btn btn-danger btn-sm remove-admin"  id="{{$row->id}}">Revoke Admin</a>
                                     @endif
 
                                  </td>
@@ -161,16 +161,48 @@
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="orderFiltersModal" tabindex="-1" role="dialog" aria-labelledby="orderFiltersModalLabel" aria-hidden="true">
+      <div class="modal fade" id="userFiltersModal" tabindex="-1" role="dialog" aria-labelledby="userFiltersModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="orderFiltersModalLabel">Filters</h5>
+              <h5 class="modal-title" id="userFiltersModalLabel">Filters</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body pt-0">
+                <form method="get">
+                  <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-control-label">User Name</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="name" placeholder="Customer Name" value="{{ trim($userName) != '' ? $userName : '' }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-control-label">Role</label>
+                            </div>
+                            <div class="col-md-10">
+                              <select class="form-control" name="role">
+                                <option value="">Select Role</option>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                                {{-- <option value="super_admin">Super Admin</option> --}}
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                  </div>
+                </form>
             </div>
           </div>
         </div>

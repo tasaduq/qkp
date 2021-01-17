@@ -116,22 +116,31 @@ $user = Auth::user();
             <span class="docs-mini">D</span>
           </h6> --}}
           <!-- Navigation -->
-          <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/settings">
-                <i class="ni ni-settings-gear-65"></i>
-                <span class="nav-link-text">Settings</span>
-              </a>
-            </li>
-            
-            {{-- <li class="nav-item">
-              <a class="nav-link" href="/admin/users">
-                <i class="ni ni-settings-gear-65"></i>
-                <span class="nav-link-text">Users</span>
-              </a>
-            </li>
-             --}}
-          </ul>
+
+          @if($user->role == "super_admin")
+            <ul class="navbar-nav mb-md-3">
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/settings">
+                  <i class="ni ni-settings-gear-65"></i>
+                  <span class="nav-link-text">Settings</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/shipping">
+                  <i class="ni ni-settings-gear-65"></i>
+                  <span class="nav-link-text">Shipping</span>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/users">
+                  <i class="ni ni-settings-gear-65"></i>
+                  <span class="nav-link-text">Users</span>
+                </a>
+              </li>
+              
+            </ul>
+            @endif
         </div>
       </div>
     </div>

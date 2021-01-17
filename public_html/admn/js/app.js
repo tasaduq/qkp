@@ -735,6 +735,14 @@ $(document).ready(function(){
                        }
                        });
 
+                       
+                       $(".user-filters-btn").on("click", function(e){
+                        e.preventDefault();
+ 
+                         $("#userFiltersModal").modal('show');
+                        });
+
+
                        $(".product-filters-btn").on("click", function(e){
                         e.preventDefault();
  
@@ -753,4 +761,46 @@ $(document).ready(function(){
 
                        $("#paymentReceiptModal").modal('show');
                        });
+
+
+    $(".make-admin").on('click',function(e){
+        e.preventDefault()
+        var payload = {
+            _token:$("meta[name='csrf-token']").attr("content"),
+            userid:$(this).attr("id"),
+            role:"admin",
+        }
+        admin.role.update(payload)
+    })
+    $(".remove-admin").on('click',function(e){
+        e.preventDefault()
+        var payload = {
+            _token:$("meta[name='csrf-token']").attr("content"),
+            userid:$(this).attr("id"),
+            role:"user",
+        }
+        admin.role.update(payload)
+    })
+
+    var admin = {
+        role:{
+            update:function(payload){
+                $.ajax({
+                    url:"/update-role",
+                    data: payload,
+                    type: "POST",
+                    success: function(result){
+                        login.loader.show();
+                        if(result.result == "true"){
+                            location.reload();
+                        }
+                        else {
+                            alert('something went wrong!')
+                        }
+                        
+                    }
+                })
+            }
+        }
+    }
 });

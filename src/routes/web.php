@@ -148,9 +148,7 @@ Route::middleware(['admin'])->group(function(){
         return view('admin.add_category');
     });
 
-    Route::get('/admin/settings', 'SettingsController@view')->name('settings');
-    Route::post('/update-settings', 'SettingsController@update');
-
+    
     Route::get('/admin/orders', "OrderController@get_orders")->name('orders');
 
     Route::get('/admin/order/{id}', "OrderController@order_detail")->name('order_detail');
@@ -196,9 +194,21 @@ Route::middleware(['admin'])->group(function(){
     Route::get("/admin/media", "MediaController@index");
     Route::post("/admin/fetch-images", "MediaController@fetch_images");
 
-    Route::get('/admin/users', "UsersController@get_users")->name('users');
 
 });
+
+Route::middleware(['superadmin'])->group(function(){
+    Route::get('/admin/users', "UsersController@get_users")->name('users');
+    Route::post('/update-role', "UsersController@update_role");
+    Route::get('/admin/settings', 'SettingsController@view')->name('settings');
+    Route::post('/update-settings', 'SettingsController@update');
+});
+
+
+
+
+
+
 Route::get("/dumpdata", "DebugController@dumpdata");
 
 

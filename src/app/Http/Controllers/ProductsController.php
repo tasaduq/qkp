@@ -119,7 +119,7 @@ class ProductsController extends Controller
         }
         
         $selectedStatus = '';
-        if($selectedStatus = $request->has('status')) {
+        if($selectedStatus == $request->has('status')) {
             $selectedStatus = $request->input('status');
         }
 

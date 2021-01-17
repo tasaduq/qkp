@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class AdminAuth
+class SuperAdminAuth
 {
     /**
      * Handle an incoming request.
@@ -18,10 +18,10 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            if(auth()->user()->role == "admin" || auth()->user()->role == "super_admin"){
+            if(auth()->user()->role == "super_admin"){
                 return $next($request);
             }
         }
-        return redirect('/')->with('error','Looks like, you got lost');
+        return redirect('/admin/dashboard')->with('error','Looks like, you got lost');
     }
 }
