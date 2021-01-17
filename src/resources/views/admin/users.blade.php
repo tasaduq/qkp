@@ -53,7 +53,7 @@
                   <tr>
                     {{-- <th data-sort="">Select</th> --}}
                     {{-- <th scope="col" class="sort" data-sort="name">Order #</th> --}}
-                    <th scope="col" class="sort" data-sort="budget">Customer Name</th>
+                    <th scope="col" class="sort" data-sort="budget">User Name</th>
                     <th scope="col" class="sort" data-sort="budget">Role</th>
                     {{-- <th scope="col" class="sort" data-sort="status">Upfront Amount</th> --}}
                     {{-- <th scope="col" class="sort" data-sort="status">Created On</th> --}}
@@ -179,7 +179,7 @@
                                 <label class="form-control-label">User Name</label>
                             </div>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="name" placeholder="Customer Name" value="{{ trim($userName) != '' ? $userName : '' }}" />
+                                <input type="text" class="form-control" name="name" placeholder="User Name" value="{{ trim($userName) != '' ? $userName : '' }}" />
                             </div>
                         </div>
                     </div>
