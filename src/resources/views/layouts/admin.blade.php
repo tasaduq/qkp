@@ -125,12 +125,12 @@ $user = Auth::user();
                   <span class="nav-link-text">Settings</span>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link" href="/admin/shipping">
                   <i class="ni ni-settings-gear-65"></i>
                   <span class="nav-link-text">Shipping</span>
                 </a>
-              </li>
+              </li> --}}
               
               <li class="nav-item">
                 <a class="nav-link" href="/admin/users">
