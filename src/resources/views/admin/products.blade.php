@@ -44,8 +44,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th data-sort=""><div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1">
-                      <label class="custom-control-label" for="customCheck1"></label>
+                      
                     </div></th>
                     <th scope="col" class="sort" data-sort="name">Product Name</th>
                     <th scope="col" class="sort" data-sort="budget">Product Description</th>
@@ -54,7 +53,7 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-
+                
                 <tbody class="list">
 
                   @forelse($products as $product)
@@ -62,8 +61,8 @@
                   <tr>
                     <td class="">
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2"></label>
+                        <input type="checkbox" class="custom-control-input productCheckbox" name="products[]" id="customCheck{{$product->product_id}}" value="{{$product->product_id}}">
+                        <label class="custom-control-label" for="customCheck{{$product->product_id}}"></label>
                       </div>
                     </td>
                     <th scope="row">
@@ -93,7 +92,7 @@
                         <span class="status">Active</span>
                         @else
                         <i class="bg-gray"></i>
-                        <span class="status">Unactive</span>
+                        <span class="status">Inactive</span>
                         @endif
                       </span>
                     </td>
@@ -126,19 +125,22 @@
             <!-- Card footer -->
             <div class="card-footer py-4">
               @include('admin.pagination.default', ['paginator' => $products])
+              
               <div class="row">
-                <div id="buttons-colors-component" class="text-left col-md-3" role="tabpanel" aria-labelledby="buttons-colors-component-tab">
+                <div id="buttons-colors-component" class="text-left col-md-5" role="tabpanel" aria-labelledby="buttons-colors-component-tab">
                   <div class="form-group row">
-                    <div class="col-md-9">
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option selected disabled>Select Category</option>
-                        <option>Cow/Bull</option>
-                        <option>Goat</option>
+                    <div class="col-md-5">
+                      <select class="form-control" id="bulk-status">
+                        <option value="">Select Status</option>
+                        <option value="1">Enable</option>
+                        <option value="0">Disable</option>
                       </select>
                     </div>
-                    <div for="example-text-input" class="col-md-3">
-                      <button type="button" class="btn btn-primary">Apply</button>
+                    <div for="example-text-input" class="col-md-7">
+                      <button type="button" class="btn btn-primary apply-bulk-product-status">Apply</button> 
+                      {{-- <button type="button" class="btn btn-danger bulk-product-delete">Delete</button> --}}
                     </div>
+                    
                   </div>
                 </div>
               </div>

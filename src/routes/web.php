@@ -177,6 +177,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/admin/updateproduct','ProductsController@update')->name('updateproduct');
     Route::get('/admin/cloneproduct/{id}','ProductsController@clone')->name('cloneproduct');
     Route::get('/admin/delete_product/{id}','ProductsController@destroy')->name('deleteproduct');
+    Route::post('/product-update-bulk','ProductsController@bulk_update');
     /* Products Routes Section Ends */
 
 

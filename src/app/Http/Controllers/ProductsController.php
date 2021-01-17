@@ -148,6 +148,28 @@ class ProductsController extends Controller
         return view('admin.products', compact('productName', 'dateFrom', 'dateTo'))->with('products',$products)->with('');
         
     }
+    public function bulk_update(Request $request){
+        // dd($request->all());
+
+        $this->validate($request, array(
+            'product' => 'required',
+            'status' => 'required|integer',
+        ));
+
+        $productIds = $request->get('product');
+        $status = $request->get('status');
+
+        $products = Products::whereIn('product_id',$productIds)->update(['active' => $status]);
+        
+        $response['result'] = 'false';
+        if($products){    
+            $response['result'] = 'true';
+        }
+        return Response::json($response);        
+
+
+
+    }
     public function add_product_view(Request $request){
         
         $categories = Categories::all();

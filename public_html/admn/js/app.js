@@ -781,12 +781,64 @@ $(document).ready(function(){
         }
         admin.role.update(payload)
     })
+    
+    $(".bulk-product-delete").on('click',function(e){
+        e.preventDefault();
+        var products = $(".productCheckbox:checked").map(function(){
+            return $(this).val();
+        }).get(); 
 
+        if( products.length == 0){
+              alert('Please select atleast one product to proceed')
+              return false;
+        } 
+
+        
+    })
+    $(".apply-bulk-product-status").on('click',function(e){
+        e.preventDefault();
+        var products = $(".productCheckbox:checked").map(function(){
+            return $(this).val();
+        }).get(); 
+
+        if( products.length == 0){
+              alert('Please select atleast one product to proceed')
+              return false;
+        } else if( $("#bulk-status").val() == "" ){
+            alert('Please select product status to apply')
+            return false;   
+        } 
+        var payload = {
+            _token:$("meta[name='csrf-token']").attr("content"),
+            status:$("#bulk-status").val(),
+            product:products
+        }
+        admin.products.bulk_update(payload);
+    })
     var admin = {
         role:{
             update:function(payload){
                 $.ajax({
                     url:"/update-role",
+                    data: payload,
+                    type: "POST",
+                    success: function(result){
+                        login.loader.show();
+                        if(result.result == "true"){
+                            location.reload();
+                        }
+                        else {
+                            alert('something went wrong!')
+                        }
+                        
+                    }
+                })
+            }
+        },
+        products:{
+            bulk_update:function(payload){
+                $.ajax({
+                    url:"/product-update-bulk",
                     data: payload,
                     type: "POST",
                     success: function(result){
