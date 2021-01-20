@@ -254,6 +254,7 @@ a:hover {
 	width: 100%;
 	border: 1px solid;
 	margin-bottom: 5px;
+    text-decoration: none !important;
 }
 
 .social .btn.facebook {
