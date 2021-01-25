@@ -408,7 +408,14 @@ $(document).ready(function(){
             $(".instalment-payment-schedule").show();
         }
     })
-
+    // $('#price_from, #price_to').on('blur',function(){
+    //     searchFilter.filterChange();
+    // })
+    $('#weight_ci, #product_color, #slider').on('change',function(){
+        searchFilter.filterChange();
+    })
+    
+   
     
     $("#home_search_form").on("submit", function(e){
         e.preventDefault();
@@ -619,8 +626,9 @@ $(document).ready(function(){
         $(".range-after-img").attr('class', class_name+' range-after-img')
 
         
-
+        
         searchFilter.updateParams();
+        
 
                            
 
@@ -664,6 +672,9 @@ var ranger = {
             min: ranger.range.min,
             max: ranger.range.max,
             values: [ ranger.currentValue.from, ranger.currentValue.to ],
+            change: function(){
+                searchFilter.filterChange();
+            },
             create: function(event, ui) {		
                 ranger.slider = $(this);
                 var sliderWrapper = ranger.slider.closest('.store-slider-wrapper');
@@ -870,9 +881,32 @@ var searchFilter = {
                     $("#weight_ci").val(weight);
 
                 }
-
+                searchFilter.filterChange();
             }
         })
+    },
+    filterChange:function(){
+        var selected_category =  $('.category_method_active.active').attr('selected_category'); 
+        var product_color = $('#product_color option:selected').val();
+        var weight_ci = $('#weight_ci option:selected').val();
+        var price_from_to = $('#price_from').val()+"-"+$('#price_to').val();
+    
+        if(selected_category == undefined){
+            alert('Please select a category');
+            return false;
+        } else if (0) {
+
+        }
+        var filter = '?c='+selected_category+'&co='+product_color+'&w='+weight_ci+'&p='+price_from_to;
+        var url = '/products-filter'+filter;
+
+        if(filter != window.location.search ){
+            $.get(url, function(result){
+                $(".products-filter").html(result)
+            })
+        }
+
+        
     }
 }
 var page = {

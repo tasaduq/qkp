@@ -28,6 +28,63 @@ class HomeController extends Controller
         
         return view('index')->with("featured_products", $featured_products)->with('productcolor',$productsc)->with('categories',$categories);
     }
+    public function products_filter(Request $request){
+        
+
+        $productsc = Products::select('color')->where("color", "<>", "Null")->distinct()->get();
+        
+        $where = [
+            "active" => 1
+        ];
+        
+        if( $request->has("c") ){
+            $where["category"] = $request->get("c");
+            $cat = $request->get("c");
+        }
+        else {
+            $cat = Categories::first()->category_id;
+        }
+
+
+        if( $request->has("co") && $request->get("co") != "0" ){
+            $where['color'] = $request->get("co");
+        }
+       
+        $category = Categories::where("category_id", $cat)->first();
+
+        
+        $products = Products::where($where)->take(9);
+
+        if( $request->has("w") && $request->get("w") != "0" ){
+            $weights = explode('-',$request->get("w"));
+            $products = $products->whereBetween('weight', $weights);
+
+        }
+        
+        if( $request->has("p") ){
+            $weights = explode('-',$request->get("p"));
+            $weights[0] = $weights[0]*1000;
+            $weights[1] = $weights[1]*1000;
+            // dump($weights);
+            $products = $products->whereBetween('price', $weights);
+
+        }
+        
+        $products = $products->orderBy('sold_out')->orderBy('created_at')->get();
+        $stock = $products->where('sold_out',0)->count();
+        // dd($products);
+
+        $categories = Categories::where([
+            "is_active" => 1,
+        ])->get();
+        
+
+        return view('products-filter')->with("products", $products)
+                                ->with("category", $category)
+                                ->with('productcolor',$productsc)
+                                ->with('categories',$categories)
+                                ->with("stock",$stock);
+    }
     public function products(Request $request){
 
         

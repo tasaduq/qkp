@@ -18,6 +18,8 @@ Route::middleware("calculations")->group(function () {
     Route::get('/', "HomeController@index")->name('home');
     Route::get('/product/{id}', "HomeController@product_detail");
     Route::get('/products', "HomeController@products");
+    Route::get('/products-filter', "HomeController@products_filter");
+    
     Route::get('/mandi', "HomeController@mandi")->name('mandi');
     Route::get('/cart', "CartController@index");
     Route::get('/checkout', "CartController@checkout");
