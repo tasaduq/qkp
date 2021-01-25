@@ -149,18 +149,20 @@ class CustomLoginController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        $userSocial = Socialite::driver($provider)->user();
+        try {
+            $userSocial = Socialite::driver($provider)->user();
+        } catch (InvalidStateException $e) {
+            $userSocial = Socialite::driver($provider)->stateless()->user();
+        }
 
         $user  =   User::where(['email' => $userSocial->getEmail()])->first();
-        //print_r($users->id);die;
         if($user) {
-            Auth::loginUsingId($user->id);
-            if (Auth::check()) {
-                return redirect()->route('profile');
-            }
-            return redirect('/');
+            //print_r($user->id);die;
+            Auth::login($user);
+            return redirect('/profile');
         } else {
-            $verification_hash = Hash::make($userSocial->getName()."+".$userSocial->getEmail());
+            $for_hash = $userSocial->getName()."+".$userSocial->getEmail();
+            $verification_hash = Hash::make($for_hash);
 
             User::create([
                 'name'          => $userSocial->getName(),
@@ -175,11 +177,12 @@ class CustomLoginController extends Controller
             ]);
 
             $newUser  =   User::where(['email' => $userSocial->getEmail()])->first();
-            //print_r($users);die;
+            //print_r($newUser);die;
 
-            Auth::loginUsingId($newUser->id);
-            if (Auth::check()) {
-                return redirect()->route('profile');
+            //Auth::loginUsingId($newUser->id);
+            if($newUser) {
+                Auth::login($newUser);
+                return redirect('/profile');
             }
             return redirect('/');
         }
