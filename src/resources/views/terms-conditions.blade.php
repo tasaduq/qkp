@@ -8,7 +8,7 @@
    <div class="container">
       <h1 class="mb-5">Terms and Conditions for Qurbani Kiston Pay</h1>
       <h3 class="mb-3">Introduction</h3>
-      <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of our website, Qurbani Kiston Py accessible at <strong><a href="#">qkponline.com</a></strong>.</p>
+      <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of our website, Qurbani Kiston Py accessible at <strong><a href="https://qurbanikistonpay.com/">qurbanikistonpay.com</a></strong>.</p>
       <p>These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions.</p> 
       <p class="mb-0">Minors or people below 18 years old are not allowed to use this Website.</p>
    </div>

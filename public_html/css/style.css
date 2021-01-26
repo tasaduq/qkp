@@ -2168,3 +2168,4 @@ tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 5
   .order-pay-btn.default-styling{background:none; border:none; color:#ccc; font-size:20px; margin-right:15px;}
   .order-pay-btn.default-styling:hover{color:rgba(103, 159, 26, 1);}
 
+  .table .thead-dark th{min-width:100px;}

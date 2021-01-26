@@ -122,7 +122,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                               <h4 class="amount"  id="selected-installment-amount">RS.{{$product->advance_formatted()}}/-</h4>
                            </div>
                            <div class="EMI col-sm-4 line-height-normal">
-                              <p class="mb-1">Kist</p>
+                              <p class="mb-1">Instalment</p>
                               <h4 class="amount" id="selected-emi-amount">RS.{{$product->lowest_installment()}}/-</h4>
                            </div>
                         </div>
