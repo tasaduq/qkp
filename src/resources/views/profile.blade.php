@@ -95,41 +95,43 @@
                         </a>
                         @if( $order->in_process() )
                             <div id="tablecollapse{{$orderedProduct->id}}" class="collapse mt-3">
-                            <table  class="table table-responsive-sm text-left mb-0">
-                              <thead class="thead-dark">
-                                <tr>
-                                  <th>Month</th>
-                                  <th>Due Date</th>
-                                  <th>Installment</th>
-                                  <th>Status</th>
-                                  <th></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @foreach ($orderedProduct->installments_desc() as $installment)
-                                
-                                <tr>
-                                  <td>{{ $installment->due_date_month() }}</td>
-                                  {{-- <td>{{}}</td> --}}
-                                
-                                  <td>{{$installment->get_due_date()}}</td>
-                                  <td>{{number_format($installment->amount)}}/-</td>
-                                  <td>{{$installment->get_status->name}}</td>
-                                  {{-- pending status needed --}}
-                                  <td class="text-right pr-0">
-                                  @if($installment->payable())
-                                    <button class="btn btn-success default-btn installment-pay-btn" installment="{{$installment->id}}">Pay Now</button>
-                                    {{-- <button class="btn tbl-btn default-btn paid">Pay Now</button> --}}
-                                  @else
-                                    @if( $installment->get_status->id != "3")  
-                                    <button class="btn tbl-btn default-btn paid" installment="{{$installment->id}}">Pay Now</button>
-                                    @endif
-                                  @endif
-                                  </td>
-                                </tr>
-                                @endforeach
-                              </tbody>
-                            </table>
+                              <div class="table-responsive">
+                                <table  class="table text-left mb-0">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th>Month</th>
+                                      <th>Due Date</th>
+                                      <th>Installment</th>
+                                      <th>Status</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    @foreach ($orderedProduct->installments_desc() as $installment)
+                                    
+                                    <tr>
+                                      <td>{{ $installment->due_date_month() }}</td>
+                                      {{-- <td>{{}}</td> --}}
+                                    
+                                      <td>{{$installment->get_due_date()}}</td>
+                                      <td>{{number_format($installment->amount)}}/-</td>
+                                      <td>{{$installment->get_status->name}}</td>
+                                      {{-- pending status needed --}}
+                                      <td class="text-right pr-0">
+                                      @if($installment->payable())
+                                        <button class="btn btn-success default-btn installment-pay-btn" installment="{{$installment->id}}">Pay Now</button>
+                                        {{-- <button class="btn tbl-btn default-btn paid">Pay Now</button> --}}
+                                      @else
+                                        @if( $installment->get_status->id != "3")  
+                                        <button class="btn tbl-btn default-btn paid" installment="{{$installment->id}}">Pay Now</button>
+                                        @endif
+                                      @endif
+                                      </td>
+                                    </tr>
+                                    @endforeach
+                                  </tbody>
+                                </table>
+                              </div>
                           </div>
                           @endif
                       </div>

@@ -16,7 +16,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                <li class="breadcrumb-item active">{{$product->name}}</li>
            </ol>
             <div class="row">
-               <div class="col-sm-6 text-center left-section">
+               <div class="col-md-6 text-center left-section">
                   <div class="product-preview">
                      <?php
                      $imageid = array();
@@ -56,7 +56,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                   @endif
                </div>
 
-               <div class="col-sm-6 right-section">
+               <div class="col-md-6 right-section">
 
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>

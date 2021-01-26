@@ -110,16 +110,16 @@
                     </div>
                   </form>
                     <div class="form-group row">
-                    <div class="col-sm-6"> <a href="#register-modal" data-toggle="modal" data-dismiss="modal" >Not a member? Sign up</a></div>
-                    <div class="col-sm-6 text-right"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
+                    <div class="col-sm-6 login-action-links"> <a href="#register-modal" data-toggle="modal" data-dismiss="modal" >Not a member? Sign up</a></div>
+                    <div class="col-sm-6 login-action-links text-right"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
 
                     </div>
                     <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
                     <div class="row social">
-                        <div class="col-sm-6 px-1">
+                        <div class="col-sm-6">
                             <a id="fb-login-btn" href="{{url('/login/facebook')}}" class="btn facebook" type="button"><i class="fab fa-facebook-f"></i> Facebook</a>
                         </div>
-                        <div class="col-sm-6 px-1">
+                        <div class="col-sm-6">
                             <a id="fb-login-btn" href="{{url('/login/google')}}" class="btn google" type="button"><i class="fab fa-google"></i> Google</a>
                         </div>
                     </div>
