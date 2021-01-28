@@ -8,7 +8,11 @@
         @forelse ($products as $product)
             <div class="col-sm-4 col-md-6 col-lg-4">
                 <div class="animal-product">
-                <a href="/product/{{$product->product_id}}">
+                
+                @if(!$product->sold_out)
+                    <a href="/product/{{$product->product_id}}">
+                @endif    
+
             <div class="item">
                 @if($product->sold_out)
                     <div class="sold-out">Sold Out</div>
@@ -36,7 +40,10 @@
                     <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
                 </div>
                 </div>
-                </a>
+                @if(!$product->sold_out)
+                    </a>
+                @endif    
+                
             </div>
             </div>
         </div>
