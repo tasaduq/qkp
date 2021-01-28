@@ -813,6 +813,7 @@ var ranger = {
 
 var searchFilter = {
     times:0,
+    previousFilter:'',
     updateParams:function(){
         var selected_category = $(".category_method_active.active").attr("selected_category");
         $.get('/filter-params?c='+selected_category, function(result){
@@ -898,15 +899,16 @@ var searchFilter = {
 
         }
         var filter = '?c='+selected_category+'&co='+product_color+'&w='+weight_ci+'&p='+price_from_to;
+        
         var url = '/products-filter'+filter;
 
-        if(filter != window.location.search ){
+        if(this.previousFilter != '' && this.previousFilter != filter){
             $.get(url, function(result){
                 $(".products-filter").html(result)
             })
         }
 
-        
+        this.previousFilter = filter;
     }
 }
 var page = {
