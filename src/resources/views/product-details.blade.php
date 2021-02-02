@@ -193,7 +193,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
 
 
       <!-- More Relevant Animals Slider -->
-      <section class="section-slider" style="display:none;">
+      <section class="section-slider" style="display:block;">
          <div class="container text-center slick">
          <h2>More Relevant Animals</h2>
          <?php 
