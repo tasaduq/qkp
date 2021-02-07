@@ -832,6 +832,7 @@ a:hover {
 section.supplier-section {
 	background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 56, 1) 47%, rgba(28, 0, 48, 1) 96%);
 	padding: 50px 0;
+	clear:both;
 }
 
 .supplier-section button {
