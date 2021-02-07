@@ -207,6 +207,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
             @foreach ($products as $product)
           
             <div class="item">
+               <div class="demo">Demo</div>
                <?php
 
                if ( strpos($product->images, ",") > -1){
@@ -221,7 +222,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
             ?>
             
 
-             <div class="product-img">
+             <div class="animal-image">
                 <a href="/product/{{ $product->product_id }}">
                 <img class="img-fluid" src="{{$imagethumb}}" alt=""></a></div>
                <div class="title">

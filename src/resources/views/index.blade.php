@@ -214,6 +214,7 @@
                <a href="/product/{{$product->product_id}}">
             @endif
                <div class="item">
+                  <div class="demo">Demo</div>
                   @if($product->sold_out)
                      <div class="sold-out">Sold Out</div>
                   @elseif($product->featured)
