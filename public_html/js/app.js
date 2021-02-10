@@ -100,6 +100,13 @@ $(document).ready(function(){
         }
     });
 
+    $("#login-form #email, #login-form #password").on('keypress',function(e){
+        if(e.keyCode == 13){
+            $("#login-form-btn").trigger('click');
+        }
+    })
+    
+
     $("#login-form-btn").on("click",function(){
         
         if(!customer_login_form.form()){

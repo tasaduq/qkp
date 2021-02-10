@@ -199,7 +199,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
          <?php 
          $products = \App\Models\Products::where("category",$product->category)
          ->where('product_id','!=',$product->product_id)
-         ->get();
+         ->take(10)->get();
           $products = $products ? $products : array();
          ?>
          <div class="animal-product">
@@ -208,6 +208,11 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
           
             <div class="item">
                <div class="demo">Demo</div>
+               @if($product->sold_out)
+                     <div class="sold-out">Sold Out</div>
+                  @elseif($product->featured)
+                     <div class="featured">Featured</div>
+                  @endif
                <?php
 
                if ( strpos($product->images, ",") > -1){
@@ -223,13 +228,19 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
             
 
              <div class="animal-image">
-                <a href="/product/{{ $product->product_id }}">
-                <img class="img-fluid" src="{{$imagethumb}}" alt=""></a></div>
+               @if (!$product->sold_out)
+               <a href="/product/{{$product->product_id}}">
+               @endif
+                <img class="img-fluid" src="{{$imagethumb}}" alt="">
+                @if (!$product->sold_out)
+               </a>
+               @endif
+            </div>
                <div class="title">
                   <span class="name">{{ $product->name }}</span>
                   <div class="prize">
-                     <span>Full Price <strong>RS.{{ $product->price }}/-</strong></span>
-                     <span>Monthly Installment <strong>RS.{{number_format($product->price/Session::get("get_feasible_installments"))}}/-</strong></span>
+                     <span class="prize">{{number_format($product->price)}}/- Full price</span> <br>
+                     <span class="prize">{{number_format( $product->least_installment() )}}/- Per Month</span>
                      {{-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> --}}
                   </div>
                </div>
@@ -237,7 +248,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
             @endforeach
             
          </div>
-         <button class="btn default-btn my-2 px-4 my-sm-0 mr-3 login" type="submit">More Animals in Same Price</button>
+         {{-- <button class="btn default-btn my-2 px-4 my-sm-0 mr-3 login" type="submit">More Animals in Same Price</button> --}}
          <div class="arrow_prev">
             <span><i class="icon-qkp-caret-left"></i></span>
          </div>
