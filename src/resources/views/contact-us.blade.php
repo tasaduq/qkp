@@ -10,10 +10,12 @@
        <div class="row">
           <div class="col-md-5 order-md-5 order-2">
              <div class="map">
-                <iframe
+                {{-- <iframe
                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.055398809335!2d67.08915712849011!3d24.930182609072844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f4eb7183b97%3A0x35709df45c0003aa!2sLuckyOne%20Mall!5e0!3m2!1sen!2s!4v1602927965218!5m2!1sen!2s"
                    width="100%" height="583" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
-                   tabindex="0"></iframe>
+                   tabindex="0"></iframe> --}}
+
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.4345404283836!2d67.25081701544707!3d25.05325694367221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34ef2784b989d%3A0xb37bd15db87a4827!2sGadap%20Rd%2C%20Gadap%20Town%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1615501406045!5m2!1sen!2s" width="100%" height="583" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
              </div>
           </div>
           <div class="col-md-7 order-1 order-md-7 order-1">
@@ -87,7 +89,7 @@
                 <div class="icon"><i class="icon-qkp-message-c"></i></div>
                 <div class="text align-self-center">
                    <p class="m-0 pb-1">Email Us At</p>
-                   <span>info@qurbanikistonpay.com</span>
+                   <span>support@qurbanikistonpay.com</span>
                 </div>
              </div>
           </div>
@@ -96,21 +98,21 @@
                 <div class="text">
                    <p class="m-0 pb-3">Follow us on</p>
                    <div class="social-links">
-                      <a href="#">
-                         <i class="icon-qkp-facebook"></i>
-                      </a>
-                      <a href="#">
-                         <i class="icon-qkp-twitter"></i>
-                      </a>
-                      <a href="#">
+                     <a href="https://www.facebook.com/Qurbani-Kiston-Pay-101300265362375" target="_blank">
+                        <i class="icon-qkp-facebook"></i>
+                     </a>
+                     <a href="https://twitter.com/qurbaniKP" target="_blank">
+                        <i class="icon-qkp-twitter"></i>
+                     </a>
+                      {{-- <a href="#" target="_blank">
                          <i class="icon-qkp-youtube-play"></i>
-                      </a>
-                      <a href="#">
+                      </a> --}}
+                      <a href="https://www.instagram.com/qurbanikistonpay/" target="_blank">
                          <i class="icon-qkp-instagram"></i>
                       </a>
-                      <a href="#">
+                      {{-- <a href="#" target="_blank">
                          <i class="icon-qkp-snapchat"></i>
-                      </a>
+                      </a> --}}
                    </div>
                 </div>
              </div>

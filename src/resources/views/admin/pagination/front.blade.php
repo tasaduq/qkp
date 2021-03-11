@@ -21,7 +21,7 @@ $link_limit = 7; // maximum number of links (a little bit inaccurate, but will b
 
 @if ($paginator->lastPage() > 1)
 <nav class="w-100" aria-label="...">
-    <ul class="pagination justify-content-center mb-0">
+    <ul class="pagination justify-content-center mt-4 mb-0">
         @if($paginator->currentPage() > 1)
          <li class="page-item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
              <a class="page-link products-pagination" href="{{ $paginator->url(1) }}{{ $parameters }}" tabindex="-1" page="1">

@@ -24,11 +24,12 @@
                 <div class="image col-sm-5 mb-4 pr-0 float-right"> 
                     <img class="img-fluid image-shadow" src="/images/about-us.png" alt="img">
                 </div>
-                <h2 class="mb-4">Behtereen Qurbani..Asaan Kiston Pay</h2>
+                <h2 class="mb-4">Qurbani.. Ab Sab Ki Pohanch Main</h2>
                    <p>Qurbani Kiston Pay is Pakistan`s first and only platform for purchasing the finest qurbani animals, on easy Shariah compliant monthly installments!</p>
 <p>We offer a variety of sacrificial animals which include bulls/cows, goats, sheep, camels, and specialty animals under multiple price ranges that are delivered right to your doorstep!</p>
 <p>Our animals are cared for at our farms with utmost care under the supervision of thorough professionals. Our animals are given pure organic feed and have 24/7 medical care onsite.</p>
-<p>You are just a few clicks away from Behtereen Qurbani..Asaan Kiston py!</p>
+{{-- <p>You are just a few clicks away from Behtereen Qurbani..Asaan Kiston py!</p> --}}
+Qurbani has never been this easy!
             </div>
           </div>
       </div>

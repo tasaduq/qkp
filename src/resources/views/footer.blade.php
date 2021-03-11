@@ -14,21 +14,21 @@
           </div>
           <div class="col-md-3 social-icon">
              <div class="text-right">
-                <a href="#">
-                   <i class="icon-qkp-facebook"></i>
-                </a>
-                <a href="#">
-                   <i class="icon-qkp-twitter"></i>
-                </a>
-                <a href="#">
+               <a href="https://www.facebook.com/Qurbani-Kiston-Pay-101300265362375" target="_blank">
+                  <i class="icon-qkp-facebook"></i>
+               </a>
+               <a href="https://twitter.com/qurbaniKP" target="_blank">
+                  <i class="icon-qkp-twitter"></i>
+               </a>
+                {{-- <a href="#" target="_blank">
                    <i class="icon-qkp-youtube-play"></i>
-                </a>
-                <a href="#">
-                   <i class="icon-qkp-instagram"></i>
-                </a>
-                <a href="#">
+                </a> --}}
+                <a href="https://www.instagram.com/qurbanikistonpay/" target="_blank">
+                  <i class="icon-qkp-instagram"></i>
+               </a>
+                {{-- <a href="#" target="_blank">
                    <i class="icon-qkp-snapchat"></i>
-                </a>
+                </a> --}}
              </div>
           </div>
        </div>
