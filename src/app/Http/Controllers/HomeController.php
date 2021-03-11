@@ -53,7 +53,7 @@ class HomeController extends Controller
         $category = Categories::where("category_id", $cat)->first();
 
         
-        $products = Products::where($where)->take(9);
+        $products = Products::where($where);
 
         if( $request->has("w") && $request->get("w") != "0" ){
             $weights = explode('-',$request->get("w"));
@@ -70,7 +70,8 @@ class HomeController extends Controller
 
         }
         
-        $products = $products->orderBy('sold_out')->orderBy('created_at')->get();
+        $products = $products->orderBy('sold_out')->orderBy('created_at')->paginate(9);
+        $products->withPath('/products');
         $stock = $products->where('sold_out',0)->count();
         // dd($products);
 
@@ -111,7 +112,9 @@ class HomeController extends Controller
         $category = Categories::where("category_id", $cat)->first();
 
         
-        $products = Products::where($where)->take(9);
+        $products = Products::where($where);
+        // $paginate = config("site.fron_pagination");
+        // ->latest();
 
         if( $request->has("w") && $request->get("w") != "0" ){
             $weights = explode('-',$request->get("w"));
@@ -128,7 +131,8 @@ class HomeController extends Controller
 
         }
         
-        $products = $products->orderBy('sold_out')->orderBy('created_at')->get();
+        $products = $products->orderBy('sold_out')->orderBy('created_at')->paginate(9);
+        $products->withPath('/products');
         $stock = $products->where('sold_out',0)->count();
         // dd($products);
 

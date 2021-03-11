@@ -906,7 +906,10 @@ var searchFilter = {
 
         }
         var filter = '?c='+selected_category+'&co='+product_color+'&w='+weight_ci+'&p='+price_from_to;
-        
+        $("a.products-pagination").each(function(){
+            var page = $(this).attr('page');
+            $(this).attr('href', filter+'&page='+page);
+        })
         var url = '/products-filter'+filter;
 
         if(this.previousFilter != '' && this.previousFilter != filter){

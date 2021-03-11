@@ -49,10 +49,14 @@
             </div>
         </div>
         
+        
             
         @empty
         <span class="no-products">There are no products in this category</span>    
         @endforelse
+
+        @include('admin.pagination.front', ['paginator' => $products])
+
 
 
     
