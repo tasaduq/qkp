@@ -209,7 +209,7 @@ $(document).ready(function(){
                 number: true
             },
             // color :  "required",
-            description :  "required",
+            // description :  "required",
 
         }
     });
