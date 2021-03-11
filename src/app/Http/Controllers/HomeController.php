@@ -70,9 +70,11 @@ class HomeController extends Controller
 
         }
         
-        $products = $products->orderBy('sold_out')->orderBy('created_at')->paginate(9);
-        $products->withPath('/products');
+        $products = $products->orderBy('sold_out')->orderBy('created_at');
         $stock = $products->where('sold_out',0)->count();
+        $products = $products->paginate(9);
+        $products->withPath('/products');
+        
         // dd($products);
 
         $categories = Categories::where([
@@ -131,9 +133,11 @@ class HomeController extends Controller
 
         }
         
-        $products = $products->orderBy('sold_out')->orderBy('created_at')->paginate(9);
-        $products->withPath('/products');
+        $products = $products->orderBy('sold_out')->orderBy('created_at');
         $stock = $products->where('sold_out',0)->count();
+        $products = $products->paginate(9);
+        $products->withPath('/products');
+        
         // dd($products);
 
         $categories = Categories::where([
