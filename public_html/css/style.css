@@ -698,6 +698,13 @@ a:hover {
     overflow: hidden;
 }
 
+.our-farms-section .animal-image {
+	height: 250px;
+    overflow: hidden;
+	border:3px solid #590b6b;
+}
+
+
 .animals-slider .item:hover {
     transform: scale(1.1);
 }
@@ -1464,7 +1471,7 @@ table.table button.btn.default-btn.paid {
 }
 .our-farms-section .desc {
     text-align: justify;
-    line-height: 38px;
+    line-height: 30px;
     color: #340040;
 }
 .our-farms-section h1 {
@@ -1715,7 +1722,7 @@ input[type="file"] {
 	}
 	.social-icon .text-right{text-align: center!important}
 	.copyright{margin:15px 0;}
-	
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -1727,6 +1734,13 @@ input[type="file"] {
 		margin-bottom: 25px;
 	}
 }
+
+@media only screen and (max-width: 767px) {
+	.cart-left-section{margin-top:0 !important;}
+	.agree-checkbox{width: 80px !important;height: 30px !important;}
+}
+
+
 
 @media only screen and (max-width: 430px) {
 	.login-action-links{text-align:center !important;}

@@ -146,7 +146,7 @@
                            </div>
                         </div>
                         <div class="form-group col-md-12 px-0 d-flex">
-                           <input class="mr-3" type="checkbox" name="agreement" id="agreement" style="width:25px; height:25px;">
+                           <input class="mr-3 agree-checkbox" type="checkbox" name="agreement" id="agreement" style="width:25px; height:25px;">
                            <label for="agreement">I have read and agree to the <a href="#">QKP Terms and Conditions</a> governing my placement of this order, as well as agree to <a href="#">Cancellation Terms</a> of service</label>
                         </div>
                         <button class="btn default-btn float-right mb-4 place-order" type="submit">Place Order</button>
