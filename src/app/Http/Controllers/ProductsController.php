@@ -35,6 +35,12 @@ class ProductsController extends Controller
                 $data["featured"] = 1;
             }
         }
+
+        if($request->has("description")){
+            if($request->get("description") == ""){
+                unset($data["description"]);
+            }
+        }
         
 
         Products::insert($data);
@@ -76,6 +82,8 @@ class ProductsController extends Controller
             $featured = $request->featured = 0;
         }
 
+       
+
         $data = array(
             'name'     =>    $request->name,
             'color'    =>    $request->color,
@@ -87,6 +95,12 @@ class ProductsController extends Controller
             'active' => $active,
             'featured' => $featured,
         );
+
+        if($request->has("description")){
+            if($request->get("description") == ""){
+                unset($data["description"]);
+            }
+        }
 
         if($request->has("images")){
             $data["images"] = implode(",",$request->get("images"));
