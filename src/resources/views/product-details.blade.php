@@ -207,7 +207,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
             @foreach ($products as $product)
           
             <div class="item">
-               <div class="demo">Demo</div>
+               {{-- <div class="demo">Demo</div> --}}
                @if($product->sold_out)
                      <div class="sold-out">Sold Out</div>
                   @elseif($product->featured)
