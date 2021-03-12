@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Bootstrap CSS -->
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/images/logo.png')}}">
         <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" >
         <link rel="stylesheet" href="{{asset('/css/slick-theme.css')}}">
         <link rel="stylesheet" href="{{asset('/css/slick.css')}}">
