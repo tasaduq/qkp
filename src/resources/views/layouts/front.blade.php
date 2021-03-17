@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Bootstrap CSS -->
-        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/images/logo.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/images/favicon.ico')}}">
         <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" >
         <link rel="stylesheet" href="{{asset('/css/slick-theme.css')}}">
         <link rel="stylesheet" href="{{asset('/css/slick.css')}}">
@@ -19,7 +19,8 @@
 
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 
-        <title>Qurbani</title>
+        <title>Qurbani Kiston Pay</title>
+        <meta name="description" content="Qurbani Ab Sab Ki Pohanch Main, Sood Say Pak.. Ain Shariah Kay Mutabiq"
 
          <script type="text/javascript">
             var APP_URL = {!! json_encode(url('/')) !!}

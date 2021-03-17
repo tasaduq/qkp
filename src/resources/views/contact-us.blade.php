@@ -75,45 +75,23 @@
     <div class="container">
        <div class="row justify-content-between">
           <h2>Office Contact Details</h2>
-          <div class="col-lg-4 col-md-6 mb-3">
+          <div class="col-lg-6 col-md-6 mb-3">
              <div class="office-details d-flex">
                 <div class="icon"><i class="icon-qkp-phone-c"></i></div>
                 <div class="text align-self-center">
                    <p class="m-0 pb-1">Call Us At</p>
-                   <span>UAN 021-111-QKP</span>
+                   <span>
+                      +92 309 2586558
+                   </span>
                 </div>
              </div>
           </div>
-          <div class="col-lg-4 col-md-6 mb-3">
+          <div class="col-lg-6 col-md-6 mb-3">
              <div class="office-details d-flex">
                 <div class="icon"><i class="icon-qkp-message-c"></i></div>
                 <div class="text align-self-center">
                    <p class="m-0 pb-1">Email Us At</p>
                    <span>support@qurbanikistonpay.com</span>
-                </div>
-             </div>
-          </div>
-          <div class="col-lg-3 col-md-12 d-flex">
-             <div class="office-details align-self-center">
-                <div class="text">
-                   <p class="m-0 pb-3">Follow us on</p>
-                   <div class="social-links">
-                     <a href="https://www.facebook.com/Qurbani-Kiston-Pay-101300265362375" target="_blank">
-                        <i class="icon-qkp-facebook"></i>
-                     </a>
-                     <a href="https://twitter.com/qurbaniKP" target="_blank">
-                        <i class="icon-qkp-twitter"></i>
-                     </a>
-                      {{-- <a href="#" target="_blank">
-                         <i class="icon-qkp-youtube-play"></i>
-                      </a> --}}
-                      <a href="https://www.instagram.com/qurbanikistonpay/" target="_blank">
-                         <i class="icon-qkp-instagram"></i>
-                      </a>
-                      {{-- <a href="#" target="_blank">
-                         <i class="icon-qkp-snapchat"></i>
-                      </a> --}}
-                   </div>
                 </div>
              </div>
           </div>

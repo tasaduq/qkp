@@ -85,7 +85,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                            <li>
                               <label class="control-label" data-toggle="tooltip" title="This is an estimated weight and may vary">
                                  <div class="attribute">Weight at Delivery</div>
-                                 <span>:</span>{{$product->weight}} KG
+                                 <span>:</span>{{$product->weight}} KG <em>Approx.</em>
                               </label>
                            </li>
                            <li>
@@ -150,7 +150,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                            <li>
                               <label class="control-label" data-toggle="tooltip" title="This is an estimated weight and may vary">
                                  <div class="attribute">Weight at Delivery</div>
-                                 <span>:</span>{{$product->weight}} KG
+                                 <span>:</span>{{$product->weight}} KG <em>Approx.</em>
                               </label>
                            </li>
                            <li>
