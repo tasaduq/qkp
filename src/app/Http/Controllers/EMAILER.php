@@ -21,6 +21,10 @@ class EMAILER
 
     public static function send($type, $status, $data, $user=null, $admin = false){
 
+        if( env('app_env') == "local" ){
+            return true;
+        }
+
         if( $type == "INSTALLMENT") {
             $table = "installment_status_emails";
             $statusid = "installment_status_id"; 
@@ -44,6 +48,8 @@ class EMAILER
         // }
         
         $parsedEmail = SELF::parse($emailTemplate, $data);
+
+        $parsedEmail = SELF::addEmailHeaderFooter($parsedEmail, $emailTemplate);
 
         $sender['toEmail'] = $user->email;
         $sender['toSubject'] = $emailTemplate->subject;
@@ -84,4 +90,33 @@ class EMAILER
             }
         }, $emailTemplate->email);
     }
+    public static function addEmailHeaderFooter($parsedEmail, $emailTemplate){
+
+        return '<table align="center" width="650" height="483" border="0" cellpadding="4" cellspacing="0">
+            <tbody style="background: #F4EFF5;">
+                <tr style="background:#250036;">
+                <td width="5%" height="97" bgcolor="#250036">&nbsp;</td>
+                <td width="50%"><img src="https://qurbanikistonpay.com/images/logo.svg" width="70" height="70" alt=""></td>
+                <td align="right" width="40%" style="color:#f0d36d; font-weight:bold; font-size:20px; font-family: arial;">'.$emailTemplate->subject.'</td>
+                <td width="5%">&nbsp;</td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td style="font-family:arial; font-size:14px;" valign="top" height="300" colspan="2">'
+                    
+                    .$parsedEmail.
+
+                '</td>
+                <td>&nbsp;</td>
+                </tr>
+                <tr height="60">
+                <td style="background: #F4EFF5;">&nbsp;</td>
+                <td style="background: #F4EFF5; border-top:1px dashed #000000; font-family:arial; font-size:14px;" align="center" colspan="2">&nbsp;© Copyrights 2020 Farms Wide Open (PVT).LTD. All Rights Reserved</td>
+                <td style="background: #F4EFF5;">&nbsp;</td>
+                </tr>
+            </tbody>
+            </table>';
+
+    }
+    
 }
