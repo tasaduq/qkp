@@ -22,7 +22,7 @@ class EMAILER
     public static function send($type, $status, $data, $user=null, $admin = false){
 
         if( env('app_env') == "local" ){
-            return true;
+            // return true;
         }
 
         if( $type == "INSTALLMENT") {
@@ -47,9 +47,10 @@ class EMAILER
         //     dd($res);   
         // }
         
+        
         $parsedEmail = SELF::parse($emailTemplate, $data);
-
-        $parsedEmail = SELF::addEmailHeaderFooter($parsedEmail, $emailTemplate);
+        $parsedEmail = SELF::productsTable($parsedEmail, $data);
+        return $parsedEmail = SELF::addEmailHeaderFooter($parsedEmail, $emailTemplate);
 
         $sender['toEmail'] = $user->email;
         $sender['toSubject'] = $emailTemplate->subject;
@@ -86,9 +87,22 @@ class EMAILER
             if (isset($data[$index])) {
                 return $data[$index];
             } else {
+                return "{$shortCode}";
                 // throw new Exception("Shortcode {$shortCode} not found in template id {$this->id}", 1);
             }
         }, $emailTemplate->email);
+    }
+    public static function productsTable($parsedEmail, $data){
+        
+        // dd($data);
+        $products_table = SELF::generateProductsTable($data);
+        
+        return $parsedEmail = preg_replace('/{{products_table}}/', $products_table, $parsedEmail);
+    }
+    public static function generateProductsTable($data){
+        return view('emails.producttable')->with('order', $data);
+        // return view('sections.cart-right-section')->with('products', $data->products);
+        
     }
     public static function addEmailHeaderFooter($parsedEmail, $emailTemplate){
 
@@ -104,6 +118,9 @@ class EMAILER
                 <td>&nbsp;</td>
                 <td style="font-family:arial; font-size:14px;" valign="top" height="300" colspan="2">'
                     
+
+                //listing of order products
+
                     .$parsedEmail.
 
                 '</td>
