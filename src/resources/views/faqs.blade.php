@@ -34,7 +34,7 @@ which is in accordance with the market rates.
     </div>
     <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
       <div class="card-body">
-      Yes, you can. All you have to do is request a visit to the farm through our “Request a visit”
+      Yes, you can. All you have to do is request a visit to the farm through our “Contact Us”
 section, and our team will guide you.
       </div>
     </div>
