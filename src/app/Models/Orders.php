@@ -8,7 +8,7 @@ use DB;
 class Orders extends Model
 {
     use HasFactory;
-    protected $cacheFor = 600;
+    // protected $cacheFor = 600;
     protected $fillable = ['upfront'];
     
 

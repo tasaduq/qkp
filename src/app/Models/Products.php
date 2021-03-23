@@ -15,7 +15,7 @@ class Products extends Model
     protected $table = 'products';
     protected $fillable = ['name', 'color','category','weight','price','description','active', 'featured','sold_out'];
     protected $primaryKey = 'product_id';
-    protected $cacheFor = 600; 
+    // protected $cacheFor = 600; 
     
     public function installment($installment)
     {
