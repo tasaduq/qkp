@@ -14,10 +14,10 @@ use App\Models\Orders;
 class HomeController extends Controller
 {
 
-    public function emailtest(Request $request, $status = 2){
+    public function emailtest(Request $request, $orderid = 25, $status = 2){
         
         $user = Auth::user();
-        $order = Orders::find(95);
+        $order = Orders::find($orderid);
         echo $email = EMAILER::send("ORDER", $status, $order, $user, true);
 
         // dd($email);
