@@ -16,6 +16,7 @@ use App\Http\Controllers\CustomLoginController;
 Route::middleware("calculations")->group(function () {
 
     Route::get('/', "HomeController@index")->name('home');
+    Route::get('/emailtest/{status}', "HomeController@emailtest");
     Route::get('/product/{id}', "HomeController@product_detail");
     Route::get('/products', "HomeController@products");
     Route::get('/products-filter', "HomeController@products_filter");

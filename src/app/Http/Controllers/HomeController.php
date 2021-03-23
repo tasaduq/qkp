@@ -10,10 +10,22 @@ use App\Http\Controllers\EMAILER;
 use App\Http\Controllers\INVOICER;
 use Auth;
 
+use App\Models\Orders;
 class HomeController extends Controller
 {
-    public function index(Request $request){
 
+    public function emailtest(Request $request, $status = 2){
+        
+        $user = Auth::user();
+        $order = Orders::find(95);
+        echo $email = EMAILER::send("ORDER", $status, $order, $user, true);
+
+        // dd($email);
+        exit(0);
+        /////////////////////////////////////////////////////
+
+    }
+    public function index(Request $request){
 
         $featured_products = Products::where([
             "featured" => 1,
