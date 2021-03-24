@@ -298,7 +298,7 @@ class CartController extends Controller
             // "after_tax_amount" => $installment->after_tax_amount,
             // "due_date" => $installment->due_date
         );
-            
+        $data = Orders::find($insertedOrderId);
         EMAILER::send("ORDER", $order_status, $data, $user, true);
 
         
