@@ -41,8 +41,8 @@
                             <div class="row schedule">
                             <div class="col-sm-4">
                                 <div class="animal-picture text-center">
-                                  
-                                    <img class="img-fluid" src="{{$orderedProduct->product->images()[0]->thumb}}">
+                                  <?php $images = $orderedProduct->product->images(); ?>
+                                    <img class="img-fluid" src="{{ empty($images) ? '' : $images[0]->thumb }}">
                                 </div>
                             </div>
                             <div class="col-sm-8">
