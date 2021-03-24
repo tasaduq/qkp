@@ -36,6 +36,11 @@
                         @endif
                       </div>
                       @foreach ($order->products as $orderedProduct)
+
+                        @if ($orderedProduct->product == null)
+                            @continue
+                        @endif
+                        
                         <div class="accordion" id="installment-schedule">
                           <a data-toggle="collapse" href="#tablecollapse{{$orderedProduct->id}}" role="button" aria-controls="collapse1">
                             <div class="row schedule">
