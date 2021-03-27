@@ -8,16 +8,16 @@
 
 @foreach ($order->products as $orderedProduct)
     <tr>
-    <td width="15%"><img class="img-fluid" src="{{Request::root().$orderedProduct->product->images()[0]->thumb}}"></td>
-    <td>
-      <table width=""100%" border="0" cellspacing="4">
+    <td valign="top" width="10%"><img width="150" src="{{Request::root().$orderedProduct->product->images()[0]->thumb}}"></td>
+    <td valign="top" width="90%">
+      <table width="100%" border="0" cellspacing="4">
         <tr>
           <td><Strong>Product Name:</Strong></td>
           <td>{{$orderedProduct->product->name}}</td>
         </tr>
         <tr>
           <td><Strong>Amount:</Strong></td>
-          <td align="right">{{number_format($orderedProduct->product_then_price)}}/-</td>
+          <td>{{number_format($orderedProduct->product_then_price)}}/-</td>
         </tr>
       </table>
     </td>
