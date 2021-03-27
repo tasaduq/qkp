@@ -28,9 +28,10 @@ class CartController extends Controller
             "active" => 1
         ])->whereIn("product_id", $products_in_cart)->get();
         
-        $shipping_fee = 5000;
-        
-        return view('cart')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);
+        //$shipping_fee = 5000;
+        $shipping_city = 1;
+        //TODO: Add default city to settings
+        return view('cart')->with("products",$products)->with("cart", $cart)->with("shipping_city",$shipping_city);
     }
     public function checkout(){
 
@@ -41,15 +42,20 @@ class CartController extends Controller
 
 
         $cart = $this->get_cart();
+        if( empty($cart) ){
+            
+        }
         $products_in_cart = array_keys($cart);
 
         $products = Products::where([
             "active" => 1
         ])->whereIn("product_id", $products_in_cart)->get();
         
-        $shipping_fee = 5000;
-        
-        return view('checkout')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee)->with("user",$user);
+        //$shipping_fee = 5000;
+        $shipping_city = 1;
+        //TODO: Add default city to settings
+        // dd($shipping_city);
+        return view('checkout')->with("products",$products)->with("cart", $cart)->with("user",$user)->with("shipping_city",$shipping_city);//->with("shipping_fee",$shipping_fee);
     }
     public function add_to_cart(Request $request){
         
@@ -104,12 +110,19 @@ class CartController extends Controller
             "active" => 1
         ])->whereIn("product_id", $products_in_cart)->get();
 
-        $shipping_fee = 5000;
-        if( $request->get("shipping") == "2" ){
-            $shipping_fee = 7000;
-        }
+        $shipping_city = $request->get("shipping");
 
-        return view('sections.cart-right-section')->with("products",$products)->with("cart", $cart)->with("shipping_fee",$shipping_fee);//->with("user",$user);
+        // $shipping_fee = 5000;
+        // if( $request->get("shipping") == "2" ){ // get city
+        //     $shipping_fee = 7000;
+        // }
+
+        // goto shipping cost table
+        // fetch all against city id
+        // 
+        
+
+        return view('sections.cart-right-section')->with("products",$products)->with("cart", $cart)->with("shipping_city",$shipping_city);//->with("user",$user);
     }
     public function remove_from_cart(Request $request){
         

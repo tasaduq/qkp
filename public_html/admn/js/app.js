@@ -308,6 +308,41 @@ $(document).ready(function(){
         
     })
 
+    var update_shipping_form = $("#update-shipping-form").validate({
+        rules: {
+            cost :  {
+                required: true,
+            },
+        }
+    });
+
+    $("#update-shipping-btn").on("click",function(){
+        if(!update_shipping_form.form()){
+            return false;
+        }
+        
+        var payload = $("#update-shipping-form").serialize()
+        console.log(payload);
+        $.ajax({
+            url:"/update-shipping",
+            data: payload,
+            type: "POST",
+            success: function(result){
+                login.loader.show();
+                if(result.result == "true"){
+                    $("#settings-error").hide();
+                    // window.location = "/admin/shipping";
+                }
+                else {
+                    login.loader.hide();
+                    $("#settings-error").show();
+                    $("#settings-error").html(result.error);
+                }
+                
+            }
+        })
+        
+    })
 
     
     

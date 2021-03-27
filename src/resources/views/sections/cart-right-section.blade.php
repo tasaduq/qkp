@@ -21,10 +21,10 @@ $cartpage =  \Request::is("cart") ? true : false;
           $installment = $cart[$product->product_id]["installment"];
           $total += $product->advance($installment);
           if($checkoutpage)
-            $total += $shipping_fee;
+            $total += $product->calculated_city_shipping($shipping_city); 
+            $shipping_fee = $product->calculated_city_shipping($shipping_city);
 
-
-          $product_advance = $product->advance_formatted($installment);
+          $product_advance = $product->advance_formatted($shipping_city);
           
         ?>
            <div class="pb-2 text-left">Advance({{ $installment == 1 ? \SETTINGS::get("regular_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
