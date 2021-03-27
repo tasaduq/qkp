@@ -331,7 +331,7 @@ $(document).ready(function(){
                 login.loader.show();
                 if(result.result == "true"){
                     $("#settings-error").hide();
-                    // window.location = "/admin/shipping";
+                    window.location = "/admin/shipping";
                 }
                 else {
                     login.loader.hide();
