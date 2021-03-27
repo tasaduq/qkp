@@ -8,12 +8,12 @@
 
 @foreach ($order->products as $orderedProduct)
     <tr>
-    <td valign="top" width="10%"><img width="150" src="{{Request::root().$orderedProduct->product->images()[0]->thumb}}"></td>
+    <td valign="top" width="10%"><img width="100" src="{{Request::root().$orderedProduct->product->images()[0]->thumb}}"></td>
     <td valign="top" width="90%">
       <table width="100%" border="0" cellspacing="4">
         <tr>
-          <td><Strong>Product Name:</Strong></td>
-          <td>{{$orderedProduct->product->name}}</td>
+          <td width="25%"><Strong>Product Name:</Strong></td>
+          <td width="75%">{{$orderedProduct->product->name}}</td>
         </tr>
         <tr>
           <td><Strong>Amount:</Strong></td>
@@ -55,3 +55,4 @@
       </tr>
     </tbody>
   </table>
+  <br />
