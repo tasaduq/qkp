@@ -1,16 +1,29 @@
-<table bordercolor="#ccc" width="100%" border="1" cellspacing="0" cellpadding="4">
+<table bordercolor="#ccc" width="100%" border="0" cellspacing="0" cellpadding="4">
     <tbody>
-      <tr>
+      {{-- <tr>
         <td height="25" bgcolor="#679f1a" style="color: #fff; font-weight: bold;" width="75%">Image</td>
         <td height="25" bgcolor="#679f1a" style="color: #fff; font-weight: bold;" width="75%">Title</td>
         <td height="25" bgcolor="#679f1a" style="color: #fff; font-weight: bold;" align="center" width="25%">Amount</td>
-      </tr>
+      </tr> --}}
 
 @foreach ($order->products as $orderedProduct)
     <tr>
-    <td><img class="img-fluid" src="{{Request::root().$orderedProduct->product->images()[0]->thumb}}"></td>
-    <td>{{$orderedProduct->product->name}}</td>
-    <td align="right">{{number_format($orderedProduct->product_then_price)}}/-</td>
+    <td width="15%"><img class="img-fluid" src="{{Request::root().$orderedProduct->product->images()[0]->thumb}}"></td>
+    <td>
+      <table width=""100%" border="0" cellspacing="4">
+        <tr>
+          <td><Strong>Product Name:</Strong></td>
+          <td>{{$orderedProduct->product->name}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Amount:</Strong></td>
+          <td align="right">{{number_format($orderedProduct->product_then_price)}}/-</td>
+        </tr>
+      </table>
+    </td>
+    </tr>
+    <tr>
+      <td height="15" colspan="2"></td>
     </tr>
 @endforeach
 </tbody>
@@ -27,6 +40,14 @@
       <tr>
         <td>Advance Payment</td>
         <td align="right">{{number_format($order->upfront)}}/-</td>
+      </tr>
+      <tr>
+        <td>Delivery Charges</td>
+        <td align="right"></td>
+      </tr>
+      <tr>
+        <td>Sales Tax</td>
+        <td align="right"></td>
       </tr>
       <tr>
         <td><strong>Total Upfront Payment</strong></td>

@@ -182,8 +182,11 @@ class CustomLoginController extends Controller
 
             //Auth::loginUsingId($newUser->id);
             if($newUser) {
-                Auth::login($newUser);
-                return redirect('/profile');
+                if(Auth::attempt(['email' => $userSocial->getEmail(), 'password' => $for_hash])) {
+                    return redirect('/profile');
+                }
+                //Auth::login($newUser);
+                return redirect('/');
             }
             return redirect('/');
         }
