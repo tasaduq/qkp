@@ -50,7 +50,7 @@ class EMAILER
         
         $parsedEmail = SELF::parse($emailTemplate, $data);
         $parsedEmail = SELF::productsTable($parsedEmail, $data);
-        return $parsedEmail = SELF::addEmailHeaderFooter($parsedEmail, $emailTemplate);
+        $parsedEmail = SELF::addEmailHeaderFooter($parsedEmail, $emailTemplate);
 
         $sender['toEmail'] = $user->email;
         $sender['toSubject'] = $emailTemplate->subject;
@@ -70,7 +70,8 @@ class EMAILER
             $emailTemplate = DB::table($table)->where('type',$type)->where('status',$status)->where('admin','1')->first();
             
             $parsedEmail = SELF::parse($emailTemplate, $data);
-            $sender['toEmail'] = "support@qurbanikistonpay.com";//env('ADMIN_EMAIL');
+            // $sender['toEmail'] = "support@qurbanikistonpay.com";//env('ADMIN_EMAIL');
+            $sender['toEmail'] = "s.adil143@gmail.com";//env('ADMIN_EMAIL');
             $sender['toSubject'] = $emailTemplate->subject;
 
             Mail::send([], [], function ($message) use ($sender, $parsedEmail) {

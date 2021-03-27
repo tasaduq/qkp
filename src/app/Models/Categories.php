@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Categories extends Model
 {
@@ -18,6 +19,9 @@ class Categories extends Model
             // "sold" => 0,
         ])->count();
         
+    }
+    public function shipping($cityId){
+        return $shipping = DB::table('shipping_cost')->where('city_id', $cityId)->where('category_id', $this->category_id)->first();   
     }
 
 }

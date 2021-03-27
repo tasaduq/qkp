@@ -72,7 +72,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">City</label>
-                        <input disabled type="text" id="input-username" class="form-control" value="{{ $order_details->city }}">
+                        <input disabled type="text" id="input-username" class="form-control" value="{{ $city->name }}">
                       </div>
                     </div>
                     <div class="col-lg-6">

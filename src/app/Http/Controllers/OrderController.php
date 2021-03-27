@@ -457,6 +457,8 @@ class OrderController extends Controller
         $order_details = Orders::select('orders.id', 'orders.status', 'orders.order_number', 'orders.receipt','orders.invoice', 'orders.upfront', 'orders.payment_method', 'orders.created_at', 'users.name', 'users.phone', 'users.city', 'users.email', 'users.address', 'order_status.name AS status_name')->leftJoin('users', 'orders.user_id', '=', 'users.id')->leftJoin('order_status', 'orders.status', '=', 'order_status.id')->where([['orders.id', '=', $id]])->first();
         //print_r($order_details->toArray());die;
 
+        $city = DB::table('shipping_cities')->where('id',$order_details->city)->first();
+
         $order_products = OrderProducts::select('order_products.id', 'order_products.no_of_installments', 'order_products.shipping', 'order_products.product_upfront', 'order_products.product_then_price', 'order_products.status', 'products.product_id', 'products.name', 'order_products_status.name AS order_products_status_name')->leftJoin('products', 'products.product_id', '=', 'order_products.product_id')->leftJoin('order_products_status', 'order_products_status.id', '=', 'order_products.status')->where([['order_products.order_id', '=', $id]])->get();
 
         if($order_products) {
@@ -475,7 +477,7 @@ class OrderController extends Controller
 
         //print_r($order_products);die;
 
-        return view('admin/order_details', compact('order_details', 'order_products', 'OrderStatus'));
+        return view('admin/order_details', compact('order_details', 'order_products', 'OrderStatus', 'city'));
     }
 
     public function get_installments(Request $request)

@@ -15,7 +15,10 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 checkout-right-section">
                <h2>Checkout</h2>
-               {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p> --}}
+               <p><strong>{{count($cart) < 10 ? "0".count($cart) : count($cart)  }} </strong>Animal in Your List</p>
+               @if(count($cart) == 0)
+                  There is nothing in your cart, please browse our products and add something to cart to proceed.
+               @else
                   
                <div class="row payment-method-section mt-4">
                   <div class="col-sm-6">
@@ -155,10 +158,12 @@
 
             </div>
 
+           
             <div class="col-sm-12 col-md-12 col-lg-3 cart-left-section cart-update-hook" style="margin-top: -35px;">
                @include("sections.cart-right-section")
             </div>
         
+            @endif
            
             
         </div>

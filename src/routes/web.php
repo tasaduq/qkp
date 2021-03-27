@@ -16,7 +16,7 @@ use App\Http\Controllers\CustomLoginController;
 Route::middleware("calculations")->group(function () {
 
     Route::get('/', "HomeController@index")->name('home');
-    
+
     Route::get('/emailtest/{order}/{status}', "HomeController@emailtest");
 
     Route::get('/product/{id}', "HomeController@product_detail");
@@ -204,10 +204,14 @@ Route::middleware(['admin'])->group(function(){
 });
 
 Route::middleware(['superadmin'])->group(function(){
-    Route::get('/admin/users', "UsersController@get_users")->name('users');
-    Route::post('/update-role', "UsersController@update_role");
     Route::get('/admin/settings', 'SettingsController@view')->name('settings');
     Route::post('/update-settings', 'SettingsController@update');
+    
+    Route::get('/admin/shipping', 'ShippingController@view')->name('Shipping');
+    Route::post('/update-shipping', 'ShippingController@update');
+    
+    Route::get('/admin/users', "UsersController@get_users")->name('users');
+    Route::post('/update-role', "UsersController@update_role");
 });
 
 

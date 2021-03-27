@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\CartController;
 use SETTINGS;
 use Session;
+use DB;
 
 class Products extends Model
 {
@@ -64,12 +65,36 @@ class Products extends Model
     }
     public function calculated_city_shipping($cityId)
     {
-        $shipping = 5000;
-        if( $cityId == "2" ){
-            $shipping = 7000;
+        // dd(debug_backtrace());
+
+        // goto shipping cost table
+        // fetch against city id $cityId + product cat id $this->category
+    //    dump("cityId".$cityId);
+    //    dump("cat".$this->category);
+        $shipping = DB::table('shipping_cost')->where('city_id', $cityId)->where('category_id', $this->category)->first();
+        // dd($shipping);
+        if($shipping !== null){
+            $shipping = $shipping->cost;    
         }
+        else{
+            //TODO: Add default shipping to settings
+            
+            $shipping = 5000;
+        }
+        
+        
+        // $shipping = 5000;
+        // if( $cityId == "2" ){
+        //     $shipping = 7000;
+        // }
+
         return $shipping;
     }
+    public function calculated_city_shipping_formatted(int $cityId = 2)
+    {
+        return number_format( $this->calculated_city_shipping($cityId) );
+    }
+    
     public function check_in_cart(){
         $cart = new CartController();
         return $cart->check_in_cart($this->product_id);
