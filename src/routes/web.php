@@ -223,8 +223,8 @@ Route::get("/dumpdata", "DebugController@dumpdata");
 Route::post("add-contact", "ContactusController@add_contact");
 
 /* Facebook Routes  */
-Route::get('login/{provider}', [CustomLoginController::class, 'redirectToProvider']);
-Route::get('login/{provider}/callback', [CustomLoginController::class, 'handleProviderCallback']);
+Route::get('slogin/{provider}', [CustomLoginController::class, 'redirectToProvider']);
+Route::get('slogin/{provider}/callback', [CustomLoginController::class, 'handleProviderCallback']);
 
 // Route::get("/productssearch", "ProductsController@productssearch");
 // Route::get('search', ['as' => 'search', 'uses' => 'ProductsController@productssearch']);
