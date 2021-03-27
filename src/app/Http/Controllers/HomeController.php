@@ -83,10 +83,10 @@ class HomeController extends Controller
         }
         
         $products = $products->orderBy('sold_out')->orderBy('created_at');
-        $stock = $products->where('sold_out',0)->count();
+       
         $products = $products->paginate(9);
         $products->withPath('/products');
-        
+        $stock = $products->where('sold_out',0)->count();
         // dd($products);
 
         $categories = Categories::where([
@@ -146,10 +146,10 @@ class HomeController extends Controller
         }
         
         $products = $products->orderBy('sold_out')->orderBy('created_at');
-        $stock = $products->where('sold_out',0)->count();
         $products = $products->paginate(9);
-        $products->withPath('/products');
-        
+        $products->withPath('/products');   
+
+        $stock = $products->where('sold_out',0)->count();
         // dd($products);
 
         $categories = Categories::where([
