@@ -5,9 +5,18 @@
         <td height="25" bgcolor="#679f1a" style="color: #fff; font-weight: bold;" width="75%">Title</td>
         <td height="25" bgcolor="#679f1a" style="color: #fff; font-weight: bold;" align="center" width="25%">Amount</td>
       </tr> --}}
-
+<?php
+  $upfront = 0;
+  $shipping_fee_total = 0;
+?>
 @foreach ($order->products as $orderedProduct)
     <tr>
+
+      <?php
+       $upfront += $orderedProduct->product_upfront; 
+       $shipping_fee_total += $orderedProduct->shipping; 
+      ?>
+
     <td valign="top" width="10%"><img width="100" src="{{Request::root().$orderedProduct->product->images()[0]->thumb}}"></td>
     <td valign="top" width="90%">
       <table width="100%" border="0" cellspacing="4">
@@ -39,11 +48,11 @@
       </tr>
       <tr>
         <td>Advance Payment</td>
-        <td align="right">{{number_format($order->upfront)}}/-</td>
+        <td align="right">{{number_format($upfront)}}/-</td>
       </tr>
       <tr>
         <td>Delivery Charges</td>
-        <td align="right"></td>
+        <td align="right">{{number_format($shipping_fee_total)}}</td>
       </tr>
       <tr>
         <td>Sales Tax</td>
@@ -51,7 +60,7 @@
       </tr>
       <tr>
         <td><strong>Total Upfront Payment</strong></td>
-        <td align="right"><strong>{{number_format($order->upfront)}}/-</strong></td>
+        <td align="right"><strong>{{number_format($upfront+$shipping_fee_total)}}/-</strong></td>
       </tr>
     </tbody>
   </table>
