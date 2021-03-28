@@ -71,7 +71,7 @@ class EMAILER
             
             $parsedEmail = SELF::parse($emailTemplate, $data);
             // $sender['toEmail'] = "support@qurbanikistonpay.com";//env('ADMIN_EMAIL');
-            $sender['toEmail'] = "s.adil143@gmail.com";//env('ADMIN_EMAIL');
+            $sender['toEmail'] = "support@qurbanikistonpay.com";//env('ADMIN_EMAIL');
             $sender['toSubject'] = $emailTemplate->subject;
 
             Mail::send([], [], function ($message) use ($sender, $parsedEmail) {
