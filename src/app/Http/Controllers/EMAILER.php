@@ -116,10 +116,14 @@ class EMAILER
                 <td width="5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4" align="right"><strong>Order #{{order_id}}</strong></td>
+                    <td></td>
+                    <td colspan="2" align="right"><strong>Order #{{order_id}}</strong></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td colspan="4" align="right"><strong>Date:{{date}}</strong></td>
+                    <td></td>
+                    <td colspan="2" align="right"><strong>Date:{{date}}</strong></td>
+                    <td></td>
                 </tr>
                 <tr>
                 <td>&nbsp;</td>
