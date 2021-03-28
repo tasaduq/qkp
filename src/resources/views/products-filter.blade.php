@@ -2,7 +2,7 @@
                     
     <h2>{{$category->category_name}}</h2>
     
-    <p><strong>{{$stock}} </strong>Animals Stocks are available</p>
+    {{-- <p><strong>{{$stock}} </strong>Animals Stocks are available</p> --}}
     <div class="row justify-content-left">
 
         @forelse ($products as $product)
