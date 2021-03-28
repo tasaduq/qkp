@@ -111,9 +111,15 @@ class EMAILER
             <tbody style="background: #F4EFF5;">
                 <tr style="background:#250036;">
                 <td width="5%" height="97" bgcolor="#250036">&nbsp;</td>
-                <td width="50%"><img src="https://qurbanikistonpay.com/images/logo.svg" width="70" height="70" alt=""></td>
+                <td width="50%"><img src="https://qurbanikistonpay.com/images/logo.png" width="70" height="70" alt=""></td>
                 <td align="right" width="40%" style="color:#f0d36d; font-weight:bold; font-size:20px; font-family: arial;">'.$emailTemplate->subject.'</td>
                 <td width="5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right"><strong>Order #{{order_id}}</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right"><strong>Date:{{date}}</strong></td>
                 </tr>
                 <tr>
                 <td>&nbsp;</td>
