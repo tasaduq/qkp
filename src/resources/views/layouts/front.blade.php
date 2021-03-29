@@ -370,8 +370,8 @@
       
       <script>
          
-         @if(!Auth::user())
-            user.setLoggedIn(false);
+         @if(Auth::user())
+            user.setLoggedIn(true);
          @endif
 
          /*
