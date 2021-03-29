@@ -372,6 +372,8 @@
          
          @if(Auth::user())
             user.setLoggedIn(true);
+         @else
+            user.setLoggedIn(false);
          @endif
 
          /*
