@@ -160,13 +160,13 @@ $(document).ready(function(){
         if(!customer_register_form.form()){
             return false;
         }
-
+        login.loader.show();
         $.ajax({
             url:"/ajax-register",
             data: $("#register-form").serialize(),
             type: "POST",
             success: function(result){
-                login.loader.show();
+                login.loader.hide();
                 if(result.result == "true"){
                     $("#login-error").hide();
 
