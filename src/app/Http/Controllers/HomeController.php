@@ -66,11 +66,12 @@ class HomeController extends Controller
 
         
         $products = Products::where($where);
+        $stock = Products::where($where);
 
         if( $request->has("w") && $request->get("w") != "0" ){
             $weights = explode('-',$request->get("w"));
             $products = $products->whereBetween('weight', $weights);
-
+            $stock = $stock->whereBetween('weight', $weights);
         }
         
         if( $request->has("p") ){
@@ -79,23 +80,21 @@ class HomeController extends Controller
             $weights[1] = $weights[1]*1000;
             // dump($weights);
             $products = $products->whereBetween('price', $weights);
-
+            $stock = $stock->whereBetween('price', $weights);
         }
         
         $products = $products->orderBy('sold_out')->orderBy('created_at');
-       
-        $productsx = $products->paginate(9);
-        $productsx->withPath('/products');   
+        $products = $products->paginate(9);        
+        $products->withPath('/products');   
 
-        $stock = $products->where('sold_out',0)->count();
-        // dd($products);
+        $stock = $stock->where('sold_out',0)->count();
 
         $categories = Categories::where([
             "is_active" => 1,
         ])->get();
         
 
-        return view('products-filter')->with("products", $productsx)
+        return view('products-filter')->with("products", $products)
                                 ->with("category", $category)
                                 ->with('productcolor',$productsc)
                                 ->with('categories',$categories)
@@ -103,7 +102,7 @@ class HomeController extends Controller
     }
     public function products(Request $request){
 
-        
+        // $this->product_filter_login->($request, 'products')
 
         $productsc = Products::select('color')->where("color", "<>", "Null")->distinct()->get();
         
@@ -128,12 +127,14 @@ class HomeController extends Controller
 
         
         $products = Products::where($where);
+        $stock = Products::where($where);
         // $paginate = config("site.fron_pagination");
         // ->latest();
 
         if( $request->has("w") && $request->get("w") != "0" ){
             $weights = explode('-',$request->get("w"));
             $products = $products->whereBetween('weight', $weights);
+            $stock = $stock->whereBetween('weight', $weights);
 
         }
         
@@ -143,22 +144,23 @@ class HomeController extends Controller
             $weights[1] = $weights[1]*1000;
             // dump($weights);
             $products = $products->whereBetween('price', $weights);
+            $stock = $stock->whereBetween('price', $weights);
 
         }
         
         $products = $products->orderBy('sold_out')->orderBy('created_at');
-        $productsx = $products->paginate(9);
-        $productsx->withPath('/products');   
-
-        $stock = $products->where('sold_out',0)->count();
-        // dd($products);
+        $products = $products->paginate(9);        
+        $products->withPath('/products');   
+        
+        $stock = $stock->where('sold_out',0)->count();
+        
 
         $categories = Categories::where([
             "is_active" => 1,
         ])->get();
         
 
-        return view('products')->with("products", $productsx)
+        return view('products')->with("products", $products)
                                 ->with("category", $category)
                                 ->with('productcolor',$productsc)
                                 ->with('categories',$categories)
