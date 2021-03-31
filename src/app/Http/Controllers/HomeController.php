@@ -84,8 +84,9 @@ class HomeController extends Controller
         
         $products = $products->orderBy('sold_out')->orderBy('created_at');
        
-        $products = $products->paginate(9);
-        $products->withPath('/products');
+        $productsx = $products->paginate(9);
+        $productsx->withPath('/products');   
+
         $stock = $products->where('sold_out',0)->count();
         // dd($products);
 
@@ -94,7 +95,7 @@ class HomeController extends Controller
         ])->get();
         
 
-        return view('products-filter')->with("products", $products)
+        return view('products-filter')->with("products", $productsx)
                                 ->with("category", $category)
                                 ->with('productcolor',$productsc)
                                 ->with('categories',$categories)
@@ -146,8 +147,8 @@ class HomeController extends Controller
         }
         
         $products = $products->orderBy('sold_out')->orderBy('created_at');
-        $products = $products->paginate(9);
-        $products->withPath('/products');   
+        $productsx = $products->paginate(9);
+        $productsx->withPath('/products');   
 
         $stock = $products->where('sold_out',0)->count();
         // dd($products);
@@ -157,7 +158,7 @@ class HomeController extends Controller
         ])->get();
         
 
-        return view('products')->with("products", $products)
+        return view('products')->with("products", $productsx)
                                 ->with("category", $category)
                                 ->with('productcolor',$productsc)
                                 ->with('categories',$categories)
