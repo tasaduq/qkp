@@ -140,7 +140,8 @@ class CustomLoginController extends Controller
 
     public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->redirect();
+        $redirectUrl = $_SERVER['HTTP_REFERER'];
+        return Socialite::driver($provider)->redirectUrl($redirectUrl)->redirect();
     }
 
     /**
@@ -183,6 +184,8 @@ class CustomLoginController extends Controller
             //Auth::loginUsingId($newUser->id);
             if($newUser) {
                 if(Auth::attempt(['email' => $userSocial->getEmail(), 'password' => $for_hash])) {
+                    return $userSocial->getTargetUrl();
+                    
                     return redirect('/profile');
                 }
                 //Auth::login($newUser);
