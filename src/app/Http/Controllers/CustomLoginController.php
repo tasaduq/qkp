@@ -162,7 +162,9 @@ class CustomLoginController extends Controller
         if($user) {
             //print_r($user->id);die;
             Auth::login($user);
-            return redirect('/profile');
+            $redirectUrl = Session::get('slogin_page');
+            return redirect($redirectUrl);
+            // return redirect('/profile');
         } else {
             $for_hash = $userSocial->getName()."+".$userSocial->getEmail();
             $verification_hash = Hash::make($for_hash);
