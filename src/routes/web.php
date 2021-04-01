@@ -97,9 +97,9 @@ Route::get('/faqs', function () {
 //     return view('payment');
 // });
 
-Route::middleware(['auth'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {

@@ -118,7 +118,7 @@
                @endif
 
             
-               <form method="POST" action="{{ route('login') }}" id="login-form">
+               <form method="POST" action="#" id="login-form">
                 {{-- <form action="/examples/actions/confirmation.php" method="post"> --}}
                   @csrf 
                     <div class="form-group">
@@ -144,7 +144,7 @@
                   </form>
                     <div class="form-group row">
                     <div class="col-sm-6 login-action-links"> <a href="#register-modal" data-toggle="modal" data-dismiss="modal" >Not a member? Sign up</a></div>
-                    <div class="col-sm-6 login-action-links text-right"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
+                    {{-- <div class="col-sm-6 login-action-links text-right"><a href="{{ route('password.request') }}">Forgot Password?</a></div> --}}
 
                     </div>
                     <p class="mt-3 mb-4"><span class="or">Or login with</span></p>
@@ -176,7 +176,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
    
           <div class="modal-body">
-            <form method="POST" action="{{ route('register') }}" id="register-form">
+            <form method="POST" action="#" id="register-form">
                @csrf
    
              {{-- <form action="/examples/actions/confirmation.php" method="post"> --}}

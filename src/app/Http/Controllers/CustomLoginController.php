@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Fortify\Rules\Password;
+// use Laravel\Fortify\Rules\Password;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Response;
@@ -73,7 +73,7 @@ class CustomLoginController extends Controller
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', new Password, 'confirmed'],
+            'password' => ['required', 'string', 'confirmed'],
         ]);
         
         $verification_hash = Hash::make($request->get('name')."+".$request->get('email'));
