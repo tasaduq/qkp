@@ -8,9 +8,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 left-section">
-    
-                    <div id="filter-section-desktop" class="desktop">
-                        <h2><i class="fas fa-sliders-h"></i>Filter by</h2>
+                    {{-- <span class="btn btn-primary collapsed" data-toggle="collapse" data-target="#filter-section-desktop" aria-expanded="false">Filter</span> --}}
+                    <button style="background-color: #ffffffc9; width:100%; text-align:left; box-shadow:0 0 10px 0 #ccc;" class="btn py-2 hidden visible-xs collapsed" type="button" data-toggle="collapse" data-target="#filter-section-desktop" aria-expanded="false" aria-controls="collapseExample">
+                        <h2 class="mb-0"><i class="fas fa-sliders-h"></i>Filter by <i onclick="myFunction(this)" class="fa fa-caret-down float-right"></i></h2>
+                      </button>
+                    <div id="filter-section-desktop" class="dont-collapse-sm collapse in" id="collapseExample" aria-expanded="false" style="height: 0px;">
+                        <h2 class="hide-on-mobile"><i class="fas fa-sliders-h"></i>Filter by</h2>
                         <div class="categories">
                             <h6 class="pb-3 title">Categories</h6>
                             <ul>
@@ -146,6 +149,9 @@
                       $('.navbar-nav .nav-link').removeClass('active');
                    $(this).addClass('active');
                    });
+                   function myFunction(x) {
+                    x.classList.toggle("fa-caret-up");
+                    }
           </script>
 
 @endsection
