@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Response;
 use Validator;
 use Mail;
+use Session;
 
 use App\Mail\RegisterVerification;
 
@@ -140,6 +141,7 @@ class CustomLoginController extends Controller
 
     public function redirectToProvider($provider)
     {
+        Session::put('slogin_page', $_SERVER['HTTP_REFERER']);
         return Socialite::driver($provider)->redirect();
     }
 
@@ -183,7 +185,9 @@ class CustomLoginController extends Controller
             //Auth::loginUsingId($newUser->id);
             if($newUser) {
                 if(Auth::attempt(['email' => $userSocial->getEmail(), 'password' => $for_hash])) {
-                    return redirect('/profile');
+                    $redirectUrl = Session::get('slogin_page');
+                    return redirect($redirectUrl);
+                    // return redirect('/profile');
                 }
                 //Auth::login($newUser);
                 return redirect('/');
