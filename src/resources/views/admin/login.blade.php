@@ -145,7 +145,7 @@
               <div class="text-muted text-center"><h1 class="mb-0">Login</h1></div>
             </div>
             <div class="card-body px-lg-5 py-lg-5">
-              <form method="POST" action="{{ route('login') }}" id="login-form">
+              <form method="POST" action="#" id="login-form">
                 @csrf 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">
