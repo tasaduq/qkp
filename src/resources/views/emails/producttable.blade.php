@@ -48,19 +48,21 @@
       </tr>
       <tr>
         <td>Advance Payment</td>
-        <td align="right">{{number_format($upfront)}}/-</td>
+        <td align="right">{{number_format($upfront-$shipping_fee_total)}}/-</td>
       </tr>
       <tr>
         <td>Delivery Charges</td>
         <td align="right">{{number_format($shipping_fee_total)}}</td>
       </tr>
+      @if(\SETTINGS::get("enable_tax"))
       <tr>
         <td>Sales Tax</td>
-        <td align="right"></td>
+        <td align="right"> </td>
       </tr>
+      @endif
       <tr>
         <td><strong>Total Upfront Payment</strong></td>
-        <td align="right"><strong>{{number_format($upfront+$shipping_fee_total)}}/-</strong></td>
+        <td align="right"><strong>{{number_format($upfront)}}/-</strong></td>
       </tr>
     </tbody>
   </table>

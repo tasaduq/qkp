@@ -52,6 +52,11 @@ class EMAILER
         $parsedEmail = SELF::productsTable($parsedEmail, $data);
         $parsedEmail = SELF::addEmailHeaderFooter($parsedEmail, $emailTemplate);
 
+
+        if(debug_backtrace()[1]["function"] == "emailtest"){
+            return $parsedEmail;
+        }
+
         $sender['toEmail'] = $user->email;
         $sender['toSubject'] = $emailTemplate->subject;
         // return $parsed;

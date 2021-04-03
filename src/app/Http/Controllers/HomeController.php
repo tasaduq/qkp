@@ -16,8 +16,10 @@ class HomeController extends Controller
 
     public function emailtest(Request $request, $orderid = 25, $status = 2){
         
+        
         $user = Auth::user();
-        $order = Orders::find($orderid);
+        $order = Orders::where('order_number', $orderid)->first();
+        
         echo $email = EMAILER::send("ORDER", $status, $order, $user, true);
 
         // dd($email);

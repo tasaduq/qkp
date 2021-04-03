@@ -223,7 +223,7 @@ class CartController extends Controller
 
                 $product_upfront_payment = $calculatedShipping+$advance;
                 $product_then_price = $product->price;
-
+                
                 $record = array(
                     "order_id" => $insertedOrderId,
                     "product_id" => $item['product'],
@@ -249,8 +249,17 @@ class CartController extends Controller
 
                     $currentInstallmentPrice = $product->installment($installment);
                     $currentInstallmentPrice = round($currentInstallmentPrice);
-                    $currentInstallmentPriceWithTax = $currentInstallmentPrice+($currentInstallmentPrice*SETTINGS::calculate('tax_value'));
-                    $currentInstallmentPriceWithTax = round($currentInstallmentPriceWithTax);
+                    
+                    if(SETTINGS::get("enable_tax")){
+                        $currentInstallmentPriceWithTax = $currentInstallmentPrice+($currentInstallmentPrice*SETTINGS::calculate('tax_value'));
+                        $currentInstallmentPriceWithTax = round($currentInstallmentPriceWithTax);
+                    }
+                    else {
+                        $currentInstallmentPriceWithTax = $currentInstallmentPrice;
+                    }
+                    
+
+
                     $dueDate = date("Y-m-d H:i:s", strtotime( "+".$i." month", strtotime( date("Y-m-d H:i:s") ) ) );
                     // $dueDate = "DATE_ADD(CURRENT_DATE, INTERVAL ".$i." month )";
                     /* TODO: calculate due date in cases where due date is overlapping with eid date, adil said this wont happen
@@ -293,11 +302,16 @@ class CartController extends Controller
 
         // return is_null($entry) ? true : $entry;
         // 
-        $total_tax = ceil($total_upfront_payment*SETTINGS::calculate('tax_value'));
-        $total_upfront_payment += $total_tax;
-        $total_upfront_payment = (int) ceil($total_upfront_payment);
         
 
+        if(\SETTINGS::get("enable_tax")){
+            $total_tax = ceil($total_upfront_payment*SETTINGS::calculate('tax_value'));
+            $total_upfront_payment += $total_tax;
+            $total_upfront_payment = (int) ceil($total_upfront_payment);    
+        }
+
+        
+        
         $this->clear_cart();
         // dd($total_upfront_payment);
         Orders::find($insertedOrderId)->update(["upfront"=>$total_upfront_payment]);
