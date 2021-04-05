@@ -158,6 +158,16 @@ class CartController extends Controller
             "phone" => "required|numeric",
         ]);
 
+        
+        if(empty($this->get_cart())){
+            $result = array(
+                "code"=> 500, 
+                "result"=> "false", 
+                "error"=> "Your cart seems to be empty."
+            );
+            return Response::json($result);
+        }
+
         $input = $request->only("name", "city", "address", "phone");
         $paymentMethod = $request->get("payment-method");
 
