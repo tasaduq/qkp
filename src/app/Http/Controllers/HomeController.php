@@ -32,7 +32,7 @@ class HomeController extends Controller
         $featured_products = Products::where([
             "featured" => 1,
             "active" => 1
-        ])->take(10)->get();
+        ])->OrderBy("price")->take(10)->get();
 
         $productsc = Products::select('color')->where("color", "<>", "Null")->distinct()->get();
 
