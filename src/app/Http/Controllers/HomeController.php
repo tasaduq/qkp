@@ -85,7 +85,8 @@ class HomeController extends Controller
             $stock = $stock->whereBetween('price', $weights);
         }
         
-        $products = $products->orderBy('sold_out')->orderBy('created_at');
+        $products = $products->orderBy('sold_out')->OrderBy("price");
+        // ->orderBy('created_at');
         $products = $products->paginate(9);        
         $products->withPath('/products');   
 
@@ -150,7 +151,8 @@ class HomeController extends Controller
 
         }
         
-        $products = $products->orderBy('sold_out')->orderBy('created_at');
+        $products = $products->orderBy('sold_out')->OrderBy("price");
+        // ->orderBy('created_at');
         $products = $products->paginate(9);        
         $products->withPath('/products');   
         
