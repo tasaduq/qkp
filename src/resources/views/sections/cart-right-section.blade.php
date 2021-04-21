@@ -24,10 +24,10 @@ $cartpage =  \Request::is("cart") ? true : false;
             $total += $product->calculated_city_shipping($shipping_city); 
             $shipping_fee = $product->calculated_city_shipping($shipping_city);
 
-          $product_advance = $product->advance_formatted($installment);
+            $product_advance = $product->advance_formatted($installment);
           
         ?>
-           <div class="pb-2 text-left">Advance({{ $installment == "1" ? \SETTINGS::get("regular_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
+           <div class="pb-2 text-left">Advance({{ $installment == "1" ? \SETTINGS::get("final_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
 
             @if($cartpage)
             <div class="pb-0 text-left">Delivery Fee to be calculated on checkout</div>
