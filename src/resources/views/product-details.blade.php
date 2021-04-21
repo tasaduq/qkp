@@ -100,7 +100,8 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                                  <span>:</span>
                                  <div class="form-group">
                                     <select class="form-control" id="product-emi-price-dropdown">
-                                       @for ($i = Session::get("get_feasible_installments"); $i > 0; $i--)
+                                       <?php $get_feasible_installments = Session::get("get_feasible_installments"); ?>
+                                       @for ($i = $get_feasible_installments; $i > 0; $i--)
                                     <option value="{{$i}}" price="{{$product->installment_formatted($i)}}" installment="{{$i == 1 ? $product->final_advance() : $product->regular_advance()}}" >{{ $i<10?"0".$i:$i}} {{ $i==1?"Month":"Months"}}</option>    
                                        @endfor
                                        
@@ -119,7 +120,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                            </div>
                            <div class="advance col-sm-4 line-height-normal">
                               <p class="mb-1">Advance</p>
-                              <h4 class="amount"  id="selected-installment-amount">RS.{{$product->advance_formatted()}}/-</h4>
+                              <h4 class="amount"  id="selected-installment-amount">RS.{{$product->advance_formatted($get_feasible_installments)}}/-</h4>
                            </div>
                            <div class="EMI col-sm-4 line-height-normal">
                               <p class="mb-1">Instalment</p>

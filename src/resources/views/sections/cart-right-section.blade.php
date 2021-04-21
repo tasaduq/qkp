@@ -27,7 +27,7 @@ $cartpage =  \Request::is("cart") ? true : false;
           $product_advance = $product->advance_formatted($installment);
           
         ?>
-           <div class="pb-2 text-left">Advance({{ $installment == 1 ? \SETTINGS::get("regular_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
+           <div class="pb-2 text-left">Advance({{ $installment == "1" ? \SETTINGS::get("regular_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
 
             @if($cartpage)
             <div class="pb-0 text-left">Delivery Fee to be calculated on checkout</div>
