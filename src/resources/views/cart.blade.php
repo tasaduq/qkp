@@ -53,7 +53,7 @@
                               <div class="col-sm-6 label">Full Price : <strong>RS.{{number_format($product->price)}}/-</strong></div>
                               
                            <div class="col-sm-6 label">Installment Plan : <strong>{{$installment < 10 ? "0".$installment : $installment }} {{$installment == 1 ?  "Month":"Months" }}</strong></div>
-                              <div class="col-sm-6 label">Advance({{ $installment == 1 ? \SETTINGS::get("regular_advance")."%" : \SETTINGS::get("regular_advance")."%" }}) : <strong>{{number_format(ceil($product->advance($installment)))}}/-</strong></div>
+                              <div class="col-sm-6 label">Advance({{ $installment == "1" ? \SETTINGS::get("final_advance")."%" : \SETTINGS::get("regular_advance")."%" }}) : <strong>{{number_format(ceil($product->advance($installment)))}}/-</strong></div>
                               <div class="col-sm-6 label">Monthly Installment : <strong>{{number_format(ceil($product->installment($installment)))}}/-</strong></div>
                            </div>
                            <div class="delete_item">
