@@ -414,4 +414,8 @@ class CartController extends Controller
         }
         return false;
     }
+    public function dumpcart(){
+        $cart = $this->get_cart();
+        dd($cart);
+    }
 }

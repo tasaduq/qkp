@@ -220,6 +220,7 @@ Route::middleware(['superadmin'])->group(function(){
 
 
 Route::get("/dumpdata", "DebugController@dumpdata");
+Route::get("/dumpcart", "CartController@dumpcart");
 
 
 
