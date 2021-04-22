@@ -41,7 +41,8 @@ class Products extends Model
     
     public function lowest_installment()
     {
-        return number_format( ( $this->price - ceil($this->price*$this->regular_advance()) )/Session::get("get_feasible_installments"));
+        $get_feasible_installments = Session::get("get_feasible_installments");
+        return number_format( ( $this->price - $this->advance($get_feasible_installments) )/$get_feasible_installments);
     }
     public function price_formatted()
     {
