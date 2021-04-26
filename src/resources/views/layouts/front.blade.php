@@ -298,9 +298,9 @@
                      <li class="nav-item">
                         <a class="nav-link {{ \Request::is("contact-us") ? "active" : "" }}" href="/contact-us">Contact Us</a>
                      </li>
-                     <li class="nav-item">
+                     {{-- <li class="nav-item">
                         <a class="nav-link {{ \Request::is("our-farm") ? "active" : "" }}" href="/our-farm">Our Farm</a>
-                     </li>
+                     </li> --}}
                   </ul>
 
                   <?php

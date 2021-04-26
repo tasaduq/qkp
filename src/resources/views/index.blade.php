@@ -205,7 +205,7 @@
 
 <section class="section-slider">
    <div class="container text-center slick">
-      <h2>New arrivals at our farm</h2>
+      <h2>New arrivals</h2>
       <div class="animals-slider">
 
 
