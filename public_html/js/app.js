@@ -325,10 +325,12 @@ $(document).ready(function(){
 
     $(".add-to-cart-btn").on("click", function(){
         var redirect = $(this).attr("redirect");
+
         var installment = $("#product-emi-price-dropdown option:selected").val()
         if( $(".payment-schedule.active").attr("type") == "full" ){
             installment = 0;
         }
+
         cart.addProduct( $(this).attr("product"), installment, redirect, function(){
             // $(".add-to-cart-btn").remove();
             // show added to cart div
@@ -402,7 +404,7 @@ $(document).ready(function(){
         $(this).addClass("selected");
         $("#payment-method").val($(this).attr("payment-method"));
     });
-
+        
     $(".payment-schedule").on("click", function(e){
         e.preventDefault();
         $(".payment-schedule").removeClass("active");

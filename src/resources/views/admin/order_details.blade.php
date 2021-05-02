@@ -165,7 +165,8 @@
                       <h5 class="mb-0">{{ $row->name }} - <span class="status {{ strtolower(str_replace(' ', '-', $row->order_products_status_name)) }}">{{ $row->order_products_status_name }}</span></h5>
                     </div>
                 </div>
-                @if($row->installments)
+                
+                @if(count($row->installments) > 0)
                     <div class="col-xl-12">
                         <div class="table-responsive">
                           <!-- Projects table -->
@@ -205,6 +206,12 @@
                           </table>
                         </div>
                     </div>
+                @else
+                <div class="col-xl-12">
+                  <div class="table-responsive">
+                    <center><h5> Order placed with full payment.</h5></center>
+                    <hr>
+                  </div></div>
                 @endif
             </div>
             @endforeach

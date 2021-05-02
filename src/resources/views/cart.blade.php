@@ -40,7 +40,7 @@
 
 
                                  $installment = $cart[$product->product_id]["installment"];
-
+                                 
                               ?>
                               <img class="img-fluid" src="{{$imagethumb}}">
                            </div>
@@ -52,10 +52,17 @@
                               <div class="col-sm-6 label">Color : <strong>{{$product->color}}</strong></div>
                               <div class="col-sm-6 label">Full Price : <strong>RS.{{number_format($product->price)}}/-</strong></div>
                               
-                           <div class="col-sm-6 label">Installment Plan : <strong>{{$installment < 10 ? "0".$installment : $installment }} {{$installment == 1 ?  "Month":"Months" }}</strong></div>
-                              <div class="col-sm-6 label">Advance({{ $installment == "1" ? \SETTINGS::get("final_advance")."%" : \SETTINGS::get("regular_advance")."%" }}) : <strong>{{number_format(ceil($product->advance($installment)))}}/-</strong></div>
-                              <div class="col-sm-6 label">Monthly Installment : <strong>{{number_format(ceil($product->installment($installment)))}}/-</strong></div>
+                              @if($installment > 0)
+                                 <div class="col-sm-6 label">Installment Plan : <strong>{{$installment < 10 ? "0".$installment : $installment }} {{$installment == 1 ?  "Month":"Months" }}</strong></div>
+                                 <div class="col-sm-6 label">Advance({{ $installment == "1" ? \SETTINGS::get("final_advance")."%" : \SETTINGS::get("regular_advance")."%" }}) : <strong>{{number_format(ceil($product->advance($installment)))}}/-</strong></div>
+                                 <div class="col-sm-6 label">Monthly Installment : <strong>{{number_format(ceil($product->installment($installment)))}}/-</strong></div>
+                              @else
+                                 {{-- <div class="col-sm-6 label">Full Price : <strong></strong></div> --}}
+                              @endif
+
                            </div>
+                           
+
                            <div class="delete_item">
                            <button class="btn default-btn remove-from-cart-btn" productid="{{$product->product_id}}"><span class="fas fa-trash-alt"></span></button>
                            </div>

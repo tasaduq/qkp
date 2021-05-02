@@ -24,13 +24,12 @@ class CartController extends Controller
         $cart = $this->get_cart();
         $products_in_cart = array_keys($cart);
 
-        $products = Products::where([
-            "active" => 1
-        ])->whereIn("product_id", $products_in_cart)->get();
-        
+        $products = Products::isActive()->whereIn("product_id", $products_in_cart)->get();
+
         //$shipping_fee = 5000;
         $shipping_city = 1;
         //TODO: Add default city to settings
+        
         return view('cart')->with("products",$products)->with("cart", $cart)->with("shipping_city",$shipping_city);
     }
     public function checkout(){
@@ -228,8 +227,13 @@ class CartController extends Controller
                 $total_upfront_payment += $calculatedShipping;
                 // dump($total_upfront_payment);
                 // dd("calculatedShipping");
-                //create upfront insert with tax and shipping
-                $advance = $product->advance($installment);
+                
+                if( $installment > 0 ){
+                    //create upfront insert with tax and shipping
+                    $advance = $product->advance($installment);
+                } else {
+                    $advance = $product->price;
+                }
 
                 $product_upfront_payment = $calculatedShipping+$advance;
                 $product_then_price = $product->price;
@@ -242,70 +246,74 @@ class CartController extends Controller
                     "product_upfront" => $product_upfront_payment,
                     "shipping" => $calculatedShipping
                 );
-
+                // dd($record);
                 $orderedProductId = OrderProducts::insertGetId($record);
 
                 $res = $product->mark_sold();
 
-                // dump($res);
-                
-                $OrderInstallments = array();
-
-                // dump($advance);
                 $total_upfront_payment += $advance;
                 // dump($total_upfront_payment);
-                //TODO: I have made this 0 because the number of payments must not be totalling the product price right now
-                for($i = $installment; $i > 0 ; $i--) { 
-
-                    $currentInstallmentPrice = $product->installment($installment);
-                    $currentInstallmentPrice = round($currentInstallmentPrice);
+                if( $installment > 0 ){ // the product is being purchased on instalments (and not full price)
                     
-                    if(SETTINGS::get("enable_tax")){
-                        $currentInstallmentPriceWithTax = $currentInstallmentPrice+($currentInstallmentPrice*SETTINGS::calculate('tax_value'));
-                        $currentInstallmentPriceWithTax = round($currentInstallmentPriceWithTax);
-                    }
-                    else {
-                        $currentInstallmentPriceWithTax = $currentInstallmentPrice;
-                    }
-                    
+                    $OrderInstallments = array();
 
+                    //TODO: I have made this 0 because the number of payments must not be totalling the product price right now
+                    for($i = $installment; $i > 0 ; $i--) { 
 
-                    $dueDate = date("Y-m-d H:i:s", strtotime( "+".$i." month", strtotime( date("Y-m-d H:i:s") ) ) );
-                    // $dueDate = "DATE_ADD(CURRENT_DATE, INTERVAL ".$i." month )";
-                    /* TODO: calculate due date in cases where due date is overlapping with eid date, adil said this wont happen
-                    if($i == 1){
-                        $eidDate = Session::get('eid_date');
-                        $OneMonthLessThaneidDate = date("Y-m-d H:i:s", strtotime( "-1 month", strtotime( date($eidDate." 00:00:00") ) ) );
+                        $currentInstallmentPrice = $product->installment($installment);
+                        $currentInstallmentPrice = round($currentInstallmentPrice);
                         
-                        $OneMonthLessThaneidDate    = new DateTime($OneMonthLessThaneidDate);
-
-                        if ($dueDate > $OneMonthLessThaneidDate) {
-                            echo 'greater than';
-                        }else{
-                            echo 'Less than';
+                        if(SETTINGS::get("enable_tax")){
+                            $currentInstallmentPriceWithTax = $currentInstallmentPrice+($currentInstallmentPrice*SETTINGS::calculate('tax_value'));
+                            $currentInstallmentPriceWithTax = round($currentInstallmentPriceWithTax);
+                        }
+                        else {
+                            $currentInstallmentPriceWithTax = $currentInstallmentPrice;
                         }
                         
+
+
+                        $dueDate = date("Y-m-d H:i:s", strtotime( "+".$i." month", strtotime( date("Y-m-d H:i:s") ) ) );
+                        // $dueDate = "DATE_ADD(CURRENT_DATE, INTERVAL ".$i." month )";
+                        /* TODO: calculate due date in cases where due date is overlapping with eid date, adil said this wont happen
+                        if($i == 1){
+                            $eidDate = Session::get('eid_date');
+                            $OneMonthLessThaneidDate = date("Y-m-d H:i:s", strtotime( "-1 month", strtotime( date($eidDate." 00:00:00") ) ) );
+                            
+                            $OneMonthLessThaneidDate    = new DateTime($OneMonthLessThaneidDate);
+
+                            if ($dueDate > $OneMonthLessThaneidDate) {
+                                echo 'greater than';
+                            }else{
+                                echo 'Less than';
+                            }
+                            
+                        }
+                        */
+
+                        array_push($OrderInstallments, array(
+                            "instalment_number" => $i,
+                            "order_product_id" => $orderedProductId,
+                            "status" => 1,
+                            "amount" => $currentInstallmentPrice,
+                            "after_tax_amount" => $currentInstallmentPriceWithTax,
+                            "due_date" => $dueDate,
+                        ));
+
+                        // if($installment == $i){
+                            // dump($currentInstallmentPrice);
+                            // $total_upfront_payment +=  $currentInstallmentPrice;
+                            // dump($total_upfront_payment);
+                        // }
+
                     }
-                    */
-
-                    array_push($OrderInstallments, array(
-                        "instalment_number" => $i,
-                        "order_product_id" => $orderedProductId,
-                        "status" => 1,
-                        "amount" => $currentInstallmentPrice,
-                        "after_tax_amount" => $currentInstallmentPriceWithTax,
-                        "due_date" => $dueDate,
-                    ));
-
-                    // if($installment == $i){
-                        // dump($currentInstallmentPrice);
-                        // $total_upfront_payment +=  $currentInstallmentPrice;
-                        // dump($total_upfront_payment);
-                    // }
-
+                    OrderInstallments::insert($OrderInstallments);
+                }
+                else { // the product is being purchased on full price
+                    // dd($OrderInstallments);    
                 }
                 
-                OrderInstallments::insert($OrderInstallments);
+                
                
             }
         // });
@@ -320,7 +328,6 @@ class CartController extends Controller
             $total_upfront_payment = (int) ceil($total_upfront_payment);    
         }
 
-        
         
         $this->clear_cart();
         // dd($total_upfront_payment);

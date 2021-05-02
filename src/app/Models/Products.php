@@ -136,7 +136,15 @@ class Products extends Model
         ->where('product_id','!=',$this->product_id)
         ->take(10)->get();
     }
-    public function isActive(){
+    // public function isActive(){
+    //     return Self::where("active",1);
+    //     // $product = Products::where([
+    //     //     "product_id" => $id,
+    //     //     "active" => 1,
+    //     // ])->first();
+       
+    // }
+    public static function isActive(){
         return Self::where("active",1);
         // $product = Products::where([
         //     "product_id" => $id,

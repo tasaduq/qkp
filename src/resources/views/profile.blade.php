@@ -52,20 +52,26 @@
                             </div>
                             <div class="col-sm-8">
                                 <h2>{{$orderedProduct->product->name}}</h2>
-                                @if( $order->in_process() )
+                                @if( $order_in_process = $order->in_process() )
                                   @if( $orderedProduct->in_process() )
+                                  {{-- {{dd($orderedProduct)}} --}}
+                                    @if( $orderedProduct->no_of_installments > 0 )
                                     <i class="fas fa-chevron-down fa-pull-right"></i>
+                                    @endif
                                     <div class="row pro-prize">
                                         <div class="col-sm-6 text-right">
                                             <div class="prize">
-                                                <span>Paid Amount <strong>{{number_format($orderedProduct->paid_amount())}}/-</strong></span>
+                                              {{-- {{dd($orderedProduct)}} --}}
+                                                <span>{{ $orderedProduct->is_confirmed() ? "Paid Amount :" : "To be Paid :"}} <strong>{{number_format($orderedProduct->paid_amount())}}/-</strong></span>
                                             </div>
                                         </div>
+                                        @if( $orderedProduct->no_of_installments > 0 )
                                         <div class="col-sm-6 text-right">
                                           <div class="prize">
                                             <span>Remaining Amount <strong>{{number_format($orderedProduct->remaining_amount())}}/-</strong></span>
                                           </div>
                                       </div>
+                                      @endif
                                     </div>
                                     <div class="row inline-buttons text-right">
                                         <div class="col-sm-12">
@@ -98,7 +104,7 @@
                             </div>
                         </div><!--schdule row-->
                         </a>
-                        @if( $order->in_process() )
+                        @if( $orderedProduct->no_of_installments > 0 && $order->in_process() )
                             <div id="tablecollapse{{$orderedProduct->id}}" class="collapse mt-3">
                               <div class="table-responsive">
                                 <table  class="table text-left mb-0">

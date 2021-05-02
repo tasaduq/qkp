@@ -16,18 +16,32 @@ $cartpage =  \Request::is("cart") ? true : false;
        @foreach ($products as $product)
         <div class="total">
         <h6>{{$product->name}}</h6>
-        <?php
+           <?php
 
-          $installment = $cart[$product->product_id]["installment"];
-          $total += $product->advance($installment);
-          if($checkoutpage)
-            $total += $product->calculated_city_shipping($shipping_city); 
-            $shipping_fee = $product->calculated_city_shipping($shipping_city);
+               $installment = $cart[$product->product_id]["installment"];
+               if( $installment > 0)
+               {
+                  $total += $product->advance($installment);
+                  $product_advance = $product->advance_formatted($installment);
+               } else {
+                  $product_advance = number_format($product->price);
+                  $total += $product->price;
+               }
 
-            $product_advance = $product->advance_formatted($installment);
-          
+               if($checkoutpage){
+                  $total += $product->calculated_city_shipping($shipping_city); 
+               }
+
+               $shipping_fee = $product->calculated_city_shipping($shipping_city);
+
         ?>
-           <div class="pb-2 text-left">Advance({{ $installment == "1" ? \SETTINGS::get("final_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :<strong class="float-right">{{$product_advance}}/-</strong></div>
+            @if( $installment > 0)
+            <div class="pb-2 text-left">Advance({{ $installment == "1" ? \SETTINGS::get("final_advance")."%" : \SETTINGS::get("regular_advance")."%"}}) :
+            @else 
+            <div class="pb-2 text-left">Full Price:
+            @endif
+               <strong class="float-right"> {{$product_advance}}/-</strong>
+            </div>
 
             @if($cartpage)
             <div class="pb-0 text-left">Delivery Fee to be calculated on checkout</div>

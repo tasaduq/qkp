@@ -5,6 +5,7 @@
 <?php
 $category_name = \App\Models\Categories::where("category_id",$product->category)->first();
 $category_name = $category_name ? $category_name->category_name : "N/A";
+$get_feasible_installments = Session::get("get_feasible_installments");
 ?>
       <!-- Products details section -->
       <section class="products-details-section">
@@ -61,12 +62,15 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>
 
-                  {{-- <div class="order-type mt-5 mb-4">
-                     <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
-                     <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
-                  </div> --}}
+                  <div class="order-type mt-5 mb-4">
+                     @if($get_feasible_installments > 0)
+                        <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
+                        <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
+                     @endif
+                  </div>
 
                   @if (!$product->sold_out)
+                  @if($get_feasible_installments > 0)
                   <div class="row details instalment-payment-schedule">
                      <div class="col-lg-12">
                         <ul class="mb-0">
@@ -100,7 +104,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                                  <span>:</span>
                                  <div class="form-group">
                                     <select class="form-control" id="product-emi-price-dropdown">
-                                       <?php $get_feasible_installments = Session::get("get_feasible_installments"); ?>
+                                       
                                        @for ($i = $get_feasible_installments; $i > 0; $i--)
                                     <option value="{{$i}}" price="{{$product->installment_formatted($i)}}" installment="{{$i == 1 ? $product->final_advance() : $product->regular_advance()}}" >{{ $i<10?"0".$i:$i}} {{ $i==1?"Month":"Months"}}</option>    
                                        @endfor
@@ -129,8 +133,9 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                         </div>
                      </div>
                   </div>
-                  <div class="row details full-payment-schedule" style="display:none;">
-                     <div class="col-xs-12 col-md-10 col-lg-8">
+                  @endif
+                  <div class="row details full-payment-schedule" style="display:{{ $get_feasible_installments == "0" ? "block" : "none" }};">
+                     <div class="col-lg-12">
                         <ul>
                            <li>
                               <label class="control-label">
@@ -145,7 +150,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Current Weight</div>
-                                 <span>:</span>{{$product->weight}} KG
+                                 <span>:</span>{{$product->current_weight}} KG
                               </label>
                            </li>
                            <li>
@@ -162,11 +167,10 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                            </li>
                            <li>
                               <label class="control-label">
-                                 <div class="attribute">Plan</div>
+                                 <div class="attribute">Full Price</div>
                                  <span>:</span>
                                  <div class="form-group">
                                     <h4 class="amount"  id="product-price" price="{{$product->price}}" >RS.{{$product->price_formatted()}}/-</h4>
-
                                  </div>
                               </label>
                            </li>
@@ -192,15 +196,17 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
       </section>
       <!-- Products details end -->
 
+      <?php 
+      $products = $product->getRelated();
+       $products = $products ? $products : array();
+      //  dd($products)
+      ?>
 
+      @if(count($products) > 0)
       <!-- More Relevant Animals Slider -->
       <section class="section-slider" style="display:block;">
          <div class="container text-center slick">
          <h2>More Relevant Animals</h2>
-         <?php 
-         $products = $product->getRelated();
-          $products = $products ? $products : array();
-         ?>
          <div class="animal-product">
            
             @foreach ($products as $product)
@@ -256,7 +262,7 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
          </div>
       </section>
       <!-- Slider End -->
-
+      @endif
       @include('supplier')
       @include('footer')
 

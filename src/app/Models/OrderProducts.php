@@ -23,7 +23,14 @@ class OrderProducts extends Model
     }
     public function paid_amount()
     {
-        return $this->product_upfront + $this->installments->where('status', '2')->sum('amount');   
+        if( $this->no_of_installments > 0 ){
+            return $this->product_upfront + $this->installments->where('status', '2')->sum('amount');   
+        } else {
+            // return $this->product_then_price + $this->shipping;   
+            return $this->product_upfront;
+            
+        }
+        
     }
     public function remaining_amount()
     {
