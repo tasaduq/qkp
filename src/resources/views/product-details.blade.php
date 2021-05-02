@@ -61,10 +61,10 @@ $category_name = $category_name ? $category_name->category_name : "N/A";
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>
 
-                  <div class="order-type mt-5 mb-4">
+                  {{-- <div class="order-type mt-5 mb-4">
                      <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
                      <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
-                  </div>
+                  </div> --}}
 
                   @if (!$product->sold_out)
                   <div class="row details instalment-payment-schedule">
