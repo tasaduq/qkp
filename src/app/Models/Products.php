@@ -129,4 +129,20 @@ class Products extends Model
     // {
     //     return number_format( $this->advance() );
     // }
+
+    public function getRelated(){
+        // dd(Self::isActive()->where("category",$this->category));
+        return Self::isActive()->where("category",$this->category)
+        ->where('product_id','!=',$this->product_id)
+        ->take(10)->get();
+    }
+    public function isActive(){
+        return Self::where("active",1);
+        // $product = Products::where([
+        //     "product_id" => $id,
+        //     "active" => 1,
+        // ])->first();
+       
+    }
 }
+
