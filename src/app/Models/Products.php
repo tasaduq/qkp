@@ -42,7 +42,12 @@ class Products extends Model
     public function lowest_installment()
     {
         $get_feasible_installments = Session::get("get_feasible_installments");
-        return number_format( ( $this->price - $this->advance($get_feasible_installments) )/$get_feasible_installments);
+        if($get_feasible_installments > 0){
+            return number_format( ( $this->price - $this->advance($get_feasible_installments) )/$get_feasible_installments);
+        }
+        else {
+            return 0;
+        }
     }
     public function price_formatted()
     {
@@ -58,7 +63,12 @@ class Products extends Model
     }
     public function least_installment(){
         $currentIsntalment = Session::get("get_feasible_installments");
-        return ( $this->price - $this->advance( $currentIsntalment ) ) / $currentIsntalment;
+        if($currentIsntalment > 0){
+            return ( $this->price - $this->advance( $currentIsntalment ) ) / $currentIsntalment;
+        }
+        else {
+            return 0;
+        }
     }
     public function advance_formatted(int $installment = 2)
     {
@@ -129,7 +139,7 @@ class Products extends Model
     // {
     //     return number_format( $this->advance() );
     // }
-
+    
     public function getRelated(){
         // dd(Self::isActive()->where("category",$this->category));
         return Self::isActive()->where("category",$this->category)
@@ -153,4 +163,3 @@ class Products extends Model
        
     }
 }
-
