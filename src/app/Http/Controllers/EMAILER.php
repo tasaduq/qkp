@@ -49,7 +49,9 @@ class EMAILER
         
         
         $parsedEmail = SELF::parse($emailTemplate, $data);
-        $parsedEmail = SELF::productsTable($parsedEmail, $data);
+        if( preg_match('/{{products_table}}/', $parsedEmail) ){
+            $parsedEmail = SELF::productsTable($parsedEmail, $data);
+        }
         $parsedEmail = SELF::addEmailHeaderFooter($parsedEmail, $emailTemplate);
 
 
@@ -100,7 +102,6 @@ class EMAILER
     }
     public static function productsTable($parsedEmail, $data){
         
-        // dd($data);
         $products_table = SELF::generateProductsTable($data);
         
         return $parsedEmail = preg_replace('/{{products_table}}/', $products_table, $parsedEmail);
