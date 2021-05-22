@@ -375,7 +375,7 @@ class OrderController extends Controller
                     // "due_date" => $installment->due_date
                 );
                     
-                EMAILER::send("ORDER", $order->status, $data, $user, true);
+                EMAILER::send("ORDER", $order->status, $order, $user, true);
 
 
                 $response = array(
