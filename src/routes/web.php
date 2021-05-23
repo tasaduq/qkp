@@ -14,6 +14,12 @@ use App\Http\Controllers\CustomLoginController;
 */
 
 
+if( config('app.maintenance') ){
+    Route::get('/', function () {
+        return view('maintenance');
+    });
+}
+else {
 
 Route::middleware("calculations")->group(function () {
 
@@ -236,9 +242,4 @@ Route::get('slogin/{provider}/callback', [CustomLoginController::class, 'handleP
 // Route::get("/productssearch", "ProductsController@productssearch");
 // Route::get('search', ['as' => 'search', 'uses' => 'ProductsController@productssearch']);
 
-
-if( config('app.maintenance') ){
-    Route::get('/', function () {
-        return view('maintenance');
-    });
 }
