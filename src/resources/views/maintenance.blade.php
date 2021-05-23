@@ -16,6 +16,6 @@
 
 
 <style>
-    header{display:none !important; }
+    header, .head-top {display:none !important; }
     body{background-image: url("/images/bg.png"); background-attachment: fixed; background-size: cover;}
  </style>
