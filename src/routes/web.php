@@ -13,6 +13,8 @@ use App\Http\Controllers\CustomLoginController;
 |
 */
 
+
+
 Route::middleware("calculations")->group(function () {
 
     Route::get('/', "HomeController@index")->name('home');
@@ -233,3 +235,10 @@ Route::get('slogin/{provider}/callback', [CustomLoginController::class, 'handleP
 
 // Route::get("/productssearch", "ProductsController@productssearch");
 // Route::get('search', ['as' => 'search', 'uses' => 'ProductsController@productssearch']);
+
+
+if( 1 ){
+    Route::get('/', function () {
+        return view('maintenance');
+    });
+}

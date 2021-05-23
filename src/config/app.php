@@ -237,4 +237,6 @@ return [
 
     ],
 
+    'maintenance' => (bool) env('MAINTENANCE', false),
+
 ];
