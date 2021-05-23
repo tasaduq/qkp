@@ -237,7 +237,7 @@ Route::get('slogin/{provider}/callback', [CustomLoginController::class, 'handleP
 // Route::get('search', ['as' => 'search', 'uses' => 'ProductsController@productssearch']);
 
 
-if( 1 ){
+if( config('app.maintenance') ){
     Route::get('/', function () {
         return view('maintenance');
     });
