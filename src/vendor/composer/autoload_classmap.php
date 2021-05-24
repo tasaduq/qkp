@@ -90,6 +90,7 @@ return array(
     'Barryvdh\\Debugbar\\Middleware\\InjectDebugbar' => $vendorDir . '/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php',
     'Barryvdh\\Debugbar\\ServiceProvider' => $vendorDir . '/barryvdh/laravel-debugbar/src/ServiceProvider.php',
     'Barryvdh\\Debugbar\\Storage\\FilesystemStorage' => $vendorDir . '/barryvdh/laravel-debugbar/src/Storage/FilesystemStorage.php',
+    'Barryvdh\\Debugbar\\Storage\\SocketStorage' => $vendorDir . '/barryvdh/laravel-debugbar/src/Storage/SocketStorage.php',
     'Barryvdh\\Debugbar\\Support\\Clockwork\\ClockworkCollector' => $vendorDir . '/barryvdh/laravel-debugbar/src/Support/Clockwork/ClockworkCollector.php',
     'Barryvdh\\Debugbar\\Support\\Clockwork\\Converter' => $vendorDir . '/barryvdh/laravel-debugbar/src/Support/Clockwork/Converter.php',
     'Barryvdh\\Debugbar\\SymfonyHttpDriver' => $vendorDir . '/barryvdh/laravel-debugbar/src/SymfonyHttpDriver.php',
