@@ -36,9 +36,11 @@
                 <div class="title">
                 <span class="name">{{$product->name}}</span>
                 <div class="prize">
-                    <span>Full Price <strong>{{$product->price}}/-</strong></span>
-                    <span>Monthly Instalment <strong>{{number_format( $product->least_installment() )}}/-</strong></span>
-                    <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                    <span>{{$get_feasible_installments > 0 ? "Full Price" : "Price" }} <strong>{{$product->price}}/-</strong></span>
+                    @if( $get_feasible_installments > 0 )
+                        <span>Monthly Instalment <strong>{{number_format( $product->least_installment() )}}/-</strong></span>
+                        <!-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> -->
+                    @endif
                 </div>
                 </div>
                 @if(!$product->sold_out)

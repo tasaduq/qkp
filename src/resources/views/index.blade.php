@@ -1,6 +1,9 @@
 @extends('layouts.front')
 
 @section('content')
+<?php
+$get_feasible_installments = Session::get("get_feasible_installments");
+?>
 
 <!-- Banner section -->
 
@@ -239,8 +242,10 @@
                   </div>
                   <div class="title">
                      <span class="name">{{$product->name}}</span>
-                     <span class="prize">{{number_format($product->price)}}/- Full price</span> <br>
-                     <span class="prize">{{number_format( $product->least_installment() )}}/- Per Month</span>
+                     <span class="prize">{{number_format($product->price)}}/- {{$get_feasible_installments > 0 ? "Full Price" : "Price" }}</span> <br>
+                     @if( $get_feasible_installments > 0 )
+                        <span class="prize">{{number_format( $product->least_installment() )}}/- Per Month</span>
+                     @endif
                   </div>
                </div>
                @if (!$product->sold_out)

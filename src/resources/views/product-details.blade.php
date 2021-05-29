@@ -255,9 +255,11 @@ $get_feasible_installments = Session::get("get_feasible_installments");
                <div class="title">
                   <span class="name">{{ $product->name }}</span>
                   <div class="prize">
-                     <span class="prize">{{number_format($product->price)}}/- Full price</span> <br>
-                     <span class="prize">{{number_format( $product->least_installment() )}}/- Per Month</span>
-                     {{-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> --}}
+                     <span class="prize">{{number_format($product->price)}}/- {{$get_feasible_installments > 0 ? "Full Price" : "Price" }} </span> <br>
+                     @if( $get_feasible_installments > 0 )
+                        <span class="prize">{{number_format( $product->least_installment() )}}/- Per Month</span>
+                        {{-- <span class="cart"><i class="icon-qkp-shopping-cart"></i></span> --}}
+                     @endif
                   </div>
                </div>
             </div>
