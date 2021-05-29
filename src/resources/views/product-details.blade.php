@@ -62,12 +62,21 @@ $get_feasible_installments = Session::get("get_feasible_installments");
                   <h2>{{$product->name}}</h2>
                   <p>{{$product->description}}</p>
 
+
+                 
+
+
+                  @if($get_feasible_installments > 0)
                   <div class="order-type mt-5 mb-4">
-                     @if($get_feasible_installments > 0)
-                        <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
-                        <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
-                     @endif
+                     <a class="active mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
+                     <a class="px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
                   </div>
+                  @else
+                  <div class="order-type mt-5 mb-4" style="display:none;">
+                     <a class="mr-2 px-3 payment-schedule" type="instalment" href="#">Kiston Pay</a>
+                     <a class="active px-3 payment-schedule" type="full" href="#">Pay Full Amount</a>
+                  </div>
+                  @endif
 
                   @if (!$product->sold_out)
                   @if($get_feasible_installments > 0)
@@ -153,12 +162,14 @@ $get_feasible_installments = Session::get("get_feasible_installments");
                                  <span>:</span>{{$product->current_weight}} KG
                               </label>
                            </li>
+                           @if( $get_feasible_installments == 0 )
                            <li>
                               <label class="control-label" data-toggle="tooltip" title="This is an estimated weight and may vary">
                                  <div class="attribute">Weight at Delivery</div>
                                  <span>:</span>{{$product->weight}} KG <em>Approx.</em>
                               </label>
                            </li>
+                           @endif
                            <li>
                               <label class="control-label">
                                  <div class="attribute">Color</div>
