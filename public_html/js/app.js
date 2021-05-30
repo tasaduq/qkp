@@ -412,10 +412,13 @@ $(document).ready(function(){
         if( $(this).attr("type") == "full" ){
             $(".full-payment-schedule").show();
             $(".instalment-payment-schedule").hide();
+            buy_btn_label = 'Buy Animal';
         } else {
+            buy_btn_label = 'Book your Animal';
             $(".full-payment-schedule").hide();
             $(".instalment-payment-schedule").show();
         }
+        $(".add-to-cart-btn.book-buy").text(buy_btn_label) 
     })
     // $('#price_from, #price_to').on('blur',function(){
     //     searchFilter.filterChange();

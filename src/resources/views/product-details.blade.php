@@ -194,7 +194,7 @@ $get_feasible_installments = Session::get("get_feasible_installments");
                         <div clas="alreadyadded">Added to your cart</div>
                      @else
                      <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn addcart" product="{{$product->product_id}}" redirect="no" type="button">Add to Cart</button></div>
-                     <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn" product="{{$product->product_id}}" redirect="yes" type="button">Book your Animal</button></div>
+                     <div class="col-sm-6"><button class="btn font-md default-btn py-3 w-100 login add-to-cart-btn book-buy" product="{{$product->product_id}}" redirect="yes" type="button"> {{$get_feasible_installments > 0 ? 'Book your Animal' : 'Buy Animal' }}  </button></div>
                      @endif
                   </div>
                   @else 
