@@ -238,5 +238,5 @@ return [
     ],
 
     'maintenance' => (bool) env('MAINTENANCE', false),
-
+    'admin_emails_email' => (bool) env('ADMIN_EMAIL', false),
 ];
