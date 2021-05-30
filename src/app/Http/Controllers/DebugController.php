@@ -9,10 +9,14 @@ use Session;
 class DebugController extends Controller
 {
     public function dumpdata(){
-
+        dump("settings");
         dump(SETTINGS::get('tax_value'));
         dump(SETTINGS::get('overdue_penalty'));
-        dd(Session::all());
+        dump("session");
+        dump(Session::all());
+        dump("env");
+        dump(env('admin_emails_email'));
+        dd("end")
     }
     
 }
