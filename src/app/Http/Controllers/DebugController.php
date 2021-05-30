@@ -16,7 +16,7 @@ class DebugController extends Controller
         dump(Session::all());
         dump("env");
         dump(env('admin_emails_email'));
-        dd("end")
+        dd("end");
     }
     
 }
