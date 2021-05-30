@@ -15,7 +15,8 @@ class DebugController extends Controller
         dump("session");
         dump(Session::all());
         dump("env");
-        dump(env('admin_emails_email'));
+        dump(env('ADMIN_EMAIL'));
+        dump(config('app.admin_emails_email'));
         dd("end");
     }
     

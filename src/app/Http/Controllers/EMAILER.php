@@ -77,7 +77,7 @@ class EMAILER
             $emailTemplate = DB::table($table)->where('type',$type)->where('status',$status)->where('admin','1')->first();
             
             $parsedEmail = SELF::parse($emailTemplate, $data);
-            $sender['toEmail'] = env('admin_emails_email');
+            $sender['toEmail'] = config('app.admin_emails_email');
             // $sender['toEmail'] = "support@qurbanikistonpay.com";
             $sender['toSubject'] = $emailTemplate->subject;
 
