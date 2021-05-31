@@ -162,7 +162,7 @@ $get_feasible_installments = Session::get("get_feasible_installments");
                                  <span>:</span>{{$product->current_weight}} KG
                               </label>
                            </li>
-                           @if( $get_feasible_installments == 0 )
+                           @if( $get_feasible_installments > 0 )
                            <li>
                               <label class="control-label" data-toggle="tooltip" title="This is an estimated weight and may vary">
                                  <div class="attribute">Weight at Delivery</div>
