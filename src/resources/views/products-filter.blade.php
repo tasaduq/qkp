@@ -1,3 +1,6 @@
+<?php
+$get_feasible_installments = Session::get("get_feasible_installments");
+?>
 
                     
     <h2>{{$category->category_name}}</h2>

@@ -2,9 +2,6 @@
 
 @section('content')
         
-<?php
-$get_feasible_installments = Session::get("get_feasible_installments");
-?>
     <!-- products section -->
 
     <section class="products-section">
