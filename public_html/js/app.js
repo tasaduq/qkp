@@ -1009,6 +1009,9 @@ var cart = {
                 if( result.code == 100 ){
                     user.showLogin();
                 } else {
+
+                    fbq('track', 'AddToCart');
+
                     page.toast.show("Product added to cart.", "success");
                     if(redirect == "yes"){
                         cart.redirectToCart();
@@ -1072,6 +1075,7 @@ var cart = {
 
                 if( result.code == 200 ){
                     // user.redirectToProfile();
+                    fbq('track', 'Purchase', {value: 0.00, currency: 'PKR'});
                     window.location = "/payment";
                 } else {
                     page.toast.show(result.error, "danger")
