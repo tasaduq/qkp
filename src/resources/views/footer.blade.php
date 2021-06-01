@@ -20,9 +20,9 @@
                <a href="https://twitter.com/qurbaniKP" target="_blank">
                   <i class="icon-qkp-twitter"></i>
                </a>
-                {{-- <a href="#" target="_blank">
+                <a href="https://www.youtube.com/channel/UC1bJtF_YSAJO0QRiX_1" target="_blank">
                    <i class="icon-qkp-youtube-play"></i>
-                </a> --}}
+                </a>
                 <a href="https://www.instagram.com/qurbanikistonpay/" target="_blank">
                   <i class="icon-qkp-instagram"></i>
                </a>

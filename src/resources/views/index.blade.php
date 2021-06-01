@@ -311,9 +311,9 @@ $get_feasible_installments = Session::get("get_feasible_installments");
             </div> -->
             <div class="col-sm-10">
                <div class="desc">
-                  <p class="text-center"><em>"I was always a bit skeptical about online qurbani websites, but I decided to do my research and talked to their customer service. They are very professional and seem to know what they are doing. The convenience of paying in installments just made everything better"</em></p>
+                  <p class="text-center"><em>"Mainay qurbani kiston pay jaisa platform nai dekha aj tak. Inki customer service bohat hi achi hai"</em></p>
                </div>
-               <div class="client d-block"><h6><em>- Abdul Khaliq</em></h6></div>
+               <div class="client d-block"><h6><em>- Zulfiqar Sheikh</em></h6></div>
             </div>
          </div>
          <div class="row d-inline-flex text-center client-content justify-content-center align-items-center">
@@ -325,9 +325,9 @@ $get_feasible_installments = Session::get("get_feasible_installments");
             </div> -->
             <div class="col-sm-10">
                <div class="desc">
-                  <p class="text-center"><em>"My husband was worried about qurbani last year, but Qurbani Kistoon Pay resolved our financial woes. We not only selected the animal of our choice but the ability to pay in easy monthly installments made our choice just so much better! And on top of that the animal will be delivered right at the doorstep."</em></p>
+                  <p class="text-center"><em>"Kiston ka ye tareeqay bohat hi faidaymand hai. Pooray saal choti qistein dekay qurbani py ghar py janwar milna aik boha achi service hai"</em></p>
                </div>
-               <div class="client d-block"><h6><em>- Nazia Batool</em></h6></div>
+               <div class="client d-block"><h6><em>- Wajahat Ali</em></h6></div>
             </div>
          </div>
          <div class="row d-inline-flex text-center client-content justify-content-center align-items-center">
@@ -339,9 +339,9 @@ $get_feasible_installments = Session::get("get_feasible_installments");
             </div> -->
             <div class="col-sm-10">
                <div class="desc">
-                  <p class="text-center"><em>"One of my friends told me about Qurbani Kiston Pay so I decided to visit their website. They turned out to be highly competitive and groundbreaking. No other platform offers such a diverse selection of sacrificial animals or monthly shariah compliant installment facility. My Eid ul Azha will be hassle free."</em></p>
+                  <p class="text-center"><em>"Qurbani Kiston Pay has exceptional customer support. I needed a qurbani animal which I couldn’t find in my price range. Their team went above and beyond to find it for me"</em></p>
                </div>
-               <div class="client d-block"><h6><em>- Khalid Sultan</em></h6></div>
+               <div class="client d-block"><h6><em>- Ashraf Ali</em></h6></div>
             </div>
          </div>
       </div>
