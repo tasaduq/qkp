@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-6 copyright">
              {{-- <span>© Copyrights 2020 Qurbanikistonpay (PVT).LTD. All Rights Reserved</span> --}}
-             <span>© Copyrights 2020 Farms Wide Open (PVT).LTD. All Rights Reserved</span>
+             <span>© Copyrights 2021 Farms Wide Open (PVT).LTD. All Rights Reserved</span>
              <span><a href="privacy-policy"><strong>Privacy Policy</strong></a> - <a href="terms-conditions"><strong>Terms & Conditions</strong></a> - <a href="faqs"><strong>FAQs</strong></a> - <a href="Refund-and-cancellation-policy"><strong>Refund & Cancellation Policy</strong></a></span>
           </div>
           <div class="col-md-3 social-icon">
@@ -20,7 +20,7 @@
                <a href="https://twitter.com/qurbaniKP" target="_blank">
                   <i class="icon-qkp-twitter"></i>
                </a>
-                <a href="https://www.youtube.com/channel/UC1bJtF_YSAJO0QRiX_1" target="_blank">
+                <a href="https://www.youtube.com/channel/UC1bJtF_YSAJO0QRiX_1oKaA" target="_blank">
                    <i class="icon-qkp-youtube-play"></i>
                 </a>
                 <a href="https://www.instagram.com/qurbanikistonpay/" target="_blank">

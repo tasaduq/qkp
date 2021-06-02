@@ -19,7 +19,7 @@
 
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 
-        <title>Qurbani Kiston Pay</title>
+        <title>@yield('pageTitle') - Qurbani Kiston Pay</title>
         <meta name="description" content="Qurbani Ab Sab Ki Pohanch Main, Sood Say Pak.. Ain Shariah Kay Mutabiq">
 
          <script type="text/javascript">
