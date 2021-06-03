@@ -123,9 +123,9 @@ class OrderController extends Controller
 
         if( $order->is_confirmed() ){
             //if payment is made, submit a cancellation request
-            if($order->request_cancel($message)){
+            if($order = $order->request_cancel($message)){
 
-                EMAILER::send("ORDER", $order->status, $order, $user, true);
+                EMAILER::send("ORDER", "8", $order, $user, true);
 
                 $response["code"] = 200;
                 $response["message"] = "Request for cancellation has been submitted";
@@ -139,8 +139,8 @@ class OrderController extends Controller
             if($order->immediate_cancel($message)){
                 if($order->restock()){
 
-                    EMAILER::send("ORDER", $order->status, $order, $user, true);
-                    
+                    EMAILER::send("ORDER", "5", $order, $user, true);
+
                     $response["code"] = 200;
                     $response["message"] = "Order has been cancelled successfully";
                 }
