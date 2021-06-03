@@ -67,6 +67,9 @@ class OrderController extends Controller
             if($orderProduct->request_cancel($message)){
                 $response["code"] = 200;
                 $response["message"] = "Request for cancellation has been submitted";
+
+                //send an email informing the same
+
             }
 
         }
@@ -83,7 +86,8 @@ class OrderController extends Controller
             if($orderProduct->immediate_cancel($message)){
                 if($orderProduct->restock()){
 
-                    
+                    //send an email informing the same
+
                     $response["code"] = 200;
                     $response["message"] = "Animal has been cancelled successfully";
                 }
