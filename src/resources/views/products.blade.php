@@ -1,4 +1,10 @@
+
 @extends('layouts.front')
+
+@section('pageTitle')
+    Products
+@endsection
+
 
 @section('content')
         
