@@ -2232,3 +2232,19 @@ tooltip{background: radial-gradient(circle, rgba(60, 1, 69, 1) 0%, rgba(40, 0, 5
     border-color: #270037;
 }
 .page-link{color:#270037;}
+
+
+.notice {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 12px 15px;
+    text-shadow: 2px 2px 5px #a764b7;
+    color: #2d003b;
+    /* font-family: noori; */
+    /* background: #efd06b; */
+}
+
+.notice span {
+    color: #e24622;
+}

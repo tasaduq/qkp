@@ -69,6 +69,7 @@
     </head>
     
    <body>
+      <div class="notice">قربانی کے تمام جانور صرف عید ٢٠٢١ کے لئے مکمل ادائیگیوں پر دستیاب ہوں گے۔عید ٢٠٢٢ کے لئے قسطوں کے منصوبوں کا اعلان جلد کیا جائے گا۔ <span> *</span></div>
       <!-- top header
       <div class="head-top">
          <div class="container">
