@@ -56,7 +56,11 @@ class CalculationController extends Controller
     }
     private function get_feasible_installments(){
         $days = $this->days_before_eid();
-        return intval( ceil( $days / 30 ) ) - 2;
+        $installments = intval( ceil( $days / 30 ) ) - 2;
+        if( $installments < 0 ) {
+            $installments = 0;
+        }
+        return $installments;
     }
     public function dumpdata(){
 
